@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiagent.ai - Smart WhatsApp CRM & Ads Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .text-brand-red {
+            color: #e60000;
+        }
+
+        .bg-brand-red {
+            background-color: #e60000;
+        }
+
+        .border-brand-red {
+            border-color: #e60000;
+        }
+
+        /* Efek Interaktif Kustom */
+        .glow-red {
+            box-shadow: 0 10px 40px -10px rgba(230, 0, 0, 0.4);
+        }
+
+        .glow-red:hover {
+            box-shadow: 0 15px 50px -5px rgba(230, 0, 0, 0.6);
+        }
+
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Perbaikan Animasi agar tidak memudar terlalu cepat */
+        @keyframes fadeInUpSmooth {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUpSmooth 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 antialiased overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav
+        class="flex items-center justify-between px-6 md:px-12 py-5 glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div class="text-2xl font-extrabold tracking-tight cursor-pointer hover:scale-105 transition-transform">
+            cardi<span class="text-brand-red">agent</span>.ai
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm text-slate-300 font-medium">
+            <a href="#fitur" class="hover:text-white transition-colors duration-300">Fitur Cerdas</a>
+            <a href="#dashboard" class="hover:text-white transition-colors duration-300">Dasbor Terpadu</a>
+            <a href="#harga" class="hover:text-white transition-colors duration-300">Investasi</a>
+        </div>
+        <a href="#harga"
+            class="bg-brand-red hover:bg-red-700 text-white text-sm px-6 py-2.5 rounded-full font-bold transition-all duration-300 glow-red transform hover:-translate-y-0.5">
+            Coba Sekarang
+        </a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section
+        class="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-32 overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950">
+        <div
+            class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="relative z-10 animate-fade-in-up opacity-0"> <!-- Opacity 0 di awal, diisi oleh keyframes -->
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-sm font-medium backdrop-blur-sm transition hover:border-brand-red cursor-default">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-red"></span>
+                </span>
+                Revolusi Layanan Pelanggan & Optimasi Iklan
+            </div>
+
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-[1.15] tracking-tight max-w-4xl mx-auto">
+                Ubah WhatsApp Anda Menjadi <br>
+                <!-- Teks ini menggunakan warna solid merah dengan efek shadow cahaya agar tidak terlihat pudar -->
+                <span class="text-brand-red drop-shadow-[0_0_15px_rgba(230,0,0,0.4)]">Asisten Penjualan 24/7
+                    Terpintar</span>
+            </h1>
+
+            <p class="text-base md:text-lg text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Sistem Customer Relationship Management (CRM) terpadu yang membalas chat secara natural, melakukan
+                follow-up otomatis, hingga menganalisis performa iklan pemasaran Anda langsung dari satu dasbor elegan.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#fitur"
+                    class="bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-base transition-all duration-300 glow-red transform hover:-translate-y-1">
+                    Pelajari Fitur Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="py-24 bg-slate-950 px-6 relative">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">Masalah Terbesar Bisnis Online Saat Ini
+            </h2>
+            <p class="text-slate-400 text-base mb-16 max-w-2xl mx-auto">Menghabiskan anggaran untuk iklan, namun
+                kehilangan pelanggan karena pelayanan yang lambat dan tindak lanjut yang buruk.</p>
+
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div
+                    class="group p-8 glass-card rounded-3xl hover:border-brand-red transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-900/10">
+                    <div
+                        class="w-12 h-12 bg-slate-800 group-hover:bg-brand-red text-white flex items-center justify-center rounded-2xl mb-6 font-bold text-xl transition-colors duration-300">
+                        1</div>
+                    <h3 class="font-bold text-xl mb-3 text-slate-100">Balasan Chat Lambat</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pelanggan sering kabur ke kompetitor karena admin
+                        manusia butuh waktu untuk membalas, terutama di luar jam kerja atau saat pesan menumpuk.</p>
+                </div>
+                <div
+                    class="group p-8 glass-card rounded-3xl hover:border-brand-red transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-900/10">
+                    <div
+                        class="w-12 h-12 bg-slate-800 group-hover:bg-brand-red text-white flex items-center justify-center rounded-2xl mb-6 font-bold text-xl transition-colors duration-300">
+                        2</div>
+                    <h3 class="font-bold text-xl mb-3 text-slate-100">Lupa Melakukan Follow-up</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Banyak calon pembeli yang sudah tertarik namun
+                        lupa transfer. Kehilangan omzet terjadi karena admin lupa menanyakan kembali status pesanan.</p>
+                </div>
+                <div
+                    class="group p-8 glass-card rounded-3xl hover:border-brand-red transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-900/10">
+                    <div
+                        class="w-12 h-12 bg-slate-800 group-hover:bg-brand-red text-white flex items-center justify-center rounded-2xl mb-6 font-bold text-xl transition-colors duration-300">
+                        3</div>
+                    <h3 class="font-bold text-xl mb-3 text-slate-100">Iklan Boncos Tanpa Arah</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Sulit membedakan materi iklan mana yang
+                        benar-benar menghasilkan penjualan dan mana yang hanya menghabiskan anggaran tanpa evaluasi yang
+                        jelas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION (ELEGANT LIGHT CONTRAST) -->
+    <section id="fitur" class="py-24 bg-slate-50 text-slate-900 px-6 md:px-12 rounded-t-[3rem] -mt-8 relative z-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
+                    Sistem <span class="text-brand-red">Otomatisasi Cerdas</span> <br>Tanpa Perlu Coding
+                </h2>
+                <p class="text-slate-500 text-base md:text-lg">
+                    Cardiagent.ai mengambil alih tugas repetitif Anda. Mulai dari melayani pelanggan layaknya manusia
+                    hingga membedah performa iklan harian Anda.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Feature 1 -->
+                <div
+                    class="group p-8 bg-white rounded-3xl border border-slate-200 hover:border-brand-red transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 bg-red-50 text-brand-red flex items-center justify-center rounded-2xl mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Asisten Chat Natural</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">AI kami merespons pesan secara kontekstual tanpa
+                        terlihat kaku seperti robot, dan otomatis meneruskan ke admin manusia jika ada situasi khusus.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="group p-8 bg-white rounded-3xl border border-slate-200 hover:border-brand-red transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 bg-red-50 text-brand-red flex items-center justify-center rounded-2xl mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Follow-up Proaktif</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Sistem memantau secara rutin dan mengirim pesan
+                        pengingat personal kepada calon pembeli yang belum merespons atau belum transfer, sesuai jeda
+                        waktu yang Anda atur.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="group p-8 bg-white rounded-3xl border border-slate-200 hover:border-brand-red transition-all duration-300 hover:shadow-xl relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
+                        Terpopuler</div>
+                    <div
+                        class="w-14 h-14 bg-red-50 text-brand-red flex items-center justify-center rounded-2xl mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Pencari Katalog Cerdas</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Pelanggan menanyakan produk? AI akan langsung
+                        memindai katalog data Anda dan merekomendasikan produk yang paling relevan secara otomatis.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="group p-8 bg-white rounded-3xl border border-slate-200 hover:border-brand-red transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 bg-red-50 text-brand-red flex items-center justify-center rounded-2xl mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Audit & Ide Iklan Kreatif</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">AI menganalisis kampanye pemasaran Anda,
+                        membedakan iklan yang sukses dan gagal, lalu meracik usulan tulisan promosi baru untuk
+                        mendongkrak penjualan.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div
+                    class="group p-8 bg-white rounded-3xl border border-slate-200 hover:border-brand-red transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 bg-red-50 text-brand-red flex items-center justify-center rounded-2xl mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Laporan Iklan ke Grup</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Tidak perlu lagi repot membuka dasbor iklan setiap
+                        pagi. Sistem akan menyusun laporan performa lengkap dan mengirimkannya langsung ke grup WhatsApp
+                        tim Anda.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div
+                    class="group p-8 bg-white rounded-3xl border border-slate-200 hover:border-brand-red transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 bg-red-50 text-brand-red flex items-center justify-center rounded-2xl mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Pahami Pesan Suara</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Dilengkapi teknologi pengenal suara. Saat
+                        pelanggan mengirim *voice note*, sistem otomatis menuliskan transkripnya sehingga AI tetap paham
+                        dan bisa membalas dengan tepat.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD HIGHLIGHT SECTION -->
+    <section id="dashboard" class="py-24 bg-slate-900 px-6 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-6">Satu Dasbor Elegan Untuk
+                    Segala Kebutuhan</h2>
+                <p class="text-slate-400 text-base mb-6 leading-relaxed">
+                    Tinggalkan cara lama membuka banyak aplikasi. Cardiagent.ai menyediakan satu layar kontrol yang
+                    rapi, bersih, dan sangat mudah digunakan oleh siapa pun.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0 mt-0.5">
+                            ✓</div>
+                        <span class="text-slate-300 text-sm">Kelola banyak nomor WhatsApp atau berbagai sesi bisnis
+                            sekaligus hanya dari satu tempat.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0 mt-0.5">
+                            ✓</div>
+                        <span class="text-slate-300 text-sm">Tersedia mode ambil alih *chat* manual dengan tampilan
+                            obrolan yang mirip dengan WhatsApp asli.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0 mt-0.5">
+                            ✓</div>
+                        <span class="text-slate-300 text-sm">Kemampuan merekam pesan suara manual dari perangkat Anda
+                            langsung melalui dasbor pengelola.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2">
+                <!-- Ilustrasi Dashboard Sederhana -->
+                <div
+                    class="w-full h-80 rounded-2xl glass-card border-slate-700 shadow-2xl relative overflow-hidden flex flex-col">
+                    <div class="h-10 border-b border-slate-700 flex items-center px-4 gap-2 bg-slate-800/50">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="flex-1 flex p-4 gap-4">
+                        <div class="w-1/3 bg-slate-800/40 rounded-lg p-3 space-y-3">
+                            <div class="h-8 bg-slate-700/50 rounded animate-pulse"></div>
+                            <div class="h-12 bg-slate-700/30 rounded"></div>
+                            <div class="h-12 bg-slate-700/30 rounded"></div>
+                        </div>
+                        <div class="flex-1 flex flex-col gap-3">
+                            <div class="w-3/4 h-16 bg-slate-800/40 rounded-lg rounded-tl-none self-start"></div>
+                            <div
+                                class="w-3/4 h-16 bg-brand-red/20 border border-brand-red/30 rounded-lg rounded-tr-none self-end flex items-center px-4">
+                                <span class="text-xs text-brand-red font-bold">Respon AI Pintar...</span></div>
+                            <div
+                                class="mt-auto h-10 border border-slate-700 rounded-full flex items-center px-4 text-xs text-slate-500">
+                                Ketik pesan manual atau rekam suara...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="harga" class="py-24 bg-slate-950 px-6 relative">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Pilih Paket Investasi Anda
+            </h2>
+            <p class="text-slate-400 text-base mb-16 max-w-2xl mx-auto">Kami menyediakan solusi fleksibel, baik untuk
+                bisnis yang baru mulai berkembang maupun perusahaan yang membutuhkan kustomisasi skala besar.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+
+                <!-- Paket Starter -->
+                <div
+                    class="glass-card rounded-[2rem] p-8 md:p-10 border border-slate-800 hover:border-slate-600 transition-all duration-300 flex flex-col h-full relative">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-2 text-white">Starter</h3>
+                        <p class="text-slate-400 text-sm h-10">Cocok untuk UMKM dan Toko Online yang ingin melayani
+                            pesan pelanggan secara otomatis.</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <span class="text-4xl font-extrabold text-white">Rp 499.000</span>
+                        <span class="text-slate-400 text-sm">/ bulan</span>
+                    </div>
+
+                    <ul class="space-y-4 text-slate-300 text-sm mb-10 flex-1">
+                        <li class="flex items-start gap-3"><span class="text-slate-500 font-bold">✓</span> Asisten Chat
+                            Natural (Maks. 1.000 chat/bulan)</li>
+                        <li class="flex items-start gap-3"><span class="text-slate-500 font-bold">✓</span> Follow-up
+                            Proaktif Dasar</li>
+                        <li class="flex items-start gap-3"><span class="text-slate-500 font-bold">✓</span> Integrasi
+                            Katalog Pencarian (Maks. 50 Produk)</li>
+                        <li class="flex items-start gap-3"><span class="text-slate-500 font-bold">✓</span> Kelola 1
+                            Nomor WhatsApp (Sesi Tunggal)</li>
+                        <li class="flex items-start gap-3"><span class="text-slate-500 font-bold">✓</span> Dasbor
+                            Obrolan Standar</li>
+                    </ul>
+
+                    <a href="#"
+                        class="block w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-full text-center transition-all duration-300 border border-slate-700 mt-auto">
+                        Pilih Paket Starter
+                    </a>
+                </div>
+
+                <!-- Paket Enterprise (Custom) -->
+                <div
+                    class="bg-slate-900 rounded-[2rem] p-8 md:p-10 border border-brand-red shadow-2xl shadow-red-900/20 transform md:-translate-y-4 transition-all duration-300 flex flex-col h-full relative">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-red text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                        Rekomendasi Utama
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-2 text-white">Enterprise Kustom</h3>
+                        <p class="text-slate-400 text-sm h-10">Solusi menyeluruh tak terbatas untuk Agensi, Distributor,
+                            dan Perusahaan Skala Besar.</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <span class="text-4xl font-extrabold text-white">Hubungi Kami</span>
+                        <div class="text-brand-red text-sm mt-1 font-medium">Berdasarkan Konsultasi</div>
+                    </div>
+
+                    <ul class="space-y-4 text-slate-200 text-sm mb-10 flex-1">
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> <strong>Semua
+                                Fitur di Paket Starter</strong></li>
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> Kuota Chat &
+                            Follow-up Tanpa Batas (Unlimited)</li>
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> Manajemen
+                            Multi-Sesi WhatsApp</li>
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> Laporan
+                            Performa Iklan Otomatis</li>
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> Audit & Ide
+                            Copywriting Iklan Kreatif</li>
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> Dukungan
+                            Transkrip Pesan Suara (Voice Note)</li>
+                        <li class="flex items-start gap-3"><span class="text-brand-red font-bold">✓</span> Prioritas
+                            Bantuan Teknis Khusus</li>
+                    </ul>
+
+                    <a href="#"
+                        class="block w-full bg-brand-red hover:bg-red-700 text-white font-bold py-4 rounded-full text-center transition-all duration-300 glow-red mt-auto">
+                        Konsultasi Kebutuhan Anda
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="text-xl font-extrabold text-white mb-2 tracking-tight">cardi<span
+                        class="text-brand-red">agent</span>.ai</div>
+                <p class="text-sm max-w-sm">Solusi cerdas yang membantu bisnis mengotomatiskan pelayanan pelanggan dan
+                    mengevaluasi laporan performa pemasaran tanpa kerumitan teknis.</p>
+            </div>
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" class="hover:text-brand-red transition-colors">Hubungi Tim Bantuan</a>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-700 mt-12 font-medium">
+            &copy; 2026 Cardiagent.ai. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+
+</html>
