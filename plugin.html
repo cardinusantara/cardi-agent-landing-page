@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RankAgent.ai - WordPress SEO Automation Plugin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Warna Emerald Green untuk SEO Success */
+            --brand-accent: #00E659;
+            --bg-black: #030303;
+            --surface: #0a0a0a;
+            --surface-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-black);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Latar Belakang Grid Eksklusif */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        /* Micro-interactions & Glassmorphism */
+        .glass-pill {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--surface-border);
+        }
+
+        .premium-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .premium-card:hover {
+            border-color: rgba(0, 230, 89, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 230, 89, 0.1);
+        }
+
+        /* Efek Teks Gradient Mahal */
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Efek Glow Tombol */
+        .btn-glow {
+            box-shadow: 0 0 20px 0 rgba(0, 230, 89, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 40px 5px rgba(0, 230, 89, 0.4);
+            transform: scale(1.02);
+        }
+
+        /* Keyframes Animasi Halus */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes revealUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal-1 {
+            animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-2 {
+            animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .reveal-3 {
+            animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* Ambient Green Glow di Background */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 230, 89, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-[#00E659] selection:text-black">
+
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 bg-grid z-[-2]"></div>
+    <div class="ambient-glow"></div>
+
+    <!-- FLOATING NAVBAR -->
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+        <nav
+            class="glass-pill px-6 py-3 rounded-full flex items-center justify-between w-full max-w-4xl pointer-events-auto shadow-2xl">
+            <div class="text-xl font-extrabold tracking-tight">
+                rank<span class="text-[#00E659]">agent</span>.ai
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+                <a href="#masalah" class="hover:text-white transition-colors">Masalah</a>
+                <a href="#fitur" class="hover:text-white transition-colors">Arsitektur</a>
+                <a href="#investasi" class="hover:text-white transition-colors">Investasi</a>
+            </div>
+            <a href="#investasi"
+                class="bg-[#00E659] text-black text-xs font-bold px-5 py-2.5 rounded-full btn-glow uppercase tracking-wide">
+                Unduh Plugin
+            </a>
+        </nav>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 pb-20">
+        <div
+            class="reveal-1 inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-white/10 bg-white/5 text-gray-300 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
+            <span class="relative flex h-2 w-2">
+                <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E659] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#00E659]"></span>
+            </span>
+            Plugin WordPress Generasi Berikutnya
+        </div>
+
+        <h1
+            class="reveal-2 text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter leading-[1.05] max-w-5xl">
+            Dominasi Halaman Pertama. <br>
+            <span class="text-[#00E659] drop-shadow-[0_0_20px_rgba(0,230,89,0.3)]">Tanpa Menyentuh Kode.</span>
+        </h1>
+
+        <p class="reveal-3 text-lg md:text-xl text-gray-400 mb-12 max-w-2xl font-light leading-relaxed">
+            Hentikan pengerjaan SEO manual yang membosankan. Biarkan AI kami mengoptimalkan struktur *website* WordPress
+            Anda, membangun tautan internal, dan meracik *meta tag* secara otomatis.
+        </p>
+
+        <div class="reveal-3 flex flex-col sm:flex-row gap-5">
+            <a href="#investasi"
+                class="bg-[#00E659] text-black hover:bg-[#00c94e] px-8 py-4 rounded-full font-bold text-sm transition-colors duration-300 btn-glow">
+                Mulai Optimasi Sekarang
+            </a>
+            <a href="#fitur"
+                class="group flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/20 hover:border-white/50 text-white font-medium text-sm transition-all duration-300">
+                Lihat Cara Kerjanya
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section id="masalah" class="py-32 px-6 border-y border-white/5 bg-[#030303]/80 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">Kerja SEO Manual Itu
+                        <span class="text-gray-500 line-through">Lama</span> <span class="text-[#00E659]">Ketinggalan
+                            Zaman.</span></h2>
+                    <p class="text-gray-400 text-lg leading-relaxed font-light mb-8">
+                        Menulis *meta description* satu per satu, mencari kata kunci yang pas, hingga memikirkan tautan
+                        antar artikel memakan waktu berjam-jam. Algoritma Google terus berubah, Anda butuh kecepatan
+                        mesin untuk menyeimbanginya.
+                    </p>
+                </div>
+                <div class="grid gap-4">
+                    <div
+                        class="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors">
+                        <div class="text-[#00E659] font-bold text-xl mb-2">01. Konten Terkubur</div>
+                        <p class="text-sm text-gray-400">Tulisan luar biasa tidak ada gunanya jika Google tidak mengerti
+                            strukturnya karena SEO teknikal yang buruk.</p>
+                    </div>
+                    <div
+                        class="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors">
+                        <div class="text-[#00E659] font-bold text-xl mb-2">02. Agensi yang Mahal</div>
+                        <p class="text-sm text-gray-400">Membayar konsultan SEO bulanan hanya untuk tugas-tugas dasar
+                            yang sebenarnya bisa diotomatisasi penuh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENTO GRID FEATURES -->
+    <section id="fitur" class="py-40 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-center mb-20 text-gradient">
+                Mesin Pintar Di Balik Layar
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+
+                <!-- Bento Box 1: Large Span -->
+                <div
+                    class="premium-card rounded-3xl p-8 md:col-span-2 flex flex-col justify-end relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-[#00E659] opacity-10 rounded-full blur-[80px] group-hover:opacity-20 transition-opacity">
+                    </div>
+                    <div class="mb-auto">
+                        <svg class="w-10 h-10 text-[#00E659] mb-4" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Internal Linking Otomatis</h3>
+                    <p class="text-gray-400 text-sm w-3/4">Sistem memindai seluruh artikel Anda dan otomatis menyisipkan
+                        tautan (link) ke halaman lain yang saling berhubungan. Meningkatkan durasi kunjungan secara
+                        instan.</p>
+                </div>
+
+                <!-- Bento Box 2 -->
+                <div class="premium-card rounded-3xl p-8 flex flex-col justify-end relative group">
+                    <div class="mb-auto">
+                        <svg class="w-10 h-10 text-white mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 6h16M4 12h16M4 18h7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Penulis Meta Tag AI</h3>
+                    <p class="text-gray-400 text-sm">Menulis judul SEO dan deskripsi *snippet* secara cerdas untuk
+                        memancing klik dari pencari Google.</p>
+                </div>
+
+                <!-- Bento Box 3 -->
+                <div class="premium-card rounded-3xl p-8 flex flex-col justify-end relative group">
+                    <div class="mb-auto">
+                        <svg class="w-10 h-10 text-white mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Alt-Text Gambar</h3>
+                    <p class="text-gray-400 text-sm">AI akan "melihat" gambar yang Anda unggah dan mengisi kolom
+                        Alt-Text untuk menembus Google Image Search.</p>
+                </div>
+
+                <!-- Bento Box 4: Large Span -->
+                <div
+                    class="premium-card rounded-3xl p-8 md:col-span-2 flex flex-col justify-end relative overflow-hidden group">
+                    <div class="mb-auto">
+                        <svg class="w-10 h-10 text-[#00E659] mb-4" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Injeksi Schema Markup</h3>
+                    <p class="text-gray-400 text-sm w-3/4">Otomatis menambahkan kode struktur data rahasia (Schema) ke
+                        halaman Anda agar Google dapat menampilkan ulasan, FAQ, atau profil bisnis Anda langsung di
+                        hasil pencarian.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SHOWCASE -->
+    <section class="py-32 px-6 overflow-hidden relative">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-center mb-6">Skor Sempurna Tanpa Usaha
+            </h2>
+            <p class="text-gray-400 text-center max-w-2xl mb-16">Plugin ringan yang bersembunyi rapi di dalam
+                *dashboard* WordPress Anda, mengubah titik merah menjadi hijau secara otomatis.</p>
+
+            <div
+                class="w-full max-w-3xl h-[400px] rounded-[2rem] premium-card p-2 relative animate-float shadow-2xl shadow-black">
+                <div
+                    class="w-full h-full rounded-[1.5rem] bg-[#050505] border border-white/5 flex flex-col overflow-hidden p-8">
+                    <div class="flex items-center justify-between border-b border-white/5 pb-6 mb-6">
+                        <div>
+                            <div class="text-sm text-gray-500 font-semibold mb-1">Analisis Konten: "Cara Memulai Bisnis"
+                            </div>
+                            <div class="text-2xl font-bold text-white">Status Optimasi AI</div>
+                        </div>
+                        <!-- Lingkaran Skor SEO Hijau -->
+                        <div
+                            class="w-16 h-16 rounded-full border-4 border-[#00E659] flex items-center justify-center shadow-[0_0_20px_rgba(0,230,89,0.3)]">
+                            <span class="text-xl font-extrabold text-[#00E659]">99</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full bg-[#00E659]/20 flex items-center justify-center"><span
+                                    class="text-[#00E659] text-xs">✓</span></div>
+                            <div class="text-sm text-gray-300">14 Tautan internal ditambahkan secara otomatis.</div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full bg-[#00E659]/20 flex items-center justify-center"><span
+                                    class="text-[#00E659] text-xs">✓</span></div>
+                            <div class="text-sm text-gray-300">Meta description dioptimalkan untuk CTR tinggi.</div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full bg-[#00E659]/20 flex items-center justify-center"><span
+                                    class="text-[#00E659] text-xs">✓</span></div>
+                            <div class="text-sm text-gray-300">Struktur Tag Heading (H1, H2, H3) diperbaiki AI.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING TIER -->
+    <section id="investasi"
+        class="py-40 px-6 border-t border-white/5 relative bg-gradient-to-b from-transparent to-[#050505]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Mulai Dominasi Anda</h2>
+                <p class="text-gray-400">Lisensi tahunan yang akan menghemat ratusan jam kerja Anda.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+
+                <!-- Creator Tier -->
+                <div class="premium-card rounded-[2rem] p-10 h-fit">
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">Lisensi Personal</h3>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-white">Rp 299<span
+                                class="text-xl text-gray-500">.000</span></span>
+                        <span class="text-gray-500 text-sm">/ tahun</span>
+                    </div>
+
+                    <ul class="space-y-5 text-gray-400 text-sm mb-12">
+                        <li class="flex items-center gap-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-gray-500"></div> Aktif untuk 1 Website (Domain)
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-gray-500"></div> Automasi Meta Title & Deskripsi
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-gray-500"></div> Generator Gambar Alt-Text AI
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-1.5 h-1.5 rounded-full bg-gray-500"></div> Pembaruan Plugin 1 Tahun
+                        </li>
+                    </ul>
+
+                    <!-- Link Pembayaran Lynk.id Personal -->
+                    <a href="https://lynk.id/username_anda/produk_personal" target="_blank" rel="noopener noreferrer"
+                        class="block w-full text-center py-4 rounded-full border border-white/20 text-white font-medium hover:bg-white hover:text-black transition-colors duration-300">
+                        Beli via Lynk.id
+                    </a>
+                </div>
+
+                <!-- Agency Tier -->
+                <div
+                    class="rounded-[2rem] p-[1px] bg-gradient-to-b from-[#00E659] to-transparent relative md:scale-105 shadow-2xl shadow-[#00E659]/10">
+                    <div
+                        class="absolute -top-3 left-10 bg-[#00E659] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                        Pilihan Agensi
+                    </div>
+                    <div class="bg-[#050505] rounded-[2rem] p-10 h-full">
+                        <h3 class="text-xl font-bold text-white mb-2">Lisensi Agensi (Kustom)</h3>
+                        <div class="mb-8">
+                            <span class="text-4xl font-bold text-white">Konsultasi</span>
+                            <div class="text-[#00E659] text-sm mt-2 font-medium">Berdasarkan Jumlah Klien</div>
+                        </div>
+
+                        <ul class="space-y-5 text-gray-300 text-sm mb-12">
+                            <li class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#00E659] shadow-[0_0_8px_#00E659]"></div>
+                                <strong>Semua Fitur Personal</strong>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#00E659] shadow-[0_0_8px_#00E659]"></div>
+                                Lisensi Tanpa Batas Website (Unlimited)
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#00E659] shadow-[0_0_8px_#00E659]"></div> Mesin
+                                Internal Linking Pintar
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#00E659] shadow-[0_0_8px_#00E659]"></div>
+                                Automasi Schema Markup Tingkat Lanjut
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#00E659] shadow-[0_0_8px_#00E659]"></div> Label
+                                Putih (White-Label) ke Klien
+                            </li>
+                        </ul>
+
+                        <!-- Link Konsultasi/Pembayaran Lynk.id Agensi -->
+                        <a href="https://lynk.id/username_anda/produk_agensi" target="_blank" rel="noopener noreferrer"
+                            class="block w-full text-center py-4 rounded-full bg-[#00E659] text-black font-bold btn-glow transition-all duration-300">
+                            Beli Paket Agensi
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-2xl font-extrabold tracking-tight">
+                rank<span class="text-[#00E659]">agent</span>.ai
+            </div>
+            <div class="flex gap-8 text-xs text-gray-500 font-medium uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition-colors">Privasi</a>
+                <a href="#" class="hover:text-white transition-colors">Ketentuan</a>
+                <a href="#" class="hover:text-[#00E659] transition-colors">Bantuan</a>
+            </div>
+            <div class="text-xs text-gray-600">
+                &copy; 2026. Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
