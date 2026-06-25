@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardiagent.ai — Asisten WhatsApp & Analisis Iklan Bertenaga AI</title>
-    <meta name="description" content="Ubah WhatsApp menjadi asisten penjualan 24/7. Otomatisasi chat natural, follow-up proaktif, pencarian katalog, dan audit performa iklan dalam satu dasbor elegan.">
+    <meta name="description"
+        content="Ubah WhatsApp menjadi asisten penjualan 24/7. Otomatisasi chat natural, follow-up proaktif, pencarian katalog, dan audit performa iklan dalam satu dasbor elegan.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         /* ============================================
            DESIGN SYSTEM & CSS VARIABLES
@@ -200,33 +203,71 @@
            ANIMATIONS
            ============================================ */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
         }
 
         @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
         }
 
         @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
         }
 
         @keyframes glow-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(230, 0, 0, 0.25); }
-            50% { box-shadow: 0 0 40px rgba(230, 0, 0, 0.45), 0 0 60px rgba(230, 0, 0, 0.12); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(230, 0, 0, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(230, 0, 0, 0.45), 0 0 60px rgba(230, 0, 0, 0.12);
+            }
         }
 
         .animate-fade-up {
@@ -249,11 +290,25 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
 
         /* ============================================
            NAVBAR
@@ -391,8 +446,13 @@
         }
 
         @media (min-width: 768px) {
-            .nav-links { display: flex; }
-            .mobile-menu-btn { display: none; }
+            .nav-links {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
         }
 
         /* ============================================
@@ -511,7 +571,7 @@
             left: -75%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
             transform: skewX(-20deg);
             transition: left 0.7s ease;
         }
@@ -637,7 +697,9 @@
         }
 
         @media (min-width: 768px) {
-            .problem-grid { grid-template-columns: 1fr 1fr; }
+            .problem-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .problem-list {
@@ -819,7 +881,9 @@
         }
 
         @media (min-width: 768px) {
-            .bento-card.span-2 { grid-column: span 2; }
+            .bento-card.span-2 {
+                grid-column: span 2;
+            }
         }
 
         .bento-icon {
@@ -1011,9 +1075,17 @@
             border-radius: 50%;
         }
 
-        .toolbar-dot.red { background: #ff5f56; }
-        .toolbar-dot.yellow { background: #ffbd2e; }
-        .toolbar-dot.green { background: #27c93f; }
+        .toolbar-dot.red {
+            background: #ff5f56;
+        }
+
+        .toolbar-dot.yellow {
+            background: #ffbd2e;
+        }
+
+        .toolbar-dot.green {
+            background: #27c93f;
+        }
 
         .toolbar-title {
             margin-left: 12px;
@@ -1112,7 +1184,7 @@
             margin-top: 24px;
             padding: 20px;
             border-radius: var(--radius-sm);
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
         }
 
@@ -1128,7 +1200,7 @@
             width: 100%;
             height: 6px;
             border-radius: 3px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             overflow: hidden;
         }
 
@@ -1168,7 +1240,9 @@
         }
 
         @media (min-width: 768px) {
-            .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .testimonial-card {
@@ -1210,7 +1284,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-dim), rgba(230,0,0,0.35));
+            background: linear-gradient(135deg, var(--accent-dim), rgba(230, 0, 0, 0.35));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1300,7 +1374,7 @@
         }
 
         .comparison-table tbody tr:hover {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .check-yes {
@@ -1352,7 +1426,7 @@
         }
 
         .faq-item:hover {
-            border-color: rgba(255,255,255,0.12);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .faq-question {
@@ -1430,7 +1504,9 @@
         }
 
         @media (min-width: 768px) {
-            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .pricing-card {
@@ -1543,7 +1619,7 @@
         }
 
         .pricing-feature .feat-check.muted {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-muted);
         }
 
@@ -1563,27 +1639,27 @@
         .pricing-btn.primary {
             background: var(--accent);
             color: #fff;
-            box-shadow: 0 0 20px rgba(230,0,0,0.25);
+            box-shadow: 0 0 20px rgba(230, 0, 0, 0.25);
         }
 
         .pricing-btn.primary:hover {
-            box-shadow: 0 0 40px rgba(230,0,0,0.45);
+            box-shadow: 0 0 40px rgba(230, 0, 0, 0.45);
             transform: translateY(-1px);
         }
 
         .pricing-btn.outline {
             background: transparent;
             color: var(--text-primary);
-            border: 1px solid rgba(255,255,255,0.14);
+            border: 1px solid rgba(255, 255, 255, 0.14);
         }
 
         .pricing-btn.outline:hover {
-            border-color: rgba(255,255,255,0.32);
-            background: rgba(255,255,255,0.04);
+            border-color: rgba(255, 255, 255, 0.32);
+            background: rgba(255, 255, 255, 0.04);
         }
 
         /* ============================================
-           FINAL CTA
+           FINAL CTA & CROSS PROMO
            ============================================ */
         .final-cta {
             padding: 120px 24px;
@@ -1770,17 +1846,27 @@
         </h1>
 
         <p class="hero-desc">
-            Hentikan kerugian akibat chat lambat dan follow-up yang terlupakan. Sistem AI kami membalas pelanggan secara natural, mengejar calon pembeli yang ragu, dan membedah performa iklan Anda — semuanya otomatis.
+            Hentikan kerugian akibat chat lambat dan follow-up yang terlupakan. Sistem AI kami membalas pelanggan secara
+            natural, mengejar calon pembeli yang ragu, dan membedah performa iklan Anda — semuanya otomatis.
         </p>
 
         <div class="hero-actions">
             <a href="#harga" class="btn-primary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
                 Mulai Sekarang
             </a>
             <a href="#fitur" class="btn-secondary">
                 Lihat Semua Fitur
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
             </a>
         </div>
 
@@ -1823,9 +1909,13 @@
             <div class="problem-grid">
                 <div class="reveal">
                     <div class="section-label"><span class="dot"></span> Masalah</div>
-                    <h2 class="section-title">Iklan Jalan Terus, <span style="text-decoration: line-through; color: var(--text-muted);">Omzet</span> <span class="text-accent">Bocor Tanpa Disadari.</span></h2>
+                    <h2 class="section-title">Iklan Jalan Terus, <span
+                            style="text-decoration: line-through; color: var(--text-muted);">Omzet</span> <span
+                            class="text-accent">Bocor Tanpa Disadari.</span></h2>
                     <p class="section-subtitle" style="max-width:100%">
-                        Setiap menit keterlambatan membalas chat adalah peluang penjualan yang hilang ke kompetitor. Mengandalkan admin manusia saja bukan hanya lambat — tapi juga membuang anggaran iklan yang sudah susah payah Anda keluarkan.
+                        Setiap menit keterlambatan membalas chat adalah peluang penjualan yang hilang ke kompetitor.
+                        Mengandalkan admin manusia saja bukan hanya lambat — tapi juga membuang anggaran iklan yang
+                        sudah susah payah Anda keluarkan.
                     </p>
 
                     <div class="problem-list" style="margin-top: 32px;">
@@ -1833,21 +1923,24 @@
                             <div class="problem-icon">✕</div>
                             <div>
                                 <h4>Balasan Chat Lambat</h4>
-                                <p>Pelanggan kabur ke kompetitor karena admin butuh waktu untuk membalas, terutama di luar jam kerja atau saat pesan menumpuk.</p>
+                                <p>Pelanggan kabur ke kompetitor karena admin butuh waktu untuk membalas, terutama di
+                                    luar jam kerja atau saat pesan menumpuk.</p>
                             </div>
                         </div>
                         <div class="problem-item">
                             <div class="problem-icon">✕</div>
                             <div>
                                 <h4>Follow-up yang Terlupakan</h4>
-                                <p>Calon pembeli yang sudah tertarik namun lupa transfer tidak pernah dihubungi kembali, sehingga omzet hilang begitu saja.</p>
+                                <p>Calon pembeli yang sudah tertarik namun lupa transfer tidak pernah dihubungi kembali,
+                                    sehingga omzet hilang begitu saja.</p>
                             </div>
                         </div>
                         <div class="problem-item">
                             <div class="problem-icon">✕</div>
                             <div>
                                 <h4>Iklan Boncos Tanpa Arah</h4>
-                                <p>Sulit membedakan materi iklan mana yang benar-benar menghasilkan penjualan dan mana yang hanya menghabiskan anggaran.</p>
+                                <p>Sulit membedakan materi iklan mana yang benar-benar menghasilkan penjualan dan mana
+                                    yang hanya menghabiskan anggaran.</p>
                             </div>
                         </div>
                     </div>
@@ -1856,7 +1949,8 @@
                 <div class="reveal reveal-delay-2">
                     <div class="solution-card">
                         <h3>Solusi: <span class="text-accent">Cardiagent.ai</span></h3>
-                        <p>Satu sistem yang menyelesaikan seluruh siklus layanan pelanggan dan evaluasi iklan Anda secara otomatis. Pasang di WhatsApp Anda, dan biarkan AI bekerja sepanjang waktu.</p>
+                        <p>Satu sistem yang menyelesaikan seluruh siklus layanan pelanggan dan evaluasi iklan Anda
+                            secara otomatis. Pasang di WhatsApp Anda, dan biarkan AI bekerja sepanjang waktu.</p>
                         <div class="solution-metrics">
                             <div class="solution-metric">
                                 <div class="solution-metric-val">24/7</div>
@@ -1889,7 +1983,8 @@
             <div class="features-header reveal">
                 <div class="section-label"><span class="dot"></span> Fitur Lengkap</div>
                 <h2 class="section-title text-gradient">Mesin Pintar di Balik Setiap Percakapan</h2>
-                <p class="section-subtitle">Enam kemampuan AI canggih yang bekerja di balik layar untuk melayani pelanggan dan mengoptimalkan iklan Anda.</p>
+                <p class="section-subtitle">Enam kemampuan AI canggih yang bekerja di balik layar untuk melayani
+                    pelanggan dan mengoptimalkan iklan Anda.</p>
             </div>
 
             <div class="bento-grid">
@@ -1898,60 +1993,90 @@
                     <div class="card-glow"></div>
                     <div class="bento-tag">Andalan</div>
                     <div class="bento-icon red">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
                     </div>
                     <h3>Asisten Chat Natural</h3>
-                    <p>AI kami merespons pesan secara kontekstual tanpa terlihat kaku seperti robot, dan otomatis meneruskan ke admin manusia jika ada situasi khusus yang membutuhkan sentuhan personal.</p>
+                    <p>AI kami merespons pesan secara kontekstual tanpa terlihat kaku seperti robot, dan otomatis
+                        meneruskan ke admin manusia jika ada situasi khusus yang membutuhkan sentuhan personal.</p>
                 </div>
 
                 <!-- Feature 2: Follow-up Proaktif -->
                 <div class="bento-card reveal reveal-delay-1">
                     <div class="card-glow"></div>
                     <div class="bento-icon gold">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
                     <h3>Follow-up Proaktif</h3>
-                    <p>Sistem memantau dan mengirim pengingat personal kepada calon pembeli yang belum merespons atau belum transfer, sesuai jeda waktu yang Anda atur.</p>
+                    <p>Sistem memantau dan mengirim pengingat personal kepada calon pembeli yang belum merespons atau
+                        belum transfer, sesuai jeda waktu yang Anda atur.</p>
                 </div>
 
                 <!-- Feature 3: Pencari Katalog -->
                 <div class="bento-card reveal reveal-delay-2">
                     <div class="card-glow"></div>
                     <div class="bento-icon purple">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
                     </div>
                     <h3>Pencari Katalog Cerdas</h3>
-                    <p>AI langsung memindai katalog produk Anda dan merekomendasikan barang yang paling relevan secara otomatis saat pelanggan bertanya.</p>
+                    <p>AI langsung memindai katalog produk Anda dan merekomendasikan barang yang paling relevan secara
+                        otomatis saat pelanggan bertanya.</p>
                 </div>
 
                 <!-- Feature 4: Audit Iklan -->
                 <div class="bento-card reveal reveal-delay-1">
                     <div class="card-glow"></div>
                     <div class="bento-icon rose">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
                     </div>
                     <h3>Audit & Ide Iklan Kreatif</h3>
-                    <p>AI menganalisis kampanye Anda, membedakan iklan yang sukses dan gagal, lalu meracik usulan tulisan promosi baru untuk mendongkrak penjualan.</p>
+                    <p>AI menganalisis kampanye Anda, membedakan iklan yang sukses dan gagal, lalu meracik usulan
+                        tulisan promosi baru untuk mendongkrak penjualan.</p>
                 </div>
 
                 <!-- Feature 5: Laporan ke Grup -->
                 <div class="bento-card span-2 reveal reveal-delay-2">
                     <div class="card-glow"></div>
                     <div class="bento-icon blue">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                        </svg>
                     </div>
                     <h3>Laporan Performa ke Grup WhatsApp</h3>
-                    <p>Tidak perlu lagi repot membuka dasbor iklan setiap pagi. Sistem menyusun laporan performa lengkap dan mengirimkannya langsung ke grup WhatsApp tim Anda, lengkap dengan insight yang mudah dipahami.</p>
+                    <p>Tidak perlu lagi repot membuka dasbor iklan setiap pagi. Sistem menyusun laporan performa lengkap
+                        dan mengirimkannya langsung ke grup WhatsApp tim Anda, lengkap dengan insight yang mudah
+                        dipahami.</p>
                 </div>
 
                 <!-- Feature 6: Pesan Suara -->
                 <div class="bento-card reveal">
                     <div class="card-glow"></div>
                     <div class="bento-icon cyan">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
                     </div>
                     <h3>Pahami Pesan Suara</h3>
-                    <p>Saat pelanggan mengirim voice note, sistem otomatis menuliskan transkripnya sehingga AI tetap paham dan bisa membalas dengan tepat.</p>
+                    <p>Saat pelanggan mengirim voice note, sistem otomatis menuliskan transkripnya sehingga AI tetap
+                        paham dan bisa membalas dengan tepat.</p>
                 </div>
             </div>
         </div>
@@ -1965,24 +2090,28 @@
             <div class="how-header reveal">
                 <div class="section-label"><span class="dot"></span> Cara Kerja</div>
                 <h2 class="section-title">Tiga Langkah. Satu Dasbor.</h2>
-                <p class="section-subtitle">Dari hubungkan nomor hingga AI bekerja penuh, semua berjalan tanpa kerumitan teknis.</p>
+                <p class="section-subtitle">Dari hubungkan nomor hingga AI bekerja penuh, semua berjalan tanpa kerumitan
+                    teknis.</p>
             </div>
 
             <div class="steps-grid">
                 <div class="step-card reveal">
                     <div class="step-number">1</div>
                     <h3>Hubungkan WhatsApp</h3>
-                    <p>Tautkan satu atau beberapa nomor WhatsApp bisnis Anda ke dasbor Cardiagent.ai. Tidak perlu instalasi rumit di perangkat Anda.</p>
+                    <p>Tautkan satu atau beberapa nomor WhatsApp bisnis Anda ke dasbor Cardiagent.ai. Tidak perlu
+                        instalasi rumit di perangkat Anda.</p>
                 </div>
                 <div class="step-card reveal reveal-delay-2">
                     <div class="step-number">2</div>
                     <h3>AI Pelajari Katalog & Gaya Bicara</h3>
-                    <p>Sistem memindai katalog produk dan riwayat percakapan Anda agar balasan AI terasa natural dan sesuai karakter bisnis Anda.</p>
+                    <p>Sistem memindai katalog produk dan riwayat percakapan Anda agar balasan AI terasa natural dan
+                        sesuai karakter bisnis Anda.</p>
                 </div>
                 <div class="step-card reveal reveal-delay-4">
                     <div class="step-number">3</div>
                     <h3>Layani & Analisis Otomatis</h3>
-                    <p>AI membalas chat, mengejar follow-up, dan mengirim laporan performa iklan — semua berjalan sendiri, Anda hanya memantau dari dasbor.</p>
+                    <p>AI membalas chat, mengejar follow-up, dan mengirim laporan performa iklan — semua berjalan
+                        sendiri, Anda hanya memantau dari dasbor.</p>
                 </div>
             </div>
         </div>
@@ -1996,7 +2125,8 @@
             <div class="showcase-header reveal">
                 <div class="section-label"><span class="dot"></span> Live Dashboard</div>
                 <h2 class="section-title">Satu Dasbor Elegan untuk Segala Kebutuhan</h2>
-                <p class="section-subtitle">Tinggalkan cara lama membuka banyak aplikasi. Cardiagent.ai merapikan seluruh kendali bisnis Anda dalam satu tampilan premium.</p>
+                <p class="section-subtitle">Tinggalkan cara lama membuka banyak aplikasi. Cardiagent.ai merapikan
+                    seluruh kendali bisnis Anda dalam satu tampilan premium.</p>
             </div>
 
             <div class="dashboard-mock reveal reveal-delay-1" id="dashboardMock">
@@ -2020,25 +2150,37 @@
                     <div class="dash-checklist">
                         <div class="dash-check-item">
                             <div class="check-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
                             </div>
                             <span>238 chat pelanggan terjawab otomatis dalam 24 jam terakhir.</span>
                         </div>
                         <div class="dash-check-item">
                             <div class="check-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
                             </div>
                             <span>34 follow-up proaktif terkirim ke calon pembeli yang belum transfer.</span>
                         </div>
                         <div class="dash-check-item">
                             <div class="check-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
                             </div>
                             <span>Laporan performa iklan harian terkirim otomatis ke grup tim.</span>
                         </div>
                         <div class="dash-check-item">
                             <div class="check-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
                             </div>
                             <span>12 voice note pelanggan ditranskripsi dan dibalas dengan tepat.</span>
                         </div>
@@ -2072,7 +2214,8 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Follow-up otomatisnya menyelamatkan banyak transaksi yang dulu hilang karena pelanggan lupa transfer. Penjualan naik signifikan dalam dua bulan pertama."</p>
+                    <p class="testimonial-text">"Follow-up otomatisnya menyelamatkan banyak transaksi yang dulu hilang
+                        karena pelanggan lupa transfer. Penjualan naik signifikan dalam dua bulan pertama."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">R</div>
                         <div>
@@ -2083,7 +2226,9 @@
                 </div>
                 <div class="testimonial-card reveal reveal-delay-2">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Saya mengelola tiga toko sekaligus dan Cardiagent.ai menghemat waktu admin saya puluhan jam per minggu. Laporan iklan otomatisnya sangat membantu keputusan harian."</p>
+                    <p class="testimonial-text">"Saya mengelola tiga toko sekaligus dan Cardiagent.ai menghemat waktu
+                        admin saya puluhan jam per minggu. Laporan iklan otomatisnya sangat membantu keputusan harian."
+                    </p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">A</div>
                         <div>
@@ -2094,7 +2239,9 @@
                 </div>
                 <div class="testimonial-card reveal reveal-delay-4">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Balasan chat AI-nya benar-benar terasa natural, pelanggan saya bahkan tidak sadar sedang berbicara dengan sistem. Pelayanan jadi lebih cepat tanpa kehilangan sentuhan personal."</p>
+                    <p class="testimonial-text">"Balasan chat AI-nya benar-benar terasa natural, pelanggan saya bahkan
+                        tidak sadar sedang berbicara dengan sistem. Pelayanan jadi lebih cepat tanpa kehilangan sentuhan
+                        personal."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">D</div>
                         <div>
@@ -2115,7 +2262,8 @@
             <div class="comparison-header reveal">
                 <div class="section-label"><span class="dot"></span> Perbandingan</div>
                 <h2 class="section-title">Kenapa Cardiagent.ai?</h2>
-                <p class="section-subtitle">Bandingkan kemampuan kami dengan cara kerja lama dalam melayani pelanggan WhatsApp.</p>
+                <p class="section-subtitle">Bandingkan kemampuan kami dengan cara kerja lama dalam melayani pelanggan
+                    WhatsApp.</p>
             </div>
 
             <div class="comparison-table-wrap reveal reveal-delay-1">
@@ -2191,62 +2339,92 @@
             <div class="faq-header reveal">
                 <div class="section-label"><span class="dot"></span> FAQ</div>
                 <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
-                <p class="section-subtitle">Jawaban untuk pertanyaan yang paling sering ditanyakan tentang Cardiagent.ai.</p>
+                <p class="section-subtitle">Jawaban untuk pertanyaan yang paling sering ditanyakan tentang
+                    Cardiagent.ai.</p>
             </div>
 
             <div class="faq-list reveal reveal-delay-1">
                 <div class="faq-item">
                     <button class="faq-question">
                         Apakah Cardiagent.ai kompatibel dengan WhatsApp Business saya?
-                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Ya, Cardiagent.ai bekerja dengan nomor WhatsApp Business maupun WhatsApp biasa. Anda hanya perlu menautkan nomor ke dasbor kami, tanpa mengubah cara pelanggan menghubungi Anda.</div>
+                        <div class="faq-answer-inner">Ya, Cardiagent.ai bekerja dengan nomor WhatsApp Business maupun
+                            WhatsApp biasa. Anda hanya perlu menautkan nomor ke dasbor kami, tanpa mengubah cara
+                            pelanggan menghubungi Anda.</div>
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
                         Apakah saya tetap bisa membalas chat secara manual?
-                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Tentu. Dasbor kami menyediakan mode ambil alih chat manual dengan tampilan obrolan yang mirip WhatsApp asli, sehingga tim Anda bisa turun tangan kapan pun diperlukan.</div>
+                        <div class="faq-answer-inner">Tentu. Dasbor kami menyediakan mode ambil alih chat manual dengan
+                            tampilan obrolan yang mirip WhatsApp asli, sehingga tim Anda bisa turun tangan kapan pun
+                            diperlukan.</div>
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
                         Berapa lama hingga saya melihat peningkatan penjualan?
-                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Begitu sistem aktif, balasan chat dan follow-up proaktif langsung berjalan. Sebagian besar klien kami melihat penurunan chat yang terlewat dan peningkatan transaksi dalam 2-4 minggu pertama.</div>
+                        <div class="faq-answer-inner">Begitu sistem aktif, balasan chat dan follow-up proaktif langsung
+                            berjalan. Sebagian besar klien kami melihat penurunan chat yang terlewat dan peningkatan
+                            transaksi dalam 2-4 minggu pertama.</div>
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
                         Apakah ada bantuan jika saya ingin mengubah gaya bicara AI?
-                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Ya. Anda dapat menyesuaikan nada bicara AI agar sesuai karakter brand Anda, dan tim dukungan kami siap membantu kalibrasi awal agar balasan terasa konsisten dengan gaya komunikasi bisnis Anda.</div>
+                        <div class="faq-answer-inner">Ya. Anda dapat menyesuaikan nada bicara AI agar sesuai karakter
+                            brand Anda, dan tim dukungan kami siap membantu kalibrasi awal agar balasan terasa konsisten
+                            dengan gaya komunikasi bisnis Anda.</div>
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
                         Apakah sistem ini memperlambat nomor WhatsApp saya?
-                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Tidak. Seluruh proses AI berjalan di server cloud kami, bukan di perangkat Anda. WhatsApp Anda tetap responsif seperti biasa.</div>
+                        <div class="faq-answer-inner">Tidak. Seluruh proses AI berjalan di server cloud kami, bukan di
+                            perangkat Anda. WhatsApp Anda tetap responsif seperti biasa.</div>
                     </div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
                         Apa yang dimaksud dengan Paket Enterprise Kustom?
-                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Paket Enterprise Kustom dirancang untuk agensi, distributor, dan perusahaan skala besar dengan kebutuhan multi-sesi WhatsApp, kuota tanpa batas, dan dukungan prioritas. Tim kami akan menyusun solusi sesuai kebutuhan spesifik Anda.</div>
+                        <div class="faq-answer-inner">Paket Enterprise Kustom dirancang untuk agensi, distributor, dan
+                            perusahaan skala besar dengan kebutuhan multi-sesi WhatsApp, kuota tanpa batas, dan dukungan
+                            prioritas. Tim kami akan menyusun solusi sesuai kebutuhan spesifik Anda.</div>
                     </div>
                 </div>
             </div>
@@ -2261,7 +2439,8 @@
             <div class="pricing-header reveal">
                 <div class="section-label"><span class="dot"></span> Investasi</div>
                 <h2 class="section-title">Pilih Paket Investasi Anda</h2>
-                <p class="section-subtitle">Solusi fleksibel, baik untuk bisnis yang baru berkembang maupun perusahaan yang membutuhkan kustomisasi skala besar.</p>
+                <p class="section-subtitle">Solusi fleksibel, baik untuk bisnis yang baru berkembang maupun perusahaan
+                    yang membutuhkan kustomisasi skala besar.</p>
             </div>
 
             <div class="pricing-grid">
@@ -2273,10 +2452,12 @@
                         <span class="amount">499K</span>
                         <span class="period">/ bulan</span>
                     </div>
-                    <p class="pricing-desc">Cocok untuk UMKM dan toko online yang ingin melayani pesan pelanggan secara otomatis.</p>
+                    <p class="pricing-desc">Cocok untuk UMKM dan toko online yang ingin melayani pesan pelanggan secara
+                        otomatis.</p>
                     <div class="pricing-features">
                         <div class="pricing-feature">
-                            <span class="feat-check red">✓</span> Asisten Chat Natural <strong>(Maks. 1.000 chat/bulan)</strong>
+                            <span class="feat-check red">✓</span> Asisten Chat Natural <strong>(Maks. 1.000
+                                chat/bulan)</strong>
                         </div>
                         <div class="pricing-feature">
                             <span class="feat-check red">✓</span> Follow-up Proaktif Dasar
@@ -2307,7 +2488,8 @@
                     <div class="pricing-price">
                         <span class="amount" style="font-size: 1.9rem;">Hubungi Kami</span>
                     </div>
-                    <p class="pricing-desc" style="color: var(--accent-bright); font-weight: 500;">Berdasarkan konsultasi kebutuhan bisnis Anda.</p>
+                    <p class="pricing-desc" style="color: var(--accent-bright); font-weight: 500;">Berdasarkan
+                        konsultasi kebutuhan bisnis Anda.</p>
                     <div class="pricing-features">
                         <div class="pricing-feature">
                             <span class="feat-check red">✓</span> <strong>Semua Fitur di Paket Starter</strong>
@@ -2338,14 +2520,40 @@
     </section>
 
     <!-- ==========================================
+         CROSS-PROMOTION BANNER (CONNECTED TO PLUGIN)
+         ========================================== -->
+    <section class="cross-promo" style="padding: 40px 24px;">
+        <div class="container reveal">
+            <div
+                style="background: linear-gradient(135deg, rgba(0, 230, 89, 0.08), rgba(0, 0, 0, 0)); border: 1px solid rgba(0, 230, 89, 0.15); border-radius: var(--radius-lg); padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; box-shadow: 0 10px 30px rgba(0, 230, 89, 0.05);">
+                <div style="max-width: 600px;">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: #00E659;">Butuh Trafik
+                        Organik untuk Website Anda?</h3>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Tingkatkan pengunjung
+                        website WordPress Anda ke Halaman Pertama Google dengan <strong>OptimaSEO</strong>, plugin
+                        otomatis yang terintegrasi penuh.</p>
+                </div>
+                <a href="plugin.html"
+                    style="padding: 14px 28px; background: #00E659; color: #000; font-weight: 700; border-radius: 99px; text-decoration: none; box-shadow: 0 0 20px rgba(0, 230, 89, 0.2); white-space: nowrap; transition: all 0.3s ease;"
+                    onmouseover="this.style.boxShadow='0 0 30px rgba(0, 230, 89, 0.4)'"
+                    onmouseout="this.style.boxShadow='0 0 20px rgba(0, 230, 89, 0.2)'">Lihat Plugin SEO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
          FINAL CTA
          ========================================== -->
     <section class="final-cta">
         <div class="container reveal">
             <h2>Siap Mengubah WhatsApp Anda?</h2>
-            <p>Bergabung dengan ribuan pemilik bisnis yang sudah merasakan kekuatan layanan pelanggan otomatis bertenaga AI.</p>
+            <p>Bergabung dengan ribuan pemilik bisnis yang sudah merasakan kekuatan layanan pelanggan otomatis bertenaga
+                AI.</p>
             <a href="#harga" class="btn-primary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
                 Mulai Sekarang
             </a>
         </div>
@@ -2358,7 +2566,8 @@
         <div class="footer-inner">
             <div>
                 <div class="footer-logo">cardi<span class="text-accent">agent</span>.ai</div>
-                <p class="footer-tagline">Solusi cerdas yang membantu bisnis mengotomatiskan pelayanan pelanggan dan mengevaluasi laporan performa pemasaran tanpa kerumitan teknis.</p>
+                <p class="footer-tagline">Solusi cerdas yang membantu bisnis mengotomatiskan pelayanan pelanggan dan
+                    mengevaluasi laporan performa pemasaran tanpa kerumitan teknis.</p>
             </div>
             <div class="footer-links">
                 <a href="#">Privasi</a>
