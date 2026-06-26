@@ -1810,7 +1810,10 @@
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="navbar-inner">
-            <div class="nav-logo">cardi<span class="text-accent">agent</span>.ai</div>
+            <div class="nav-logo" style="display: flex; align-items: center; gap: 8px;">
+                <img src="cardi-logo.png" alt="Cardi Logo" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                <span>cardi<span class="text-accent">agent</span>.ai</span>
+            </div>
             <div class="nav-links">
                 <a href="#masalah">Masalah</a>
                 <a href="#fitur">Fitur</a>
@@ -2447,10 +2450,31 @@
                 <!-- Starter -->
                 <div class="pricing-card reveal">
                     <div class="pricing-tier-name">Starter</div>
-                    <div class="pricing-price">
-                        <span class="currency">Rp</span>
-                        <span class="amount">499K</span>
-                        <span class="period">/ bulan</span>
+                    <div class="pricing-price" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 20px;">
+                        <!-- Annual Option (Best Value) -->
+                        <div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; line-height: 1;">Rp 4.999K/bln</div>
+                            <div style="display: flex; align-items: baseline; gap: 2px; margin-top: 4px;">
+                                <span class="currency" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">Rp</span>
+                                <span class="amount" style="font-size: 2.2rem; font-weight: 800; color: var(--text-primary); line-height: 1;">999K</span>
+                                <span class="period" style="font-size: 0.85rem; color: var(--text-secondary);">/ bulan</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--accent-bright); font-weight: 700; margin-top: 2px;">(Langganan 1 Tahun - wajib bayar x12 langsung)</div>
+                        </div>
+                        
+                        <!-- Divider line -->
+                        <div style="width: 100%; border-top: 1px dashed rgba(255,255,255,0.1); margin: 6px 0;"></div>
+                        
+                        <!-- Monthly Option -->
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1;">Langganan Bulanan:</div>
+                            <div style="display: flex; align-items: baseline; gap: 2px; margin-top: 4px;">
+                                <span class="currency" style="font-size: 0.9rem; font-weight: 700; color: var(--text-secondary);">Rp</span>
+                                <span class="amount" style="font-size: 1.5rem; font-weight: 800; color: var(--text-secondary); line-height: 1;">1.499K</span>
+                                <span class="period" style="font-size: 0.75rem; color: var(--text-muted);">/ bulan</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700; margin-top: 2px;">*Untuk 100 orang pertama</div>
+                        </div>
                     </div>
                     <p class="pricing-desc">Cocok untuk UMKM dan toko online yang ingin melayani pesan pelanggan secara
                         otomatis.</p>
@@ -2478,7 +2502,7 @@
                             <span class="feat-check muted">—</span> Multi-Sesi WhatsApp
                         </div>
                     </div>
-                    <a href="#" class="pricing-btn outline">Pilih Paket Starter</a>
+                    <a href="https://lynk.id/cardinusantara" class="pricing-btn outline" target="_blank" rel="noopener">Pilih Paket Starter</a>
                 </div>
 
                 <!-- Enterprise (Custom, Featured) -->
@@ -2565,7 +2589,10 @@
     <footer class="footer">
         <div class="footer-inner">
             <div>
-                <div class="footer-logo">cardi<span class="text-accent">agent</span>.ai</div>
+                <div class="footer-logo" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <img src="cardi-logo.png" alt="Cardi Logo" style="height: 28px; width: 28px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                    <span>cardi<span class="text-accent">agent</span>.ai</span>
+                </div>
                 <p class="footer-tagline">Solusi cerdas yang membantu bisnis mengotomatiskan pelayanan pelanggan dan
                     mengevaluasi laporan performa pemasaran tanpa kerumitan teknis.</p>
             </div>
@@ -2752,6 +2779,9 @@
             });
         });
     </script>
+    
+    <!-- DYNAMIC PURCHASE NOTIFICATION -->
+    <script src="purchase-notif.js" defer></script>
 
 </body>
 
