@@ -1233,16 +1233,17 @@
             margin: 0 auto;
         }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+        /* Slider wrapper */
+        .testimonials-slider-wrap {
+            position: relative;
+            overflow: hidden;
         }
 
-        @media (min-width: 768px) {
-            .testimonials-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .testimonials-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
         }
 
         .testimonial-card {
@@ -1250,7 +1251,21 @@
             border-radius: var(--radius-lg);
             background: var(--bg-card);
             border: 1px solid var(--border);
-            transition: all 0.4s ease;
+            transition: border-color 0.4s ease, transform 0.4s ease;
+            flex: 0 0 calc(100% - 0px);
+            min-width: 0;
+        }
+
+        @media (min-width: 640px) {
+            .testimonial-card {
+                flex: 0 0 calc(50% - 10px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 calc(33.333% - 14px);
+            }
         }
 
         .testimonial-card:hover {
@@ -1291,6 +1306,7 @@
             font-size: 16px;
             font-weight: 700;
             color: var(--accent-bright);
+            flex-shrink: 0;
         }
 
         .testimonial-name {
@@ -1301,6 +1317,65 @@
         .testimonial-role {
             font-size: 12px;
             color: var(--text-muted);
+        }
+
+        /* Slider Controls */
+        .testimonials-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .slider-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .slider-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent-bright);
+            box-shadow: 0 0 16px rgba(230, 0, 0, 0.2);
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .slider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .slider-dot.active {
+            width: 24px;
+            border-radius: 3px;
+            background: var(--accent-bright);
+            box-shadow: 0 0 8px rgba(230, 0, 0, 0.4);
         }
 
         /* ============================================
@@ -1811,7 +1886,8 @@
     <nav class="navbar" id="navbar">
         <div class="navbar-inner">
             <div class="nav-logo" style="display: flex; align-items: center; gap: 8px;">
-                <img src="cardi-logo.png" alt="Cardi Logo" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                <img src="cardi-logo.png" alt="Cardi Logo"
+                    style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
                 <span>cardi<span class="text-accent">agent</span>.ai</span>
             </div>
             <div class="nav-links">
@@ -2214,45 +2290,137 @@
                 <p class="section-subtitle">Ratusan pemilik bisnis sudah membuktikan hasilnya.</p>
             </div>
 
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Follow-up otomatisnya menyelamatkan banyak transaksi yang dulu hilang
-                        karena pelanggan lupa transfer. Penjualan naik signifikan dalam dua bulan pertama."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">R</div>
-                        <div>
-                            <div class="testimonial-name">Raka Pratama</div>
-                            <div class="testimonial-role">Pemilik, TokoElite</div>
+            <div class="testimonials-slider-wrap reveal">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <!-- Card 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Follow-up otomatisnya menyelamatkan banyak transaksi yang dulu
+                            hilang karena pelanggan lupa transfer. Penjualan naik signifikan dalam dua bulan pertama."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">R</div>
+                            <div>
+                                <div class="testimonial-name">Raka Pratama</div>
+                                <div class="testimonial-role">Pemilik, TokoElite</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Saya mengelola tiga toko sekaligus dan Cardiagent.ai menghemat
+                            waktu admin saya puluhan jam per minggu. Laporan iklan otomatisnya sangat membantu keputusan
+                            harian."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">A</div>
+                            <div>
+                                <div class="testimonial-name">Anisa Wijaya</div>
+                                <div class="testimonial-role">CEO, RetailPro.id</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Balasan chat AI-nya benar-benar terasa natural, pelanggan saya
+                            bahkan tidak sadar sedang berbicara dengan sistem. Pelayanan jadi lebih cepat tanpa
+                            kehilangan sentuhan personal."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">D</div>
+                            <div>
+                                <div class="testimonial-name">Dimas Saputra</div>
+                                <div class="testimonial-role">Manajer Operasional, KapukLiving</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Dulu kami kehilangan banyak leads di malam hari karena tidak ada
+                            yang jaga. Sekarang AI-nya aktif 24/7, pagi hari sudah ada 15–20 calon pembeli yang siap
+                            dikonfirmasi. ROI-nya luar biasa."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">F</div>
+                            <div>
+                                <div class="testimonial-name">Faisal Hidayat</div>
+                                <div class="testimonial-role">Founder, SerpongMart</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Fitur audit iklannya buka mata saya. Ternyata 60% budget iklan saya
+                            selama ini terbuang ke campaign yang tidak performatif. Sekarang saya tahu persis mana yang
+                            perlu di-scale."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">N</div>
+                            <div>
+                                <div class="testimonial-name">Nadia Kusuma</div>
+                                <div class="testimonial-role">Digital Marketer, GroupBuy+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Setup-nya cepat sekali, dalam 10 menit sudah langsung berjalan. Tim
+                            support-nya juga sangat responsif ketika saya perlu menyesuaikan gaya bicara AI agar cocok
+                            dengan brand kami."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">H</div>
+                            <div>
+                                <div class="testimonial-name">Hendra Susanto</div>
+                                <div class="testimonial-role">Pemilik, UsahaCerdas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Pelanggan saya banyak yang kirim voice note. Dulu admin saya
+                            kerepotan meresponsnya. Sekarang fitur transkripnya langsung kerja dan AI bisa balas dengan
+                            tepat. Mantap!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">Y</div>
+                            <div>
+                                <div class="testimonial-name">Yuni Astuti</div>
+                                <div class="testimonial-role">Owner, BuahSegarku</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Conversion rate WhatsApp kami naik 2,8x dalam 6 minggu pertama.
+                            Follow-up otomatis benar-benar game changer — tidak ada lagi calon pembeli yang jatuh karena
+                            tidak ditindaklanjuti."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">B</div>
+                            <div>
+                                <div class="testimonial-name">Bayu Setiawan</div>
+                                <div class="testimonial-role">Sales Director, MitraDigital.co</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card reveal reveal-delay-2">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Saya mengelola tiga toko sekaligus dan Cardiagent.ai menghemat waktu
-                        admin saya puluhan jam per minggu. Laporan iklan otomatisnya sangat membantu keputusan harian."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">A</div>
-                        <div>
-                            <div class="testimonial-name">Anisa Wijaya</div>
-                            <div class="testimonial-role">CEO, RetailPro.id</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal reveal-delay-4">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Balasan chat AI-nya benar-benar terasa natural, pelanggan saya bahkan
-                        tidak sadar sedang berbicara dengan sistem. Pelayanan jadi lebih cepat tanpa kehilangan sentuhan
-                        personal."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">D</div>
-                        <div>
-                            <div class="testimonial-name">Dimas Saputra</div>
-                            <div class="testimonial-role">Manajer Operasional, KapukLiving</div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <!-- Slider Controls -->
+            <div class="testimonials-controls">
+                <button class="slider-btn" id="testimonialPrev" aria-label="Sebelumnya">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+                <div class="slider-dots" id="testimonialDots"></div>
+                <button class="slider-btn" id="testimonialNext" aria-label="Berikutnya">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -2450,30 +2618,43 @@
                 <!-- Starter -->
                 <div class="pricing-card reveal">
                     <div class="pricing-tier-name">Starter</div>
-                    <div class="pricing-price" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 20px;">
+                    <div class="pricing-price"
+                        style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 20px;">
                         <!-- Annual Option (Best Value) -->
                         <div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; line-height: 1;">Rp 4.999K/bln</div>
+                            <div
+                                style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; line-height: 1;">
+                                Rp 4.999K/bln</div>
                             <div style="display: flex; align-items: baseline; gap: 2px; margin-top: 4px;">
-                                <span class="currency" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">Rp</span>
-                                <span class="amount" style="font-size: 2.2rem; font-weight: 800; color: var(--text-primary); line-height: 1;">999K</span>
-                                <span class="period" style="font-size: 0.85rem; color: var(--text-secondary);">/ bulan</span>
+                                <span class="currency"
+                                    style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">Rp</span>
+                                <span class="amount"
+                                    style="font-size: 2.2rem; font-weight: 800; color: var(--text-primary); line-height: 1;">999K</span>
+                                <span class="period" style="font-size: 0.85rem; color: var(--text-secondary);">/
+                                    bulan</span>
                             </div>
-                            <div style="font-size: 0.75rem; color: var(--accent-bright); font-weight: 700; margin-top: 2px;">(Langganan 1 Tahun - wajib bayar x12 langsung)</div>
+                            <div
+                                style="font-size: 0.75rem; color: var(--accent-bright); font-weight: 700; margin-top: 2px;">
+                                (Langganan 1 Tahun - wajib bayar x12 langsung)</div>
                         </div>
-                        
+
                         <!-- Divider line -->
                         <div style="width: 100%; border-top: 1px dashed rgba(255,255,255,0.1); margin: 6px 0;"></div>
-                        
+
                         <!-- Monthly Option -->
                         <div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1;">Langganan Bulanan:</div>
-                            <div style="display: flex; align-items: baseline; gap: 2px; margin-top: 4px;">
-                                <span class="currency" style="font-size: 0.9rem; font-weight: 700; color: var(--text-secondary);">Rp</span>
-                                <span class="amount" style="font-size: 1.5rem; font-weight: 800; color: var(--text-secondary); line-height: 1;">1.499K</span>
-                                <span class="period" style="font-size: 0.75rem; color: var(--text-muted);">/ bulan</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1;">Langganan Bulanan:
                             </div>
-                            <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700; margin-top: 2px;">*Untuk 100 orang pertama</div>
+                            <div style="display: flex; align-items: baseline; gap: 2px; margin-top: 4px;">
+                                <span class="currency"
+                                    style="font-size: 0.9rem; font-weight: 700; color: var(--text-secondary);">Rp</span>
+                                <span class="amount"
+                                    style="font-size: 1.5rem; font-weight: 800; color: var(--text-secondary); line-height: 1;">1.499K</span>
+                                <span class="period" style="font-size: 0.75rem; color: var(--text-muted);">/
+                                    bulan</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700; margin-top: 2px;">
+                                *Untuk 100 orang pertama</div>
                         </div>
                     </div>
                     <p class="pricing-desc">Cocok untuk UMKM dan toko online yang ingin melayani pesan pelanggan secara
@@ -2502,7 +2683,8 @@
                             <span class="feat-check muted">—</span> Multi-Sesi WhatsApp
                         </div>
                     </div>
-                    <a href="https://lynk.id/cardinusantara" class="pricing-btn outline" target="_blank" rel="noopener">Pilih Paket Starter</a>
+                    <a href="https://lynk.id/cardinusantara" class="pricing-btn outline" target="_blank"
+                        rel="noopener">Pilih Paket Starter</a>
                 </div>
 
                 <!-- Enterprise (Custom, Featured) -->
@@ -2554,7 +2736,8 @@
                     <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: #00E659;">Butuh Trafik
                         Organik untuk Website Anda?</h3>
                     <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Tingkatkan pengunjung
-                        website WordPress Anda ke Halaman Pertama Google dengan <strong>OptimaSEO</strong>, plugin
+                        website WordPress Anda ke Halaman Pertama Google dengan <strong>Optima SEO by Cardi Agent
+                            AI</strong>, plugin
                         otomatis yang terintegrasi penuh.</p>
                 </div>
                 <a href="plugin.html"
@@ -2590,7 +2773,8 @@
         <div class="footer-inner">
             <div>
                 <div class="footer-logo" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-                    <img src="cardi-logo.png" alt="Cardi Logo" style="height: 28px; width: 28px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="cardi-logo.png" alt="Cardi Logo"
+                        style="height: 28px; width: 28px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
                     <span>cardi<span class="text-accent">agent</span>.ai</span>
                 </div>
                 <p class="footer-tagline">Solusi cerdas yang membantu bisnis mengotomatiskan pelayanan pelanggan dan
@@ -2778,8 +2962,120 @@
                 }
             });
         });
+        // =====================
+        // TESTIMONIALS SLIDER
+        // =====================
+        (function () {
+            const track = document.getElementById('testimonialsTrack');
+            const prevBtn = document.getElementById('testimonialPrev');
+            const nextBtn = document.getElementById('testimonialNext');
+            const dotsContainer = document.getElementById('testimonialDots');
+
+            if (!track) return;
+
+            const cards = Array.from(track.querySelectorAll('.testimonial-card'));
+            let currentIndex = 0;
+            let autoSlideTimer = null;
+
+            function getVisibleCount() {
+                const w = window.innerWidth;
+                if (w >= 1024) return 3;
+                if (w >= 640) return 2;
+                return 1;
+            }
+
+            function getMaxIndex() {
+                return Math.max(0, cards.length - getVisibleCount());
+            }
+
+            function getCardWidth() {
+                if (cards.length === 0) return 0;
+                const card = cards[0];
+                const style = window.getComputedStyle(track);
+                const gap = parseFloat(style.gap) || 20;
+                return card.offsetWidth + gap;
+            }
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const total = getMaxIndex() + 1;
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'slider-dot' + (i === currentIndex ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((d, i) => {
+                    d.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function updateButtons() {
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= getMaxIndex();
+            }
+
+            function goTo(index) {
+                const max = getMaxIndex();
+                currentIndex = Math.max(0, Math.min(index, max));
+                const offset = currentIndex * getCardWidth();
+                track.style.transform = `translateX(-${offset}px)`;
+                updateDots();
+                updateButtons();
+            }
+
+            function startAutoSlide() {
+                stopAutoSlide();
+                autoSlideTimer = setInterval(() => {
+                    const next = currentIndex >= getMaxIndex() ? 0 : currentIndex + 1;
+                    goTo(next);
+                }, 5000);
+            }
+
+            function stopAutoSlide() {
+                if (autoSlideTimer) clearInterval(autoSlideTimer);
+            }
+
+            prevBtn.addEventListener('click', () => { goTo(currentIndex - 1); stopAutoSlide(); startAutoSlide(); });
+            nextBtn.addEventListener('click', () => { goTo(currentIndex + 1); stopAutoSlide(); startAutoSlide(); });
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+            track.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) goTo(currentIndex + 1);
+                    else goTo(currentIndex - 1);
+                    stopAutoSlide();
+                    startAutoSlide();
+                }
+            }, { passive: true });
+
+            // Re-init on resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    currentIndex = Math.min(currentIndex, getMaxIndex());
+                    buildDots();
+                    goTo(currentIndex);
+                }, 150);
+            });
+
+            // Init
+            buildDots();
+            updateButtons();
+            goTo(0);
+            startAutoSlide();
+        })();
     </script>
-    
+
     <!-- DYNAMIC PURCHASE NOTIFICATION -->
     <script src="purchase-notif.js" defer></script>
 

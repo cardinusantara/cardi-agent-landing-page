@@ -7,18 +7,20 @@
             left: 20px;
             width: 380px;
             max-width: calc(100vw - 40px);
-            background: #ffffff;
+            background: #0c0c11;
             border-radius: 12px;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230, 0, 0, 0.15);
             display: flex;
             align-items: flex-start;
             padding: 16px 36px 16px 16px;
             z-index: 999999;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(230, 0, 0, 0.2);
             opacity: 0;
             pointer-events: none;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         .purchase-notif-box.show {
             top: 20px;
@@ -32,14 +34,14 @@
             background: none;
             border: none;
             font-size: 18px;
-            color: #999;
+            color: #5c5e6e;
             cursor: pointer;
             line-height: 1;
             padding: 4px;
             transition: color 0.2s;
         }
         .purchase-notif-close:hover {
-            color: #333;
+            color: #f5f5f7;
         }
         .purchase-notif-left-stripe {
             position: absolute;
@@ -47,20 +49,22 @@
             top: 0;
             bottom: 0;
             width: 5px;
-            background: #0091FF;
+            background: linear-gradient(180deg, #e60000, #ff4d4d);
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
+            box-shadow: 0 0 12px rgba(230, 0, 0, 0.5);
         }
         .purchase-notif-icon-container {
             margin-right: 14px;
             margin-top: 2px;
             flex-shrink: 0;
-            background: rgba(0, 145, 255, 0.08);
+            background: rgba(230, 0, 0, 0.12);
             padding: 10px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 1px solid rgba(230, 0, 0, 0.2);
         }
         .purchase-notif-bell {
             width: 20px;
@@ -72,49 +76,49 @@
         }
         .purchase-notif-buyer {
             font-size: 13px;
-            color: #555;
+            color: #989aa8;
             margin-bottom: 3px;
             line-height: 1.2;
         }
         .purchase-notif-buyer .buyer-name {
             font-weight: 700;
-            color: #222;
+            color: #f5f5f7;
         }
         .purchase-notif-buyer .buyer-email {
-            color: #666;
+            color: #989aa8;
             margin-left: 2px;
         }
         .purchase-notif-buyer .time-ago {
-            color: #888;
+            color: #5c5e6e;
             margin-left: 4px;
         }
         .purchase-notif-product {
             font-size: 13.5px;
-            color: #333;
+            color: #989aa8;
             line-height: 1.4;
             margin-bottom: 2px;
         }
         .purchase-notif-product .product-name {
             font-weight: 700;
-            color: #111;
+            color: #f5f5f7;
         }
         .purchase-notif-price {
             font-size: 13.5px;
-            color: #333;
+            color: #989aa8;
             margin-bottom: 6px;
             line-height: 1.2;
         }
         .purchase-notif-price .price-val {
             font-weight: 700;
-            color: #111;
+            color: #ff4d4d;
         }
         .purchase-notif-verified {
             display: flex;
             align-items: center;
             gap: 5px;
             font-size: 11px;
-            color: #0091FF;
-            border-top: 1px solid #f0f0f0;
+            color: #989aa8;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
             padding-top: 6px;
             margin-top: 4px;
             line-height: 1;
@@ -122,9 +126,11 @@
         .verified-icon {
             width: 12px;
             height: 12px;
+            color: #e60000;
         }
         .verified-provider {
             font-weight: 700;
+            color: #f5f5f7;
         }
     `;
 
@@ -140,7 +146,7 @@
         <button class="purchase-notif-close" id="purchaseNotifCloseBtn">&times;</button>
         <div class="purchase-notif-left-stripe"></div>
         <div class="purchase-notif-icon-container">
-            <svg class="purchase-notif-bell" viewBox="0 0 24 24" fill="none" stroke="#0091FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="purchase-notif-bell" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
@@ -152,13 +158,13 @@
                 <span class="time-ago" id="notifTimeAgo">baru saja</span>
             </div>
             <div class="purchase-notif-product">
-                membeli <span class="product-name" id="notifProductName">Produk WAMAPS Full Tools + Bonus Lengkap</span>,
+                membeli <span class="product-name" id="notifProductName">Paket Starter Cardiagent AI</span>,
             </div>
             <div class="purchase-notif-price">
-                senilai <span class="price-val" id="notifPriceVal">Rp 228.540</span>
+                senilai <span class="price-val" id="notifPriceVal">Rp 999.000</span>
             </div>
             <div class="purchase-notif-verified">
-                <svg class="verified-icon" viewBox="0 0 24 24" fill="none" stroke="#0091FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="verified-icon" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
                 <span>Transaction Verified by <strong class="verified-provider">Mayar.ID</strong></span>
@@ -199,10 +205,10 @@
     const products = [
         { name: "Paket Starter Cardiagent AI", price: "Rp 999.000" },
         { name: "Paket Starter Cardiagent AI (Bulanan)", price: "Rp 1.499.000" },
-        { name: "Lisensi Penuh OptimaSEO Pro", price: "Rp 99.000" },
+        { name: "Lisensi Penuh Optima SEO by Cardi Agent AI", price: "Rp 99.000" },
         { name: "Paket Starter Cardiagent AI (1 Tahun)", price: "Rp 11.988.000" },
-        { name: "Bundle OptimaSEO + Cardiagent Pro", price: "Rp 1.098.000" },
-        { name: "OptimaSEO Pro - Unlimited License", price: "Rp 99.000" }
+        { name: "Bundle Optima SEO + Cardiagent Pro", price: "Rp 1.098.000" },
+        { name: "Optima SEO by Cardi Agent AI - Unlimited License", price: "Rp 99.000" }
     ];
 
     const timeAgos = ["baru saja", "1 menit yang lalu", "2 menit yang lalu", "3 menit yang lalu", "baru saja"];
