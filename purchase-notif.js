@@ -1,4 +1,4 @@
-(function() {
+(function () {
     // 1. INJECT STYLES
     const styles = `
         .purchase-notif-box {
@@ -248,7 +248,7 @@
     }
 
     // Set close button behavior
-    closeBtn.addEventListener('click', function(e) {
+    closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         hideNotification();
         // Pause notifications for 45 seconds if closed manually
@@ -258,12 +258,12 @@
 
     function startNotificationCycle() {
         if (nextNotifInterval) clearInterval(nextNotifInterval);
-        
+
         // Show first notification after 4 seconds
         setTimeout(showRandomNotification, 4000);
-        
+
         // Show subsequent notifications every 12 to 20 seconds
-        nextNotifInterval = setInterval(function() {
+        nextNotifInterval = setInterval(function () {
             // Randomize interval slightly to make it look organic
             const shouldShow = Math.random() > 0.3; // 70% chance to show on each interval tick
             if (shouldShow) {
