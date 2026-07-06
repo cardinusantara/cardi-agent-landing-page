@@ -1,5 +1,5 @@
 (function () {
-    // 1. INJECT STYLES
+    // 1. INJECT STYLES — Light Mode Version
     const styles = `
         .purchase-notif-box {
             position: fixed;
@@ -7,20 +7,18 @@
             left: 20px;
             width: 380px;
             max-width: calc(100vw - 40px);
-            background: #0c0c11;
-            border-radius: 12px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230, 0, 0, 0.15);
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
             display: flex;
             align-items: flex-start;
             padding: 16px 36px 16px 16px;
             z-index: 999999;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(230, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             opacity: 0;
             pointer-events: none;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
         }
         .purchase-notif-box.show {
             top: 20px;
@@ -34,14 +32,14 @@
             background: none;
             border: none;
             font-size: 18px;
-            color: #5c5e6e;
+            color: #aab0c0;
             cursor: pointer;
             line-height: 1;
             padding: 4px;
             transition: color 0.2s;
         }
         .purchase-notif-close:hover {
-            color: #f5f5f7;
+            color: #333;
         }
         .purchase-notif-left-stripe {
             position: absolute;
@@ -50,21 +48,20 @@
             bottom: 0;
             width: 5px;
             background: linear-gradient(180deg, #e60000, #ff4d4d);
-            border-top-left-radius: 12px;
-            border-bottom-left-radius: 12px;
-            box-shadow: 0 0 12px rgba(230, 0, 0, 0.5);
+            border-top-left-radius: 14px;
+            border-bottom-left-radius: 14px;
         }
         .purchase-notif-icon-container {
             margin-right: 14px;
             margin-top: 2px;
             flex-shrink: 0;
-            background: rgba(230, 0, 0, 0.12);
+            background: rgba(230, 0, 0, 0.08);
             padding: 10px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(230, 0, 0, 0.2);
+            border: 1px solid rgba(230, 0, 0, 0.15);
         }
         .purchase-notif-bell {
             width: 20px;
@@ -76,49 +73,49 @@
         }
         .purchase-notif-buyer {
             font-size: 13px;
-            color: #989aa8;
+            color: #6b7280;
             margin-bottom: 3px;
             line-height: 1.2;
         }
         .purchase-notif-buyer .buyer-name {
             font-weight: 700;
-            color: #f5f5f7;
+            color: #111827;
         }
         .purchase-notif-buyer .buyer-email {
-            color: #989aa8;
+            color: #9ca3af;
             margin-left: 2px;
         }
         .purchase-notif-buyer .time-ago {
-            color: #5c5e6e;
+            color: #c4c9d4;
             margin-left: 4px;
         }
         .purchase-notif-product {
             font-size: 13.5px;
-            color: #989aa8;
+            color: #6b7280;
             line-height: 1.4;
             margin-bottom: 2px;
         }
         .purchase-notif-product .product-name {
             font-weight: 700;
-            color: #f5f5f7;
+            color: #111827;
         }
         .purchase-notif-price {
             font-size: 13.5px;
-            color: #989aa8;
+            color: #6b7280;
             margin-bottom: 6px;
             line-height: 1.2;
         }
         .purchase-notif-price .price-val {
             font-weight: 700;
-            color: #ff4d4d;
+            color: #e60000;
         }
         .purchase-notif-verified {
             display: flex;
             align-items: center;
             gap: 5px;
             font-size: 11px;
-            color: #989aa8;
-            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            color: #9ca3af;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
             padding-top: 6px;
             margin-top: 4px;
             line-height: 1;
@@ -130,7 +127,7 @@
         }
         .verified-provider {
             font-weight: 700;
-            color: #f5f5f7;
+            color: #374151;
         }
     `;
 
@@ -186,7 +183,7 @@
         { name: "Val***", email: "val***@gmail.com" },
         { name: "Jok***", email: "jok***@gmail.com" },
         { name: "Meg***", email: "meg***@gmail.com" },
-        { name: "Ad***", email: "ad***@yahoo.co.id" },
+        { name: "Ad***",  email: "ad***@yahoo.co.id" },
         { name: "Lia***", email: "lia***@gmail.com" },
         { name: "Yus***", email: "yus***@gmail.com" },
         { name: "Ria***", email: "ria***@gmail.com" },
@@ -214,12 +211,12 @@
     const timeAgos = ["baru saja", "1 menit yang lalu", "2 menit yang lalu", "3 menit yang lalu", "baru saja"];
 
     // Elements
-    const buyerNameEl = document.getElementById('notifBuyerName');
-    const buyerEmailEl = document.getElementById('notifBuyerEmail');
+    const buyerNameEl   = document.getElementById('notifBuyerName');
+    const buyerEmailEl  = document.getElementById('notifBuyerEmail');
     const productNameEl = document.getElementById('notifProductName');
-    const priceValEl = document.getElementById('notifPriceVal');
-    const timeAgoEl = document.getElementById('notifTimeAgo');
-    const closeBtn = document.getElementById('purchaseNotifCloseBtn');
+    const priceValEl    = document.getElementById('notifPriceVal');
+    const timeAgoEl     = document.getElementById('notifTimeAgo');
+    const closeBtn      = document.getElementById('purchaseNotifCloseBtn');
 
     let notifTimeout = null;
     let nextNotifInterval = null;
@@ -229,35 +226,29 @@
     }
 
     function showRandomNotification() {
-        // Pick random indices
-        const buyerIndex = Math.floor(Math.random() * buyers.length);
+        const buyerIndex   = Math.floor(Math.random() * buyers.length);
         const productIndex = Math.floor(Math.random() * products.length);
-        const timeIndex = Math.floor(Math.random() * timeAgos.length);
+        const timeIndex    = Math.floor(Math.random() * timeAgos.length);
 
-        const buyer = buyers[buyerIndex];
+        const buyer   = buyers[buyerIndex];
         const product = products[productIndex];
         const timeAgo = timeAgos[timeIndex];
 
-        // Update elements
-        buyerNameEl.textContent = buyer.name;
-        buyerEmailEl.textContent = `(${buyer.email})`;
+        buyerNameEl.textContent   = buyer.name;
+        buyerEmailEl.textContent  = `(${buyer.email})`;
         productNameEl.textContent = product.name;
-        priceValEl.textContent = product.price;
-        timeAgoEl.textContent = timeAgo;
+        priceValEl.textContent    = product.price;
+        timeAgoEl.textContent     = timeAgo;
 
-        // Show box
         notifContainer.classList.add('show');
 
-        // Hide after 6 seconds
         if (notifTimeout) clearTimeout(notifTimeout);
         notifTimeout = setTimeout(hideNotification, 6000);
     }
 
-    // Set close button behavior
     closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         hideNotification();
-        // Pause notifications for 45 seconds if closed manually
         if (nextNotifInterval) clearInterval(nextNotifInterval);
         setTimeout(startNotificationCycle, 45000);
     });
@@ -265,20 +256,14 @@
     function startNotificationCycle() {
         if (nextNotifInterval) clearInterval(nextNotifInterval);
 
-        // Show first notification after 4 seconds
         setTimeout(showRandomNotification, 4000);
 
-        // Show subsequent notifications every 12 to 20 seconds
         nextNotifInterval = setInterval(function () {
-            // Randomize interval slightly to make it look organic
-            const shouldShow = Math.random() > 0.3; // 70% chance to show on each interval tick
-            if (shouldShow) {
-                showRandomNotification();
-            }
+            const shouldShow = Math.random() > 0.3;
+            if (shouldShow) showRandomNotification();
         }, 15000);
     }
 
-    // Initialize
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', startNotificationCycle);
     } else {

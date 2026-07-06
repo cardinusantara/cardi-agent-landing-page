@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardi - Solusi AI & Otomasi Bisnis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-hover: #1E40AF;
+            --secondary: #0ea5e9;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --text-light: #94a3b8;
+            --bg-white: #ffffff;
+            --bg-gray: #f8fafc;
+            --bg-dark: #0f172a;
+            --border: #e2e8f0;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+            --accent-agent: #e60000;
+            --accent-seo: #00E659;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background-color: var(--bg-gray);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-brand {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+        }
+
+        /* MEGA MENU */
+        .mega-menu {
+            position: absolute;
+            top: 72px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            width: 600px;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.has-dropdown:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-menu-col h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .product-link {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .product-link:hover {
+            background: var(--bg-gray);
+        }
+
+        .product-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .icon-agent {
+            background: var(--accent-agent);
+        }
+
+        .icon-seo {
+            background: var(--accent-seo);
+            color: #000;
+        }
+
+        .product-info h5 {
+            font-size: 15px;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(180deg, var(--bg-gray) 0%, var(--bg-white) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            max-width: 900px;
+            margin: 0 auto 24px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero-image {
+            margin-top: 64px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            background: var(--bg-gray);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-placeholder {
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        /* TRUST BAR */
+        .trust-bar {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .trust-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .trust-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            filter: grayscale(100%) opacity(0.6);
+        }
+
+        /* PRODUCT SHOWCASE */
+        .product-section {
+            padding: 100px 0;
+        }
+
+        .product-section:nth-child(even) {
+            background-color: var(--bg-gray);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .product-grid.reverse {
+            direction: rtl;
+        }
+
+        .product-grid.reverse>* {
+            direction: ltr;
+        }
+
+        .product-content h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .product-content p {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .feature-list li svg {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .product-media {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            aspect-ratio: 4/3;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* TESTIMONIAL VIDEO */
+        .testimonial-section {
+            padding: 100px 0;
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .testimonial-section h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-section>p {
+            color: #cbd5e1;
+            margin-bottom: 64px;
+            font-size: 18px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            text-align: left;
+        }
+
+        .video-card {
+            background: #1e293b;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        .video-wrapper {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .play-btn {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            transition: transform 0.2s;
+        }
+
+        .video-wrapper:hover .play-btn {
+            transform: scale(1.1);
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .video-info {
+            padding: 24px;
+        }
+
+        .video-quote {
+            font-size: 15px;
+            font-style: italic;
+            margin-bottom: 16px;
+            color: #e2e8f0;
+        }
+
+        .video-author {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .video-role {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: var(--primary);
+            border-radius: var(--radius-lg);
+            padding: 64px 24px;
+            color: white;
+        }
+
+        .cta-box h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--bg-white);
+            border-top: 1px solid var(--border);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 64px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: var(--text-gray);
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-gray);
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* =======================================================
+           MODAL KONSULTASI - 100% MEKARI STYLE 
+           ======================================================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 520px;
+            border-radius: 8px;
+            padding: 32px 40px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            color: #0f172a;
+            text-align: left;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #64748b;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #0f172a;
+        }
+
+        .modal-header {
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .modal-header p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #1e293b;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .phone-group {
+            display: flex;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+
+        .phone-group:focus-within {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .phone-prefix {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 12px;
+            background: #ffffff;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 500;
+            border-right: 1px solid #cbd5e1;
+            cursor: pointer;
+        }
+
+        .phone-group input {
+            border: none;
+            border-radius: 0;
+            flex: 1;
+            background: transparent;
+        }
+
+        .phone-group input:focus {
+            box-shadow: none;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .radio-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-card input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-card span {
+            display: block;
+            text-align: center;
+            padding: 12px 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1e293b;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+
+        .radio-card:hover span {
+            border-color: #94a3b8;
+        }
+
+        .radio-card input:checked~span {
+            border-color: var(--primary);
+            background: #eff6ff;
+            color: var(--primary);
+            font-weight: 600;
+            box-shadow: inset 0 0 0 1px var(--primary);
+        }
+
+        .btn-submit-modal {
+            width: 100%;
+            margin-top: 12px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit-modal:hover {
+            background: var(--primary-hover);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .product-grid,
+            .product-grid.reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* =======================================================
+           PREMIUM ENHANCEMENTS FOR MAIN.HTML
+           ======================================================= */
+        
+        /* 1. HERO DASHBOARD COMMAND CENTER */
+        .hero-image {
+            background: #0f172a !important; /* Force dark dashboard style */
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start !important;
+            align-items: stretch !important;
+            aspect-ratio: 16/10 !important;
+        }
+
+        .dashboard-window {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            background: #090d16;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: #111827;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dashboard-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dashboard-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .dashboard-title {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: monospace;
+        }
+
+        .dashboard-status {
+            font-size: 11px;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .pulse-green {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #10b981;
+            animation: db-pulse 2s infinite;
+        }
+
+        @keyframes db-pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .dashboard-body {
+            padding: 18px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow: hidden;
+        }
+
+        .db-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .db-stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 14px;
+            transition: all 0.3s;
+        }
+
+        .db-stat-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .db-stat-label {
+            display: block;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .db-stat-val {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .db-stat-sub {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .text-green { color: #10b981; }
+        .text-blue { color: #38bdf8; }
+
+        .db-chart-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 14px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .db-chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .db-legend {
+            display: flex;
+            gap: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .bg-primary { background: #3b82f6; }
+        .bg-gray { background: #475569; }
+
+        .db-chart-bars {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 100px;
+            padding-top: 10px;
+        }
+
+        .db-chart-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .db-chart-col span {
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .chart-bar-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 70px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .chart-bar {
+            width: 10px;
+            border-radius: 2px;
+            transition: height 1s ease;
+        }
+
+        .bar-ai {
+            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+        }
+
+        .bar-manual {
+            background: #475569;
+        }
+
+        /* 2. INFINITE LOGO MARQUEE */
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .marquee::before,
+        .marquee::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-white) 0%, transparent 100%);
+        }
+
+        .marquee::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-white) 0%, transparent 100%);
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            gap: 64px;
+            animation: marquee-scroll 25s linear infinite;
+        }
+
+        .marquee-content span {
+            font-size: 20px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: -0.5px;
+            transition: color 0.3s;
+        }
+
+        .marquee-content span:hover {
+            color: var(--primary);
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 3. INTERACTIVE SEO SCORE OPTIMIZER MOCKUP */
+        .seo-dashboard {
+            width: 100%;
+            height: 100%;
+            background: #090d16;
+            color: white;
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .seo-editor-mock {
+            flex: 1.2;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .seo-editor-header {
+            font-weight: 700;
+            color: #94a3b8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .seo-editor-title {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: white;
+            font-family: inherit;
+        }
+
+        .seo-editor-body {
+            color: #94a3b8;
+            line-height: 1.5;
+            flex-grow: 1;
+            font-size: 11px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+
+        .seo-btn-container {
+            margin-top: auto;
+        }
+
+        .seo-opt-btn {
+            width: 100%;
+            background: #00E659;
+            color: black;
+            font-weight: 700;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 230, 89, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .seo-analyzer-mock {
+            flex: 0.8;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+        }
+
+        .seo-score-circle {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .seo-score-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .seo-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 8;
+        }
+
+        .seo-circle-val {
+            fill: none;
+            stroke: #ef4444;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 145; /* 42% score initial */
+            transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1), stroke 2s;
+        }
+
+        .seo-score-num {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .seo-score-num span {
+            font-size: 9px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        .seo-checklist {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .seo-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .seo-status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ef4444;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .seo-item.checked {
+            color: white;
+        }
+
+        .seo-item.checked .seo-status-dot {
+            background: #00E659;
+        }
+
+        /* 4. PREMIUM PRICING PLANS SECTION */
+        .pricing-section {
+            padding: 100px 0;
+            background: var(--bg-gray);
+            text-align: center;
+        }
+
+        .pricing-header {
+            margin-bottom: 48px;
+        }
+
+        .pricing-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .pricing-header p {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-toggle-container {
+            display: inline-flex;
+            align-items: center;
+            background: #e2e8f0;
+            padding: 4px;
+            border-radius: 99px;
+            margin-top: 24px;
+        }
+
+        .pricing-toggle-btn {
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-gray);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-toggle-btn.active {
+            background: var(--bg-white);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.premium {
+            border: 2px solid transparent;
+            background-image: linear-gradient(var(--bg-white), var(--bg-white)), linear-gradient(135deg, var(--primary), var(--secondary));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .pricing-card.premium::after {
+            content: "PALING POPULER";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 99px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-tier {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .pricing-card.premium .pricing-tier {
+            color: var(--secondary);
+        }
+
+        .pricing-price {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .pricing-features-list {
+            list-style: none;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pricing-features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .pricing-features-list li svg {
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .pricing-card.premium .pricing-features-list li svg {
+            color: var(--primary);
+        }
+
+        .pricing-btn {
+            width: 100%;
+            margin-top: auto;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-inner">
+            <a href="#" class="nav-brand">Cardi</a>
+
+            <div class="nav-menu">
+                <div class="nav-item has-dropdown">
+                    Produk & Layanan
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="margin-left:4px">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                    <div class="mega-menu">
+                        <div class="mega-menu-col">
+                            <h4>Otomasi Layanan</h4>
+                            <a href="agent.html" class="product-link">
+                                <div class="product-icon icon-agent">CA</div>
+                                <div class="product-info">
+                                    <h5>Cardiagent.ai</h5>
+                                    <p>Asisten WhatsApp 24/7 bertenaga AI untuk konversi maksimal.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="mega-menu-col">
+                            <h4>Optimasi Trafik</h4>
+                            <a href="plugin.html" class="product-link">
+                                <div class="product-icon icon-seo">OS</div>
+                                <div class="product-info">
+                                    <h5>Optima SEO</h5>
+                                    <p>Plugin WordPress autopilot untuk dominasi halaman pertama.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#harga" class="nav-item">Harga</a>
+                <a href="#tentang" class="nav-item">Tentang Kami</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#kontak" class="btn btn-primary">Konsultasi Gratis</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Otomatisasi Bisnis Anda dengan Kecerdasan Buatan</h1>
+            <p>Kami adalah agensi solusi AI dan otomasi. Tingkatkan efisiensi operasional, dominasi mesin pencari, dan
+                layani pelanggan 24/7 tanpa henti.</p>
+            <div class="hero-actions">
+                <a href="#produk" class="btn btn-primary">Lihat Produk Kami</a>
+                <a href="#demo" class="btn btn-outline">Jadwalkan Demo</a>
+            </div>
+            <div class="hero-image">
+                <div class="dashboard-window">
+                    <div class="dashboard-header">
+                        <div class="dashboard-dots">
+                            <span class="dot-red"></span>
+                            <span class="dot-yellow"></span>
+                            <span class="dot-green"></span>
+                        </div>
+                        <div class="dashboard-title">cardi_ops_dashboard.sh</div>
+                        <div class="dashboard-status"><span class="pulse-green"></span> Live AI Active</div>
+                    </div>
+                    <div class="dashboard-body">
+                        <div class="db-stat-grid">
+                            <div class="db-stat-card">
+                                <span class="db-stat-label">Total Chat Terproses</span>
+                                <h3 class="db-stat-val" id="db-counter-chats">1.843.200</h3>
+                                <span class="db-stat-sub text-green">▲ 12.4% minggu ini</span>
+                            </div>
+                            <div class="db-stat-card">
+                                <span class="db-stat-label">Kecepatan Respon AI</span>
+                                <h3 class="db-stat-val">1.8s</h3>
+                                <span class="db-stat-sub text-blue">Seketika (Instant)</span>
+                            </div>
+                            <div class="db-stat-card">
+                                <span class="db-stat-label">Peningkatan Konversi</span>
+                                <h3 class="db-stat-val">+45.2%</h3>
+                                <span class="db-stat-sub text-green">Rata-rata klien</span>
+                            </div>
+                            <div class="db-stat-card">
+                                <span class="db-stat-label">Biaya CS Terhemat</span>
+                                <h3 class="db-stat-val" style="color: var(--accent-seo)">62%</h3>
+                                <span class="db-stat-sub text-green">Efisiensi tim</span>
+                            </div>
+                        </div>
+                        <div class="db-chart-section">
+                            <div class="db-chart-header">
+                                <span>Aktivitas Chat AI vs Manual (24 Jam)</span>
+                                <div class="db-legend">
+                                    <span class="legend-item"><span class="legend-color bg-primary"></span> Cardiagent AI</span>
+                                    <span class="legend-item"><span class="legend-color bg-gray"></span> Manual Admin</span>
+                                </div>
+                            </div>
+                            <div class="db-chart-bars">
+                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 35%"></div><div class="chart-bar bar-manual" style="height: 40%"></div></div><span>00:00</span></div>
+                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 25%"></div><div class="chart-bar bar-manual" style="height: 10%"></div></div><span>04:00</span></div>
+                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 60%"></div><div class="chart-bar bar-manual" style="height: 45%"></div></div><span>08:00</span></div>
+                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 85%"></div><div class="chart-bar bar-manual" style="height: 50%"></div></div><span>12:00</span></div>
+                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 95%"></div><div class="chart-bar bar-manual" style="height: 55%"></div></div><span>16:00</span></div>
+                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 75%"></div><div class="chart-bar bar-manual" style="height: 35%"></div></div><span>20:00</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-label">Dipercaya Oleh 1,800+ Bisnis Premium</div>
+            <div class="trust-logos">
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <span>TokoElite</span>
+                        <span>RetailPro.id</span>
+                        <span>KapukLiving</span>
+                        <span>GroupBuy+</span>
+                        <span>MedikaSehat</span>
+                        <span>GlowBeauty</span>
+                        <span>KopiLokal</span>
+                        <!-- Duplicate for infinite effect -->
+                        <span>TokoElite</span>
+                        <span>RetailPro.id</span>
+                        <span>KapukLiving</span>
+                        <span>GroupBuy+</span>
+                        <span>MedikaSehat</span>
+                        <span>GlowBeauty</span>
+                        <span>KopiLokal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section" id="produk">
+        <div class="container">
+            <div class="product-grid">
+                <div class="product-content">
+                    <div style="color: var(--accent-agent); font-weight: 700; margin-bottom: 8px; letter-spacing: 1px;">
+                        CARDIAGENT.AI</div>
+                    <h2>Ubah WhatsApp Jadi Asisten Penjualan 24/7.</h2>
+                    <p>Hentikan kerugian akibat chat lambat. Sistem AI kami membalas pelanggan secara natural, mengejar
+                        calon pembeli yang ragu, dan mengelola pesanan secara otomatis.</p>
+                    <ul class="feature-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Balasan chat kontekstual layaknya manusia.</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Follow-up otomatis untuk pelanggan yang belum transfer.</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Audit performa iklan langsung dari WhatsApp.</li>
+                    </ul>
+                    <a href="agent.html" class="btn btn-outline"
+                        style="border-color: var(--text-gray); color: var(--text-dark);">Pelajari Cardiagent</a>
+                </div>
+                <div class="product-media">
+                    <div class="media-placeholder">[Area Gambar / Video UI Cardiagent.ai]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="container">
+            <div class="product-grid reverse">
+                <div class="product-content">
+                    <div style="color: var(--accent-seo); font-weight: 700; margin-bottom: 8px; letter-spacing: 1px;">
+                        OPTIMA SEO</div>
+                    <h2>Dominasi Halaman Pertama Google. 100% Autopilot.</h2>
+                    <p>Tinggalkan kerja SEO manual yang menguras waktu. Sempurnakan arsitektur tautan, optimasi meta
+                        tag, dan injeksi struktur data pintar pada website WordPress Anda secara instan.</p>
+                    <ul class="feature-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Generator Meta Tag & Judul otomatis.</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Internal linking cerdas tanpa coding.</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Injeksi Schema Markup JSON-LD.</li>
+                    </ul>
+                    <a href="plugin.html" class="btn btn-outline"
+                        style="border-color: var(--text-gray); color: var(--text-dark);">Pelajari Optima SEO</a>
+                </div>
+                <div class="product-media" style="background: #090d16 !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; padding: 0 !important; overflow: hidden !important;">
+                    <div class="seo-dashboard">
+                        <div class="seo-editor-mock">
+                            <div class="seo-editor-header">WordPress Post Editor</div>
+                            <div class="seo-editor-title">10 Cara Meningkatkan Omzet Bisnis dengan AI</div>
+                            <div class="seo-editor-body">
+                                Menggunakan kecerdasan buatan dapat merevolusi cara Anda berinteraksi dengan pelanggan. WhatsApp AI otomatis membantu menjawab pertanyaan produk secara real-time. Dengan integrasi yang tepat, konversi penjualan Anda akan naik drastis tanpa repot...
+                            </div>
+                            <div class="seo-btn-container">
+                                <button class="seo-opt-btn" id="seo-opt-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                    Optimasi Otomatis
+                                </button>
+                            </div>
+                        </div>
+                        <div class="seo-analyzer-mock">
+                            <div class="seo-editor-header" style="width: 100%;">SEO Analyzer</div>
+                            <div class="seo-score-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="seo-circle-bg" cx="50" cy="50" r="40"></circle>
+                                    <circle class="seo-circle-val" id="seo-circle-val" cx="50" cy="50" r="40"></circle>
+                                </svg>
+                                <div class="seo-score-num"><span id="seo-score-val-num" style="font-size:24px;">42</span><span>SCORE</span></div>
+                            </div>
+                            <div class="seo-checklist">
+                                <div class="seo-item" id="seo-item-meta">
+                                    <span class="seo-status-dot"></span>
+                                    <span>Meta Tags & Titles</span>
+                                </div>
+                                <div class="seo-item" id="seo-item-links">
+                                    <span class="seo-status-dot"></span>
+                                    <span>Internal Linking</span>
+                                </div>
+                                <div class="seo-item" id="seo-item-schema">
+                                    <span class="seo-status-dot"></span>
+                                    <span>JSON-LD Schema</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="pricing-section" id="harga">
+        <div class="container">
+            <div class="pricing-header">
+                <h2>Pilihan Paket Investasi Bisnis Anda</h2>
+                <p>Mulai gratis atau pilih paket premium untuk skalabilitas tak terbatas dan fitur enterprise penuh.</p>
+                <div class="pricing-toggle-container">
+                    <button class="pricing-toggle-btn active" id="pricing-monthly-btn" onclick="setPricingPeriod('monthly')">Bulanan</button>
+                    <button class="pricing-toggle-btn" id="pricing-yearly-btn" onclick="setPricingPeriod('yearly')">Tahunan (Hemat 20%)</button>
+                </div>
+            </div>
+            <div class="pricing-grid-cards">
+                <!-- Starter Card -->
+                <div class="pricing-card">
+                    <div class="pricing-tier">Starter</div>
+                    <div class="pricing-price">
+                        <span style="font-size: 20px; font-weight: 700;">Rp</span>
+                        <span id="price-starter">299.000</span>
+                        <span>/bln</span>
+                    </div>
+                    <p class="pricing-desc">Cocok untuk UMKM yang baru mulai mengadopsi teknologi AI untuk otomatisasi awal.</p>
+                    <ul class="pricing-features-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Maks 500 chat terproses/bln
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            1 WhatsApp Integrasi
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Pemahaman NLP Dasar
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Dukungan Email 24/7
+                        </li>
+                    </ul>
+                    <a href="#kontak" class="btn btn-outline pricing-btn">Pilih Starter</a>
+                </div>
+
+                <!-- Pro Card (Premium Highlighted) -->
+                <div class="pricing-card premium">
+                    <div class="pricing-tier">Pro AI Autopilot</div>
+                    <div class="pricing-price">
+                        <span style="font-size: 20px; font-weight: 700;">Rp</span>
+                        <span id="price-pro">799.000</span>
+                        <span>/bln</span>
+                    </div>
+                    <p class="pricing-desc">Pilihan terbaik bagi bisnis berkembang untuk dominasi pasar secara total 24/7 autopilot.</p>
+                    <ul class="pricing-features-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <strong>Unlimited Chat</strong> terproses
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            3 WhatsApp Integrasi
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            NLP Cerdas (Slang & Konteks)
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Follow-Up Proaktif Cerdas
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Premium Support & Manager Khusus
+                        </li>
+                    </ul>
+                    <a href="#kontak" class="btn btn-primary pricing-btn">Mulai Pro Sekarang</a>
+                </div>
+
+                <!-- Enterprise Card -->
+                <div class="pricing-card">
+                    <div class="pricing-tier">Enterprise</div>
+                    <div class="pricing-price">
+                        <span style="font-size: 32px; font-weight: 800;">Custom</span>
+                    </div>
+                    <p class="pricing-desc">Solusi khusus korporasi dengan infrastruktur terdedikasi dan integrasi API internal.</p>
+                    <ul class="pricing-features-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Multi-agent custom flow
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            SLA Kecepatan & Ketersediaan 99.99%
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Server khusus (On-premise/Private Cloud)
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Audit Keamanan & Kepatuhan penuh
+                        </li>
+                    </ul>
+                    <a href="#kontak" class="btn btn-outline pricing-btn" style="border-color: var(--text-gray); color: var(--text-dark);">Hubungi Kami</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <div class="container">
+            <h2>Dampak Nyata bagi Bisnis Klien Kami</h2>
+            <p>Dengarkan langsung bagaimana solusi Cardi mentransformasi operasional mereka.</p>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-quote">"Follow-up otomatis menyelamatkan banyak transaksi yang dulu hilang.
+                            Penjualan naik signifikan."</div>
+                        <div class="video-author">Raka Pratama</div>
+                        <div class="video-role">Pemilik, TokoElite</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-quote">"Trafik organik website kami melonjak ke halaman pertama tanpa harus
+                            sewa spesialis SEO mahal."</div>
+                        <div class="video-author">Nadia Kusuma</div>
+                        <div class="video-role">Digital Marketer, GroupBuy+</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-quote">"Integrasi yang sangat mulus. Admin kami hemat puluhan jam per minggu
+                            dari membalas chat."</div>
+                        <div class="video-author">Dimas Saputra</div>
+                        <div class="video-role">Manajer Operasional, KapukLiving</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Siap Melangkah ke Era Otomasi?</h2>
+                <p>Konsultasikan kebutuhan spesifik bisnis Anda bersama tim pakar kami.</p>
+                <a href="#kontak" class="btn" style="background: white; color: var(--primary);">Jadwalkan Konsultasi
+                    Gratis</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Cardi</h3>
+                    <p>Agensi solusi AI dan otomasi yang membantu bisnis bertumbuh dengan sistem terintegrasi.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="agent.html">Cardiagent.ai</a></li>
+                        <li><a href="plugin.html">Optima SEO</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Mitra</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Dukungan</h4>
+                    <ul>
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">API Dokumentasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cardi. Hak Cipta Dilindungi.</p>
+                <div style="display: flex; gap: 24px;">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="modal-overlay" id="consultModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="modal-header">
+                <h3>Konsultasi Gratis dengan Kami</h3>
+                <p>Isi data di bawah untuk mendapatkan demo dan konsultasi dari tim kami.</p>
+            </div>
+
+            <form id="consultForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="inpNama" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Kerja</label>
+                    <input type="email" id="inpEmail" class="form-control" placeholder="contoh: bryan@perusahaan.com"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nama Perusahaan</label>
+                    <input type="text" id="inpPerusahaan" class="form-control" placeholder="PT Solusi Bisnis" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nomor Whatsapp</label>
+                    <div class="phone-group">
+                        <div class="phone-prefix">
+                            ID +62
+                        </div>
+                        <input type="tel" id="inpWa" class="form-control" placeholder="812 3456 7890" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Jumlah chat bisnis Anda per hari</label>
+                    <div class="radio-grid">
+                        <label class="radio-card">
+                            <input type="radio" name="chat_vol" value="< 30" required>
+                            <span>
+                                < 30</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="chat_vol" value="30-200">
+                            <span>30-200</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="chat_vol" value="200+">
+                            <span>200+</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit-modal">Konsultasi Gratis Sekarang</button>
+
+                <div style="margin-top: 16px; text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.5;">
+                    Dengan klik tombol di atas, Anda akan diarahkan ke aplikasi WhatsApp. Kirim chat template dan Anda
+                    langsung terhubung dengan tim kami.
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        function openModal() { document.getElementById('consultModal').classList.add('active'); }
+        function closeModal() { document.getElementById('consultModal').classList.remove('active'); }
+
+        document.querySelectorAll('a[href="#kontak"], a[href="#demo"]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        document.getElementById('consultModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('consultModal')) closeModal();
+        });
+
+        // FUNGSI MENGARAHKAN DATA FORM LANGSUNG KE WHATSAPP ADMIN
+        function submitForm(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById('inpNama').value;
+            const email = document.getElementById('inpEmail').value;
+            const perusahaan = document.getElementById('inpPerusahaan').value;
+
+            // Ambil dan bersihkan input no WA (hilangkan angka 0 di depan jika ada)
+            let noWa = document.getElementById('inpWa').value.trim();
+            if (noWa.startsWith('0')) {
+                noWa = noWa.substring(1);
+            }
+
+            // Ambil value dari radio button yang dipilih
+            const chatVolElement = document.querySelector('input[name="chat_vol"]:checked');
+            const chatVol = chatVolElement ? chatVolElement.value : "-";
+
+            // NOMOR WA ADMIN (Pastikan menggunakan format 62 tanpa + atau 0 di depan)
+            const nomorTujuan = "6281234567890";
+
+            // Susun template pesan untuk admin
+            const pesan = `Halo Tim Cardi, saya ingin menjadwalkan konsultasi gratis. Berikut data saya:
+            
+*Nama:* ${nama}
+*Email:* ${email}
+*No. WA:* +62 ${noWa}
+*Perusahaan:* ${perusahaan}
+*Volume Chat Bisnis:* ${chatVol} per hari
+
+Mohon info untuk jadwal demonya. Terima kasih!`;
+
+            // Buka tab baru ke WhatsApp dengan pesan yang sudah dikodekan
+            const pesanEncoded = encodeURIComponent(pesan);
+            const linkWhatsApp = `https://wa.me/${nomorTujuan}?text=${pesanEncoded}`;
+            window.open(linkWhatsApp, '_blank');
+
+            // Tutup modal dan bersihkan isian form
+            closeModal();
+            document.getElementById('consultForm').reset();
+        }
+
+        // =======================================================
+        // PREMIUM COMPONENT SCRIPTS FOR MAIN.HTML
+        // =======================================================
+
+        // Increment hero chat counter dynamically
+        let currentChats = 1843200;
+        const counterEl = document.getElementById('db-counter-chats');
+        if (counterEl) {
+            setInterval(() => {
+                const increment = Math.floor(Math.random() * 3) + 1;
+                currentChats += increment;
+                counterEl.textContent = currentChats.toLocaleString('id-ID');
+            }, 2500);
+        }
+
+        // Live WordPress SEO score optimizer mockup animation loop
+        const seoBtn = document.getElementById('seo-opt-btn');
+        const seoCircle = document.getElementById('seo-circle-val');
+        const seoNum = document.getElementById('seo-score-val-num');
+        const seoItems = [
+            document.getElementById('seo-item-meta'),
+            document.getElementById('seo-item-links'),
+            document.getElementById('seo-item-schema')
+        ];
+
+        function runSeoMockAnimation() {
+            if (!seoCircle || !seoNum) return;
+            // 1. Reset state (Red, Score 42, dashoffset ~145)
+            seoCircle.style.stroke = '#ef4444';
+            seoCircle.style.strokeDashoffset = '145';
+            seoNum.textContent = '42';
+            seoBtn.innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="seo-btn-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Optimasi Otomatis
+            `;
+            seoBtn.style.background = '#00E659';
+            seoBtn.style.color = 'black';
+            seoItems.forEach(item => { if (item) item.classList.remove('checked'); });
+
+            // 2. Start animation loop steps
+            setTimeout(() => {
+                // Change button state to analyzing
+                seoBtn.innerHTML = `
+                    <svg class="verified-icon" style="color:black; animation:spin 1s linear infinite;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+                    Menganalisis Konten...
+                `;
+                seoBtn.style.background = '#e2e8f0';
+                seoBtn.style.color = '#0f172a';
+            }, 1500);
+
+            setTimeout(() => {
+                // Step 1: Meta check
+                if (seoItems[0]) seoItems[0].classList.add('checked');
+                seoCircle.style.stroke = '#f59e0b'; // Amber
+                seoCircle.style.strokeDashoffset = '105'; // Score 58
+                seoNum.textContent = '58';
+            }, 3500);
+
+            setTimeout(() => {
+                // Step 2: Internal link check
+                if (seoItems[1]) seoItems[1].classList.add('checked');
+                seoCircle.style.stroke = '#38bdf8'; // Light Blue
+                seoCircle.style.strokeDashoffset = '68'; // Score 73
+                seoNum.textContent = '73';
+            }, 5500);
+
+            setTimeout(() => {
+                // Step 3: Schema markup check
+                if (seoItems[2]) seoItems[2].classList.add('checked');
+                seoCircle.style.stroke = '#00E659'; // Neon Green
+                seoCircle.style.strokeDashoffset = '5'; // Score 98
+                seoNum.textContent = '98';
+                seoBtn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Optimasi Selesai!
+                `;
+                seoBtn.style.background = '#00E659';
+                seoBtn.style.color = 'black';
+            }, 7500);
+        }
+
+        // Run immediately and loop
+        if (seoCircle) {
+            runSeoMockAnimation();
+            setInterval(runSeoMockAnimation, 12000);
+        }
+
+        // Add standard spinner animation style programmatically to avoid style clashes
+        const spinnerStyle = document.createElement('style');
+        spinnerStyle.textContent = `
+            @keyframes spin { 100% { transform: rotate(360deg); } }
+            .checked svg { color: #00E659; }
+        `;
+        document.head.appendChild(spinnerStyle);
+
+        // Pricing Plan Toggle function
+        function setPricingPeriod(period) {
+            const monthlyBtn = document.getElementById('pricing-monthly-btn');
+            const yearlyBtn = document.getElementById('pricing-yearly-btn');
+            const priceStarter = document.getElementById('price-starter');
+            const pricePro = document.getElementById('price-pro');
+
+            if (!monthlyBtn || !yearlyBtn || !priceStarter || !pricePro) return;
+
+            if (period === 'monthly') {
+                monthlyBtn.classList.add('active');
+                yearlyBtn.classList.remove('active');
+                priceStarter.textContent = '299.000';
+                pricePro.textContent = '799.000';
+            } else {
+                yearlyBtn.classList.add('active');
+                monthlyBtn.classList.remove('active');
+                priceStarter.textContent = '239.000';
+                pricePro.textContent = '639.000';
+            }
+        }
+    </script>
+    <script src="purchase-notif.js"></script>
+</body>
+
+</html>

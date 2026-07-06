@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiagent.ai - Asisten WhatsApp Otomatis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-hover: #1E40AF;
+            --accent: #e60000;
+            --dark-bg: #0b0f19;
+            --dark-surface: #111827;
+            --light-bg: #ffffff;
+            --light-surface: #f8fafc;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --text-light: #94a3b8;
+            --text-white: #f8fafc;
+
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-float: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+            --shadow-bento: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --border-light: rgba(226, 232, 240, 1);
+            --border-dark: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            background: var(--light-bg);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-dark);
+        }
+
+        .navbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-brand span {
+            color: var(--accent);
+        }
+
+        /* FITUR 5: SCROLL-REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HERO (DARK) */
+        .hero {
+            position: relative;
+            padding: 180px 0 120px;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(230, 0, 0, 0.15) 0%, rgba(11, 15, 25, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        /* MOCKUP UI CSS */
+        .ui-mockup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-top: 40px;
+            perspective: 1000px;
+        }
+
+        .mockup-phone {
+            width: 320px;
+            background: var(--dark-surface);
+            border-radius: 36px;
+            border: 8px solid #1f2937;
+            padding: 20px;
+            box-shadow: var(--shadow-float);
+            transform: rotateY(10deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .mockup-phone:hover {
+            transform: rotateY(0) rotateX(0);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-dark);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .chat-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .chat-status {
+            font-size: 11px;
+            color: #10b981;
+        }
+
+        .chat-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            max-width: 85%;
+            line-height: 1.4;
+        }
+
+        .chat-user {
+            background: #1f2937;
+            border-bottom-left-radius: 4px;
+            margin-right: auto;
+        }
+
+        .chat-bot {
+            background: var(--accent);
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+
+        .wave-transition {
+            position: relative;
+            background: var(--light-bg);
+            height: 100px;
+            margin-top: -50px;
+            border-top-left-radius: 50% 100px;
+            border-top-right-radius: 50% 100px;
+            z-index: 10;
+        }
+
+        .light-section {
+            background: var(--light-bg);
+            color: var(--text-dark);
+            padding: 80px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FITUR 4: KOMPARASI WITH VS WITHOUT CARDI */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .compare-card {
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .compare-card.bad {
+            background: #fff1f2;
+            border-color: #fecdd3;
+        }
+
+        .compare-card.good {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            box-shadow: var(--shadow-bento);
+        }
+
+        .compare-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .compare-list {
+            list-style: none;
+        }
+
+        .compare-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+
+        .compare-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .icon-x {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .icon-v {
+            background: #bfdbfe;
+            color: #2563eb;
+        }
+
+        /* FITUR 2: BENTO GRID DENGAN CURSOR SPOTLIGHT */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(280px, auto);
+            gap: 24px;
+        }
+
+        .bento-card {
+            background: var(--light-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            /* Penting untuk spotlight */
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-2px);
+            border-color: #94a3b8;
+        }
+
+        /* Pseudo-element untuk Spotlight */
+        .bento-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(30, 58, 138, 0.08), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        .bento-card>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Konten harus di atas spotlight */
+
+        .bento-large {
+            grid-column: span 2;
+        }
+
+        .bento-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(30, 58, 138, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .bento-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .bento-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* FITUR 1: KALKULATOR ROI INTERAKTIF (PERBAIKAN KONTRAS) */
+        .roi-container {
+            background: #ffffff;
+            /* Background putih bersih */
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            box-shadow: var(--shadow-bento);
+            margin-top: 40px;
+        }
+
+        .roi-slider-group {
+            margin-bottom: 32px;
+            color: var(--text-dark);
+        }
+
+        .roi-slider-group label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: #1e293b;
+            /* Warna teks gelap yang tegas */
+        }
+
+        .roi-val-badge {
+            background: var(--primary);
+            color: #ffffff;
+            /* Putih agar kontras di atas biru */
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 14px;
+        }
+
+        input[type=range] {
+            width: 100%;
+            appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: #cbd5e1;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 4px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .roi-result-card {
+            background: #f8fafc;
+            /* Background abu sangat terang */
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .roi-result-label {
+            font-size: 13px;
+            color: #64748b;
+            /* Abu-abu sedang */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .roi-result-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #059669;
+            /* Hijau Emerald (sangat kontras di atas abu terang) */
+        }
+
+        .roi-result-value.blue {
+            color: var(--primary);
+        }
+
+        /* TABS USE CASES */
+        .use-cases {
+            padding: 120px 0;
+            background: var(--light-surface);
+            color: var(--text-dark);
+        }
+
+        .tab-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border-radius: 99px;
+            border: 1px solid var(--border-light);
+            background: var(--light-bg);
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--text-dark);
+            color: white;
+            border-color: var(--text-dark);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-text h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .tab-text p {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .tab-media {
+            background: var(--light-bg);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-bento);
+        }
+
+        .cta-bottom {
+            padding: 100px 0;
+            background: var(--light-bg);
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .footer {
+            background: var(--light-bg);
+            border-top: 1px solid var(--border-light);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* MODAL KONSULTASI (MEKARI STYLE) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            padding: 32px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            color: #0f172a;
+            text-align: left;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 28px;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #0f172a;
+        }
+
+        .modal-header {
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1e293b;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #1e293b;
+            transition: all 0.2s;
+            background: #ffffff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #1E3A8A;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        select.form-control {
+            cursor: pointer;
+            appearance: auto;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 8px;
+            padding: 14px;
+            font-size: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            background: #1E3A8A;
+            color: white;
+        }
+
+        .form-submit:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+
+            .bento-grid,
+            .roi-grid,
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-large {
+                grid-column: span 1;
+            }
+
+            .ui-mockup-container {
+                flex-direction: column;
+            }
+
+            .tab-content.active {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =======================================================
+           PREMIUM ENHANCEMENTS FOR AGENT.HTML
+           ======================================================= */
+        
+        /* 1. WHATSAPP AI SIMULATION */
+        .simulator-scenarios {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .scenario-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(230, 0, 0, 0.3);
+        }
+
+        .mockup-phone {
+            width: 360px !important;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            padding: 16px 14px !important;
+            border-radius: 40px !important;
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.1) transparent;
+        }
+
+        .chat-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-body::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+
+        .chat-bubble {
+            margin-bottom: 0 !important;
+            animation: bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes bubble-pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .chat-typing {
+            align-self: flex-start;
+            background: #1f2937;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border-bottom-left-radius: 4px;
+            font-size: 12px;
+            color: var(--text-light);
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 5px;
+            height: 5px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: typing-dot-bounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing-dot-bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+            border-top: 1px solid var(--border-dark);
+            padding-top: 8px;
+        }
+
+        .quick-reply-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            color: #d1d5db;
+            font-size: 11px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quick-reply-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .chat-footer {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        /* 2. ROI COMPARISON BARS */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 32px;
+        }
+
+        .roi-chart-comparison {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .roi-bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .roi-bar-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .roi-bar-bg {
+            background: #cbd5e1;
+            height: 14px;
+            border-radius: 99px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .roi-bar-fill {
+            height: 100%;
+            border-radius: 99px;
+            transition: width 0.5s ease-out;
+        }
+
+        .roi-bar-fill.manual {
+            background: #ef4444;
+        }
+
+        .roi-bar-fill.ai {
+            background: #059669;
+        }
+
+        /* 3. STEPPER COMPONENT */
+        .setup-section {
+            padding: 100px 0;
+            background: var(--dark-bg);
+            color: white;
+        }
+
+        .stepper-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .stepper-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            gap: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .step-item:hover, .step-item.active {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .step-item.active .step-num {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .step-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-content p {
+            font-size: 13.5px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .stepper-preview {
+            background: var(--dark-surface);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .stepper-preview-pane {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            gap: 16px;
+            animation: stepper-fadeIn 0.5s ease;
+        }
+
+        .stepper-preview-pane.active {
+            display: flex;
+        }
+
+        @keyframes stepper-fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .qr-mock {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .catalog-mock {
+            display: flex;
+            gap: 10px;
+        }
+
+        .catalog-item-mock {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            padding: 12px;
+            width: 100px;
+            font-size: 11px;
+            text-align: left;
+        }
+
+        .catalog-item-mock img {
+            width: 100%;
+            height: 50px;
+            background: #374151;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .active-mock {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .status-badge-mock {
+            background: #059669;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 15px rgba(5, 150, 105, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .stepper-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <a href="main.html" class="nav-brand">Cardi<span>agent</span></a>
+            <a href="main.html" class="btn btn-primary"
+                style="padding: 10px 20px; font-size: 13px; background: #1E3A8A;">Kembali ke Beranda</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+            <div class="hero-content reveal">
+                <h1>Ubah WhatsApp Anda Jadi Mesin Otomasi Penjualan.</h1>
+                <p>Asisten AI cerdas yang merespons prospek dalam hitungan detik, menindaklanjuti tagihan yang tertunda,
+                    dan menganalisis tren 24/7 tanpa henti.</p>
+                <a href="#fitur" class="btn btn-primary">Lihat Cara Kerjanya</a>
+            </div>
+
+            <div class="simulator-scenarios reveal" style="margin-top: 32px;">
+                <button class="scenario-btn active" onclick="switchScenario('kopi', this)">☕ Toko Kopi</button>
+                <button class="scenario-btn" onclick="switchScenario('hijab', this)">🧕 Fashion Hijab</button>
+                <button class="scenario-btn" onclick="switchScenario('web', this)">💻 Jasa Website</button>
+            </div>
+
+            <div class="ui-mockup-container reveal">
+                <div class="mockup-phone">
+                    <div class="chat-header">
+                        <div class="chat-avatar" id="sim-avatar">☕</div>
+                        <div>
+                            <div class="chat-name" id="sim-name">Toko Kopi Premium</div>
+                            <div class="chat-status">● Online (AI Active)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-body" id="sim-chat-body">
+                        <!-- Messages dynamically generated -->
+                    </div>
+                    
+                    <div class="chat-typing" id="sim-typing">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                    
+                    <div class="quick-replies" id="sim-quick-replies">
+                        <!-- Quick replies dynamically generated -->
+                    </div>
+                    
+                    <div class="chat-footer">
+                        <form id="sim-input-form" onsubmit="handleSimSubmit(event)" style="display:flex; width:100%; gap:8px;">
+                            <input type="text" id="sim-input-text" placeholder="Ketik pesan..." style="flex:1; border-radius: 99px; border: 1px solid var(--border-dark); background: rgba(255,255,255,0.05); color:white; padding:8px 14px; font-size:12px; outline:none;" autocomplete="off" />
+                            <button type="submit" style="background:var(--accent); border:none; color:white; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-transition"></div>
+
+    <section class="light-section" style="padding-top: 40px;">
+        <div class="container reveal">
+            <div class="section-header" style="margin-bottom: 32px;">
+                <h2>Kenapa Beralih ke AI?</h2>
+                <p>Skalakan bisnis Anda tanpa harus menambah kerumitan operasional.</p>
+            </div>
+
+            <div class="compare-grid">
+                <div class="compare-card bad">
+                    <div class="compare-header" style="color: #be123c;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Cara Lama (Manual)
+                    </div>
+                    <ul class="compare-list">
+                        <li>
+                            <div class="compare-icon icon-x">X</div> Kehilangan penjualan karena admin balas chat lama
+                            (3-15 menit).
+                        </li>
+                        <li>
+                            <div class="compare-icon icon-x">X</div> Harus bayar gaji lembur CS untuk melayani chat
+                            tengah malam.
+                        </li>
+                        <li>
+                            <div class="compare-icon icon-x">X</div> Susah melacak pelanggan mana yang lupa transfer
+                            untuk di-follow up.
+                        </li>
+                        <li>
+                            <div class="compare-icon icon-x">X</div> Kualitas balasan admin menurun saat kelelahan atau
+                            antrean chat panjang.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="compare-card good">
+                    <div class="compare-header" style="color: #1d4ed8;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                            <polyline points="16 7 22 7 22 13"></polyline>
+                        </svg>
+                        Dengan Cardiagent AI
+                    </div>
+                    <ul class="compare-list">
+                        <li>
+                            <div class="compare-icon icon-v">✓</div> Respon instan di bawah 2 detik. Pelanggan terkunci
+                            sebelum pindah toko.
+                        </li>
+                        <li>
+                            <div class="compare-icon icon-v">✓</div> Layanan bintang lima 24 jam nonstop. Penjualan
+                            jalan saat Anda tidur.
+                        </li>
+                        <li>
+                            <div class="compare-icon icon-v">✓</div> Sistem AI melacak dan menagih (follow-up) otomatis
+                            dengan bahasa natural.
+                        </li>
+                        <li>
+                            <div class="compare-icon icon-v">✓</div> Kapasitas tak terbatas. Sanggup balas 10.000+ chat
+                            promo dalam semenit.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="light-section" id="fitur">
+        <div class="container reveal">
+            <div class="section-header">
+                <h2>Dirancang untuk Pertumbuhan Ekstrem</h2>
+                <p>Arahkan kursor Anda ke kartu di bawah. Fitur kelas enterprise yang dibungkus dalam antarmuka
+                    sederhana.</p>
+            </div>
+
+            <div class="bento-grid spotlight-area">
+                <div class="bento-card bento-large">
+                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg></div>
+                    <h3>Pemahaman Konteks Natural (NLP)</h3>
+                    <p>Bukan sekadar balas otomatis berbasis kata kunci. Cardiagent memahami bahasa gaul, singkatan, dan
+                        konteks panjang sehingga percakapan terasa 100% seperti manusia.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg></div>
+                    <h3>Follow-Up Proaktif</h3>
+                    <p>Deteksi pelanggan yang hanya "tanya-tanya" atau lupa transfer. AI akan mengirimkan pengingat
+                        otomatis.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                        </svg></div>
+                    <h3>Integrasi Katalog Instan</h3>
+                    <p>Sinkronisasi dengan katalog. AI merekomendasikan produk pengganti saat stok kosong.</p>
+                </div>
+                <div class="bento-card bento-large">
+                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg></div>
+                    <h3>Insight & Laporan Harian Grup</h3>
+                    <p>Dapatkan ringkasan performa penjualan dan efisiensi konversi yang dikirimkan ke grup WhatsApp
+                        internal tim Anda setiap pagi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="light-section" style="background-color: var(--bg-gray);">
+        <div class="container reveal">
+            <div class="roi-container">
+                <div class="roi-grid">
+                    <div>
+                        <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--text-dark);">
+                            Berapa banyak yang bisa Anda hemat?</h2>
+                        <p style="color: var(--text-gray); margin-bottom: 40px; font-size: 16px;">
+                            Geser slider di bawah untuk melihat estimasi penghematan operasional dan perbandingan grafik efisiensi biaya secara visual.
+                        </p>
+
+                        <div class="roi-slider-group">
+                            <label>
+                                <span>Volume Chat Bisnis Anda</span>
+                                <span class="roi-val-badge" id="val-chats">150 Chat / Hari</span>
+                            </label>
+                            <input type="range" id="chatSlider" min="50" max="2000" step="50" value="150">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="roi-result-card">
+                            <div class="roi-result-label">Penghematan Gaji CS (Bulan)</div>
+                            <div class="roi-result-value" id="res-gaji">Rp 2.400.000</div>
+                        </div>
+                        <div class="roi-result-card">
+                            <div class="roi-result-label">Waktu Manual Terhemat (Bulan)</div>
+                            <div class="roi-result-value blue" id="res-waktu">150 Jam</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ROI Comparison Graph (New Premium Feature) -->
+                <div class="roi-chart-comparison">
+                    <h4 style="font-size:14px; font-weight:700; color:var(--text-dark); text-transform:uppercase; letter-spacing:0.5px; margin-bottom: 8px;">Simulasi Perbandingan Biaya Operasional (Bulanan)</h4>
+                    
+                    <div class="roi-bar-wrapper" style="margin-bottom: 12px;">
+                        <div class="roi-bar-label">
+                            <span>Metode Manual (Gaji CS Lembur/Shift)</span>
+                            <span id="label-cost-manual" style="font-weight:800; color:#ef4444;">Rp 2.400.000</span>
+                        </div>
+                        <div class="roi-bar-bg">
+                            <div class="roi-bar-fill manual" id="bar-cost-manual" style="width: 75%; background: #ef4444;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="roi-bar-wrapper">
+                        <div class="roi-bar-label">
+                            <span>Menggunakan Cardiagent.ai (Biaya Langganan Pro)</span>
+                            <span id="label-cost-ai" style="font-weight:800; color:#059669;">Rp 799.000</span>
+                        </div>
+                        <div class="roi-bar-bg">
+                            <div class="roi-bar-fill ai" id="bar-cost-ai" style="width: 25%; background: #059669;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases">
+        <div class="container reveal">
+            <div class="section-header">
+                <h2>Satu Solusi, Tiga Dampak Besar</h2>
+                <p>Bagaimana Cardiagent.ai menyelesaikan masalah di setiap lini bisnis Anda.</p>
+            </div>
+            <div class="tab-controls">
+                <button class="tab-btn active" onclick="openTab('tab-owner')">💼 Pemilik Bisnis</button>
+                <button class="tab-btn" onclick="openTab('tab-cs')">🎧 Customer Service</button>
+                <button class="tab-btn" onclick="openTab('tab-sales')">🚀 Tim Sales</button>
+            </div>
+            <div class="tab-content active" id="tab-owner">
+                <div class="tab-text">
+                    <h3>Kontrol Penuh Tanpa Micromanagement</h3>
+                    <p>Tinggalkan kebiasaan memantau admin satu per satu. Dengan Cardiagent, standar pelayanan selalu
+                        sempurna 24 jam sehari.</p>
+                    <ul style="list-style: none; margin-top: 16px; color: var(--text-gray);">
+                        <li style="margin-bottom: 8px;">✓ Hemat biaya gaji shift malam</li>
+                        <li style="margin-bottom: 8px;">✓ Laporan performa otomatis harian</li>
+                        <li>✓ Skalabilitas tinggi saat lonjakan promosi</li>
+                    </ul>
+                </div>
+                <div class="tab-media"><span style="color: var(--text-light); font-weight: 500;">[Grafik Laporan
+                        Omzet]</span></div>
+            </div>
+            <div class="tab-content" id="tab-cs">
+                <div class="tab-text">
+                    <h3>Fokus pada Kasus Kompleks, Bukan Repetitif</h3>
+                    <p>Biarkan AI menangani pertanyaan dasar. Tim CS Anda kini bisa berfokus menangani komplain atau
+                        klien VIP.</p>
+                    <ul style="list-style: none; margin-top: 16px; color: var(--text-gray);">
+                        <li style="margin-bottom: 8px;">✓ Pengalihan chat (Handover) yang mulus</li>
+                        <li style="margin-bottom: 8px;">✓ Transkrip pesan suara pelanggan</li>
+                        <li>✓ Bebas stres dari antrean chat menumpuk</li>
+                    </ul>
+                </div>
+                <div class="tab-media"><span style="color: var(--text-light); font-weight: 500;">[Dashboard
+                        Pengambilalihan Chat]</span></div>
+            </div>
+            <div class="tab-content" id="tab-sales">
+                <div class="tab-text">
+                    <h3>Jangan Biarkan Leads Mendingin</h3>
+                    <p>AI mengeksekusi pitching pertama secara instan dan mengunci ketertarikan klien sebelum mereka
+                        berpindah ke kompetitor.</p>
+                    <ul style="list-style: none; margin-top: 16px; color: var(--text-gray);">
+                        <li style="margin-bottom: 8px;">✓ Respon di bawah 2 detik</li>
+                        <li style="margin-bottom: 8px;">✓ Pencatat prospek otomatis</li>
+                        <li>✓ Jadwal pengingat (Follow-up)</li>
+                    </ul>
+                </div>
+                <div class="tab-media"><span style="color: var(--text-light); font-weight: 500;">[Simulasi Konversi
+                        Leads Sales]</span></div>
+            </div>
+        </div>
+
+    <section class="setup-section" id="setup">
+        <div class="container reveal">
+            <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 36px; font-weight: 800;">3 Langkah Mudah Integrasi AI</h2>
+                <p style="color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 16px;">
+                    Bagaimana kami menghubungkan kecerdasan buatan Cardiagent.ai ke WhatsApp bisnis Anda hanya dalam hitungan menit.
+                </p>
+            </div>
+            
+            <div class="stepper-container">
+                <div class="stepper-list">
+                    <div class="step-item active" onclick="activateStep(1)">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Scan QR Code WhatsApp</h4>
+                            <p>Cukup pindai kode QR aman yang kami sediakan menggunakan fitur tautkan perangkat di WhatsApp Anda.</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="activateStep(2)">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Unggah Katalog & Data Bisnis</h4>
+                            <p>Upload file list produk, FAQ, atau price list. AI kami akan mempelajarinya secara instan dalam 1 menit.</p>
+                        </div>
+                    </div>
+                    <div class="step-item" onclick="activateStep(3)">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Aktifkan Autopilot!</h4>
+                            <p>Cardiagent AI siap membalas pesan secara otomatis dengan tingkat ketepatan di atas 95%.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stepper-preview">
+                    <!-- Preview Pane 1 -->
+                    <div class="stepper-preview-pane active" id="pane-step-1">
+                        <div class="qr-mock">
+                            <!-- Visual QR Mockup -->
+                            <div style="width:100%; height:10px; background:#ddd; border-radius:2px; display:flex; justify-content:space-between;"><span style="width:10px; height:10px; background:black;"></span><span style="width:10px; height:10px; background:black;"></span></div>
+                            <div style="width:100px; height:100px; border: 4px solid black; padding:4px; display:grid; grid-template-columns:repeat(5, 1fr); gap:2px;">
+                                <span style="background:black; grid-column:span 2; grid-row:span 2;"></span>
+                                <span style="background:transparent;"></span>
+                                <span style="background:black;"></span>
+                                <span style="background:black;"></span>
+                                <span style="background:transparent;"></span>
+                                <span style="background:black;"></span>
+                                <span style="background:transparent;"></span>
+                                <span style="background:black; grid-column:span 2; grid-row:span 2;"></span>
+                                <span style="background:black;"></span>
+                                <span style="background:transparent;"></span>
+                                <span style="background:black;"></span>
+                                <span style="background:black;"></span>
+                                <span style="background:transparent;"></span>
+                                <span style="background:black;"></span>
+                            </div>
+                            <div style="width:100%; height:10px; background:#ddd; border-radius:2px; display:flex; justify-content:space-between;"><span style="width:10px; height:10px; background:black;"></span><span style="width:4px; height:4px; background:transparent;"></span></div>
+                        </div>
+                        <p style="font-size:12px; color:var(--text-light); margin-top:12px;">Pindai QR Code di atas dengan menu WhatsApp Web</p>
+                    </div>
+                    
+                    <!-- Preview Pane 2 -->
+                    <div class="stepper-preview-pane" id="pane-step-2">
+                        <div class="catalog-mock">
+                            <div class="catalog-item-mock">
+                                <div style="width:100%; height:45px; background:#1e293b; border-radius:4px; margin-bottom:6px; display:flex; align-items:center; justify-content:center; color:#64748b; font-size:14px;">☕</div>
+                                <strong>Arabica Gayo</strong>
+                                <span style="display:block; color:var(--accent); font-size:9.5px; font-weight:700; margin-top:2px;">Rp 85.000</span>
+                            </div>
+                            <div class="catalog-item-mock">
+                                <div style="width:100%; height:45px; background:#1e293b; border-radius:4px; margin-bottom:6px; display:flex; align-items:center; justify-content:center; color:#64748b; font-size:14px;">🧕</div>
+                                <strong>Hijab Silk</strong>
+                                <span style="display:block; color:var(--accent); font-size:9.5px; font-weight:700; margin-top:2px;">Rp 120.000</span>
+                            </div>
+                        </div>
+                        <p style="font-size:12px; color:var(--text-light); margin-top:12px;">Sistem mensinkronisasi data katalog produk Anda</p>
+                    </div>
+                    
+                    <!-- Preview Pane 3 -->
+                    <div class="stepper-preview-pane" id="pane-step-3">
+                        <div class="active-mock">
+                            <div class="status-badge-mock">
+                                <span class="pulse-green"></span> Autopilot Active
+                            </div>
+                            <div style="margin-top: 16px; font-size: 13px; color: #10b981; font-weight:700;">AI Sedang Membalas Chat Pelanggan</div>
+                        </div>
+                        <p style="font-size:12px; color:var(--text-light); margin-top:12px;">Cardiagent AI melayani pelanggan 24/7 otomatis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-bottom reveal">
+        <div class="container">
+            <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 16px;">Tingkatkan Responsivitas Bisnis Anda
+            </h2>
+            <p style="color: var(--text-gray); margin-bottom: 32px; font-size: 18px;">Uji coba Cardiagent sekarang dan
+                lihat perbedaannya pada omzet Anda.</p>
+            <a href="#demo" class="btn btn-primary" style="background: #1E3A8A;">Jadwalkan Konsultasi Gratis</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Cardiagent by Cardi. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="consultModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Jadwalkan Konsultasi</h3>
+                <p>Isi data di bawah ini dan tim ahli kami akan segera menghubungi Anda untuk memberikan solusi terbaik.
+                </p>
+            </div>
+            <form id="consultForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="inpNama" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Kerja</label>
+                    <input type="email" id="inpEmail" class="form-control" placeholder="nama@perusahaan.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Nomor Handphone (WhatsApp)</label>
+                    <input type="tel" id="inpWa" class="form-control" placeholder="081234567890" required>
+                </div>
+                <div class="form-group">
+                    <label>Nama Perusahaan</label>
+                    <input type="text" id="inpPerusahaan" class="form-control" placeholder="PT Solusi Bisnis" required>
+                </div>
+                <div class="form-group">
+                    <label>Estimasi Volume Chat Bisnis</label>
+                    <select class="form-control" id="inpVolume" required>
+                        <option value="" disabled selected>Pilih rata-rata chat per hari...</option>
+                        <option value="< 100 Chat / Hari">
+                            < 100 Chat / Hari</option>
+                        <option value="100 - 500 Chat / Hari">100 - 500 Chat / Hari</option>
+                        <option value="500 - 1.000 Chat / Hari">500 - 1.000 Chat / Hari</option>
+                        <option value="> 1.000 Chat / Hari">> 1.000 Chat / Hari</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-submit">Jadwalkan Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 1. NAVBAR SCROLL
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+                nav.style.color = 'var(--text-dark)';
+            } else {
+                nav.classList.remove('scrolled');
+                nav.style.color = 'var(--text-white)';
+            }
+        });
+
+        // 2. SCROLL-REVEAL ANIMATION (FITUR 5)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target); // Hanya animasi 1x saat pertama dilihat
+                }
+            });
+        }, { threshold: 0.15 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. CURSOR SPOTLIGHT EFFECT (FITUR 2)
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 4. ROI CALCULATOR LOGIC (FITUR 1) - UPDATED
+        const slider = document.getElementById('chatSlider');
+        const valChats = document.getElementById('val-chats');
+        const resGaji = document.getElementById('res-gaji');
+        const resWaktu = document.getElementById('res-waktu');
+        const labelManual = document.getElementById('label-cost-manual');
+        const barManual = document.getElementById('bar-cost-manual');
+        const barAI = document.getElementById('bar-cost-ai');
+
+        const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 });
+
+        function updateROI() {
+            if (!slider) return;
+            const chats = parseInt(slider.value);
+            valChats.innerText = `${chats} Chat / Hari`;
+
+            // Estimasi: 1 chat manual butuh 2 menit. (1 bulan = 30 hari)
+            const totalMenitBulan = chats * 2 * 30;
+            const totalJamBulan = Math.round(totalMenitBulan / 60);
+
+            // Estimasi: 1 CS menangani maks 200 chat/hari, Gaji UMR est Rp 3.200.000.
+            const estimasiBiaya = (chats / 200) * 3200000;
+            const biayaLanggananPro = 799000; // Biaya AI
+
+            resWaktu.innerText = `${totalJamBulan.toLocaleString('id-ID')} Jam`;
+            resGaji.innerText = formatter.format(estimasiBiaya);
+
+            if (labelManual) labelManual.innerText = formatter.format(estimasiBiaya);
+
+            // Perhitungan lebar progress bar (skala maks Rp 32.000.000)
+            const maxCost = 32000000;
+            const manualPercent = Math.min((estimasiBiaya / maxCost) * 100, 100);
+            const aiPercent = Math.min((biayaLanggananPro / maxCost) * 100, 100);
+
+            if (barManual) barManual.style.width = `${Math.max(manualPercent, 5)}%`;
+            if (barAI) barAI.style.width = `${Math.max(aiPercent, 5)}%`;
+        }
+
+        if (slider) {
+            slider.addEventListener('input', updateROI);
+            updateROI(); // Run once initially
+        }
+
+        // 5. TABS LOGIC
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // 6. MODAL & WHATSAPP LOGIC
+        function openModal() { document.getElementById('consultModal').classList.add('active'); }
+        function closeModal() { document.getElementById('consultModal').classList.remove('active'); }
+
+        document.querySelectorAll('a[href="#demo"]').forEach(btn => {
+            btn.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+        });
+
+        document.getElementById('consultModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('consultModal')) closeModal();
+        });
+
+        function submitForm(event) {
+            event.preventDefault();
+            const nama = document.getElementById('inpNama').value;
+            const email = document.getElementById('inpEmail').value;
+            const noWa = document.getElementById('inpWa').value;
+            const perusahaan = document.getElementById('inpPerusahaan').value;
+            const chatVol = document.getElementById('inpVolume').value;
+
+            const nomorTujuan = "6282310543825";
+            const pesan = `Halo Tim Cardi, saya ingin menjadwalkan konsultasi gratis mengenai Cardiagent. Berikut data saya:\n\n*Nama:* ${nama}\n*Email:* ${email}\n*No. WA:* ${noWa}\n*Perusahaan:* ${perusahaan}\n*Volume Chat Bisnis:* ${chatVol}\n\nMohon info untuk jadwal demonya. Terima kasih!`;
+
+            window.open(`https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesan)}`, '_blank');
+            closeModal();
+            document.getElementById('consultForm').reset();
+        }
+
+        // =======================================================
+        // NEW PREMIUM INTERACTIVE COMPONENT SCRIPTS
+        // =======================================================
+
+        // 7. STEPPER SETUP INTEGRATION
+        function activateStep(stepNum) {
+            const steps = document.querySelectorAll('.step-item');
+            const panes = document.querySelectorAll('.stepper-preview-pane');
+
+            steps.forEach((step, idx) => {
+                if (idx + 1 === stepNum) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+
+            panes.forEach((pane, idx) => {
+                if (idx + 1 === stepNum) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        }
+
+        // 8. INTERACTIVE WHATSAPP SIMULATOR LOGIC
+        const scenarios = {
+            kopi: {
+                name: "Toko Kopi Premium",
+                avatar: "☕",
+                welcome: "Halo kak! 👋 Selamat datang di Kopi Premium. Biji kopi Arabica Gayo 200gr, Toraja, dan Robusta Lampung ready fresh roasted hari ini. Ada yang bisa kami bantu?",
+                quickReplies: [
+                    "Biji Arabica Gayo ready?",
+                    "Bisa kirim hari ini?",
+                    "Ada promo diskon?"
+                ],
+                responses: {
+                    "biji arabica gayo ready?": "Tentu kak! Arabica Gayo 200gr ready banyak, baru dipanggang kemarin (medium roast). Sangat fresh! Mau kami bantu buatkan pesanan?",
+                    "bisa kirim hari ini?": "Bisa banget kak! Pemesanan sebelum jam 15:00 WIB dikirim hari yang sama via GoSend/GrabExpress atau JNE. Mau kirim ke kota mana?",
+                    "ada promo diskon?": "Ada dong kak! Khusus pembelian minimal 3 pax biji kopi varian apa saja, ada diskon langsung 10% dan free sticker kopi premium. Mau sekalian ambil 3 pax?"
+                },
+                fallback: "Wah, pertanyaan yang bagus kak! Semua produk biji kopi kami bersertifikasi premium dan segar. Kakak tertarik memesan varian apa untuk hari ini?"
+            },
+            hijab: {
+                name: "Hijab Trendy Store",
+                avatar: "🧕",
+                welcome: "Halo kak! Hijab Pashmina Silk Satin, Bergo Instant, dan Scarf Motif Voal Premium ready warna-warna pastel super cantik hari ini. Silakan tanyakan stok ya! 🌸",
+                quickReplies: [
+                    "Warna Sage Green ready?",
+                    "Bahannya panas gak?",
+                    "Bisa bayar COD?"
+                ],
+                responses: {
+                    "warna sage green ready?": "Seri Sage Green ready lengkap untuk Pashmina Silk dan Bergo Instant kak! Warna paling best-seller minggu ini. Mau kami keep-kan produknya?",
+                    "bahannya panas gak?": "Sama sekali tidak panas kak, hijab kami menggunakan bahan Premium Silk Satin & Voal Ultra-fine yang berpori udara halus, dingin, lembut di kulit, dan gampang diatur dahi.",
+                    "bisa bayar cod?": "Bisa sekali kak! Kami mendukung pengiriman Cash on Delivery (COD) seluruh Indonesia melalui kurir J&T. Silakan infokan nama dan alamat kakak."
+                },
+                fallback: "Tentu saja kak, hijab premium kami terbuat dari material pilihan terbaik yang dijamin nyaman dipakai seharian. Silakan infokan model atau warna yang kakak cari."
+            },
+            web: {
+                name: "Cardi Web & Tech",
+                avatar: "💻",
+                welcome: "Halo! Kami siap membantu bisnis Anda Go-Digital dengan Website Landing Page super cepat, e-commerce, atau custom sistem terintegrasi AI. Ada yang ingin ditanyakan?",
+                quickReplies: [
+                    "Berapa hari jadinya?",
+                    "Sudah termasuk hosting?",
+                    "Bisa custom desain?"
+                ],
+                responses: {
+                    "berapa hari jadinya?": "Untuk pembuatan Landing Page Profesional rata-rata selesai dalam 3 sampai 5 hari kerja saja kak, setelah materi/data produk kami terima lengkap.",
+                    "sudah termasuk hosting?": "Betul kak! Semua paket website kami sudah include gratis Cloud Hosting super cepat (LiteSpeed) dan gratis Domain (.com atau .id) selama 1 tahun penuh.",
+                    "bisa custom desain?": "Bisa banget kak! Desainer UI/UX kami akan merancang mockup visual khusus sesuai estetika brand Anda secara detail sebelum masuk tahap coding."
+                },
+                fallback: "Tentu kak, tim kami berpengalaman mengembangkan website responsif berkonversi tinggi. Jika berminat, kami bisa kirimkan portofolio pengerjaan terbaik kami."
+            }
+        };
+
+        let currentScenario = 'kopi';
+        const simChatBody = document.getElementById('sim-chat-body');
+        const simAvatar = document.getElementById('sim-avatar');
+        const simName = document.getElementById('sim-name');
+        const simQuickReplies = document.getElementById('sim-quick-replies');
+        const simTyping = document.getElementById('sim-typing');
+        const simInputText = document.getElementById('sim-input-text');
+
+        function switchScenario(type, btn) {
+            currentScenario = type;
+            // Update active button styling
+            document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const sc = scenarios[type];
+            if (simAvatar) simAvatar.textContent = sc.avatar;
+            if (simName) simName.textContent = sc.name;
+
+            // Clear chat and insert welcome
+            if (simChatBody) {
+                simChatBody.innerHTML = '';
+                addSimMessage('bot', sc.welcome);
+            }
+
+            renderQuickReplies(sc.quickReplies);
+        }
+
+        function renderQuickReplies(replies) {
+            if (!simQuickReplies) return;
+            simQuickReplies.innerHTML = '';
+            replies.forEach(reply => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-reply-btn';
+                btn.textContent = reply;
+                btn.onclick = () => handleQuickReplyClick(reply);
+                simQuickReplies.appendChild(btn);
+            });
+        }
+
+        function addSimMessage(sender, text) {
+            if (!simChatBody) return;
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble chat-${sender}`;
+            if (sender === 'bot') {
+                bubble.style.background = 'var(--accent)';
+            } else {
+                bubble.style.background = '#1f2937';
+            }
+            bubble.textContent = text;
+            simChatBody.appendChild(bubble);
+            
+            // Scroll to bottom
+            simChatBody.scrollTop = simChatBody.scrollHeight;
+        }
+
+        function triggerBotTypingAndReply(userText) {
+            if (!simTyping) return;
+            simTyping.style.display = 'flex';
+            if (simChatBody) simChatBody.scrollTop = simChatBody.scrollHeight;
+
+            const sc = scenarios[currentScenario];
+            const cleanText = userText.toLowerCase().trim();
+            const responseText = sc.responses[cleanText] || sc.fallback;
+
+            setTimeout(() => {
+                if (simTyping) simTyping.style.display = 'none';
+                addSimMessage('bot', responseText);
+            }, 1200);
+        }
+
+        function handleQuickReplyClick(text) {
+            addSimMessage('user', text);
+            triggerBotTypingAndReply(text);
+        }
+
+        function handleSimSubmit(e) {
+            e.preventDefault();
+            if (!simInputText) return;
+            const text = simInputText.value.trim();
+            if (!text) return;
+
+            addSimMessage('user', text);
+            simInputText.value = '';
+            triggerBotTypingAndReply(text);
+        }
+
+        // Initialize Simulator
+        document.addEventListener('DOMContentLoaded', () => {
+            switchScenario('kopi', null);
+        });
+    </script>
+    <script src="purchase-notif.js"></script>
+</body>
+
+</html>
