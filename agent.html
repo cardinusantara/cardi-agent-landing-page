@@ -4,31 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardiagent.ai - Asisten WhatsApp Otomatis</title>
+    <title>CardiAgent - Mesin Konversi WhatsApp Autopilot</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --primary: #1E3A8A;
-            --primary-hover: #1E40AF;
-            --accent: #e60000;
-            --dark-bg: #0b0f19;
-            --dark-surface: #111827;
-            --light-bg: #ffffff;
-            --light-surface: #f8fafc;
+            /* Light Premium Palette */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #7c3aed;
+            --accent: #f43f5e;
+            /* Merah penuh CardiAgent */
             --text-dark: #0f172a;
             --text-gray: #475569;
-            --text-light: #94a3b8;
-            --text-white: #f8fafc;
+            --text-light: #64748b;
 
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --shadow-float: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-            --shadow-bento: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            --border-light: rgba(226, 232, 240, 1);
-            --border-dark: rgba(255, 255, 255, 0.1);
+            /* Kontras Background yang Dipertegas */
+            --bg-white: #ffffff;
+            --bg-gray: #f7f6fd;
+            /* Abu-abu terang agak keunguan agar kontras dgn putih */
+            --bg-dark: #eeecfb;
+            --border: rgba(15, 23, 42, 0.08);
+
+            --radius-md: 18px;
+            --radius-lg: 28px;
+
+            /* Premium Soft Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+            --shadow-float: 0 30px 60px -15px rgba(79, 70, 229, 0.15);
         }
 
         * {
@@ -39,8 +46,8 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-white);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -63,22 +70,37 @@
             align-items: center;
             justify-content: center;
             padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 600;
+            border-radius: 99px;
+            font-weight: 700;
             font-size: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: none;
+            gap: 8px;
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            opacity: 0.9;
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3), 0 0 15px rgba(124, 58, 237, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.03);
+            transform: translateY(-1px);
         }
 
         /* NAVBAR */
@@ -94,10 +116,12 @@
         }
 
         .navbar.scrolled {
-            background: var(--light-bg);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 12px 0;
-            border-bottom: 1px solid var(--border-light);
-            color: var(--text-dark);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
 
         .navbar-inner {
@@ -107,18 +131,46 @@
         }
 
         .nav-brand {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
+            color: var(--accent);
+            /* Full Merah */
+            letter-spacing: -0.5px;
         }
 
-        .nav-brand span {
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
             color: var(--accent);
         }
 
-        /* FITUR 5: SCROLL-REVEAL ANIMATION */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* SCROLL-REVEAL ANIMATION */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -130,63 +182,84 @@
             transform: translateY(0);
         }
 
-        /* HERO (DARK) */
+        /* HERO SECTION */
         .hero {
             position: relative;
-            padding: 180px 0 120px;
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.05) 0%, rgba(255, 255, 255, 0) 60%),
+                radial-gradient(circle at bottom left, rgba(244, 63, 94, 0.04) 0%, rgba(255, 255, 255, 0) 50%);
             overflow: hidden;
         }
 
-        .hero-glow {
+        .hero::before {
+            content: "";
             position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80vw;
-            height: 80vw;
-            background: radial-gradient(circle, rgba(230, 0, 0, 0.15) 0%, rgba(11, 15, 25, 0) 70%);
-            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
             pointer-events: none;
+            z-index: -1;
         }
 
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 64px;
+        .hero-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
+            align-items: center;
         }
 
         .hero h1 {
-            font-size: clamp(40px, 6vw, 64px);
+            font-size: clamp(38px, 5vw, 56px);
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.15;
             letter-spacing: -1.5px;
             margin-bottom: 24px;
+            color: var(--text-dark);
         }
 
         .hero p {
             font-size: 18px;
-            color: var(--text-light);
+            color: var(--text-gray);
             margin-bottom: 40px;
+            line-height: 1.7;
         }
 
-        /* MOCKUP UI CSS */
+        /* INTERACTIVE UI MOCKUP */
         .ui-mockup-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 32px;
-            margin-top: 40px;
             perspective: 1000px;
+            position: relative;
+        }
+
+        .ui-mockup-container::before {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
         }
 
         .mockup-phone {
-            width: 320px;
-            background: var(--dark-surface);
-            border-radius: 36px;
-            border: 8px solid #1f2937;
-            padding: 20px;
+            width: 340px;
+            height: 600px;
+            background: #ffffff;
+            border-radius: 40px;
+            border: 8px solid #f1f5f9;
+            padding: 20px 16px;
             box-shadow: var(--shadow-float);
-            transform: rotateY(10deg) rotateX(5deg);
+            display: flex;
+            flex-direction: column;
+            transform: rotateY(-5deg) rotateX(2deg);
             transition: transform 0.5s ease;
         }
 
@@ -194,74 +267,261 @@
             transform: rotateY(0) rotateX(0);
         }
 
+        .simulator-scenarios {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .scenario-btn {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            color: var(--text-gray);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scenario-btn svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+
+        .scenario-btn.active {
+            background: var(--bg-dark);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+        }
+
+        .scenario-btn.active svg {
+            opacity: 1;
+        }
+
         .chat-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            border-bottom: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border);
             padding-bottom: 16px;
             margin-bottom: 16px;
         }
 
         .chat-avatar {
-            width: 36px;
-            height: 36px;
-            background: var(--accent);
+            width: 40px;
+            height: 40px;
+            background: var(--bg-dark);
+            color: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 16px;
+            border: 1px solid var(--border);
         }
 
         .chat-name {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .chat-status {
-            font-size: 11px;
+            font-size: 12px;
             color: #10b981;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-status::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 12px;
+            scrollbar-width: none;
         }
 
         .chat-bubble {
             padding: 12px 16px;
             border-radius: 16px;
             font-size: 13px;
-            margin-bottom: 12px;
             max-width: 85%;
-            line-height: 1.4;
+            line-height: 1.5;
+            animation: bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes bubble-pop {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+                transform-origin: bottom right;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .chat-user {
-            background: #1f2937;
-            border-bottom-left-radius: 4px;
-            margin-right: auto;
+            background: var(--bg-gray);
+            color: var(--text-dark);
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+            border: 1px solid var(--border);
         }
 
         .chat-bot {
-            background: var(--accent);
-            border-bottom-right-radius: 4px;
-            margin-left: auto;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-left-radius: 4px;
+            margin-right: auto;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
         }
 
-        .wave-transition {
-            position: relative;
-            background: var(--light-bg);
-            height: 100px;
-            margin-top: -50px;
-            border-top-left-radius: 50% 100px;
-            border-top-right-radius: 50% 100px;
-            z-index: 10;
+        .chat-typing {
+            align-self: flex-start;
+            background: var(--bg-gray);
+            padding: 12px 16px;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            display: none;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid var(--border);
         }
 
-        .light-section {
-            background: var(--light-bg);
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--text-light);
+            border-radius: 50%;
+            animation: typing-dot-bounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing-dot-bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+
+        .quick-reply-btn {
+            background: var(--bg-white);
+            border: 1px solid var(--primary);
+            border-radius: 99px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-reply-btn:hover {
+            background: rgba(79, 70, 229, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .chat-footer form {
+            display: flex;
+            width: 100%;
+            gap: 8px;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            border-radius: 99px;
+            border: 1px solid var(--border);
+            background: var(--bg-gray);
             color: var(--text-dark);
-            padding: 80px 0;
+            padding: 10px 16px;
+            font-size: 13px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .chat-footer input:focus {
+            border-color: var(--primary);
+            background: var(--bg-white);
+        }
+
+        .chat-footer button {
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+        }
+
+        /* SECTION STYLES (Dipisahkan Lebih Jelas) */
+        .section-light {
+            background: var(--bg-white);
+            padding: 120px 0;
             position: relative;
-            z-index: 10;
+            z-index: 2;
+        }
+
+        .section-gray {
+            background: var(--bg-gray);
+            padding: 120px 0;
+            position: relative;
+            z-index: 1;
+            /* Garis halus untuk pembatas yang lebih elegan */
+            box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.02), inset 0 -1px 0 rgba(0, 0, 0, 0.02);
         }
 
         .section-header {
@@ -270,51 +530,63 @@
         }
 
         .section-header h2 {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 16px;
+            color: var(--text-dark);
         }
 
         .section-header p {
             color: var(--text-gray);
-            font-size: 16px;
-            max-width: 600px;
+            font-size: 18px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
-        /* FITUR 4: KOMPARASI WITH VS WITHOUT CARDI */
+        /* COMPARISON */
         .compare-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 32px;
-            margin-top: 40px;
         }
 
         .compare-card {
-            padding: 40px;
+            padding: 48px 40px;
             border-radius: var(--radius-lg);
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            transition: transform 0.3s;
+        }
+
+        .compare-card:hover {
+            transform: translateY(-4px);
         }
 
         .compare-card.bad {
-            background: #fff1f2;
             border-color: #fecdd3;
         }
 
         .compare-card.good {
-            background: #eff6ff;
             border-color: #bfdbfe;
-            box-shadow: var(--shadow-bento);
+            box-shadow: var(--shadow-md);
         }
 
         .compare-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            font-size: 20px;
+            gap: 16px;
+            margin-bottom: 32px;
+            font-size: 24px;
             font-weight: 800;
+        }
+
+        .compare-card.bad .compare-header {
+            color: #be123c;
+        }
+
+        .compare-card.good .compare-header {
+            color: #4338ca;
         }
 
         .compare-list {
@@ -324,22 +596,25 @@
         .compare-list li {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 15px;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 16px;
             color: var(--text-gray);
+            font-weight: 500;
+            line-height: 1.5;
         }
 
         .compare-icon {
             flex-shrink: 0;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 14px;
+            margin-top: 2px;
         }
 
         .icon-x {
@@ -349,10 +624,10 @@
 
         .icon-v {
             background: #bfdbfe;
-            color: #2563eb;
+            color: #4f46e5;
         }
 
-        /* FITUR 2: BENTO GRID DENGAN CURSOR SPOTLIGHT */
+        /* BENTO GRID */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -361,24 +636,24 @@
         }
 
         .bento-card {
-            background: var(--light-surface);
-            border: 1px solid var(--border-light);
+            background: var(--bg-white);
+            border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 32px;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            /* Penting untuk spotlight */
-            transition: border-color 0.3s, transform 0.3s;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow-sm);
         }
 
         .bento-card:hover {
-            transform: translateY(-2px);
-            border-color: #94a3b8;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
         }
 
-        /* Pseudo-element untuk Spotlight */
         .bento-card::before {
             content: "";
             position: absolute;
@@ -386,7 +661,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(30, 58, 138, 0.08), transparent 40%);
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.05), transparent 40%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
@@ -402,17 +677,15 @@
             z-index: 2;
         }
 
-        /* Konten harus di atas spotlight */
-
         .bento-large {
             grid-column: span 2;
         }
 
         .bento-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(30, 58, 138, 0.1);
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(79, 70, 229, 0.1);
             color: var(--primary);
             display: flex;
             align-items: center;
@@ -421,50 +694,55 @@
         }
 
         .bento-card h3 {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             margin-bottom: 12px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
         }
 
         .bento-card p {
             color: var(--text-gray);
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.6;
         }
 
-        /* FITUR 1: KALKULATOR ROI INTERAKTIF (PERBAIKAN KONTRAS) */
-        .roi-container {
-            background: #ffffff;
-            /* Background putih bersih */
-            border: 1px solid var(--border-light);
+        /* ROI CALCULATOR & PURE CSS CHART */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: stretch;
+        }
+
+        .roi-calculator {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 48px;
-            box-shadow: var(--shadow-bento);
-            margin-top: 40px;
+            box-shadow: var(--shadow-md);
         }
 
         .roi-slider-group {
-            margin-bottom: 32px;
-            color: var(--text-dark);
+            margin-bottom: 40px;
         }
 
         .roi-slider-group label {
             display: flex;
             justify-content: space-between;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 16px;
             font-size: 16px;
-            color: #1e293b;
-            /* Warna teks gelap yang tegas */
+            color: var(--text-dark);
         }
 
         .roi-val-badge {
             background: var(--primary);
-            color: #ffffff;
-            /* Putih agar kontras di atas biru */
-            padding: 4px 12px;
+            color: white;
+            padding: 4px 14px;
             border-radius: 99px;
             font-size: 14px;
+            font-weight: 700;
         }
 
         input[type=range] {
@@ -472,82 +750,185 @@
             appearance: none;
             height: 8px;
             border-radius: 4px;
-            background: #cbd5e1;
+            background: #e2e8f0;
             outline: none;
             cursor: pointer;
         }
 
         input[type=range]::-webkit-slider-thumb {
             appearance: none;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: var(--primary);
             cursor: pointer;
             border: 4px solid white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
         }
 
         .roi-result-card {
-            background: #f8fafc;
-            /* Background abu sangat terang */
+            background: var(--bg-gray);
             padding: 24px;
-            border-radius: 12px;
+            border-radius: 16px;
             margin-bottom: 16px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
         }
 
         .roi-result-label {
             font-size: 13px;
-            color: #64748b;
-            /* Abu-abu sedang */
-            font-weight: 600;
+            color: var(--text-light);
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
 
         .roi-result-value {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 800;
-            color: #059669;
-            /* Hijau Emerald (sangat kontras di atas abu terang) */
+            color: #10b981;
+            letter-spacing: -1px;
         }
 
         .roi-result-value.blue {
             color: var(--primary);
         }
 
-        /* TABS USE CASES */
-        .use-cases {
-            padding: 120px 0;
-            background: var(--light-surface);
-            color: var(--text-dark);
+        /* CHART UI MURNI */
+        .roi-chart-board {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
+        .chart-header h4 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .chart-header p {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        .chart-bar-group {
+            margin-bottom: 32px;
+        }
+
+        .chart-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 12px;
+        }
+
+        .chart-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-gray);
+        }
+
+        .cost-manual {
+            color: #ef4444;
+            font-weight: 800;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .cost-ai {
+            color: #10b981;
+            font-weight: 800;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .bar-track {
+            width: 100%;
+            height: 24px;
+            background: var(--bg-gray);
+            border-radius: 99px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 99px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bar-fill.bad {
+            background: linear-gradient(90deg, #f87171, #ef4444);
+        }
+
+        .bar-fill.good {
+            background: linear-gradient(90deg, #34d399, #10b981);
+            width: 12%;
+        }
+
+        .chart-summary {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #065f46;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* TABS (USE CASES) */
         .tab-controls {
             display: flex;
             justify-content: center;
             gap: 16px;
-            margin-bottom: 48px;
+            margin-bottom: 56px;
         }
 
         .tab-btn {
-            padding: 12px 24px;
+            padding: 14px 32px;
             border-radius: 99px;
-            border: 1px solid var(--border-light);
-            background: var(--light-bg);
+            border: 1px solid var(--border);
+            background: var(--bg-white);
             color: var(--text-gray);
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 15px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-btn svg {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
         }
 
         .tab-btn.active {
-            background: var(--text-dark);
+            background: var(--primary);
             color: white;
-            border-color: var(--text-dark);
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+        }
+
+        .tab-btn.active svg {
+            opacity: 1;
         }
 
         .tab-content {
@@ -557,8 +938,8 @@
 
         .tab-content.active {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
             align-items: center;
         }
 
@@ -575,45 +956,437 @@
         }
 
         .tab-text h3 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
         }
 
         .tab-text p {
             color: var(--text-gray);
             font-size: 16px;
             margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .tab-text ul {
+            list-style: none;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .tab-text li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tab-text li svg {
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .tab-media {
-            background: var(--light-bg);
-            border: 1px solid var(--border-light);
+            background: var(--bg-white);
+            border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             aspect-ratio: 4/3;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-bento);
+            box-shadow: var(--shadow-md);
+            font-weight: 600;
+            color: var(--text-light);
+            overflow: hidden;
+            position: relative;
         }
 
-        .cta-bottom {
-            padding: 100px 0;
-            background: var(--light-bg);
-            text-align: center;
+        /* 
+         * ==========================================
+         * CSS MURNI UNTUK ILUSTRASI TAB (Tanpa Gambar) 
+         * ==========================================
+         */
+
+        /* 1. Ilustrasi Dasbor (Pemilik Bisnis) */
+        .illus-dashboard {
+            width: 75%;
+            height: 60%;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            overflow: hidden;
+        }
+
+        .illus-sidebar {
+            width: 30%;
+            background: var(--bg-gray);
+            border-right: 1px solid var(--border);
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .illus-bar-line {
+            height: 6px;
+            border-radius: 3px;
+            background: #cbd5e1;
+            width: 100%;
+            opacity: 0.5;
+        }
+
+        .illus-bar-line.short {
+            width: 60%;
+        }
+
+        .illus-main {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .illus-header-line {
+            height: 10px;
+            border-radius: 5px;
+            background: var(--text-dark);
+            width: 40%;
+            margin-bottom: 8px;
+        }
+
+        .illus-chart-area {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .illus-chart-col {
+            flex: 1;
+            background: var(--primary);
+            border-radius: 4px 4px 0 0;
+            animation: growUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform-origin: bottom;
+        }
+
+        .illus-chart-col:nth-child(1) {
+            height: 40%;
+            animation-delay: 0.1s;
+            opacity: 0.6;
+        }
+
+        .illus-chart-col:nth-child(2) {
+            height: 60%;
+            animation-delay: 0.2s;
+            opacity: 0.8;
+        }
+
+        .illus-chart-col:nth-child(3) {
+            height: 90%;
+            animation-delay: 0.3s;
+            opacity: 1;
+            background: var(--accent);
+        }
+
+        @keyframes growUp {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scaleY(1);
+            }
+        }
+
+        /* 2. Ilustrasi Funnel/Sales (Tim Sales) */
+        .illus-sales {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .illus-card {
+            width: 100%;
+            padding: 16px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .illus-card-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .illus-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .illus-card-line {
+            height: 8px;
+            width: 60px;
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .illus-card:nth-child(1) {
+            width: 100%;
+            animation-delay: 0.1s;
+        }
+
+        .illus-card:nth-child(2) {
+            width: 85%;
+            animation-delay: 0.3s;
+        }
+
+        .illus-card:nth-child(3) {
+            width: 70%;
+            animation-delay: 0.5s;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+        }
+
+        .illus-card:nth-child(3) .illus-circle {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .illus-card:nth-child(3) .illus-card-line {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .illus-card:nth-child(3) svg {
+            color: white;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* 3. Ilustrasi Chat/Eskalasi (Customer Service) */
+        .illus-chat-box {
+            width: 75%;
+            height: 75%;
+            background: var(--bg-gray);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 12px;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .illus-bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .illus-bubble.left {
+            background: #ffffff;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            animation-delay: 0.1s;
+        }
+
+        .illus-bubble.right {
+            background: var(--primary);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+            animation-delay: 0.4s;
+        }
+
+        .illus-bubble-line {
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        .illus-bubble.left .illus-bubble-line {
+            background: #cbd5e1;
+            width: 80px;
+        }
+
+        .illus-bubble.right .illus-bubble-line {
+            background: rgba(255, 255, 255, 0.6);
+            width: 60px;
+        }
+
+        .illus-status {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            border: 1px solid #10b981;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* STEPPER */
+        .stepper-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .stepper-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .step-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .step-item:hover,
+        .step-item.active {
+            border-color: var(--primary);
+            background: var(--bg-white);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-num {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-gray);
+            color: var(--text-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .step-item.active .step-num {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .step-content h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
             color: var(--text-dark);
         }
 
-        .footer {
-            background: var(--light-bg);
-            border-top: 1px solid var(--border-light);
-            padding: 40px 0;
-            text-align: center;
-            color: var(--text-gray);
+        .step-content p {
             font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
-        /* MODAL KONSULTASI (MEKARI STYLE) */
+        .stepper-preview {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* CTA & FOOTER */
+        .cta-bottom {
+            padding: 120px 0;
+            background: var(--bg-white);
+            text-align: center;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer {
+            background: var(--bg-gray);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -621,7 +1394,7 @@
             width: 100%;
             height: 100%;
             background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -637,17 +1410,17 @@
         }
 
         .modal-content {
-            background: #ffffff;
+            background: var(--bg-white);
             width: 100%;
-            max-width: 480px;
-            border-radius: 12px;
-            padding: 32px;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 40px;
             position: relative;
             transform: translateY(20px);
-            transition: transform 0.3s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            color: #0f172a;
-            text-align: left;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
         }
 
         .modal-overlay.active .modal-content {
@@ -656,96 +1429,271 @@
 
         .modal-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            background: none;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-gray);
             border: none;
             cursor: pointer;
-            color: #94a3b8;
-            font-size: 28px;
-            line-height: 1;
-            transition: color 0.2s;
+            color: var(--text-gray);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.2s;
         }
 
         .modal-close:hover {
-            color: #0f172a;
-        }
-
-        .modal-header {
-            margin-bottom: 24px;
-        }
-
-        .modal-header h3 {
-            font-size: 22px;
-            font-weight: 800;
-            color: #1e293b;
-            margin-bottom: 8px;
-        }
-
-        .modal-header p {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.5;
+            background: var(--border);
+            color: var(--text-dark);
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #1e293b;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             font-family: inherit;
             font-size: 14px;
-            color: #1e293b;
+            color: var(--text-dark);
             transition: all 0.2s;
-            background: #ffffff;
+            background: var(--bg-gray);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: #1E3A8A;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-        }
-
-        select.form-control {
-            cursor: pointer;
-            appearance: auto;
+            border-color: var(--primary);
+            background: var(--bg-white);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
 
         .form-submit {
             width: 100%;
-            margin-top: 8px;
-            padding: 14px;
-            font-size: 15px;
-            border-radius: 8px;
-            font-weight: 600;
+            margin-top: 12px;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 99px;
+            font-weight: 700;
             border: none;
             cursor: pointer;
-            transition: opacity 0.2s;
-            background: #1E3A8A;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
         }
 
         .form-submit:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        /* PRICING SECTION */
+        .pricing-section {
+            padding: 140px 0;
+            background: var(--bg-gray);
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .pricing-header {
+            margin-bottom: 64px;
+        }
+
+        .pricing-header h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            color: var(--text-dark);
+        }
+
+        .pricing-header p {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .pricing-toggle-container {
+            display: inline-flex;
+            align-items: center;
+            background: var(--border);
+            padding: 6px;
+            border-radius: 99px;
+            margin-top: 32px;
+        }
+
+        .pricing-toggle-btn {
+            padding: 10px 24px;
+            border-radius: 99px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-gray);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-toggle-btn.active {
+            background: var(--bg-white);
+            color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+            align-items: stretch;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.premium {
+            border: 2px solid transparent;
+            background-image: linear-gradient(var(--bg-white), var(--bg-white)), linear-gradient(135deg, var(--accent), var(--primary));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: var(--shadow-float);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.premium:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-card.premium::after {
+            content: "REKOMENDASI TERBAIK";
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 99px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+        }
+
+        .pricing-tier {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-card.premium .pricing-tier {
+            color: var(--accent);
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            letter-spacing: -1.5px;
+        }
+
+        .pricing-price span {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-gray);
+            letter-spacing: 0;
+        }
+
+        .pricing-desc {
+            font-size: 15px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .pricing-features-list {
+            list-style: none;
+            margin-bottom: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pricing-features-list li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .pricing-features-list li svg {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .pricing-card.premium .pricing-features-list li svg {
+            color: var(--accent);
+        }
+
+        .pricing-btn {
+            width: 100%;
+            margin-top: auto;
         }
 
         @media (max-width: 900px) {
 
+            .hero-wrap,
+            .compare-grid,
             .bento-grid,
             .roi-grid,
-            .compare-grid {
+            .stepper-container,
+            .tab-content.active,
+            .pricing-grid-cards {
                 grid-template-columns: 1fr;
             }
 
@@ -753,359 +1701,16 @@
                 grid-column: span 1;
             }
 
-            .ui-mockup-container {
-                flex-direction: column;
+            .hero {
+                padding-top: 120px;
             }
 
-            .tab-content.active {
-                grid-template-columns: 1fr;
+            .pricing-card.premium {
+                transform: none;
             }
-        }
 
-        /* =======================================================
-           PREMIUM ENHANCEMENTS FOR AGENT.HTML
-           ======================================================= */
-        
-        /* 1. WHATSAPP AI SIMULATION */
-        .simulator-scenarios {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .scenario-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-white);
-            padding: 8px 16px;
-            border-radius: 99px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .scenario-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(230, 0, 0, 0.3);
-        }
-
-        .mockup-phone {
-            width: 360px !important;
-            height: 480px;
-            display: flex;
-            flex-direction: column;
-            padding: 16px 14px !important;
-            border-radius: 40px !important;
-        }
-
-        .chat-body {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-right: 4px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 12px;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.1) transparent;
-        }
-
-        .chat-body::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .chat-body::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-        }
-
-        .chat-bubble {
-            margin-bottom: 0 !important;
-            animation: bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes bubble-pop {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .chat-typing {
-            align-self: flex-start;
-            background: #1f2937;
-            padding: 8px 12px;
-            border-radius: 12px;
-            border-bottom-left-radius: 4px;
-            font-size: 12px;
-            color: var(--text-light);
-            display: none;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .typing-dot {
-            width: 5px;
-            height: 5px;
-            background: #94a3b8;
-            border-radius: 50%;
-            animation: typing-dot-bounce 1.4s infinite ease-in-out both;
-        }
-
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typing-dot-bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 8px;
-            border-top: 1px solid var(--border-dark);
-            padding-top: 8px;
-        }
-
-        .quick-reply-btn {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            color: #d1d5db;
-            font-size: 11px;
-            padding: 6px 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: left;
-        }
-
-        .quick-reply-btn:hover {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .chat-footer {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        /* 2. ROI COMPARISON BARS */
-        .roi-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 32px;
-        }
-
-        .roi-chart-comparison {
-            margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .roi-bar-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .roi-bar-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #475569;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .roi-bar-bg {
-            background: #cbd5e1;
-            height: 14px;
-            border-radius: 99px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .roi-bar-fill {
-            height: 100%;
-            border-radius: 99px;
-            transition: width 0.5s ease-out;
-        }
-
-        .roi-bar-fill.manual {
-            background: #ef4444;
-        }
-
-        .roi-bar-fill.ai {
-            background: #059669;
-        }
-
-        /* 3. STEPPER COMPONENT */
-        .setup-section {
-            padding: 100px 0;
-            background: var(--dark-bg);
-            color: white;
-        }
-
-        .stepper-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            margin-top: 48px;
-        }
-
-        .stepper-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .step-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 24px;
-            display: flex;
-            gap: 18px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .step-item:hover, .step-item.active {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .step-num {
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 15px;
-            flex-shrink: 0;
-            transition: all 0.3s;
-        }
-
-        .step-item.active .step-num {
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .step-content h4 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .step-content p {
-            font-size: 13.5px;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        .stepper-preview {
-            background: var(--dark-surface);
-            border: 1px solid var(--border-dark);
-            border-radius: var(--radius-lg);
-            aspect-ratio: 4/3;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        .stepper-preview-pane {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            gap: 16px;
-            animation: stepper-fadeIn 0.5s ease;
-        }
-
-        .stepper-preview-pane.active {
-            display: flex;
-        }
-
-        @keyframes stepper-fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .qr-mock {
-            width: 140px;
-            height: 140px;
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .catalog-mock {
-            display: flex;
-            gap: 10px;
-        }
-
-        .catalog-item-mock {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border-dark);
-            border-radius: 8px;
-            padding: 12px;
-            width: 100px;
-            font-size: 11px;
-            text-align: left;
-        }
-
-        .catalog-item-mock img {
-            width: 100%;
-            height: 50px;
-            background: #374151;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-
-        .active-mock {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .status-badge-mock {
-            background: #059669;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 99px;
-            font-size: 13px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 0 15px rgba(5, 150, 105, 0.4);
-        }
-
-        @media (max-width: 900px) {
-            .stepper-container {
-                grid-template-columns: 1fr;
+            .pricing-card.premium:hover {
+                transform: translateY(-8px);
             }
         }
     </style>
@@ -1115,132 +1720,198 @@
 
     <nav class="navbar" id="navbar">
         <div class="container navbar-inner">
-            <a href="main.html" class="nav-brand">Cardi<span>agent</span></a>
-            <a href="main.html" class="btn btn-primary"
-                style="padding: 10px 20px; font-size: 13px; background: #1E3A8A;">Kembali ke Beranda</a>
+            <a href="main.html" class="nav-brand">CardiAgent</a>
+
+            <div class="nav-menu">
+                <a href="#fitur" class="nav-item">Fitur Unggulan</a>
+                <a href="#setup" class="nav-item">Cara Kerja</a>
+                <a href="#harga" class="nav-item">Harga</a>
+                <a href="main.html" class="nav-item">Kembali ke Ekosistem</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#demo" class="btn btn-primary">Konsultasi Gratis</a>
+            </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-glow"></div>
         <div class="container">
-            <div class="hero-content reveal">
-                <h1>Ubah WhatsApp Anda Jadi Mesin Otomasi Penjualan.</h1>
-                <p>Asisten AI cerdas yang merespons prospek dalam hitungan detik, menindaklanjuti tagihan yang tertunda,
-                    dan menganalisis tren 24/7 tanpa henti.</p>
-                <a href="#fitur" class="btn btn-primary">Lihat Cara Kerjanya</a>
-            </div>
+            <div class="hero-wrap">
+                <div class="hero-content reveal">
+                    <div
+                        style="display:inline-flex; align-items:center; gap:8px; background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.2); border-radius:99px; padding:6px 16px; font-size:12px; font-weight:800; letter-spacing:1px; color:var(--accent); text-transform:uppercase; margin-bottom:24px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+                            stroke-width="1">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg> CardiAgent AI
+                    </div>
 
-            <div class="simulator-scenarios reveal" style="margin-top: 32px;">
-                <button class="scenario-btn active" onclick="switchScenario('kopi', this)">☕ Toko Kopi</button>
-                <button class="scenario-btn" onclick="switchScenario('hijab', this)">🧕 Fashion Hijab</button>
-                <button class="scenario-btn" onclick="switchScenario('web', this)">💻 Jasa Website</button>
-            </div>
+                    <h1>Tutup Penjualan Detik Itu Juga. Autopilot 24/7.</h1>
+                    <p>Berhenti membiarkan leads mendingin. CardiAgent mengambil alih peran tim Customer Service
+                        Anda—membalas dalam 2 detik, melacak tagihan tertunda, dan mencetak konversi tanpa henti. 100%
+                        humanis, 0% delay.</p>
 
-            <div class="ui-mockup-container reveal">
-                <div class="mockup-phone">
-                    <div class="chat-header">
-                        <div class="chat-avatar" id="sim-avatar">☕</div>
-                        <div>
-                            <div class="chat-name" id="sim-name">Toko Kopi Premium</div>
-                            <div class="chat-status">● Online (AI Active)</div>
+                    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                        <a href="#fitur" class="btn btn-primary" style="gap:10px;">Lihat Kecerdasan AI
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                        <a href="#demo" class="btn btn-outline">Uji Coba Gratis</a>
+                    </div>
+
+                    <div
+                        style="display:flex; gap:32px; margin-top:48px; flex-wrap:wrap; border-top: 1px solid var(--border); padding-top: 32px;">
+                        <div style="text-align:left;">
+                            <div style="font-size:32px; font-weight:800; color:var(--text-dark); letter-spacing:-1px;">
+                                1.8s</div>
+                            <div style="font-size:13px; color:var(--text-gray); font-weight:600;">Respon rata-rata</div>
+                        </div>
+                        <div style="width:1px; background:var(--border);"></div>
+                        <div style="text-align:left;">
+                            <div style="font-size:32px; font-weight:800; color:var(--text-dark); letter-spacing:-1px;">
+                                +58%</div>
+                            <div style="font-size:13px; color:var(--text-gray); font-weight:600;">Lonjakan konversi
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="chat-body" id="sim-chat-body">
-                        <!-- Messages dynamically generated -->
+                </div>
+
+                <div class="reveal">
+                    <div class="simulator-scenarios">
+                        <button class="scenario-btn active" onclick="switchScenario('kopi', this)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                <line x1="6" y1="1" x2="6" y2="4"></line>
+                                <line x1="10" y1="1" x2="10" y2="4"></line>
+                                <line x1="14" y1="1" x2="14" y2="4"></line>
+                            </svg> Bisnis F&B
+                        </button>
+                        <button class="scenario-btn" onclick="switchScenario('hijab', this)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg> Retail & Fashion
+                        </button>
+                        <button class="scenario-btn" onclick="switchScenario('web', this)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg> Jasa & Agensi
+                        </button>
                     </div>
-                    
-                    <div class="chat-typing" id="sim-typing">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                    </div>
-                    
-                    <div class="quick-replies" id="sim-quick-replies">
-                        <!-- Quick replies dynamically generated -->
-                    </div>
-                    
-                    <div class="chat-footer">
-                        <form id="sim-input-form" onsubmit="handleSimSubmit(event)" style="display:flex; width:100%; gap:8px;">
-                            <input type="text" id="sim-input-text" placeholder="Ketik pesan..." style="flex:1; border-radius: 99px; border: 1px solid var(--border-dark); background: rgba(255,255,255,0.05); color:white; padding:8px 14px; font-size:12px; outline:none;" autocomplete="off" />
-                            <button type="submit" style="background:var(--accent); border:none; color:white; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer;">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                            </button>
-                        </form>
+
+                    <div class="ui-mockup-container">
+                        <div class="mockup-phone">
+                            <div class="chat-header">
+                                <div class="chat-avatar" id="sim-avatar">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="chat-name" id="sim-name">Kopi Premium</div>
+                                    <div class="chat-status">Asisten AI Aktif</div>
+                                </div>
+                            </div>
+
+                            <div class="chat-body" id="sim-chat-body"></div>
+
+                            <div class="chat-typing" id="sim-typing">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+
+                            <div class="quick-replies" id="sim-quick-replies"></div>
+
+                            <div class="chat-footer">
+                                <form onsubmit="handleSimSubmit(event)">
+                                    <input type="text" id="sim-input-text" placeholder="Ketik simulasi pesan..."
+                                        autocomplete="off" />
+                                    <button type="submit">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="wave-transition"></div>
-
-    <section class="light-section" style="padding-top: 40px;">
+    <section class="section-gray">
         <div class="container reveal">
-            <div class="section-header" style="margin-bottom: 32px;">
-                <h2>Kenapa Beralih ke AI?</h2>
-                <p>Skalakan bisnis Anda tanpa harus menambah kerumitan operasional.</p>
+            <div class="section-header" style="margin-bottom: 48px;">
+                <h2>Cara Lama vs Mesin Konversi Baru</h2>
+                <p>Mengapa mempekerjakan puluhan admin manual tak lagi relevan untuk skala bisnis modern.</p>
             </div>
 
             <div class="compare-grid">
                 <div class="compare-card bad">
-                    <div class="compare-header" style="color: #be123c;">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
+                    <div class="compare-header">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
                             <path
                                 d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
                             </path>
                             <line x1="12" y1="9" x2="12" y2="13"></line>
                             <line x1="12" y1="17" x2="12.01" y2="17"></line>
                         </svg>
-                        Cara Lama (Manual)
+                        Metode Manual (Bocor Profit)
                     </div>
                     <ul class="compare-list">
                         <li>
-                            <div class="compare-icon icon-x">X</div> Kehilangan penjualan karena admin balas chat lama
-                            (3-15 menit).
+                            <div class="compare-icon icon-x">X</div> Respon lambat (3-15 menit). Konsumen tidak sabar
+                            dan beralih ke lapak kompetitor.
                         </li>
                         <li>
-                            <div class="compare-icon icon-x">X</div> Harus bayar gaji lembur CS untuk melayani chat
-                            tengah malam.
+                            <div class="compare-icon icon-x">X</div> Biaya operasional membengkak karena harus membayar
+                            gaji lembur shift malam.
                         </li>
                         <li>
-                            <div class="compare-icon icon-x">X</div> Susah melacak pelanggan mana yang lupa transfer
-                            untuk di-follow up.
-                        </li>
-                        <li>
-                            <div class="compare-icon icon-x">X</div> Kualitas balasan admin menurun saat kelelahan atau
-                            antrean chat panjang.
+                            <div class="compare-icon icon-x">X</div> Follow-up tagihan sering terlewat karena admin
+                            kewalahan membalas chat baru.
                         </li>
                     </ul>
                 </div>
 
                 <div class="compare-card good">
-                    <div class="compare-header" style="color: #1d4ed8;">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
+                    <div class="compare-header">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
                             <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
                             <polyline points="16 7 22 7 22 13"></polyline>
                         </svg>
-                        Dengan Cardiagent AI
+                        CardiAgent (Mesin Presisi)
                     </div>
                     <ul class="compare-list">
                         <li>
                             <div class="compare-icon icon-v">✓</div> Respon instan di bawah 2 detik. Pelanggan terkunci
-                            sebelum pindah toko.
+                            di saat minat mereka sedang tinggi.
                         </li>
                         <li>
-                            <div class="compare-icon icon-v">✓</div> Layanan bintang lima 24 jam nonstop. Penjualan
-                            jalan saat Anda tidur.
+                            <div class="compare-icon icon-v">✓</div> Layanan bintang lima beroperasi 24/7 tanpa henti,
+                            tanpa cuti, dan tanpa uang lembur.
                         </li>
                         <li>
-                            <div class="compare-icon icon-v">✓</div> Sistem AI melacak dan menagih (follow-up) otomatis
-                            dengan bahasa natural.
-                        </li>
-                        <li>
-                            <div class="compare-icon icon-v">✓</div> Kapasitas tak terbatas. Sanggup balas 10.000+ chat
-                            promo dalam semenit.
+                            <div class="compare-icon icon-v">✓</div> AI melacak prospek hangat dan melakukan follow-up
+                            otomatis dengan bahasa elegan.
                         </li>
                     </ul>
                 </div>
@@ -1248,261 +1919,492 @@
         </div>
     </section>
 
-    <section class="light-section" id="fitur">
+    <section class="section-light" id="fitur">
         <div class="container reveal">
             <div class="section-header">
-                <h2>Dirancang untuk Pertumbuhan Ekstrem</h2>
-                <p>Arahkan kursor Anda ke kartu di bawah. Fitur kelas enterprise yang dibungkus dalam antarmuka
-                    sederhana.</p>
+                <h2>Teknologi Kelas Enterprise, Hadir untuk Anda.</h2>
+                <p>Sorot kartu di bawah ini. Temukan bagaimana kecerdasan buatan kami dirancang secara spesifik untuk
+                    memahami psikologi penjualan.</p>
             </div>
 
             <div class="bento-grid spotlight-area">
                 <div class="bento-card bento-large">
-                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <div class="bento-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg></div>
-                    <h3>Pemahaman Konteks Natural (NLP)</h3>
-                    <p>Bukan sekadar balas otomatis berbasis kata kunci. Cardiagent memahami bahasa gaul, singkatan, dan
-                        konteks panjang sehingga percakapan terasa 100% seperti manusia.</p>
+                    <h3>AI dengan Kecerdasan Emosional (NLP)</h3>
+                    <p>Bukan sekadar balas otomatis berbasis *keyword* kaku. CardiAgent dilatih untuk memahami bahasa
+                        gaul, singkatan, hingga mendeteksi keraguan pelanggan. Percakapan mengalir 100% layaknya *top
+                        sales* manusia Anda yang paling ramah.</p>
                 </div>
                 <div class="bento-card">
-                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <div class="bento-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg></div>
-                    <h3>Follow-Up Proaktif</h3>
-                    <p>Deteksi pelanggan yang hanya "tanya-tanya" atau lupa transfer. AI akan mengirimkan pengingat
-                        otomatis.</p>
+                    <h3>Sistem Penagihan Presisi</h3>
+                    <p>Mendeteksi pelanggan yang lupa transfer. AI secara proaktif mengirimkan pengingat elegan tanpa
+                        kesan memaksa yang justru merusak *brand image*.</p>
                 </div>
                 <div class="bento-card">
-                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <div class="bento-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                             <line x1="9" y1="3" x2="9" y2="21"></line>
                         </svg></div>
-                    <h3>Integrasi Katalog Instan</h3>
-                    <p>Sinkronisasi dengan katalog. AI merekomendasikan produk pengganti saat stok kosong.</p>
+                    <h3>Sinkronisasi Inventaris</h3>
+                    <p>Terhubung langsung dengan katalog produk Anda. Mampu merekomendasikan produk alternatif secara
+                        cerdas ketika varian yang diminta sedang kosong.</p>
                 </div>
                 <div class="bento-card bento-large">
-                    <div class="bento-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <div class="bento-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="20" x2="18" y2="10"></line>
                             <line x1="12" y1="20" x2="12" y2="4"></line>
                             <line x1="6" y1="20" x2="6" y2="14"></line>
                         </svg></div>
-                    <h3>Insight & Laporan Harian Grup</h3>
-                    <p>Dapatkan ringkasan performa penjualan dan efisiensi konversi yang dikirimkan ke grup WhatsApp
-                        internal tim Anda setiap pagi.</p>
+                    <h3>Dashboard Intelijen Bisnis via WhatsApp</h3>
+                    <p>Tidak perlu login ke aplikasi rumit. Dapatkan ringkasan metrik harian—seperti total omzet, chat
+                        terbanyak, dan rasio *closing*—dikirimkan otomatis ke grup internal eksekutif setiap pagi.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="light-section" style="background-color: var(--bg-gray);">
+    <section class="section-gray">
         <div class="container reveal">
-            <div class="roi-container">
-                <div class="roi-grid">
-                    <div>
-                        <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--text-dark);">
-                            Berapa banyak yang bisa Anda hemat?</h2>
-                        <p style="color: var(--text-gray); margin-bottom: 40px; font-size: 16px;">
-                            Geser slider di bawah untuk melihat estimasi penghematan operasional dan perbandingan grafik efisiensi biaya secara visual.
-                        </p>
+            <div class="roi-grid">
+                <!-- KALKULATOR -->
+                <div class="roi-calculator">
+                    <h2
+                        style="font-size: 32px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--text-dark);">
+                        Ukur Sendiri Ledakan Profit Anda.</h2>
+                    <p style="color: var(--text-gray); margin-bottom: 48px; font-size: 16px; line-height: 1.6;">
+                        Gunakan kalkulator di bawah ini untuk melihat estimasi penghematan biaya operasional secara
+                        langsung jika Anda beralih menggunakan sistem autopilot.
+                    </p>
 
-                        <div class="roi-slider-group">
-                            <label>
-                                <span>Volume Chat Bisnis Anda</span>
-                                <span class="roi-val-badge" id="val-chats">150 Chat / Hari</span>
-                            </label>
-                            <input type="range" id="chatSlider" min="50" max="2000" step="50" value="150">
-                        </div>
+                    <div class="roi-slider-group">
+                        <label>
+                            <span>Rata-rata Volume Chat / Hari</span>
+                            <span class="roi-val-badge" id="val-chats">150 Chat / Hari</span>
+                        </label>
+                        <input type="range" id="chatSlider" min="50" max="2000" step="50" value="150">
                     </div>
 
-                    <div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <div class="roi-result-card">
-                            <div class="roi-result-label">Penghematan Gaji CS (Bulan)</div>
-                            <div class="roi-result-value" id="res-gaji">Rp 2.400.000</div>
+                            <div class="roi-result-label">Anggaran Gaji Terbuang /Bln</div>
+                            <div class="roi-result-value" style="color: #ef4444; font-size: 28px;" id="res-gaji">Rp
+                                2.400.000</div>
                         </div>
                         <div class="roi-result-card">
-                            <div class="roi-result-label">Waktu Manual Terhemat (Bulan)</div>
-                            <div class="roi-result-value blue" id="res-waktu">150 Jam</div>
+                            <div class="roi-result-label">Waktu Operasional Terbuang</div>
+                            <div class="roi-result-value blue" style="font-size: 28px;" id="res-waktu">150 Jam</div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- ROI Comparison Graph (New Premium Feature) -->
-                <div class="roi-chart-comparison">
-                    <h4 style="font-size:14px; font-weight:700; color:var(--text-dark); text-transform:uppercase; letter-spacing:0.5px; margin-bottom: 8px;">Simulasi Perbandingan Biaya Operasional (Bulanan)</h4>
-                    
-                    <div class="roi-bar-wrapper" style="margin-bottom: 12px;">
-                        <div class="roi-bar-label">
-                            <span>Metode Manual (Gaji CS Lembur/Shift)</span>
-                            <span id="label-cost-manual" style="font-weight:800; color:#ef4444;">Rp 2.400.000</span>
+
+                <!-- GRAFIK MURNI CSS & HTML -->
+                <div class="roi-chart-board">
+                    <div class="chart-header">
+                        <h4>Perbandingan Biaya (30 Hari)</h4>
+                        <p>Simulasi visual perbandingan beban operasional antara penambahan tim manual vs sistem
+                            otomatis.</p>
+                    </div>
+
+                    <div class="chart-bar-group">
+                        <div class="chart-label">
+                            <span class="chart-title">Metode Manual (Shift Admin)</span>
+                            <span class="cost-manual" id="chart-cost-manual">Rp 2.400.000</span>
                         </div>
-                        <div class="roi-bar-bg">
-                            <div class="roi-bar-fill manual" id="bar-cost-manual" style="width: 75%; background: #ef4444;"></div>
+                        <div class="bar-track">
+                            <div class="bar-fill bad" id="chart-bar-manual" style="width: 25%;"></div>
                         </div>
                     </div>
-                    
-                    <div class="roi-bar-wrapper">
-                        <div class="roi-bar-label">
-                            <span>Menggunakan Cardiagent.ai (Biaya Langganan Pro)</span>
-                            <span id="label-cost-ai" style="font-weight:800; color:#059669;">Rp 799.000</span>
+
+                    <div class="chart-bar-group">
+                        <div class="chart-label">
+                            <span class="chart-title">CardiAgent AI (Pro)</span>
+                            <span class="cost-ai">Rp 799.000</span>
                         </div>
-                        <div class="roi-bar-bg">
-                            <div class="roi-bar-fill ai" id="bar-cost-ai" style="width: 25%; background: #059669;"></div>
+                        <div class="bar-track">
+                            <div class="bar-fill good"></div>
                         </div>
+                    </div>
+
+                    <div class="chart-summary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        <span>Cegah pemborosan anggaran yang terus membengkak seiring bertambahnya trafik chat
+                            Anda.</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="use-cases">
+    <section class="section-light">
         <div class="container reveal">
             <div class="section-header">
-                <h2>Satu Solusi, Tiga Dampak Besar</h2>
-                <p>Bagaimana Cardiagent.ai menyelesaikan masalah di setiap lini bisnis Anda.</p>
+                <h2>Satu Solusi, Dampak Masif.</h2>
+                <p>Bagaimana arsitektur CardiAgent menyelesaikan masalah di setiap hierarki perusahaan Anda.</p>
             </div>
+
             <div class="tab-controls">
-                <button class="tab-btn active" onclick="openTab('tab-owner')">💼 Pemilik Bisnis</button>
-                <button class="tab-btn" onclick="openTab('tab-cs')">🎧 Customer Service</button>
-                <button class="tab-btn" onclick="openTab('tab-sales')">🚀 Tim Sales</button>
+                <button class="tab-btn active" onclick="openTab('tab-owner')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg> Pemilik Bisnis
+                </button>
+                <button class="tab-btn" onclick="openTab('tab-sales')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg> Tim Sales
+                </button>
+                <button class="tab-btn" onclick="openTab('tab-cs')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                        <path
+                            d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                        </path>
+                    </svg> Customer Service
+                </button>
             </div>
+
             <div class="tab-content active" id="tab-owner">
                 <div class="tab-text">
-                    <h3>Kontrol Penuh Tanpa Micromanagement</h3>
-                    <p>Tinggalkan kebiasaan memantau admin satu per satu. Dengan Cardiagent, standar pelayanan selalu
-                        sempurna 24 jam sehari.</p>
-                    <ul style="list-style: none; margin-top: 16px; color: var(--text-gray);">
-                        <li style="margin-bottom: 8px;">✓ Hemat biaya gaji shift malam</li>
-                        <li style="margin-bottom: 8px;">✓ Laporan performa otomatis harian</li>
-                        <li>✓ Skalabilitas tinggi saat lonjakan promosi</li>
+                    <h3>Fokus pada Ekspansi, Bukan Operasional.</h3>
+                    <p>Tinggalkan kebiasaan usang *micromanagement* admin satu per satu. Dengan CardiAgent, standar
+                        pelayanan dan negosiasi selalu sempurna 24 jam sehari, 7 hari seminggu.</p>
+                    <ul>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Pangkas radikal biaya *overhead* gaji lembur</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Transparansi performa melalui laporan harian</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Infrastruktur siap menahan lonjakan trafik kampanye</li>
                     </ul>
                 </div>
-                <div class="tab-media"><span style="color: var(--text-light); font-weight: 500;">[Grafik Laporan
-                        Omzet]</span></div>
-            </div>
-            <div class="tab-content" id="tab-cs">
-                <div class="tab-text">
-                    <h3>Fokus pada Kasus Kompleks, Bukan Repetitif</h3>
-                    <p>Biarkan AI menangani pertanyaan dasar. Tim CS Anda kini bisa berfokus menangani komplain atau
-                        klien VIP.</p>
-                    <ul style="list-style: none; margin-top: 16px; color: var(--text-gray);">
-                        <li style="margin-bottom: 8px;">✓ Pengalihan chat (Handover) yang mulus</li>
-                        <li style="margin-bottom: 8px;">✓ Transkrip pesan suara pelanggan</li>
-                        <li>✓ Bebas stres dari antrean chat menumpuk</li>
-                    </ul>
+                <!-- ILUSTRASI CSS MURNI: DASHBOARD -->
+                <div class="tab-media">
+                    <div class="illus-dashboard">
+                        <div class="illus-sidebar">
+                            <div class="illus-bar-line"></div>
+                            <div class="illus-bar-line"></div>
+                            <div class="illus-bar-line short"></div>
+                            <div class="illus-bar-line"></div>
+                        </div>
+                        <div class="illus-main">
+                            <div class="illus-header-line"></div>
+                            <div class="illus-chart-area">
+                                <div class="illus-chart-col"></div>
+                                <div class="illus-chart-col"></div>
+                                <div class="illus-chart-col"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-media"><span style="color: var(--text-light); font-weight: 500;">[Dashboard
-                        Pengambilalihan Chat]</span></div>
             </div>
+
             <div class="tab-content" id="tab-sales">
                 <div class="tab-text">
-                    <h3>Jangan Biarkan Leads Mendingin</h3>
-                    <p>AI mengeksekusi pitching pertama secara instan dan mengunci ketertarikan klien sebelum mereka
-                        berpindah ke kompetitor.</p>
-                    <ul style="list-style: none; margin-top: 16px; color: var(--text-gray);">
-                        <li style="margin-bottom: 8px;">✓ Respon di bawah 2 detik</li>
-                        <li style="margin-bottom: 8px;">✓ Pencatat prospek otomatis</li>
-                        <li>✓ Jadwal pengingat (Follow-up)</li>
+                    <h3>Tutup Penjualan Lebih Cepat.</h3>
+                    <p>AI mengeksekusi *pitching* pembuka secara instan dan mengunci ketertarikan klien detik itu juga.
+                        Tingkat konversi melesat karena konsumen dilayani pada puncak rasa penasaran mereka.</p>
+                    <ul>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> *First Response Time* di bawah 2 detik</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Klasifikasi tipe pembeli secara otomatis</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> *Follow-up* terjadwal pantang menyerah</li>
                     </ul>
                 </div>
-                <div class="tab-media"><span style="color: var(--text-light); font-weight: 500;">[Simulasi Konversi
-                        Leads Sales]</span></div>
+                <!-- ILUSTRASI CSS MURNI: FUNNEL/SALES -->
+                <div class="tab-media">
+                    <div class="illus-sales">
+                        <div class="illus-card">
+                            <div class="illus-card-left">
+                                <div class="illus-circle">1</div>
+                                <div class="illus-card-line"></div>
+                            </div>
+                        </div>
+                        <div class="illus-card">
+                            <div class="illus-card-left">
+                                <div class="illus-circle">2</div>
+                                <div class="illus-card-line"></div>
+                            </div>
+                        </div>
+                        <div class="illus-card">
+                            <div class="illus-card-left">
+                                <div class="illus-circle">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 13px; font-weight: 700;">Konversi Berhasil</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-cs">
+                <div class="tab-text">
+                    <h3>Eskalasi Cerdas, Bebas Burnout.</h3>
+                    <p>Biarkan robot menangani 80% repetisi FAQ. Tim internal Anda kini bisa bernapas lega dan
+                        memfokuskan energi mereka murni untuk melayani kasus kompleks atau klien VIP.</p>
+                    <ul>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Operan chat (Handover) yang mulus ke admin manusia</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Sistem deteksi komplain kemarahan pelanggan</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Penghapusan tumpukan antrean pesan sepenuhnya</li>
+                    </ul>
+                </div>
+                <!-- ILUSTRASI CSS MURNI: CHAT/CS -->
+                <div class="tab-media">
+                    <div class="illus-chat-box">
+                        <div class="illus-status">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Terselesaikan
+                        </div>
+                        <div class="illus-bubble left">
+                            <div class="illus-bubble-line"></div>
+                        </div>
+                        <div class="illus-bubble right">
+                            <div class="illus-bubble-line"></div>
+                        </div>
+                        <div class="illus-bubble left">
+                            <div class="illus-bubble-line" style="width: 100px;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-    <section class="setup-section" id="setup">
+    <section class="section-gray" id="setup">
         <div class="container reveal">
-            <div class="section-header" style="text-align: center; margin-bottom: 48px;">
-                <h2 style="font-size: 36px; font-weight: 800;">3 Langkah Mudah Integrasi AI</h2>
-                <p style="color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 16px;">
-                    Bagaimana kami menghubungkan kecerdasan buatan Cardiagent.ai ke WhatsApp bisnis Anda hanya dalam hitungan menit.
-                </p>
+            <div class="section-header" style="margin-bottom: 64px;">
+                <h2>Onboarding Semudah Menjentikkan Jari</h2>
+                <p>Bagaimana kami mengintegrasikan otak kecerdasan buatan kelas atas ke dalam sistem WhatsApp bisnis
+                    Anda hanya dalam tiga tahapan ringkas.</p>
             </div>
-            
+
             <div class="stepper-container">
                 <div class="stepper-list">
                     <div class="step-item active" onclick="activateStep(1)">
                         <div class="step-num">1</div>
                         <div class="step-content">
-                            <h4>Scan QR Code WhatsApp</h4>
-                            <p>Cukup pindai kode QR aman yang kami sediakan menggunakan fitur tautkan perangkat di WhatsApp Anda.</p>
+                            <h4>Tautkan Perangkat Anda</h4>
+                            <p>Sistem kami bekerja aman melalui protokol Web resmi. Cukup pindai QR Code integrasi
+                                layaknya Anda menggunakan WhatsApp Web biasa.</p>
                         </div>
                     </div>
                     <div class="step-item" onclick="activateStep(2)">
                         <div class="step-num">2</div>
                         <div class="step-content">
-                            <h4>Unggah Katalog & Data Bisnis</h4>
-                            <p>Upload file list produk, FAQ, atau price list. AI kami akan mempelajarinya secara instan dalam 1 menit.</p>
+                            <h4>Latih AI dengan Data</h4>
+                            <p>Injeksi dokumen katalog, PDF *price list*, atau SOP Anda. *Engine* kami akan membaca dan
+                                mempelajarinya secara menyeluruh dalam 60 detik.</p>
                         </div>
                     </div>
                     <div class="step-item" onclick="activateStep(3)">
                         <div class="step-num">3</div>
                         <div class="step-content">
-                            <h4>Aktifkan Autopilot!</h4>
-                            <p>Cardiagent AI siap membalas pesan secara otomatis dengan tingkat ketepatan di atas 95%.</p>
+                            <h4>Mesin Siap Bekerja</h4>
+                            <p>Autopilot diaktifkan. Anda bisa rileks memantau dasbor konversi yang terus meningkat
+                                selagi robot mengeksekusi semua penjualan.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="stepper-preview">
-                    <!-- Preview Pane 1 -->
-                    <div class="stepper-preview-pane active" id="pane-step-1">
-                        <div class="qr-mock">
-                            <!-- Visual QR Mockup -->
-                            <div style="width:100%; height:10px; background:#ddd; border-radius:2px; display:flex; justify-content:space-between;"><span style="width:10px; height:10px; background:black;"></span><span style="width:10px; height:10px; background:black;"></span></div>
-                            <div style="width:100px; height:100px; border: 4px solid black; padding:4px; display:grid; grid-template-columns:repeat(5, 1fr); gap:2px;">
-                                <span style="background:black; grid-column:span 2; grid-row:span 2;"></span>
-                                <span style="background:transparent;"></span>
-                                <span style="background:black;"></span>
-                                <span style="background:black;"></span>
-                                <span style="background:transparent;"></span>
-                                <span style="background:black;"></span>
-                                <span style="background:transparent;"></span>
-                                <span style="background:black; grid-column:span 2; grid-row:span 2;"></span>
-                                <span style="background:black;"></span>
-                                <span style="background:transparent;"></span>
-                                <span style="background:black;"></span>
-                                <span style="background:black;"></span>
-                                <span style="background:transparent;"></span>
-                                <span style="background:black;"></span>
+                    <div class="stepper-preview-pane active" id="pane-step-1"
+                        style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+                        <div
+                            style="width: 160px; height: 160px; background: white; border-radius: 16px; padding: 12px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; border: 1px solid var(--border);">
+                            <div style="background:#0f172a; grid-column:span 2; grid-row:span 2; border-radius: 4px;">
                             </div>
-                            <div style="width:100%; height:10px; background:#ddd; border-radius:2px; display:flex; justify-content:space-between;"><span style="width:10px; height:10px; background:black;"></span><span style="width:4px; height:4px; background:transparent;"></span></div>
+                            <div style="background:transparent;"></div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
+                            <div style="background:transparent;"></div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
+                            <div style="background:transparent;"></div>
+                            <div style="background:#0f172a; grid-column:span 2; grid-row:span 2; border-radius: 4px;">
+                            </div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
+                            <div style="background:transparent;"></div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
+                            <div style="background:transparent;"></div>
+                            <div style="background:#0f172a; border-radius: 2px;"></div>
                         </div>
-                        <p style="font-size:12px; color:var(--text-light); margin-top:12px;">Pindai QR Code di atas dengan menu WhatsApp Web</p>
+                        <p style="font-size:14px; font-weight:700; color:var(--text-dark);">Menunggu Autentikasi
+                            Pemindaian</p>
                     </div>
-                    
-                    <!-- Preview Pane 2 -->
-                    <div class="stepper-preview-pane" id="pane-step-2">
-                        <div class="catalog-mock">
-                            <div class="catalog-item-mock">
-                                <div style="width:100%; height:45px; background:#1e293b; border-radius:4px; margin-bottom:6px; display:flex; align-items:center; justify-content:center; color:#64748b; font-size:14px;">☕</div>
-                                <strong>Arabica Gayo</strong>
-                                <span style="display:block; color:var(--accent); font-size:9.5px; font-weight:700; margin-top:2px;">Rp 85.000</span>
-                            </div>
-                            <div class="catalog-item-mock">
-                                <div style="width:100%; height:45px; background:#1e293b; border-radius:4px; margin-bottom:6px; display:flex; align-items:center; justify-content:center; color:#64748b; font-size:14px;">🧕</div>
-                                <strong>Hijab Silk</strong>
-                                <span style="display:block; color:var(--accent); font-size:9.5px; font-weight:700; margin-top:2px;">Rp 120.000</span>
-                            </div>
+
+                    <div class="stepper-preview-pane" id="pane-step-2"
+                        style="display:none; flex-direction:column; align-items:center; gap:24px;">
+                        <svg style="animation: spin 2s linear infinite; color: var(--primary);" width="64" height="64"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                        </svg>
+                        <p style="font-size:14px; font-weight:700; color:var(--text-dark);">Memproses Arsitektur Katalog
+                            & NLP</p>
+                    </div>
+
+                    <div class="stepper-preview-pane" id="pane-step-3"
+                        style="display:none; flex-direction:column; align-items:center; gap:24px;">
+                        <div
+                            style="width: 80px; height: 80px; background: rgba(16,185,129,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #10b981;">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </div>
-                        <p style="font-size:12px; color:var(--text-light); margin-top:12px;">Sistem mensinkronisasi data katalog produk Anda</p>
-                    </div>
-                    
-                    <!-- Preview Pane 3 -->
-                    <div class="stepper-preview-pane" id="pane-step-3">
-                        <div class="active-mock">
-                            <div class="status-badge-mock">
-                                <span class="pulse-green"></span> Autopilot Active
-                            </div>
-                            <div style="margin-top: 16px; font-size: 13px; color: #10b981; font-weight:700;">AI Sedang Membalas Chat Pelanggan</div>
+                        <div style="text-align: center;">
+                            <p style="font-size:16px; font-weight:800; color:#10b981; margin-bottom: 4px;">Sistem Daring
+                                & Terkoneksi</p>
+                            <p style="font-size:13px; color:var(--text-gray);">CardiAgent AI siap mengunci penjualan.
+                            </p>
                         </div>
-                        <p style="font-size:12px; color:var(--text-light); margin-top:12px;">Cardiagent AI melayani pelanggan 24/7 otomatis</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="harga">
+        <div class="container">
+            <div class="pricing-header">
+                <h2>Investasi Skalabilitas Anda Hari Ini.</h2>
+                <p>Tidak ada biaya tersembunyi. Pilih paket berlangganan CardiAgent yang didesain secara spesifik
+                    untuk mengakselerasi operasional bisnis Anda, dari level startup hingga kelas konglomerasi.</p>
+            </div>
+
+            <div class="pricing-grid-cards">
+                <!-- Starter -->
+                <div class="pricing-card">
+                    <div class="pricing-tier">Starter</div>
+                    <div class="pricing-price">
+                        <span style="font-size: 24px; font-weight: 700; transform: translateY(-8px);">Rp</span>
+                        <span
+                            style="color:var(--text-dark); font-size: 48px; font-weight:800; letter-spacing:-1.5px;">299.000</span>
+                        <span style="font-weight: 500;">/bln</span>
+                    </div>
+                    <p class="pricing-desc">Langkah awal sempurna bagi UMKM yang baru ingin mencicipi ledakan konversi
+                        dari teknologi AI.</p>
+                    <ul class="pricing-features-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Kapasitas hingga 500 chat masuk/bln</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> 1 Ekstensi WhatsApp Business</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Pemahaman Konteks (NLP Tingkat Dasar)</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-outline pricing-btn">Pilih Paket Starter</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card premium">
+                    <div class="pricing-tier">Pro Ekosistem</div>
+                    <div class="pricing-price">
+                        <span style="font-size: 24px; font-weight: 700; transform: translateY(-8px);">Rp</span>
+                        <span
+                            style="color:var(--text-dark); font-size: 48px; font-weight:800; letter-spacing:-1.5px;">799.000</span>
+                        <span style="font-weight: 500;">/bln</span>
+                    </div>
+                    <p class="pricing-desc">Senjata mutlak bagi pebisnis serius untuk menguasai dominasi pasar tanpa
+                        kompromi 24/7.</p>
+                    <ul class="pricing-features-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> <strong>Unlimited</strong> Pemrosesan Chat AI</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Hingga 3 Ekstensi WhatsApp Multi-Admin</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> AI NLP Tingkat Lanjut (Slang & Negosiasi)</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Priority Support oleh *Account Manager*</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary pricing-btn">Mulai Kuasai Pasar</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card">
+                    <div class="pricing-tier">Enterprise Korporat</div>
+                    <div class="pricing-price">
+                        <span style="font-size: 38px; font-weight: 800; color:var(--text-dark);">Custom</span>
+                    </div>
+                    <p class="pricing-desc">Infrastruktur *private* dengan ekosistem integrasi API eksklusif dan
+                        keamanan militer.</p>
+                    <ul class="pricing-features-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Custom Flow Engine sesuai SOP Internal</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> SLA Kecepatan & Ketersediaan Uptime 99.99%</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg> Instalasi Langsung oleh Tim Teknisi Senior</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-outline pricing-btn">Hubungi Pakar Kami</a>
                 </div>
             </div>
         </div>
@@ -1510,49 +2412,55 @@
 
     <section class="cta-bottom reveal">
         <div class="container">
-            <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 16px;">Tingkatkan Responsivitas Bisnis Anda
-            </h2>
-            <p style="color: var(--text-gray); margin-bottom: 32px; font-size: 18px;">Uji coba Cardiagent sekarang dan
-                lihat perbedaannya pada omzet Anda.</p>
-            <a href="#demo" class="btn btn-primary" style="background: #1E3A8A;">Jadwalkan Konsultasi Gratis</a>
+            <h2
+                style="font-size: 38px; font-weight: 800; margin-bottom: 24px; letter-spacing: -1px; color: var(--text-dark);">
+                Tinggalkan Era Penjualan Manual Hari Ini.</h2>
+            <p
+                style="color: var(--text-gray); margin-bottom: 40px; font-size: 18px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                Jadwalkan uji coba eksklusif bersama para spesialis kami. Mari kita bedah bagaimana kecerdasan buatan
+                ini akan mentransformasi struktur omzet bulanan Anda.</p>
+            <a href="#demo" class="btn btn-primary" style="padding: 16px 40px; font-size: 16px;">Klaim Sesi Konsultasi
+                Anda</a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Cardiagent by Cardi. Hak Cipta Dilindungi.</p>
+            <p>&copy; 2026 CardiAgent oleh Ekosistem Cardi. Hak Cipta Dilindungi Undang-Undang.</p>
         </div>
     </footer>
 
+    <!-- MODAL -->
     <div class="modal-overlay" id="consultModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div class="modal-header">
-                <h3>Jadwalkan Konsultasi</h3>
-                <p>Isi data di bawah ini dan tim ahli kami akan segera menghubungi Anda untuk memberikan solusi terbaik.
-                </p>
+                <h3>Mari Akselerasi Omzet Anda</h3>
+                <p>Lengkapi formulir singkat ini. Arsitek solusi bisnis kami akan menghubungi Anda untuk demonstrasi
+                    khusus.</p>
             </div>
             <form id="consultForm" onsubmit="submitForm(event)">
                 <div class="form-group">
-                    <label>Nama Lengkap</label>
+                    <label>Nama Lengkap Eksekutif</label>
                     <input type="text" id="inpNama" class="form-control" placeholder="Contoh: Budi Santoso" required>
                 </div>
                 <div class="form-group">
-                    <label>Email Kerja</label>
+                    <label>Email Profesional</label>
                     <input type="email" id="inpEmail" class="form-control" placeholder="nama@perusahaan.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Nomor Handphone (WhatsApp)</label>
+                    <label>Nomor Telepon (WhatsApp Aktif)</label>
                     <input type="tel" id="inpWa" class="form-control" placeholder="081234567890" required>
                 </div>
                 <div class="form-group">
-                    <label>Nama Perusahaan</label>
-                    <input type="text" id="inpPerusahaan" class="form-control" placeholder="PT Solusi Bisnis" required>
+                    <label>Entitas Bisnis / Perusahaan</label>
+                    <input type="text" id="inpPerusahaan" class="form-control" placeholder="PT Skala Masa Depan"
+                        required>
                 </div>
                 <div class="form-group">
-                    <label>Estimasi Volume Chat Bisnis</label>
-                    <select class="form-control" id="inpVolume" required>
-                        <option value="" disabled selected>Pilih rata-rata chat per hari...</option>
+                    <label>Beban Chat Harian Saat Ini</label>
+                    <select class="form-control" id="inpVolume" required style="cursor: pointer; appearance: auto;">
+                        <option value="" disabled selected>Pilih estimasi rata-rata harian...</option>
                         <option value="< 100 Chat / Hari">
                             < 100 Chat / Hari</option>
                         <option value="100 - 500 Chat / Hari">100 - 500 Chat / Hari</option>
@@ -1560,37 +2468,32 @@
                         <option value="> 1.000 Chat / Hari">> 1.000 Chat / Hari</option>
                     </select>
                 </div>
-                <button type="submit" class="form-submit">Jadwalkan Sekarang</button>
+                <button type="submit" class="form-submit">Amankan Jadwal Demonstrasi</button>
             </form>
         </div>
     </div>
 
     <script>
-        // 1. NAVBAR SCROLL
+        // NAVBAR SCROLL
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-                nav.style.color = 'var(--text-dark)';
-            } else {
-                nav.classList.remove('scrolled');
-                nav.style.color = 'var(--text-white)';
-            }
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
 
-        // 2. SCROLL-REVEAL ANIMATION (FITUR 5)
+        // SCROLL REVEAL
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target); // Hanya animasi 1x saat pertama dilihat
+                    revealObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.15 });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 3. CURSOR SPOTLIGHT EFFECT (FITUR 2)
+        // CURSOR SPOTLIGHT EFFECT
         document.querySelectorAll('.bento-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -1601,14 +2504,13 @@
             });
         });
 
-        // 4. ROI CALCULATOR LOGIC (FITUR 1) - UPDATED
+        // ROI CALCULATOR & ANIMASI CHART CSS
         const slider = document.getElementById('chatSlider');
         const valChats = document.getElementById('val-chats');
         const resGaji = document.getElementById('res-gaji');
         const resWaktu = document.getElementById('res-waktu');
-        const labelManual = document.getElementById('label-cost-manual');
-        const barManual = document.getElementById('bar-cost-manual');
-        const barAI = document.getElementById('bar-cost-ai');
+        const chartCostManual = document.getElementById('chart-cost-manual');
+        const chartBarManual = document.getElementById('chart-bar-manual');
 
         const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 });
 
@@ -1617,49 +2519,71 @@
             const chats = parseInt(slider.value);
             valChats.innerText = `${chats} Chat / Hari`;
 
-            // Estimasi: 1 chat manual butuh 2 menit. (1 bulan = 30 hari)
             const totalMenitBulan = chats * 2 * 30;
             const totalJamBulan = Math.round(totalMenitBulan / 60);
-
-            // Estimasi: 1 CS menangani maks 200 chat/hari, Gaji UMR est Rp 3.200.000.
             const estimasiBiaya = (chats / 200) * 3200000;
-            const biayaLanggananPro = 799000; // Biaya AI
 
             resWaktu.innerText = `${totalJamBulan.toLocaleString('id-ID')} Jam`;
             resGaji.innerText = formatter.format(estimasiBiaya);
 
-            if (labelManual) labelManual.innerText = formatter.format(estimasiBiaya);
+            if (chartCostManual) chartCostManual.innerText = formatter.format(estimasiBiaya);
 
-            // Perhitungan lebar progress bar (skala maks Rp 32.000.000)
-            const maxCost = 32000000;
-            const manualPercent = Math.min((estimasiBiaya / maxCost) * 100, 100);
-            const aiPercent = Math.min((biayaLanggananPro / maxCost) * 100, 100);
-
-            if (barManual) barManual.style.width = `${Math.max(manualPercent, 5)}%`;
-            if (barAI) barAI.style.width = `${Math.max(aiPercent, 5)}%`;
+            if (chartBarManual) {
+                const baseWidth = 12;
+                const ratio = estimasiBiaya / 799000;
+                let newWidth = baseWidth * ratio;
+                if (newWidth > 100) newWidth = 100;
+                if (newWidth < 12) newWidth = 12;
+                chartBarManual.style.width = newWidth + '%';
+            }
         }
 
         if (slider) {
             slider.addEventListener('input', updateROI);
-            updateROI(); // Run once initially
+            updateROI();
         }
 
-        // 5. TABS LOGIC
+        // TABS - Fitur re-trigger animasi CSS
         function openTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => {
+                c.classList.remove('active');
+            });
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+
+            const target = document.getElementById(tabId);
+            target.classList.add('active');
             event.currentTarget.classList.add('active');
+
+            // Force reflow untuk me-restart animasi CSS pada ilustrasi saat tab diganti
+            const media = target.querySelector('.tab-media');
+            if (media) {
+                media.style.animation = 'none';
+                media.offsetHeight; /* trigger reflow */
+                media.style.animation = null;
+            }
         }
 
-        // 6. MODAL & WHATSAPP LOGIC
+        // STEPPER
+        function activateStep(stepNum) {
+            document.querySelectorAll('.step-item').forEach((step, idx) => {
+                step.classList.toggle('active', idx + 1 === stepNum);
+            });
+            document.querySelectorAll('.stepper-preview-pane').forEach((pane, idx) => {
+                if (idx + 1 === stepNum) {
+                    pane.style.display = 'flex';
+                    pane.style.animation = 'bubble-pop 0.4s ease forwards';
+                } else {
+                    pane.style.display = 'none';
+                }
+            });
+        }
+
+        // MODAL
         function openModal() { document.getElementById('consultModal').classList.add('active'); }
         function closeModal() { document.getElementById('consultModal').classList.remove('active'); }
-
         document.querySelectorAll('a[href="#demo"]').forEach(btn => {
             btn.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
         });
-
         document.getElementById('consultModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('consultModal')) closeModal();
         });
@@ -1673,88 +2597,54 @@
             const chatVol = document.getElementById('inpVolume').value;
 
             const nomorTujuan = "6282310543825";
-            const pesan = `Halo Tim Cardi, saya ingin menjadwalkan konsultasi gratis mengenai Cardiagent. Berikut data saya:\n\n*Nama:* ${nama}\n*Email:* ${email}\n*No. WA:* ${noWa}\n*Perusahaan:* ${perusahaan}\n*Volume Chat Bisnis:* ${chatVol}\n\nMohon info untuk jadwal demonya. Terima kasih!`;
+            const pesan = `Halo Tim Ahli Cardi, saya ingin mengevaluasi penerapan CardiAgent untuk operasional kami.\n\n*Nama:* ${nama}\n*Email:* ${email}\n*No. WA:* ${noWa}\n*Perusahaan:* ${perusahaan}\n*Estimasi Chat:* ${chatVol}\n\nMohon konfirmasi ketersediaan agenda untuk demonstrasi teknisnya. Terima kasih.`;
 
             window.open(`https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesan)}`, '_blank');
             closeModal();
             document.getElementById('consultForm').reset();
         }
 
-        // =======================================================
-        // NEW PREMIUM INTERACTIVE COMPONENT SCRIPTS
-        // =======================================================
+        // WHATSAPP AI SIMULATOR (Menggunakan SVG Icon)
+        const svgCoffee = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>`;
+        const svgHijab = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`;
+        const svgWeb = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`;
 
-        // 7. STEPPER SETUP INTEGRATION
-        function activateStep(stepNum) {
-            const steps = document.querySelectorAll('.step-item');
-            const panes = document.querySelectorAll('.stepper-preview-pane');
-
-            steps.forEach((step, idx) => {
-                if (idx + 1 === stepNum) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
-                }
-            });
-
-            panes.forEach((pane, idx) => {
-                if (idx + 1 === stepNum) {
-                    pane.classList.add('active');
-                } else {
-                    pane.classList.remove('active');
-                }
-            });
-        }
-
-        // 8. INTERACTIVE WHATSAPP SIMULATOR LOGIC
         const scenarios = {
             kopi: {
-                name: "Toko Kopi Premium",
-                avatar: "☕",
-                welcome: "Halo kak! 👋 Selamat datang di Kopi Premium. Biji kopi Arabica Gayo 200gr, Toraja, dan Robusta Lampung ready fresh roasted hari ini. Ada yang bisa kami bantu?",
-                quickReplies: [
-                    "Biji Arabica Gayo ready?",
-                    "Bisa kirim hari ini?",
-                    "Ada promo diskon?"
-                ],
+                name: "Kopi Premium",
+                avatar: svgCoffee,
+                welcome: "Halo kak! Kopi Arabica Gayo, Toraja, dan Robusta Lampung ready fresh roasted hari ini. Ada yang bisa dibantu?",
+                quickReplies: ["Arabica Gayo ready?", "Bisa kirim hari ini?", "Ada diskon?"],
                 responses: {
-                    "biji arabica gayo ready?": "Tentu kak! Arabica Gayo 200gr ready banyak, baru dipanggang kemarin (medium roast). Sangat fresh! Mau kami bantu buatkan pesanan?",
-                    "bisa kirim hari ini?": "Bisa banget kak! Pemesanan sebelum jam 15:00 WIB dikirim hari yang sama via GoSend/GrabExpress atau JNE. Mau kirim ke kota mana?",
-                    "ada promo diskon?": "Ada dong kak! Khusus pembelian minimal 3 pax biji kopi varian apa saja, ada diskon langsung 10% dan free sticker kopi premium. Mau sekalian ambil 3 pax?"
+                    "arabica gayo ready?": "Tentu kak! Arabica Gayo ready banyak (medium roast), fresh dari roastery kami! Mau dibantu rekap pesanan?",
+                    "bisa kirim hari ini?": "Pasti kak! Transaksi sebelum jam 15:00 WIB kami pick-up Instant hari ini juga. Mau kirim ke domisili mana?",
+                    "ada diskon?": "Ada dong kak! Beli 3 pax varian apa saja otomatis potong 10% di sistem. Mau sekalian ambil promo ini?"
                 },
-                fallback: "Wah, pertanyaan yang bagus kak! Semua produk biji kopi kami bersertifikasi premium dan segar. Kakak tertarik memesan varian apa untuk hari ini?"
+                fallback: "Menarik kak! Semua biji kopi kami diseleksi ketat dan dipastikan kualitasnya. Tertarik dengan varian spesifik?"
             },
             hijab: {
-                name: "Hijab Trendy Store",
-                avatar: "🧕",
-                welcome: "Halo kak! Hijab Pashmina Silk Satin, Bergo Instant, dan Scarf Motif Voal Premium ready warna-warna pastel super cantik hari ini. Silakan tanyakan stok ya! 🌸",
-                quickReplies: [
-                    "Warna Sage Green ready?",
-                    "Bahannya panas gak?",
-                    "Bisa bayar COD?"
-                ],
+                name: "Hijab Trendy",
+                avatar: svgHijab,
+                welcome: "Halo kak cantik! Koleksi Pashmina Silk dan Scarf Voal warna pastel lengkap hari ini. Mau cari warna apa?",
+                quickReplies: ["Sage Green ready?", "Bahannya panas gak?", "Bisa COD?"],
                 responses: {
-                    "warna sage green ready?": "Seri Sage Green ready lengkap untuk Pashmina Silk dan Bergo Instant kak! Warna paling best-seller minggu ini. Mau kami keep-kan produknya?",
-                    "bahannya panas gak?": "Sama sekali tidak panas kak, hijab kami menggunakan bahan Premium Silk Satin & Voal Ultra-fine yang berpori udara halus, dingin, lembut di kulit, dan gampang diatur dahi.",
-                    "bisa bayar cod?": "Bisa sekali kak! Kami mendukung pengiriman Cash on Delivery (COD) seluruh Indonesia melalui kurir J&T. Silakan infokan nama dan alamat kakak."
+                    "sage green ready?": "Sage Green ready lengkap kak! Warna *best-seller* minggu ini. Mau kami keep sebelum kehabisan?",
+                    "bahannya panas gak?": "Sama sekali tidak kak, menggunakan material Ultra-fine yang berpori, dingin di kulit, dan gampang di-styling.",
+                    "bisa cod?": "Bisa banget kak! COD seluruh Indonesia terbuka via kurir partner kami. Silakan isi form alamat lengkapnya ya."
                 },
-                fallback: "Tentu saja kak, hijab premium kami terbuat dari material pilihan terbaik yang dijamin nyaman dipakai seharian. Silakan infokan model atau warna yang kakak cari."
+                fallback: "Tentu kak, koleksi kami dibuat untuk kenyamanan elegan seharian. Ada model spesifik yang sedang dicari?"
             },
             web: {
-                name: "Cardi Web & Tech",
-                avatar: "💻",
-                welcome: "Halo! Kami siap membantu bisnis Anda Go-Digital dengan Website Landing Page super cepat, e-commerce, atau custom sistem terintegrasi AI. Ada yang ingin ditanyakan?",
-                quickReplies: [
-                    "Berapa hari jadinya?",
-                    "Sudah termasuk hosting?",
-                    "Bisa custom desain?"
-                ],
+                name: "Cardi Tech Agency",
+                avatar: svgWeb,
+                welcome: "Halo! Butuh arsitektur Landing Page cepat, E-commerce, atau otomasi AI untuk bisnis Anda? Tanyakan langsung ke kami.",
+                quickReplies: ["Berapa hari jadinya?", "Termasuk hosting?", "Bisa custom UI?"],
                 responses: {
-                    "berapa hari jadinya?": "Untuk pembuatan Landing Page Profesional rata-rata selesai dalam 3 sampai 5 hari kerja saja kak, setelah materi/data produk kami terima lengkap.",
-                    "sudah termasuk hosting?": "Betul kak! Semua paket website kami sudah include gratis Cloud Hosting super cepat (LiteSpeed) dan gratis Domain (.com atau .id) selama 1 tahun penuh.",
-                    "bisa custom desain?": "Bisa banget kak! Desainer UI/UX kami akan merancang mockup visual khusus sesuai estetika brand Anda secara detail sebelum masuk tahap coding."
+                    "berapa hari jadinya?": "Pembuatan Landing Page profesional rampung dalam 3-5 hari kerja kak, terhitung setelah *brief* dan materi kami terima utuh.",
+                    "termasuk hosting?": "Sudah *include* kak! Semua paket termasuk lisensi Cloud Hosting dan Domain gratis selama masa 1 tahun pertama.",
+                    "bisa custom ui?": "Sangat bisa! Spesialis UI/UX kami akan membedah estetika *brand* Anda secara khusus sebelum memasuki fase *development*."
                 },
-                fallback: "Tentu kak, tim kami berpengalaman mengembangkan website responsif berkonversi tinggi. Jika berminat, kami bisa kirimkan portofolio pengerjaan terbaik kami."
+                fallback: "Tentu! Portofolio teknis dan sistem integrasi API dapat disesuaikan skala bisnis Anda. Mari diskusikan detailnya lebih jauh."
             }
         };
 
@@ -1768,25 +2658,19 @@
 
         function switchScenario(type, btn) {
             currentScenario = type;
-            // Update active button styling
             document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
 
             const sc = scenarios[type];
-            if (simAvatar) simAvatar.textContent = sc.avatar;
-            if (simName) simName.textContent = sc.name;
+            simAvatar.innerHTML = sc.avatar; // Update menggunakan innerHTML untuk SVG
+            simName.textContent = sc.name;
+            simChatBody.innerHTML = '';
 
-            // Clear chat and insert welcome
-            if (simChatBody) {
-                simChatBody.innerHTML = '';
-                addSimMessage('bot', sc.welcome);
-            }
-
+            setTimeout(() => addSimMessage('bot', sc.welcome), 300);
             renderQuickReplies(sc.quickReplies);
         }
 
         function renderQuickReplies(replies) {
-            if (!simQuickReplies) return;
             simQuickReplies.innerHTML = '';
             replies.forEach(reply => {
                 const btn = document.createElement('button');
@@ -1798,32 +2682,23 @@
         }
 
         function addSimMessage(sender, text) {
-            if (!simChatBody) return;
             const bubble = document.createElement('div');
             bubble.className = `chat-bubble chat-${sender}`;
-            if (sender === 'bot') {
-                bubble.style.background = 'var(--accent)';
-            } else {
-                bubble.style.background = '#1f2937';
-            }
             bubble.textContent = text;
             simChatBody.appendChild(bubble);
-            
-            // Scroll to bottom
             simChatBody.scrollTop = simChatBody.scrollHeight;
         }
 
         function triggerBotTypingAndReply(userText) {
-            if (!simTyping) return;
             simTyping.style.display = 'flex';
-            if (simChatBody) simChatBody.scrollTop = simChatBody.scrollHeight;
+            simChatBody.scrollTop = simChatBody.scrollHeight;
 
             const sc = scenarios[currentScenario];
             const cleanText = userText.toLowerCase().trim();
             const responseText = sc.responses[cleanText] || sc.fallback;
 
             setTimeout(() => {
-                if (simTyping) simTyping.style.display = 'none';
+                simTyping.style.display = 'none';
                 addSimMessage('bot', responseText);
             }, 1200);
         }
@@ -1835,7 +2710,6 @@
 
         function handleSimSubmit(e) {
             e.preventDefault();
-            if (!simInputText) return;
             const text = simInputText.value.trim();
             if (!text) return;
 
@@ -1844,9 +2718,12 @@
             triggerBotTypingAndReply(text);
         }
 
-        // Initialize Simulator
         document.addEventListener('DOMContentLoaded', () => {
-            switchScenario('kopi', null);
+            const style = document.createElement('style');
+            style.textContent = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
+            document.head.appendChild(style);
+
+            switchScenario('kopi', document.querySelector('.scenario-btn'));
         });
     </script>
     <script src="purchase-notif.js"></script>

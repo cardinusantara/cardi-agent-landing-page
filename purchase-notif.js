@@ -1,5 +1,5 @@
 (function () {
-    // 1. INJECT STYLES — Light Mode Version
+    // 1. INJECT STYLES — adapts to each page's own brand color via CSS variables
     const styles = `
         .purchase-notif-box {
             position: fixed;
@@ -7,16 +7,16 @@
             left: 20px;
             width: 380px;
             max-width: calc(100vw - 40px);
-            background: #ffffff;
-            border-radius: 14px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+            background: var(--bg-card, var(--bg-white, #ffffff));
+            border-radius: var(--radius-md, 16px);
+            box-shadow: var(--shadow-card, 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06));
             display: flex;
             align-items: flex-start;
             padding: 16px 36px 16px 16px;
             z-index: 999999;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
             opacity: 0;
             pointer-events: none;
         }
@@ -32,14 +32,14 @@
             background: none;
             border: none;
             font-size: 18px;
-            color: #aab0c0;
+            color: var(--text-muted, var(--text-light, #aab0c0));
             cursor: pointer;
             line-height: 1;
             padding: 4px;
             transition: color 0.2s;
         }
         .purchase-notif-close:hover {
-            color: #333;
+            color: var(--text-primary, var(--text-dark, #333));
         }
         .purchase-notif-left-stripe {
             position: absolute;
@@ -47,25 +47,26 @@
             top: 0;
             bottom: 0;
             width: 5px;
-            background: linear-gradient(180deg, #e60000, #ff4d4d);
-            border-top-left-radius: 14px;
-            border-bottom-left-radius: 14px;
+            background: linear-gradient(180deg, var(--accent, var(--primary, #4f46e5)), color-mix(in srgb, var(--accent, var(--primary, #4f46e5)) 55%, white));
+            border-top-left-radius: var(--radius-md, 16px);
+            border-bottom-left-radius: var(--radius-md, 16px);
         }
         .purchase-notif-icon-container {
             margin-right: 14px;
             margin-top: 2px;
             flex-shrink: 0;
-            background: rgba(230, 0, 0, 0.08);
+            background: color-mix(in srgb, var(--accent, var(--primary, #4f46e5)) 10%, transparent);
             padding: 10px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(230, 0, 0, 0.15);
+            border: 1px solid color-mix(in srgb, var(--accent, var(--primary, #4f46e5)) 20%, transparent);
         }
         .purchase-notif-bell {
             width: 20px;
             height: 20px;
+            color: var(--accent, var(--primary, #059652));
         }
         .purchase-notif-content {
             flex-grow: 1;
@@ -73,49 +74,49 @@
         }
         .purchase-notif-buyer {
             font-size: 13px;
-            color: #6b7280;
+            color: var(--text-secondary, var(--text-gray, #6b7280));
             margin-bottom: 3px;
             line-height: 1.2;
         }
         .purchase-notif-buyer .buyer-name {
             font-weight: 700;
-            color: #111827;
+            color: var(--text-primary, var(--text-dark, #111827));
         }
         .purchase-notif-buyer .buyer-email {
-            color: #9ca3af;
+            color: var(--text-muted, var(--text-light, #9ca3af));
             margin-left: 2px;
         }
         .purchase-notif-buyer .time-ago {
-            color: #c4c9d4;
+            color: var(--text-muted, var(--text-light, #c4c9d4));
             margin-left: 4px;
         }
         .purchase-notif-product {
             font-size: 13.5px;
-            color: #6b7280;
+            color: var(--text-secondary, var(--text-gray, #6b7280));
             line-height: 1.4;
             margin-bottom: 2px;
         }
         .purchase-notif-product .product-name {
             font-weight: 700;
-            color: #111827;
+            color: var(--text-primary, var(--text-dark, #111827));
         }
         .purchase-notif-price {
             font-size: 13.5px;
-            color: #6b7280;
+            color: var(--text-secondary, var(--text-gray, #6b7280));
             margin-bottom: 6px;
             line-height: 1.2;
         }
         .purchase-notif-price .price-val {
             font-weight: 700;
-            color: #e60000;
+            color: var(--accent, var(--primary, #059652));
         }
         .purchase-notif-verified {
             display: flex;
             align-items: center;
             gap: 5px;
             font-size: 11px;
-            color: #9ca3af;
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            color: var(--text-muted, var(--text-light, #9ca3af));
+            border-top: 1px solid var(--border, rgba(0, 0, 0, 0.06));
             padding-top: 6px;
             margin-top: 4px;
             line-height: 1;
@@ -123,11 +124,11 @@
         .verified-icon {
             width: 12px;
             height: 12px;
-            color: #e60000;
+            color: var(--accent, var(--primary, #059652));
         }
         .verified-provider {
             font-weight: 700;
-            color: #374151;
+            color: var(--text-secondary, var(--text-gray, #374151));
         }
     `;
 
@@ -143,7 +144,7 @@
         <button class="purchase-notif-close" id="purchaseNotifCloseBtn">&times;</button>
         <div class="purchase-notif-left-stripe"></div>
         <div class="purchase-notif-icon-container">
-            <svg class="purchase-notif-bell" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="purchase-notif-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
@@ -161,7 +162,7 @@
                 senilai <span class="price-val" id="notifPriceVal">Rp 999.000</span>
             </div>
             <div class="purchase-notif-verified">
-                <svg class="verified-icon" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="verified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
                 <span>Transaction Verified by <strong class="verified-provider">Mayar.ID</strong></span>
@@ -183,7 +184,7 @@
         { name: "Val***", email: "val***@gmail.com" },
         { name: "Jok***", email: "jok***@gmail.com" },
         { name: "Meg***", email: "meg***@gmail.com" },
-        { name: "Ad***",  email: "ad***@yahoo.co.id" },
+        { name: "Ad***", email: "ad***@yahoo.co.id" },
         { name: "Lia***", email: "lia***@gmail.com" },
         { name: "Yus***", email: "yus***@gmail.com" },
         { name: "Ria***", email: "ria***@gmail.com" },
@@ -211,12 +212,12 @@
     const timeAgos = ["baru saja", "1 menit yang lalu", "2 menit yang lalu", "3 menit yang lalu", "baru saja"];
 
     // Elements
-    const buyerNameEl   = document.getElementById('notifBuyerName');
-    const buyerEmailEl  = document.getElementById('notifBuyerEmail');
+    const buyerNameEl = document.getElementById('notifBuyerName');
+    const buyerEmailEl = document.getElementById('notifBuyerEmail');
     const productNameEl = document.getElementById('notifProductName');
-    const priceValEl    = document.getElementById('notifPriceVal');
-    const timeAgoEl     = document.getElementById('notifTimeAgo');
-    const closeBtn      = document.getElementById('purchaseNotifCloseBtn');
+    const priceValEl = document.getElementById('notifPriceVal');
+    const timeAgoEl = document.getElementById('notifTimeAgo');
+    const closeBtn = document.getElementById('purchaseNotifCloseBtn');
 
     let notifTimeout = null;
     let nextNotifInterval = null;
@@ -226,19 +227,19 @@
     }
 
     function showRandomNotification() {
-        const buyerIndex   = Math.floor(Math.random() * buyers.length);
+        const buyerIndex = Math.floor(Math.random() * buyers.length);
         const productIndex = Math.floor(Math.random() * products.length);
-        const timeIndex    = Math.floor(Math.random() * timeAgos.length);
+        const timeIndex = Math.floor(Math.random() * timeAgos.length);
 
-        const buyer   = buyers[buyerIndex];
+        const buyer = buyers[buyerIndex];
         const product = products[productIndex];
         const timeAgo = timeAgos[timeIndex];
 
-        buyerNameEl.textContent   = buyer.name;
-        buyerEmailEl.textContent  = `(${buyer.email})`;
+        buyerNameEl.textContent = buyer.name;
+        buyerEmailEl.textContent = `(${buyer.email})`;
         productNameEl.textContent = product.name;
-        priceValEl.textContent    = product.price;
-        timeAgoEl.textContent     = timeAgo;
+        priceValEl.textContent = product.price;
+        timeAgoEl.textContent = timeAgo;
 
         notifContainer.classList.add('show');
 

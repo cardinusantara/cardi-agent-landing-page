@@ -4,31 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardi - Solusi AI & Otomasi Bisnis</title>
+    <title>Cardi - Ekosistem AI & Otomasi Bisnis Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --primary: #1E3A8A;
-            --primary-hover: #1E40AF;
-            --secondary: #0ea5e9;
+            /* Light Premium Palette */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #7c3aed;
             --text-dark: #0f172a;
             --text-gray: #475569;
-            --text-light: #94a3b8;
+            --text-light: #64748b;
             --bg-white: #ffffff;
-            --bg-gray: #f8fafc;
-            --bg-dark: #0f172a;
-            --border: #e2e8f0;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --bg-gray: #f7f6fd;
+            --bg-dark: #eeecfb;
+            --border: rgba(15, 23, 42, 0.08);
 
-            --accent-agent: #e60000;
-            --accent-seo: #00E659;
+            --radius-md: 16px;
+            --radius-lg: 28px;
+
+            /* Premium Soft Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+            --shadow-float: 0 30px 60px -15px rgba(79, 70, 229, 0.15);
+
+            --accent-agent: #f43f5e;
+            --accent-seo: #10b981;
         }
 
         * {
@@ -43,6 +48,7 @@
             background-color: var(--bg-white);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         a {
@@ -61,35 +67,37 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 99px;
+            font-weight: 700;
             font-size: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: none;
         }
 
         .btn-primary {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3), 0 0 15px rgba(124, 58, 237, 0.15);
         }
 
         .btn-outline {
             background-color: transparent;
-            color: var(--primary);
+            color: var(--text-dark);
             border: 1px solid var(--border);
         }
 
         .btn-outline:hover {
             border-color: var(--primary);
-            background-color: var(--bg-gray);
+            color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.03);
+            transform: translateY(-1px);
         }
 
         /* NAVBAR */
@@ -98,21 +106,23 @@
             top: 0;
             left: 0;
             right: 0;
-            background: var(--bg-white);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .navbar-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 72px;
+            height: 76px;
         }
 
         .nav-brand {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--primary);
             letter-spacing: -0.5px;
@@ -130,7 +140,7 @@
             height: 100%;
             display: flex;
             align-items: center;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
             color: var(--text-gray);
             cursor: pointer;
@@ -144,14 +154,14 @@
         /* MEGA MENU */
         .mega-menu {
             position: absolute;
-            top: 72px;
+            top: 76px;
             left: 50%;
             transform: translateX(-50%) translateY(10px);
             background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-lg);
-            width: 600px;
+            width: 650px;
             padding: 24px;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -178,115 +188,138 @@
         .product-link {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            border-radius: 8px;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 12px;
             transition: background 0.2s;
             margin-bottom: 8px;
+            border: 1px solid transparent;
         }
 
         .product-link:hover {
             background: var(--bg-gray);
+            border-color: var(--border);
         }
 
         .product-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
             color: white;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .icon-agent {
-            background: var(--accent-agent);
+            background: linear-gradient(135deg, var(--accent-agent), #be123c);
         }
 
         .icon-seo {
-            background: var(--accent-seo);
-            color: #000;
+            background: linear-gradient(135deg, var(--accent-seo), #047857);
+            color: #ffffff;
         }
 
         .product-info h5 {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--text-dark);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            font-weight: 700;
         }
 
         .product-info p {
             font-size: 13px;
             color: var(--text-gray);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         /* HERO */
         .hero {
-            padding: 160px 0 80px;
-            background: linear-gradient(180deg, var(--bg-gray) 0%, var(--bg-white) 100%);
+            position: relative;
+            padding: 200px 0 120px;
+            background: radial-gradient(circle at top, rgba(79, 70, 229, 0.05) 0%, rgba(255, 255, 255, 0) 60%),
+                radial-gradient(circle at 10% 40%, rgba(124, 58, 237, 0.03) 0%, rgba(255, 255, 255, 0) 50%);
             text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+            background-position: center top;
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, #000 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, #000 70%, transparent 100%);
+            pointer-events: none;
         }
 
         .hero h1 {
-            font-size: clamp(36px, 5vw, 56px);
+            font-size: clamp(42px, 6vw, 72px);
             font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            max-width: 900px;
-            margin: 0 auto 24px;
+            line-height: 1.15;
+            letter-spacing: -2px;
+            max-width: 1000px;
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, #0f172a 20%, #1e293b 60%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
+            max-width: 750px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
         }
 
         .hero-actions {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
         }
 
         .hero-image {
-            margin-top: 64px;
-            max-width: 1000px;
+            margin-top: 80px;
+            max-width: 1050px;
             margin-left: auto;
             margin-right: auto;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            background: var(--bg-gray);
-            aspect-ratio: 16/9;
+            box-shadow: var(--shadow-float);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: #090d16;
+            padding: 12px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media-placeholder {
-            font-weight: 500;
-            color: var(--text-light);
+            flex-direction: column;
+            aspect-ratio: 16/9;
+            position: relative;
         }
 
         /* TRUST BAR */
         .trust-bar {
-            padding: 64px 0;
+            padding: 56px 0;
             border-bottom: 1px solid var(--border);
             text-align: center;
+            background: var(--bg-white);
         }
 
         .trust-label {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             color: var(--text-light);
             margin-bottom: 32px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .trust-logos {
@@ -295,12 +328,86 @@
             justify-content: center;
             gap: 48px;
             flex-wrap: wrap;
-            filter: grayscale(100%) opacity(0.6);
+        }
+
+        /* VALUE PROPOSITION SECTION */
+        .value-section {
+            padding: 120px 0;
+            background: var(--bg-gray);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .value-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px;
+        }
+
+        .value-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .value-header p {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .value-card {
+            background: var(--bg-white);
+            padding: 48px 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(79, 70, 229, 0.2);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .value-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .value-card p {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
         /* PRODUCT SHOWCASE */
         .product-section {
-            padding: 100px 0;
+            padding: 140px 0;
+            position: relative;
         }
 
         .product-section:nth-child(even) {
@@ -310,7 +417,7 @@
         .product-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 64px;
+            gap: 100px;
             align-items: center;
         }
 
@@ -323,34 +430,56 @@
         }
 
         .product-content h2 {
-            font-size: 36px;
+            font-size: clamp(36px, 4vw, 48px);
             font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+            color: var(--text-dark);
+            line-height: 1.15;
         }
 
         .product-content p {
-            font-size: 16px;
+            font-size: 18px;
             color: var(--text-gray);
-            margin-bottom: 32px;
+            margin-bottom: 40px;
+            line-height: 1.7;
         }
 
         .feature-list {
             list-style: none;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
 
         .feature-list li {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-weight: 500;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .feature-list li svg {
             color: var(--primary);
+            background: rgba(79, 70, 229, 0.1);
+            padding: 6px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
             flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 0;
+            line-height: 1.5;
         }
 
         .product-media {
@@ -359,127 +488,151 @@
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border);
             background: var(--bg-white);
-            aspect-ratio: 4/3;
+            aspect-ratio: 1/1;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* TESTIMONIAL VIDEO */
+        /* TESTIMONIAL VIDEO (DIPERBAIKI) */
         .testimonial-section {
-            padding: 100px 0;
-            background: var(--bg-dark);
-            color: white;
+            padding: 140px 0;
+            background: var(--bg-white);
+            color: var(--text-dark);
             text-align: center;
         }
 
         .testimonial-section h2 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
         .testimonial-section>p {
-            color: #cbd5e1;
-            margin-bottom: 64px;
-            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 72px;
+            font-size: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
             text-align: left;
         }
 
         .video-card {
-            background: #1e293b;
-            border-radius: var(--radius-md);
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 1px solid #334155;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
 
         .video-wrapper {
-            position: relative;
+            background: var(--bg-dark);
             aspect-ratio: 16/9;
-            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            position: relative;
         }
 
         .play-btn {
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
+            background: var(--bg-white);
+            color: var(--primary);
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid white;
-            transition: transform 0.2s;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        .video-wrapper:hover .play-btn {
+        .video-card:hover .play-btn {
             transform: scale(1.1);
-            background: var(--primary);
-            border-color: var(--primary);
         }
 
         .video-info {
-            padding: 24px;
+            padding: 32px 24px;
         }
 
         .video-quote {
             font-size: 15px;
+            color: var(--text-dark);
             font-style: italic;
-            margin-bottom: 16px;
-            color: #e2e8f0;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-weight: 500;
         }
 
         .video-author {
-            font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 4px;
         }
 
         .video-role {
-            font-size: 13px;
-            color: #94a3b8;
+            font-size: 14px;
+            color: var(--text-gray);
+            font-weight: 500;
         }
 
         /* CTA */
         .cta-section {
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
+            background: var(--bg-white);
         }
 
         .cta-box {
-            background: var(--primary);
-            border-radius: var(--radius-lg);
-            padding: 64px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 32px;
+            padding: 80px 40px;
             color: white;
+            box-shadow: var(--shadow-float);
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .cta-box h2 {
-            font-size: 32px;
+            font-size: 42px;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .cta-box p {
-            font-size: 18px;
-            margin-bottom: 32px;
+            font-size: 20px;
+            margin-bottom: 40px;
             opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
-        /* FOOTER */
+        /* FOOTER (DIPERBAIKI) */
         .footer {
-            background: var(--bg-white);
+            background: var(--bg-gray);
             border-top: 1px solid var(--border);
-            padding: 80px 0 40px;
+            padding: 100px 0 40px;
             margin-bottom: 0;
             overflow: hidden;
         }
@@ -492,25 +645,25 @@
         }
 
         .footer-brand h3 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
             color: var(--primary);
             margin-bottom: 16px;
+            letter-spacing: -1px;
         }
 
         .footer-brand p {
             color: var(--text-gray);
-            font-size: 14px;
-            max-width: 300px;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 320px;
         }
 
         .footer-col h4 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-size: 16px;
+            font-weight: 800;
             color: var(--text-dark);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 24px;
         }
 
         .footer-col ul {
@@ -521,29 +674,37 @@
             margin-bottom: 12px;
         }
 
-        .footer-col ul a {
+        .footer-col ul li a {
             color: var(--text-gray);
-            font-size: 14px;
+            font-size: 15px;
             transition: color 0.2s;
+            font-weight: 500;
         }
 
-        .footer-col ul a:hover {
+        .footer-col ul li a:hover {
             color: var(--primary);
         }
 
         .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding-top: 32px;
             border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             color: var(--text-light);
             font-size: 14px;
+            font-weight: 500;
         }
 
-        /* =======================================================
-           MODAL KONSULTASI - 100% MEKARI STYLE 
-           ======================================================= */
+        .footer-bottom div a {
+            transition: color 0.2s;
+        }
+
+        .footer-bottom div a:hover {
+            color: var(--primary);
+        }
+
+        /* MODAL KONSULTASI (DIUBAH SAMA DENGAN AGENT.HTML) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -551,7 +712,7 @@
             width: 100%;
             height: 100%;
             background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -567,17 +728,17 @@
         }
 
         .modal-content {
-            background: #ffffff;
+            background: var(--bg-white);
             width: 100%;
-            max-width: 520px;
-            border-radius: 8px;
-            padding: 32px 40px;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 40px;
             position: relative;
             transform: translateY(20px);
-            transition: transform 0.3s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            color: #0f172a;
-            text-align: left;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
         }
 
         .modal-overlay.active .modal-content {
@@ -588,182 +749,88 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: none;
+            background: var(--bg-gray);
             border: none;
             cursor: pointer;
-            color: #64748b;
-            padding: 4px;
+            color: var(--text-gray);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.2s;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.2s;
         }
 
         .modal-close:hover {
-            color: #0f172a;
-        }
-
-        .modal-header {
-            margin-bottom: 24px;
-        }
-
-        .modal-header h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .modal-header p {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.5;
+            background: var(--border);
+            color: var(--text-dark);
         }
 
         .form-group {
             margin-bottom: 20px;
-            text-align: left;
         }
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: #1e293b;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             font-family: inherit;
             font-size: 14px;
-            color: #1e293b;
+            color: var(--text-dark);
             transition: all 0.2s;
-            background: #fafafa;
-        }
-
-        .form-control::placeholder {
-            color: #94a3b8;
+            background: var(--bg-gray);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+            background: var(--bg-white);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
 
-        .phone-group {
-            display: flex;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            overflow: hidden;
-            transition: all 0.2s;
-            background: #fafafa;
-        }
-
-        .phone-group:focus-within {
-            border-color: var(--primary);
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-        }
-
-        .phone-prefix {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0 12px;
-            background: #ffffff;
-            color: #1e293b;
-            font-size: 14px;
-            font-weight: 500;
-            border-right: 1px solid #cbd5e1;
-            cursor: pointer;
-        }
-
-        .phone-group input {
-            border: none;
-            border-radius: 0;
-            flex: 1;
-            background: transparent;
-        }
-
-        .phone-group input:focus {
-            box-shadow: none;
-        }
-
-        .radio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .radio-card {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .radio-card input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .radio-card span {
-            display: block;
-            text-align: center;
-            padding: 12px 8px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1e293b;
-            background: #ffffff;
-            transition: all 0.2s;
-        }
-
-        .radio-card:hover span {
-            border-color: #94a3b8;
-        }
-
-        .radio-card input:checked~span {
-            border-color: var(--primary);
-            background: #eff6ff;
-            color: var(--primary);
-            font-weight: 600;
-            box-shadow: inset 0 0 0 1px var(--primary);
-        }
-
-        .btn-submit-modal {
+        .form-submit {
             width: 100%;
             margin-top: 12px;
-            padding: 14px;
+            padding: 16px;
             font-size: 16px;
+            border-radius: 99px;
             font-weight: 700;
-            background: var(--primary);
-            color: #ffffff;
             border: none;
-            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
         }
 
-        .btn-submit-modal:hover {
-            background: var(--primary-hover);
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
+        @media (max-width: 900px) {
+
+            .value-grid {
+                grid-template-columns: 1fr;
             }
 
-            .product-grid,
-            .product-grid.reverse {
+            .product-grid {
                 grid-template-columns: 1fr;
+                gap: 64px;
             }
 
             .footer-grid {
@@ -771,22 +838,19 @@
             }
         }
 
-        /* =======================================================
-           PREMIUM ENHANCEMENTS FOR MAIN.HTML
-           ======================================================= */
-        
-        /* 1. HERO DASHBOARD COMMAND CENTER */
-        .hero-image {
-            background: #0f172a !important; /* Force dark dashboard style */
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start !important;
-            align-items: stretch !important;
-            aspect-ratio: 16/10 !important;
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
         }
 
+        /* DASHBOARD & MOCKUP STYLES */
         .dashboard-window {
             display: flex;
             flex-direction: column;
@@ -797,6 +861,7 @@
             overflow: hidden;
             text-align: left;
             font-family: inherit;
+            color: #f8fafc;
         }
 
         .dashboard-header {
@@ -820,9 +885,17 @@
             display: inline-block;
         }
 
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #f59e0b; }
-        .dot-green { background: #10b981; }
+        .dot-red {
+            background: #ef4444;
+        }
+
+        .dot-yellow {
+            background: #f59e0b;
+        }
+
+        .dot-green {
+            background: #10b981;
+        }
 
         .dashboard-title {
             color: #94a3b8;
@@ -851,9 +924,20 @@
         }
 
         @keyframes db-pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
         .dashboard-body {
@@ -879,11 +963,6 @@
             transition: all 0.3s;
         }
 
-        .db-stat-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
         .db-stat-label {
             display: block;
             font-size: 11px;
@@ -907,8 +986,13 @@
             font-weight: 500;
         }
 
-        .text-green { color: #10b981; }
-        .text-blue { color: #38bdf8; }
+        .text-green {
+            color: #10b981;
+        }
+
+        .text-blue {
+            color: #38bdf8;
+        }
 
         .db-chart-section {
             background: rgba(255, 255, 255, 0.02);
@@ -948,8 +1032,13 @@
             border-radius: 50%;
         }
 
-        .bg-primary { background: #3b82f6; }
-        .bg-gray { background: #475569; }
+        .bg-primary {
+            background: #3b82f6;
+        }
+
+        .bg-gray {
+            background: #475569;
+        }
 
         .db-chart-bars {
             display: flex;
@@ -988,7 +1077,7 @@
         }
 
         .bar-ai {
-            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(180deg, #3b82f6, #4338ca);
             box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
         }
 
@@ -996,7 +1085,6 @@
             background: #475569;
         }
 
-        /* 2. INFINITE LOGO MARQUEE */
         .marquee {
             width: 100%;
             overflow: hidden;
@@ -1010,7 +1098,7 @@
             content: "";
             position: absolute;
             top: 0;
-            width: 100px;
+            width: 150px;
             height: 100%;
             z-index: 2;
             pointer-events: none;
@@ -1028,76 +1116,83 @@
 
         .marquee-content {
             display: inline-flex;
-            gap: 64px;
-            animation: marquee-scroll 25s linear infinite;
+            gap: 80px;
+            animation: marquee-scroll 30s linear infinite;
         }
 
         .marquee-content span {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
-            color: #94a3b8;
+            color: var(--text-light);
             letter-spacing: -0.5px;
             transition: color 0.3s;
+            opacity: 0.6;
         }
 
         .marquee-content span:hover {
             color: var(--primary);
+            opacity: 1;
         }
 
         @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
-        /* 3. INTERACTIVE SEO SCORE OPTIMIZER MOCKUP */
         .seo-dashboard {
             width: 100%;
             height: 100%;
-            background: #090d16;
-            color: white;
-            padding: 16px;
+            background: #ffffff;
+            color: var(--text-dark);
+            padding: 24px;
             display: flex;
-            gap: 16px;
+            gap: 20px;
             text-align: left;
         }
 
         .seo-editor-mock {
             flex: 1.2;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 14px;
+            background: var(--bg-gray);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            font-size: 12px;
+            gap: 12px;
+            font-size: 13px;
         }
 
         .seo-editor-header {
-            font-weight: 700;
-            color: #94a3b8;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 8px;
+            font-weight: 800;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            font-size: 14px;
         }
 
         .seo-editor-title {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            color: white;
-            font-family: inherit;
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .seo-editor-body {
-            color: #94a3b8;
-            line-height: 1.5;
+            color: var(--text-gray);
+            line-height: 1.6;
             flex-grow: 1;
-            font-size: 11px;
+            font-size: 12px;
             overflow: hidden;
             display: -webkit-box;
-            -webkit-line-clamp: 5;
-            line-clamp: 5;
+            -webkit-line-clamp: 6;
+            line-clamp: 6;
             -webkit-box-orient: vertical;
         }
 
@@ -1107,41 +1202,41 @@
 
         .seo-opt-btn {
             width: 100%;
-            background: #00E659;
-            color: black;
-            font-weight: 700;
-            padding: 10px;
-            border-radius: 6px;
+            background: #10b981;
+            color: white;
+            font-weight: 800;
+            padding: 14px;
+            border-radius: 8px;
             border: none;
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 230, 89, 0.2);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .seo-analyzer-mock {
             flex: 0.8;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 14px;
+            background: var(--bg-gray);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            gap: 12px;
+            gap: 16px;
         }
 
         .seo-score-circle {
             position: relative;
-            width: 90px;
-            height: 90px;
+            width: 120px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1155,7 +1250,7 @@
 
         .seo-circle-bg {
             fill: none;
-            stroke: rgba(255, 255, 255, 0.05);
+            stroke: var(--border);
             stroke-width: 8;
         }
 
@@ -1165,15 +1260,15 @@
             stroke-width: 8;
             stroke-linecap: round;
             stroke-dasharray: 251.2;
-            stroke-dashoffset: 145; /* 42% score initial */
+            stroke-dashoffset: 145;
             transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1), stroke 2s;
         }
 
         .seo-score-num {
             position: absolute;
-            font-size: 20px;
+            font-size: 28px;
             font-weight: 800;
-            color: white;
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1181,29 +1276,31 @@
         }
 
         .seo-score-num span {
-            font-size: 9px;
-            color: #94a3b8;
-            margin-top: 2px;
+            font-size: 10px;
+            color: var(--text-gray);
+            margin-top: 4px;
+            letter-spacing: 1px;
         }
 
         .seo-checklist {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            font-size: 11px;
-            color: #94a3b8;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-gray);
+            font-weight: 500;
         }
 
         .seo-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .seo-status-dot {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background: #ef4444;
             display: inline-block;
@@ -1211,184 +1308,12 @@
         }
 
         .seo-item.checked {
-            color: white;
+            color: var(--text-dark);
+            font-weight: 700;
         }
 
         .seo-item.checked .seo-status-dot {
-            background: #00E659;
-        }
-
-        /* 4. PREMIUM PRICING PLANS SECTION */
-        .pricing-section {
-            padding: 100px 0;
-            background: var(--bg-gray);
-            text-align: center;
-        }
-
-        .pricing-header {
-            margin-bottom: 48px;
-        }
-
-        .pricing-header h2 {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .pricing-header p {
-            font-size: 18px;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .pricing-toggle-container {
-            display: inline-flex;
-            align-items: center;
-            background: #e2e8f0;
-            padding: 4px;
-            border-radius: 99px;
-            margin-top: 24px;
-        }
-
-        .pricing-toggle-btn {
-            padding: 8px 20px;
-            border-radius: 99px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-gray);
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            transition: all 0.3s;
-        }
-
-        .pricing-toggle-btn.active {
-            background: var(--bg-white);
-            color: var(--primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .pricing-grid-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 48px;
-            align-items: stretch;
-        }
-
-        .pricing-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .pricing-card.premium {
-            border: 2px solid transparent;
-            background-image: linear-gradient(var(--bg-white), var(--bg-white)), linear-gradient(135deg, var(--primary), var(--secondary));
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
-        }
-
-        .pricing-card.premium::after {
-            content: "PALING POPULER";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 16px;
-            border-radius: 99px;
-            letter-spacing: 1px;
-        }
-
-        .pricing-tier {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .pricing-card.premium .pricing-tier {
-            color: var(--secondary);
-        }
-
-        .pricing-price {
-            font-size: 40px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: baseline;
-            gap: 4px;
-        }
-
-        .pricing-price span {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        .pricing-desc {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin-bottom: 32px;
-            line-height: 1.5;
-        }
-
-        .pricing-features-list {
-            list-style: none;
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .pricing-features-list li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .pricing-features-list li svg {
-            color: var(--secondary);
-            flex-shrink: 0;
-        }
-
-        .pricing-card.premium .pricing-features-list li svg {
-            color: var(--primary);
-        }
-
-        .pricing-btn {
-            width: 100%;
-            margin-top: auto;
-        }
-
-        @media (max-width: 900px) {
-            .pricing-grid-cards {
-                grid-template-columns: 1fr;
-            }
+            background: #10b981;
         }
     </style>
 </head>
@@ -1402,35 +1327,37 @@
             <div class="nav-menu">
                 <div class="nav-item has-dropdown">
                     Produk & Layanan
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        style="margin-left:4px">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        style="margin-left:6px">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                     <div class="mega-menu">
                         <div class="mega-menu-col">
-                            <h4>Otomasi Layanan</h4>
+                            <h4>Mesin Konversi</h4>
                             <a href="agent.html" class="product-link">
                                 <div class="product-icon icon-agent">CA</div>
                                 <div class="product-info">
                                     <h5>Cardiagent.ai</h5>
-                                    <p>Asisten WhatsApp 24/7 bertenaga AI untuk konversi maksimal.</p>
+                                    <p>Hentikan kebocoran leads. Asisten WhatsApp AI yang siap mengunci penjualan 24/7
+                                        tanpa henti.</p>
                                 </div>
                             </a>
                         </div>
                         <div class="mega-menu-col">
-                            <h4>Optimasi Trafik</h4>
+                            <h4>Mesin Trafik</h4>
                             <a href="plugin.html" class="product-link">
                                 <div class="product-icon icon-seo">OS</div>
                                 <div class="product-info">
                                     <h5>Optima SEO</h5>
-                                    <p>Plugin WordPress autopilot untuk dominasi halaman pertama.</p>
+                                    <p>Dominasi halaman pertama Google. Plugin WordPress yang menggarap SEO teknis
+                                        secara autopilot.</p>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
-                <a href="#harga" class="nav-item">Harga</a>
-                <a href="#tentang" class="nav-item">Tentang Kami</a>
+                <a href="#testimoni" class="nav-item">Testimoni</a>
+                <a href="#tentang" class="nav-item">Kisah Kami</a>
             </div>
 
             <div class="nav-actions">
@@ -1441,13 +1368,15 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Otomatisasi Bisnis Anda dengan Kecerdasan Buatan</h1>
-            <p>Kami adalah agensi solusi AI dan otomasi. Tingkatkan efisiensi operasional, dominasi mesin pencari, dan
-                layani pelanggan 24/7 tanpa henti.</p>
+            <h1>Ubah Mesin Bisnis Anda Menjadi Aset yang Bekerja 24/7.</h1>
+            <p>Berhenti membuang anggaran untuk proses manual. Ekosistem Cardi menghadirkan kecerdasan buatan untuk
+                merespons pelanggan dalam hitungan detik dan mendominasi halaman pertama Google. Skalakan omzet Anda,
+                otomatis.</p>
             <div class="hero-actions">
-                <a href="#produk" class="btn btn-primary">Lihat Produk Kami</a>
-                <a href="#demo" class="btn btn-outline">Jadwalkan Demo</a>
+                <a href="#produk" class="btn btn-primary">Pelajari Cara Kerjanya</a>
+                <a href="#demo" class="btn btn-outline">Lihat Demo Langsung</a>
             </div>
+
             <div class="hero-image">
                 <div class="dashboard-window">
                     <div class="dashboard-header">
@@ -1456,47 +1385,80 @@
                             <span class="dot-yellow"></span>
                             <span class="dot-green"></span>
                         </div>
-                        <div class="dashboard-title">cardi_ops_dashboard.sh</div>
-                        <div class="dashboard-status"><span class="pulse-green"></span> Live AI Active</div>
+                        <div class="dashboard-title">cardi_ekosistem_live.sh</div>
+                        <div class="dashboard-status"><span class="pulse-green"></span> Live AI & SEO Engine Active
+                        </div>
                     </div>
                     <div class="dashboard-body">
                         <div class="db-stat-grid">
                             <div class="db-stat-card">
-                                <span class="db-stat-label">Total Chat Terproses</span>
+                                <span class="db-stat-label">Total Trafik & Chat Masuk</span>
                                 <h3 class="db-stat-val" id="db-counter-chats">1.843.200</h3>
-                                <span class="db-stat-sub text-green">▲ 12.4% minggu ini</span>
+                                <span class="db-stat-sub text-green">▲ 24.8% dari SEO</span>
                             </div>
                             <div class="db-stat-card">
-                                <span class="db-stat-label">Kecepatan Respon AI</span>
-                                <h3 class="db-stat-val">1.8s</h3>
-                                <span class="db-stat-sub text-blue">Seketika (Instant)</span>
+                                <span class="db-stat-label">Rata-rata Respon AI</span>
+                                <h3 class="db-stat-val">1.2s</h3>
+                                <span class="db-stat-sub text-blue">Tanpa Delay</span>
                             </div>
                             <div class="db-stat-card">
-                                <span class="db-stat-label">Peningkatan Konversi</span>
-                                <h3 class="db-stat-val">+45.2%</h3>
-                                <span class="db-stat-sub text-green">Rata-rata klien</span>
+                                <span class="db-stat-label">Lonjakan Konversi</span>
+                                <h3 class="db-stat-val">+58.4%</h3>
+                                <span class="db-stat-sub text-green">Dalam 30 Hari</span>
                             </div>
                             <div class="db-stat-card">
-                                <span class="db-stat-label">Biaya CS Terhemat</span>
-                                <h3 class="db-stat-val" style="color: var(--accent-seo)">62%</h3>
-                                <span class="db-stat-sub text-green">Efisiensi tim</span>
+                                <span class="db-stat-label">Waktu Operasional Terhemat</span>
+                                <h3 class="db-stat-val" style="color: var(--accent-seo)">840 Jam</h3>
+                                <span class="db-stat-sub text-green">Efisiensi Tim</span>
                             </div>
                         </div>
                         <div class="db-chart-section">
                             <div class="db-chart-header">
-                                <span>Aktivitas Chat AI vs Manual (24 Jam)</span>
+                                <span>Aktivitas Pertumbuhan Autopilot vs Manual (24 Jam)</span>
                                 <div class="db-legend">
-                                    <span class="legend-item"><span class="legend-color bg-primary"></span> Cardiagent AI</span>
-                                    <span class="legend-item"><span class="legend-color bg-gray"></span> Manual Admin</span>
+                                    <span class="legend-item"><span class="legend-color bg-primary"></span> Ekosistem
+                                        Cardi</span>
+                                    <span class="legend-item"><span class="legend-color bg-gray"></span> Manual
+                                        Admin</span>
                                 </div>
                             </div>
                             <div class="db-chart-bars">
-                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 35%"></div><div class="chart-bar bar-manual" style="height: 40%"></div></div><span>00:00</span></div>
-                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 25%"></div><div class="chart-bar bar-manual" style="height: 10%"></div></div><span>04:00</span></div>
-                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 60%"></div><div class="chart-bar bar-manual" style="height: 45%"></div></div><span>08:00</span></div>
-                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 85%"></div><div class="chart-bar bar-manual" style="height: 50%"></div></div><span>12:00</span></div>
-                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 95%"></div><div class="chart-bar bar-manual" style="height: 55%"></div></div><span>16:00</span></div>
-                                <div class="db-chart-col"><div class="chart-bar-container"><div class="chart-bar bar-ai" style="height: 75%"></div><div class="chart-bar bar-manual" style="height: 35%"></div></div><span>20:00</span></div>
+                                <div class="db-chart-col">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar bar-ai" style="height: 35%"></div>
+                                        <div class="chart-bar bar-manual" style="height: 40%"></div>
+                                    </div><span>00:00</span>
+                                </div>
+                                <div class="db-chart-col">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar bar-ai" style="height: 25%"></div>
+                                        <div class="chart-bar bar-manual" style="height: 10%"></div>
+                                    </div><span>04:00</span>
+                                </div>
+                                <div class="db-chart-col">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar bar-ai" style="height: 60%"></div>
+                                        <div class="chart-bar bar-manual" style="height: 45%"></div>
+                                    </div><span>08:00</span>
+                                </div>
+                                <div class="db-chart-col">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar bar-ai" style="height: 85%"></div>
+                                        <div class="chart-bar bar-manual" style="height: 50%"></div>
+                                    </div><span>12:00</span>
+                                </div>
+                                <div class="db-chart-col">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar bar-ai" style="height: 95%"></div>
+                                        <div class="chart-bar bar-manual" style="height: 55%"></div>
+                                    </div><span>16:00</span>
+                                </div>
+                                <div class="db-chart-col">
+                                    <div class="chart-bar-container">
+                                        <div class="chart-bar bar-ai" style="height: 75%"></div>
+                                        <div class="chart-bar bar-manual" style="height: 35%"></div>
+                                    </div><span>20:00</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1507,21 +1469,20 @@
 
     <section class="trust-bar">
         <div class="container">
-            <div class="trust-label">Dipercaya Oleh 1,800+ Bisnis Premium</div>
+            <div class="trust-label">Diandalkan Oleh 1,800+ Perusahaan dengan Pertumbuhan Tercepat</div>
             <div class="trust-logos">
                 <div class="marquee">
                     <div class="marquee-content">
-                        <span>TokoElite</span>
-                        <span>RetailPro.id</span>
-                        <span>KapukLiving</span>
+                        <span>TokoElite.</span>
+                        <span>RetailPro™</span>
+                        <span>KapukLiving.</span>
                         <span>GroupBuy+</span>
                         <span>MedikaSehat</span>
                         <span>GlowBeauty</span>
                         <span>KopiLokal</span>
-                        <!-- Duplicate for infinite effect -->
-                        <span>TokoElite</span>
-                        <span>RetailPro.id</span>
-                        <span>KapukLiving</span>
+                        <span>TokoElite.</span>
+                        <span>RetailPro™</span>
+                        <span>KapukLiving.</span>
                         <span>GroupBuy+</span>
                         <span>MedikaSehat</span>
                         <span>GlowBeauty</span>
@@ -1532,88 +1493,191 @@
         </div>
     </section>
 
-    <section class="product-section" id="produk">
+    <section class="value-section">
         <div class="container">
-            <div class="product-grid">
-                <div class="product-content">
-                    <div style="color: var(--accent-agent); font-weight: 700; margin-bottom: 8px; letter-spacing: 1px;">
-                        CARDIAGENT.AI</div>
-                    <h2>Ubah WhatsApp Jadi Asisten Penjualan 24/7.</h2>
-                    <p>Hentikan kerugian akibat chat lambat. Sistem AI kami membalas pelanggan secara natural, mengejar
-                        calon pembeli yang ragu, dan mengelola pesanan secara otomatis.</p>
-                    <ul class="feature-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Balasan chat kontekstual layaknya manusia.</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Follow-up otomatis untuk pelanggan yang belum transfer.</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Audit performa iklan langsung dari WhatsApp.</li>
-                    </ul>
-                    <a href="agent.html" class="btn btn-outline"
-                        style="border-color: var(--text-gray); color: var(--text-dark);">Pelajari Cardiagent</a>
+            <div class="value-header">
+                <h2>Mengapa Bisnis Digital Anda Tertahan?</h2>
+                <p>Dalam lanskap digital hari ini, dua masalah terbesar yang membunuh profit perusahaan adalah:
+                    kegagalan mendapatkan trafik, dan kegagalan merespons pembeli tepat waktu. Ekosistem Cardi
+                    diciptakan untuk menghancurkan kedua penghalang tersebut.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Trafik Organik Terbuang</h3>
+                    <p>Membayar biaya iklan mahal tanpa membangun aset SEO adalah strategi berdarah. Website Anda tidak
+                        terlihat di Google saat calon pembeli siap melakukan pembelian.</p>
                 </div>
-                <div class="product-media">
-                    <div class="media-placeholder">[Area Gambar / Video UI Cardiagent.ai]</div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            <line x1="9" y1="10" x2="15" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3>Leads Bocor Akibat Delay</h3>
+                    <p>70% konsumen beralih ke kompetitor jika chat mereka tidak dibalas dalam 5 menit. Jam tidur admin
+                        Anda adalah jam kerja bagi pesaing Anda yang lebih sigap.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Sistem Terintegrasi Penuh</h3>
+                    <p>Cardi menyatukan Optima SEO (sebagai penarik trafik tiada henti) dan Cardiagent (sebagai penyapu
+                        konversi 24/7). Sebuah mesin bisnis yang bekerja sempurna secara autopilot.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SECTION PRODUK 1: CARDIAGENT -->
+    <section class="product-section" id="produk">
+        <div class="container">
+            <div class="product-grid">
+                <div class="product-content">
+                    <div
+                        style="display:inline-flex; align-items:center; gap:8px; background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.2); border-radius:99px; padding:6px 16px; font-size:12px; font-weight:800; letter-spacing:1.5px; color:#f43f5e; text-transform:uppercase; margin-bottom:24px;">
+                        ⚡ Cardiagent.ai</div>
+
+                    <h2>Hentikan Kebocoran Leads. Tutup Penjualan Detik Itu Juga.</h2>
+                    <p>Ucapkan selamat tinggal pada calon pembeli yang kabur. Cardiagent adalah asisten penjualan
+                        WhatsApp berotak AI yang siap membalas, melayani komplain, dan mengunci transaksi—bahkan pada
+                        pukul 3 pagi. Tidak terdengar kaku, 100% humanis.</p>
+
+                    <ul class="feature-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <div class="feature-text">
+                                <h4>Pemahaman Konteks & Slang Tingkat Dewa</h4>
+                                <p>AI kami dilatih untuk mengerti bahasa gaul, singkatan, dan emosi pelanggan selayaknya
+                                    *top sales* manusia Anda.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <div class="feature-text">
+                                <h4>Sistem Follow-Up Otomatis yang Presisi</h4>
+                                <p>Prospek belum transfer? Cardiagent akan mengirimkan pengingat cerdas secara natural
+                                    tanpa kesan "memaksa".</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="agent.html" class="btn btn-primary" style="gap:10px; width: fit-content;">Pelajari Detail
+                        Cardiagent
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                <div class="product-media" style="padding: 0 !important; background: var(--bg-white) !important;">
+                    <img src="cardiagent_mockup.png" alt="Cardiagent AI WhatsApp Simulator"
+                        style="width:100%; height:100%; object-fit:cover; display:block;"
+                        onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23f1f5f9\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\' fill=\'%2364748b\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ECardiagent Mockup (Image)%3C/text%3E%3C/svg%3E'" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PRODUK 2: OPTIMA SEO -->
     <section class="product-section">
         <div class="container">
             <div class="product-grid reverse">
                 <div class="product-content">
-                    <div style="color: var(--accent-seo); font-weight: 700; margin-bottom: 8px; letter-spacing: 1px;">
-                        OPTIMA SEO</div>
-                    <h2>Dominasi Halaman Pertama Google. 100% Autopilot.</h2>
-                    <p>Tinggalkan kerja SEO manual yang menguras waktu. Sempurnakan arsitektur tautan, optimasi meta
-                        tag, dan injeksi struktur data pintar pada website WordPress Anda secara instan.</p>
+                    <div
+                        style="display:inline-flex; align-items:center; gap:8px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2); border-radius:99px; padding:6px 16px; font-size:12px; font-weight:800; letter-spacing:1.5px; color:#10b981; text-transform:uppercase; margin-bottom:24px;">
+                        🔍 Optima SEO</div>
+
+                    <h2>Mesin Pencetak Trafik Organik Berkualitas, Tanpa Biaya Agensi.</h2>
+                    <p>Urusan teknis algoritma biarkan kami yang tangani. Optima SEO mentransformasi website WordPress
+                        Anda menjadi magnet pengunjung secara autopilot. Mulai dari injeksi meta tag hingga perakitan
+                        skema struktur, semuanya tereksekusi rapi setiap kali Anda mempublikasikan konten.</p>
+
                     <ul class="feature-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Generator Meta Tag & Judul otomatis.</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            </svg>
+                            <div class="feature-text">
+                                <h4>Injeksi JSON-LD Schema Otomatis</h4>
+                                <p>Bantu robot Google memahami struktur bisnis Anda seketika, menaikkan peluang masuk di
+                                    *rich snippets* pencarian teratas.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Internal linking cerdas tanpa coding.</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg> Injeksi Schema Markup JSON-LD.</li>
+                            </svg>
+                            <div class="feature-text">
+                                <h4>Jaringan Internal Linking Tanpa Coding</h4>
+                                <p>Menyusun fondasi navigasi antar artikel yang disukai mesin pencari secara otomatis,
+                                    tanpa perlu campur tangan *developer*.</p>
+                            </div>
+                        </li>
                     </ul>
-                    <a href="plugin.html" class="btn btn-outline"
-                        style="border-color: var(--text-gray); color: var(--text-dark);">Pelajari Optima SEO</a>
+                    <a href="plugin.html" class="btn btn-primary" style="gap:10px; width: fit-content;">Pelajari Detail
+                        Optima SEO
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
                 </div>
-                <div class="product-media" style="background: #090d16 !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; padding: 0 !important; overflow: hidden !important;">
+                <div class="product-media" style="padding: 0 !important;">
                     <div class="seo-dashboard">
                         <div class="seo-editor-mock">
-                            <div class="seo-editor-header">WordPress Post Editor</div>
-                            <div class="seo-editor-title">10 Cara Meningkatkan Omzet Bisnis dengan AI</div>
+                            <div class="seo-editor-header">CMS Post Editor</div>
+                            <div class="seo-editor-title">Strategi Dominasi Pasar Menggunakan Otomasi AI 2026</div>
                             <div class="seo-editor-body">
-                                Menggunakan kecerdasan buatan dapat merevolusi cara Anda berinteraksi dengan pelanggan. WhatsApp AI otomatis membantu menjawab pertanyaan produk secara real-time. Dengan integrasi yang tepat, konversi penjualan Anda akan naik drastis tanpa repot...
+                                Menggunakan kecerdasan buatan dapat merevolusi cara Anda berinteraksi dengan basis
+                                pelanggan yang masif. Memanfaatkan WhatsApp AI otomatis akan sangat membantu menjawab
+                                pertanyaan seputar katalog, spesifikasi produk, dan metode pembayaran secara real-time.
+                                Dengan integrasi mesin yang tepat, rasio konversi (conversion rate) penjualan Anda akan
+                                dipastikan naik drastis tanpa repot...
                             </div>
                             <div class="seo-btn-container">
                                 <button class="seo-opt-btn" id="seo-opt-btn">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                        <polyline points="2 17 12 22 22 17"></polyline>
+                                        <polyline points="2 12 12 17 22 12"></polyline>
+                                    </svg>
                                     Optimasi Otomatis
                                 </button>
                             </div>
                         </div>
                         <div class="seo-analyzer-mock">
-                            <div class="seo-editor-header" style="width: 100%;">SEO Analyzer</div>
+                            <div class="seo-editor-header" style="width: 100%; border-bottom:none; text-align:center;">
+                                SEO Health Score</div>
                             <div class="seo-score-circle">
                                 <svg viewBox="0 0 100 100">
                                     <circle class="seo-circle-bg" cx="50" cy="50" r="40"></circle>
                                     <circle class="seo-circle-val" id="seo-circle-val" cx="50" cy="50" r="40"></circle>
                                 </svg>
-                                <div class="seo-score-num"><span id="seo-score-val-num" style="font-size:24px;">42</span><span>SCORE</span></div>
+                                <div class="seo-score-num"><span id="seo-score-val-num"
+                                        style="font-size:32px;">42</span><span>RATING</span></div>
                             </div>
                             <div class="seo-checklist">
                                 <div class="seo-item" id="seo-item-meta">
@@ -1622,11 +1686,11 @@
                                 </div>
                                 <div class="seo-item" id="seo-item-links">
                                     <span class="seo-status-dot"></span>
-                                    <span>Internal Linking</span>
+                                    <span>Smart Internal Linking</span>
                                 </div>
                                 <div class="seo-item" id="seo-item-schema">
                                     <span class="seo-status-dot"></span>
-                                    <span>JSON-LD Schema</span>
+                                    <span>JSON-LD Architecture</span>
                                 </div>
                             </div>
                         </div>
@@ -1636,171 +1700,73 @@
         </div>
     </section>
 
-
-    <section class="pricing-section" id="harga">
+    <!-- PRICING SECTION -->
+    <!-- TESTIMONIAL (DIPERBAIKI) -->
+    <section class="testimonial-section" id="testimoni">
         <div class="container">
-            <div class="pricing-header">
-                <h2>Pilihan Paket Investasi Bisnis Anda</h2>
-                <p>Mulai gratis atau pilih paket premium untuk skalabilitas tak terbatas dan fitur enterprise penuh.</p>
-                <div class="pricing-toggle-container">
-                    <button class="pricing-toggle-btn active" id="pricing-monthly-btn" onclick="setPricingPeriod('monthly')">Bulanan</button>
-                    <button class="pricing-toggle-btn" id="pricing-yearly-btn" onclick="setPricingPeriod('yearly')">Tahunan (Hemat 20%)</button>
-                </div>
-            </div>
-            <div class="pricing-grid-cards">
-                <!-- Starter Card -->
-                <div class="pricing-card">
-                    <div class="pricing-tier">Starter</div>
-                    <div class="pricing-price">
-                        <span style="font-size: 20px; font-weight: 700;">Rp</span>
-                        <span id="price-starter">299.000</span>
-                        <span>/bln</span>
-                    </div>
-                    <p class="pricing-desc">Cocok untuk UMKM yang baru mulai mengadopsi teknologi AI untuk otomatisasi awal.</p>
-                    <ul class="pricing-features-list">
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Maks 500 chat terproses/bln
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            1 WhatsApp Integrasi
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Pemahaman NLP Dasar
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Dukungan Email 24/7
-                        </li>
-                    </ul>
-                    <a href="#kontak" class="btn btn-outline pricing-btn">Pilih Starter</a>
-                </div>
-
-                <!-- Pro Card (Premium Highlighted) -->
-                <div class="pricing-card premium">
-                    <div class="pricing-tier">Pro AI Autopilot</div>
-                    <div class="pricing-price">
-                        <span style="font-size: 20px; font-weight: 700;">Rp</span>
-                        <span id="price-pro">799.000</span>
-                        <span>/bln</span>
-                    </div>
-                    <p class="pricing-desc">Pilihan terbaik bagi bisnis berkembang untuk dominasi pasar secara total 24/7 autopilot.</p>
-                    <ul class="pricing-features-list">
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <strong>Unlimited Chat</strong> terproses
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            3 WhatsApp Integrasi
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            NLP Cerdas (Slang & Konteks)
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Follow-Up Proaktif Cerdas
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Premium Support & Manager Khusus
-                        </li>
-                    </ul>
-                    <a href="#kontak" class="btn btn-primary pricing-btn">Mulai Pro Sekarang</a>
-                </div>
-
-                <!-- Enterprise Card -->
-                <div class="pricing-card">
-                    <div class="pricing-tier">Enterprise</div>
-                    <div class="pricing-price">
-                        <span style="font-size: 32px; font-weight: 800;">Custom</span>
-                    </div>
-                    <p class="pricing-desc">Solusi khusus korporasi dengan infrastruktur terdedikasi dan integrasi API internal.</p>
-                    <ul class="pricing-features-list">
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Multi-agent custom flow
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            SLA Kecepatan & Ketersediaan 99.99%
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Server khusus (On-premise/Private Cloud)
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Audit Keamanan & Kepatuhan penuh
-                        </li>
-                    </ul>
-                    <a href="#kontak" class="btn btn-outline pricing-btn" style="border-color: var(--text-gray); color: var(--text-dark);">Hubungi Kami</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonial-section">
-        <div class="container">
-            <h2>Dampak Nyata bagi Bisnis Klien Kami</h2>
-            <p>Dengarkan langsung bagaimana solusi Cardi mentransformasi operasional mereka.</p>
+            <h2>Kisah Sukses: Saat Sistem Bekerja, Omzet Berbicara.</h2>
+            <p>Bukan sekadar jargon teknologi kosong. Dengarkan langsung dari para pendiri bisnis tentang bagaimana
+                Ekosistem Cardi telah memangkas jam kerja mereka dan melipatgandakan profitabilitas.</p>
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg></div>
                     </div>
                     <div class="video-info">
-                        <div class="video-quote">"Follow-up otomatis menyelamatkan banyak transaksi yang dulu hilang.
-                            Penjualan naik signifikan."</div>
+                        <div class="video-quote">"Follow-up presisi yang dikerjakan AI ini benar-benar gila. Puluhan
+                            leads dingin yang dulu terbuang, tiba-tiba transfer otomatis pagi-pagi buta tanpa kami
+                            sadari."</div>
                         <div class="video-author">Raka Pratama</div>
-                        <div class="video-role">Pemilik, TokoElite</div>
+                        <div class="video-role">Founder, TokoElite</div>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg></div>
                     </div>
                     <div class="video-info">
-                        <div class="video-quote">"Trafik organik website kami melonjak ke halaman pertama tanpa harus
-                            sewa spesialis SEO mahal."</div>
+                        <div class="video-quote">"Dulu budget bocor buat bayar agensi SEO per bulan. Sekarang plugin
+                            Optima jalan otomatis merapikan internal link, web kami nyantol di page 1 Google terus."
+                        </div>
                         <div class="video-author">Nadia Kusuma</div>
-                        <div class="video-role">Digital Marketer, GroupBuy+</div>
+                        <div class="video-role">CMO, GroupBuy+</div>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg></div>
                     </div>
                     <div class="video-info">
-                        <div class="video-quote">"Integrasi yang sangat mulus. Admin kami hemat puluhan jam per minggu
-                            dari membalas chat."</div>
+                        <div class="video-quote">"Tim CS sekarang jauh lebih bahagia. Mereka cuma fokus tangani komplain
+                            VIP. Sisanya, dari tanya produk sampai transaksi udah di-handle mulus 100% sama AI."</div>
                         <div class="video-author">Dimas Saputra</div>
-                        <div class="video-role">Manajer Operasional, KapukLiving</div>
+                        <div class="video-role">Head of Ops, KapukLiving</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-box">
-                <h2>Siap Melangkah ke Era Otomasi?</h2>
-                <p>Konsultasikan kebutuhan spesifik bisnis Anda bersama tim pakar kami.</p>
-                <a href="#kontak" class="btn" style="background: white; color: var(--primary);">Jadwalkan Konsultasi
-                    Gratis</a>
+                <h2>Kompetitor Anda Mungkin Sudah Beralih ke AI.</h2>
+                <p>Jangan menjadi pihak yang tertinggal dalam revolusi otomatisasi. Konsultasikan rancangan sistem yang
+                    paling tepat untuk perusahaan Anda bersama ahli kami hari ini, dan saksikan sendiri lonjakan
+                    pendapatan di bulan pertama.</p>
+                <a href="#kontak" class="btn"
+                    style="background: var(--bg-white); color: var(--primary); padding: 18px 40px; font-size: 16px;">Klaim
+                    Sesi Konsultasi Eksklusif Gratis</a>
             </div>
         </div>
     </section>
@@ -1810,43 +1776,44 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Cardi</h3>
-                    <p>Agensi solusi AI dan otomasi yang membantu bisnis bertumbuh dengan sistem terintegrasi.</p>
+                    <p>Rumah bagi solusi integrasi kecerdasan buatan tingkat tinggi dan otomatisasi operasional bisnis
+                        untuk masa depan.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Produk</h4>
+                    <h4>Pilar Produk</h4>
                     <ul>
-                        <li><a href="agent.html">Cardiagent.ai</a></li>
-                        <li><a href="plugin.html">Optima SEO</a></li>
+                        <li><a href="agent.html">Cardiagent.ai (Auto CS)</a></li>
+                        <li><a href="plugin.html">Optima SEO (Auto Traffic)</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Perusahaan</h4>
                     <ul>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Karir</a></li>
-                        <li><a href="#">Mitra</a></li>
+                        <li><a href="#">Visi & Misi Kami</a></li>
+                        <li><a href="#">Karir & Talenta</a></li>
+                        <li><a href="#">Portal Kemitraan</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Dukungan</h4>
+                    <h4>Bantuan Layanan</h4>
                     <ul>
-                        <li><a href="#">Pusat Bantuan</a></li>
-                        <li><a href="#">Hubungi Kami</a></li>
-                        <li><a href="#">API Dokumentasi</a></li>
+                        <li><a href="#">Pusat Solusi Teknis</a></li>
+                        <li><a href="#">Hubungi Tim Sales</a></li>
+                        <li><a href="#">Dokumentasi API Core</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Cardi. Hak Cipta Dilindungi.</p>
-                <div style="display: flex; gap: 24px;">
-                    <a href="#">Kebijakan Privasi</a>
-                    <a href="#">Syarat & Ketentuan</a>
+                <p>&copy; 2026 Cardi Ekosistem. Hak Cipta Dilindungi Undang-Undang.</p>
+                <div style="display: flex; gap: 32px;">
+                    <a href="#">Kebijakan Privasi Data</a>
+                    <a href="#">Syarat & Ketentuan Lisensi</a>
                 </div>
             </div>
         </div>
     </footer>
 
-
+    <!-- MODAL KONSULTASI (DIUBAH SAMA SEPERTI AGENT.HTML) -->
     <div class="modal-overlay" id="consultModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">
@@ -1856,64 +1823,42 @@
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
-
             <div class="modal-header">
-                <h3>Konsultasi Gratis dengan Kami</h3>
-                <p>Isi data di bawah untuk mendapatkan demo dan konsultasi dari tim kami.</p>
+                <h3 style="font-size: 22px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px;">Mari
+                    Akselerasi Omzet Anda</h3>
+                <p style="font-size: 14px; color: var(--text-gray); line-height: 1.5; margin-bottom: 24px;">Lengkapi
+                    formulir singkat ini. Arsitek solusi bisnis kami akan menghubungi Anda untuk demonstrasi khusus.</p>
             </div>
-
             <form id="consultForm" onsubmit="submitForm(event)">
                 <div class="form-group">
-                    <label>Nama Lengkap</label>
+                    <label>Nama Lengkap Eksekutif</label>
                     <input type="text" id="inpNama" class="form-control" placeholder="Contoh: Budi Santoso" required>
                 </div>
-
                 <div class="form-group">
-                    <label>Email Kerja</label>
-                    <input type="email" id="inpEmail" class="form-control" placeholder="contoh: bryan@perusahaan.com"
+                    <label>Email Profesional</label>
+                    <input type="email" id="inpEmail" class="form-control" placeholder="nama@perusahaan.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Nomor Telepon (WhatsApp Aktif)</label>
+                    <input type="tel" id="inpWa" class="form-control" placeholder="081234567890" required>
+                </div>
+                <div class="form-group">
+                    <label>Entitas Bisnis / Perusahaan</label>
+                    <input type="text" id="inpPerusahaan" class="form-control" placeholder="PT Skala Masa Depan"
                         required>
                 </div>
-
                 <div class="form-group">
-                    <label>Nama Perusahaan</label>
-                    <input type="text" id="inpPerusahaan" class="form-control" placeholder="PT Solusi Bisnis" required>
+                    <label>Beban Chat Harian Saat Ini</label>
+                    <select class="form-control" id="inpVolume" required style="cursor: pointer; appearance: auto;">
+                        <option value="" disabled selected>Pilih estimasi rata-rata harian...</option>
+                        <option value="< 100 Chat / Hari">
+                            < 100 Chat / Hari</option>
+                        <option value="100 - 500 Chat / Hari">100 - 500 Chat / Hari</option>
+                        <option value="500 - 1.000 Chat / Hari">500 - 1.000 Chat / Hari</option>
+                        <option value="> 1.000 Chat / Hari">> 1.000 Chat / Hari</option>
+                    </select>
                 </div>
-
-                <div class="form-group">
-                    <label>Nomor Whatsapp</label>
-                    <div class="phone-group">
-                        <div class="phone-prefix">
-                            ID +62
-                        </div>
-                        <input type="tel" id="inpWa" class="form-control" placeholder="812 3456 7890" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Jumlah chat bisnis Anda per hari</label>
-                    <div class="radio-grid">
-                        <label class="radio-card">
-                            <input type="radio" name="chat_vol" value="< 30" required>
-                            <span>
-                                < 30</span>
-                        </label>
-                        <label class="radio-card">
-                            <input type="radio" name="chat_vol" value="30-200">
-                            <span>30-200</span>
-                        </label>
-                        <label class="radio-card">
-                            <input type="radio" name="chat_vol" value="200+">
-                            <span>200+</span>
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit-modal">Konsultasi Gratis Sekarang</button>
-
-                <div style="margin-top: 16px; text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.5;">
-                    Dengan klik tombol di atas, Anda akan diarahkan ke aplikasi WhatsApp. Kirim chat template dan Anda
-                    langsung terhubung dengan tim kami.
-                </div>
+                <button type="submit" class="form-submit">Amankan Jadwal Demonstrasi</button>
             </form>
         </div>
     </div>
@@ -1934,64 +1879,38 @@
             if (e.target === document.getElementById('consultModal')) closeModal();
         });
 
-        // FUNGSI MENGARAHKAN DATA FORM LANGSUNG KE WHATSAPP ADMIN
         function submitForm(event) {
             event.preventDefault();
-
             const nama = document.getElementById('inpNama').value;
             const email = document.getElementById('inpEmail').value;
             const perusahaan = document.getElementById('inpPerusahaan').value;
-
-            // Ambil dan bersihkan input no WA (hilangkan angka 0 di depan jika ada)
+            const chatVol = document.getElementById('inpVolume').value;
             let noWa = document.getElementById('inpWa').value.trim();
-            if (noWa.startsWith('0')) {
-                noWa = noWa.substring(1);
-            }
+            if (noWa.startsWith('0')) noWa = noWa.substring(1);
 
-            // Ambil value dari radio button yang dipilih
-            const chatVolElement = document.querySelector('input[name="chat_vol"]:checked');
-            const chatVol = chatVolElement ? chatVolElement.value : "-";
+            const nomorTujuan = "6282310543825";
 
-            // NOMOR WA ADMIN (Pastikan menggunakan format 62 tanpa + atau 0 di depan)
-            const nomorTujuan = "6281234567890";
+            const pesan = `Halo Tim Ahli Cardi, saya ingin mengevaluasi penerapan ekosistem otomatisasi untuk operasional kami.\n\n*Nama:* ${nama}\n*Email:* ${email}\n*No. WA:* +62${noWa}\n*Perusahaan:* ${perusahaan}\n*Estimasi Chat:* ${chatVol}\n\nMohon konfirmasi ketersediaan agenda untuk demonstrasi teknisnya. Terima kasih.`;
 
-            // Susun template pesan untuk admin
-            const pesan = `Halo Tim Cardi, saya ingin menjadwalkan konsultasi gratis. Berikut data saya:
-            
-*Nama:* ${nama}
-*Email:* ${email}
-*No. WA:* +62 ${noWa}
-*Perusahaan:* ${perusahaan}
-*Volume Chat Bisnis:* ${chatVol} per hari
-
-Mohon info untuk jadwal demonya. Terima kasih!`;
-
-            // Buka tab baru ke WhatsApp dengan pesan yang sudah dikodekan
             const pesanEncoded = encodeURIComponent(pesan);
-            const linkWhatsApp = `https://wa.me/${nomorTujuan}?text=${pesanEncoded}`;
-            window.open(linkWhatsApp, '_blank');
+            window.open(`https://wa.me/${nomorTujuan}?text=${pesanEncoded}`, '_blank');
 
-            // Tutup modal dan bersihkan isian form
             closeModal();
             document.getElementById('consultForm').reset();
         }
 
-        // =======================================================
-        // PREMIUM COMPONENT SCRIPTS FOR MAIN.HTML
-        // =======================================================
-
-        // Increment hero chat counter dynamically
+        // Live Mockup Scripts (Counter)
         let currentChats = 1843200;
         const counterEl = document.getElementById('db-counter-chats');
         if (counterEl) {
             setInterval(() => {
-                const increment = Math.floor(Math.random() * 3) + 1;
+                const increment = Math.floor(Math.random() * 5) + 1;
                 currentChats += increment;
                 counterEl.textContent = currentChats.toLocaleString('id-ID');
             }, 2500);
         }
 
-        // Live WordPress SEO score optimizer mockup animation loop
+        // SEO Animation Logic
         const seoBtn = document.getElementById('seo-opt-btn');
         const seoCircle = document.getElementById('seo-circle-val');
         const seoNum = document.getElementById('seo-score-val-num');
@@ -2003,95 +1922,49 @@ Mohon info untuk jadwal demonya. Terima kasih!`;
 
         function runSeoMockAnimation() {
             if (!seoCircle || !seoNum) return;
-            // 1. Reset state (Red, Score 42, dashoffset ~145)
             seoCircle.style.stroke = '#ef4444';
             seoCircle.style.strokeDashoffset = '145';
             seoNum.textContent = '42';
-            seoBtn.innerHTML = `
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="seo-btn-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                Optimasi Otomatis
-            `;
-            seoBtn.style.background = '#00E659';
-            seoBtn.style.color = 'black';
+            seoBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg> Optimasi Otomatis`;
+            seoBtn.style.background = '#10b981';
+            seoBtn.style.color = 'white';
             seoItems.forEach(item => { if (item) item.classList.remove('checked'); });
 
-            // 2. Start animation loop steps
             setTimeout(() => {
-                // Change button state to analyzing
-                seoBtn.innerHTML = `
-                    <svg class="verified-icon" style="color:black; animation:spin 1s linear infinite;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-                    Menganalisis Konten...
-                `;
-                seoBtn.style.background = '#e2e8f0';
-                seoBtn.style.color = '#0f172a';
+                seoBtn.innerHTML = `<svg style="color:white; animation:spin 1s linear infinite;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> Memproses Data...`;
+                seoBtn.style.background = '#94a3b8';
             }, 1500);
-
             setTimeout(() => {
-                // Step 1: Meta check
                 if (seoItems[0]) seoItems[0].classList.add('checked');
-                seoCircle.style.stroke = '#f59e0b'; // Amber
-                seoCircle.style.strokeDashoffset = '105'; // Score 58
+                seoCircle.style.stroke = '#f59e0b';
+                seoCircle.style.strokeDashoffset = '105';
                 seoNum.textContent = '58';
             }, 3500);
-
             setTimeout(() => {
-                // Step 2: Internal link check
                 if (seoItems[1]) seoItems[1].classList.add('checked');
-                seoCircle.style.stroke = '#38bdf8'; // Light Blue
-                seoCircle.style.strokeDashoffset = '68'; // Score 73
+                seoCircle.style.stroke = '#3b82f6';
+                seoCircle.style.strokeDashoffset = '68';
                 seoNum.textContent = '73';
             }, 5500);
-
             setTimeout(() => {
-                // Step 3: Schema markup check
                 if (seoItems[2]) seoItems[2].classList.add('checked');
-                seoCircle.style.stroke = '#00E659'; // Neon Green
-                seoCircle.style.strokeDashoffset = '5'; // Score 98
+                seoCircle.style.stroke = '#10b981';
+                seoCircle.style.strokeDashoffset = '5';
                 seoNum.textContent = '98';
-                seoBtn.innerHTML = `
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    Optimasi Selesai!
-                `;
-                seoBtn.style.background = '#00E659';
-                seoBtn.style.color = 'black';
+                seoBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sistem Siap`;
+                seoBtn.style.background = '#10b981';
             }, 7500);
         }
 
-        // Run immediately and loop
         if (seoCircle) {
             runSeoMockAnimation();
             setInterval(runSeoMockAnimation, 12000);
         }
 
-        // Add standard spinner animation style programmatically to avoid style clashes
         const spinnerStyle = document.createElement('style');
-        spinnerStyle.textContent = `
-            @keyframes spin { 100% { transform: rotate(360deg); } }
-            .checked svg { color: #00E659; }
-        `;
+        spinnerStyle.textContent = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
         document.head.appendChild(spinnerStyle);
 
-        // Pricing Plan Toggle function
-        function setPricingPeriod(period) {
-            const monthlyBtn = document.getElementById('pricing-monthly-btn');
-            const yearlyBtn = document.getElementById('pricing-yearly-btn');
-            const priceStarter = document.getElementById('price-starter');
-            const pricePro = document.getElementById('price-pro');
-
-            if (!monthlyBtn || !yearlyBtn || !priceStarter || !pricePro) return;
-
-            if (period === 'monthly') {
-                monthlyBtn.classList.add('active');
-                yearlyBtn.classList.remove('active');
-                priceStarter.textContent = '299.000';
-                pricePro.textContent = '799.000';
-            } else {
-                yearlyBtn.classList.add('active');
-                monthlyBtn.classList.remove('active');
-                priceStarter.textContent = '239.000';
-                pricePro.textContent = '639.000';
-            }
-        }
     </script>
     <script src="purchase-notif.js"></script>
 </body>

@@ -5,16 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optima SEO by Cardi — Plugin SEO WordPress Otomatis Terbaik 2026</title>
-    <meta name="description" content="Dominasi halaman pertama Google dengan plugin SEO WordPress terlengkap. Otomatisasi meta tag, internal linking, schema markup, dan optimasi konten AI secara autopilot.">
+    <meta name="description"
+        content="Dominasi halaman pertama Google dengan plugin SEO WordPress terlengkap. Otomatisasi meta tag, internal linking, schema markup, dan optimasi konten AI secara autopilot.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         /* ==============================================
            DESIGN SYSTEM & CSS VARIABLES
            ============================================== */
-        *, *::before, *::after {
-            margin: 0; padding: 0; box-sizing: border-box;
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         :root {
@@ -36,10 +42,12 @@
             --radius-lg: 28px;
             --radius-full: 9999px;
             --shadow-glow: 0 0 40px rgba(5, 150, 82, 0.15);
-            --shadow-card: 0 2px 16px rgba(0,0,0,0.07);
+            --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
         }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -50,10 +58,16 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        ::selection { background: var(--accent); color: #fff; }
+        ::selection {
+            background: var(--accent);
+            color: #fff;
+        }
 
 
-        a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         .container {
             max-width: 1200px;
@@ -61,41 +75,88 @@
             padding: 0 24px;
         }
 
-        .text-accent { color: var(--accent); }
+        .text-accent {
+            color: var(--accent);
+        }
 
         /* ANIMATIONS */
         @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(5, 150, 82, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(5, 150, 82, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(5, 150, 82, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(5, 150, 82, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(5, 150, 82, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(5, 150, 82, 0);
+            }
         }
 
         @keyframes float-up {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-80px); opacity: 0; }
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-80px);
+                opacity: 0;
+            }
         }
 
         @keyframes glow-pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         @keyframes slide-in {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes marquee-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         @keyframes count-up {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         /* SCROLL REVEAL */
         .reveal {
@@ -103,7 +164,11 @@
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* SECTION LABEL */
         .section-label {
@@ -117,8 +182,10 @@
             color: var(--accent);
             margin-bottom: 16px;
         }
+
         .section-label .dot {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: var(--accent);
             box-shadow: 0 0 8px rgba(5, 150, 82, 0.4);
@@ -126,20 +193,25 @@
 
         /* BG GRID */
         .bg-grid-overlay {
-            position: fixed; inset: 0;
+            position: fixed;
+            inset: 0;
             background-size: 60px 60px;
             background-image:
-                linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
             mask-image: radial-gradient(ellipse 80% 50% at 50% 30%, black 20%, transparent 100%);
-            z-index: -2; pointer-events: none;
+            z-index: -2;
+            pointer-events: none;
         }
 
         /* =======================================
            NAVBAR - Floating Glassmorphism
            ======================================= */
         .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             padding: 16px 24px;
             transition: all 0.4s ease;
@@ -155,8 +227,8 @@
             border-radius: var(--radius-full);
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(0,0,0,0.09);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0, 0, 0, 0.09);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
         }
 
         .nav-logo {
@@ -177,7 +249,10 @@
             gap: 6px;
             transition: color 0.2s;
         }
-        .nav-back:hover { color: var(--text-primary); }
+
+        .nav-back:hover {
+            color: var(--text-primary);
+        }
 
         .nav-links {
             display: flex;
@@ -191,7 +266,10 @@
             color: var(--text-secondary);
             transition: color 0.2s;
         }
-        .nav-link:hover { color: var(--text-primary); }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
 
         .nav-cta {
             display: inline-flex;
@@ -206,6 +284,7 @@
             box-shadow: 0 4px 14px rgba(5, 150, 82, 0.25);
             transition: all 0.3s;
         }
+
         .nav-cta:hover {
             box-shadow: 0 6px 24px rgba(5, 150, 82, 0.4);
             transform: translateY(-2px);
@@ -228,11 +307,14 @@
 
         .hero-glow {
             position: absolute;
-            top: -200px; left: 50%;
+            top: -200px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 1000px; height: 1000px;
+            width: 1000px;
+            height: 1000px;
             background: radial-gradient(circle, rgba(5, 150, 82, 0.1) 0%, transparent 70%);
-            pointer-events: none; z-index: -1;
+            pointer-events: none;
+            z-index: -1;
             animation: glow-pulse 4s ease-in-out infinite;
         }
 
@@ -322,6 +404,7 @@
             box-shadow: 0 6px 20px rgba(5, 150, 82, 0.3);
             transition: all 0.3s;
         }
+
         .btn-primary:hover {
             box-shadow: 0 10px 30px rgba(5, 150, 82, 0.45);
             transform: translateY(-3px);
@@ -339,6 +422,7 @@
             font-weight: 600;
             transition: all 0.3s;
         }
+
         .btn-ghost:hover {
             border-color: rgba(0, 0, 0, 0.25);
             color: var(--text-primary);
@@ -396,7 +480,9 @@
             position: relative;
             overflow: hidden;
         }
-        .marquee-wrapper::before, .marquee-wrapper::after {
+
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
             content: "";
             position: absolute;
             top: 0;
@@ -405,10 +491,12 @@
             z-index: 2;
             pointer-events: none;
         }
+
         .marquee-wrapper::before {
             left: 0;
             background: linear-gradient(to right, var(--bg-void), transparent);
         }
+
         .marquee-wrapper::after {
             right: 0;
             background: linear-gradient(to left, var(--bg-void), transparent);
@@ -428,7 +516,10 @@
             letter-spacing: -0.5px;
             transition: color 0.3s;
         }
-        .marquee-track span:hover { color: rgba(0, 0, 0, 0.4); }
+
+        .marquee-track span:hover {
+            color: rgba(0, 0, 0, 0.4);
+        }
 
         /* =======================================
            LIVE SEO DEMO SECTION
@@ -483,7 +574,7 @@
             border: 1px solid var(--border);
             border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.1), var(--shadow-glow);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1), var(--shadow-glow);
         }
 
         .wp-header {
@@ -495,9 +586,14 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .wp-dots { display: flex; gap: 6px; }
+        .wp-dots {
+            display: flex;
+            gap: 6px;
+        }
+
         .wp-dot {
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
         }
 
@@ -523,6 +619,7 @@
             gap: 8px;
             margin-bottom: 4px;
         }
+
         .wp-menu-item.active {
             background: var(--accent-dim);
             color: var(--accent);
@@ -590,18 +687,20 @@
 
         .score-ring {
             position: relative;
-            width: 64px; height: 64px;
+            width: 64px;
+            height: 64px;
             flex-shrink: 0;
         }
 
         .score-ring svg {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             transform: rotate(-90deg);
         }
 
         .score-ring-bg {
             fill: none;
-            stroke: rgba(0,0,0,0.08);
+            stroke: rgba(0, 0, 0, 0.08);
             stroke-width: 7;
         }
 
@@ -611,7 +710,8 @@
             stroke-width: 7;
             stroke-linecap: round;
             stroke-dasharray: 163;
-            stroke-dashoffset: 95; /* ~42 score */
+            stroke-dashoffset: 95;
+            /* ~42 score */
             transition: stroke-dashoffset 2s ease, stroke 2s ease;
         }
 
@@ -650,14 +750,17 @@
         }
 
         .seo-meta-dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: #ef4444;
             flex-shrink: 0;
             transition: background 0.5s;
         }
 
-        .seo-meta-item.ok .seo-meta-dot { background: var(--accent); }
+        .seo-meta-item.ok .seo-meta-dot {
+            background: var(--accent);
+        }
 
         .wp-optimize-btn {
             width: 100%;
@@ -675,7 +778,10 @@
             gap: 6px;
             transition: all 0.3s;
         }
-        .wp-optimize-btn:hover { filter: brightness(1.1); }
+
+        .wp-optimize-btn:hover {
+            filter: brightness(1.1);
+        }
 
         /* =======================================
            BENTO FEATURES GRID (Cursor Spotlight)
@@ -728,22 +834,34 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(400px circle at var(--mx) var(--my), rgba(5,150,82,0.06), transparent 40%);
+            background: radial-gradient(400px circle at var(--mx) var(--my), rgba(5, 150, 82, 0.06), transparent 40%);
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
             z-index: 1;
         }
 
-        .bento-card:hover { transform: translateY(-4px); border-color: var(--border-accent); }
-        .bento-card:hover::before { opacity: 1; }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-accent);
+        }
 
-        .bento-card > * { position: relative; z-index: 2; }
+        .bento-card:hover::before {
+            opacity: 1;
+        }
 
-        .bento-wide { grid-column: span 2; }
+        .bento-card>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bento-wide {
+            grid-column: span 2;
+        }
 
         .bento-icon {
-            width: 48px; height: 48px;
+            width: 48px;
+            height: 48px;
             background: var(--accent-dim);
             border-radius: 12px;
             display: flex;
@@ -780,7 +898,7 @@
         .mini-score-bar {
             flex: 1;
             height: 8px;
-            background: rgba(0,0,0,0.07);
+            background: rgba(0, 0, 0, 0.07);
             border-radius: 99px;
             overflow: hidden;
         }
@@ -804,11 +922,69 @@
         .kw-tag {
             padding: 5px 12px;
             border-radius: 6px;
-            background: rgba(5,150,82,0.07);
+            background: rgba(5, 150, 82, 0.07);
             border: 1px solid var(--border-accent);
             font-size: 11px;
             font-weight: 600;
             color: var(--accent);
+        }
+
+        /* =======================================
+           GUARANTEE & BONUS SECTION
+           ======================================= */
+        .guarantee-section {
+            padding: 100px 0 40px;
+        }
+
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .guarantee-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .guarantee-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow), var(--shadow-card);
+        }
+
+        .guarantee-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .guarantee-card h3 {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 10px;
+        }
+
+        .guarantee-card p {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        @media (max-width: 900px) {
+            .guarantee-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* =======================================
@@ -833,14 +1009,14 @@
         }
 
         .compare-card.before {
-            background: linear-gradient(135deg, rgba(239,68,68,0.05), #fff);
-            border-color: rgba(239,68,68,0.2);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), #fff);
+            border-color: rgba(239, 68, 68, 0.2);
         }
 
         .compare-card.after {
-            background: linear-gradient(135deg, rgba(5,150,82,0.05), #fff);
+            background: linear-gradient(135deg, rgba(5, 150, 82, 0.05), #fff);
             border-color: var(--border-accent);
-            box-shadow: 0 4px 24px rgba(5,150,82,0.1);
+            box-shadow: 0 4px 24px rgba(5, 150, 82, 0.1);
         }
 
         .compare-head {
@@ -852,7 +1028,9 @@
             font-weight: 800;
         }
 
-        .compare-list { list-style: none; }
+        .compare-list {
+            list-style: none;
+        }
 
         .compare-list li {
             display: flex;
@@ -864,7 +1042,8 @@
         }
 
         .cmp-icon {
-            width: 22px; height: 22px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             font-size: 11px;
             font-weight: 700;
@@ -875,8 +1054,15 @@
             margin-top: 1px;
         }
 
-        .cmp-x { background: rgba(239,68,68,0.12); color: #dc2626; }
-        .cmp-v { background: rgba(5,150,82,0.12); color: var(--accent); }
+        .cmp-x {
+            background: rgba(239, 68, 68, 0.12);
+            color: #dc2626;
+        }
+
+        .cmp-v {
+            background: rgba(5, 150, 82, 0.12);
+            color: var(--accent);
+        }
 
         /* =======================================
            TESTIMONIAL SECTION
@@ -930,7 +1116,8 @@
         }
 
         .testi-avatar {
-            width: 40px; height: 40px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--accent-dim);
             border: 2px solid var(--border-accent);
@@ -987,7 +1174,9 @@
             transition: border-color 0.3s;
         }
 
-        .faq-item.open { border-color: var(--border-accent); }
+        .faq-item.open {
+            border-color: var(--border-accent);
+        }
 
         .faq-question {
             padding: 22px 24px;
@@ -1001,7 +1190,8 @@
         }
 
         .faq-chevron {
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             border: 1px solid var(--border);
             display: flex;
@@ -1026,7 +1216,9 @@
             transition: max-height 0.4s ease;
         }
 
-        .faq-item.open .faq-answer { max-height: 200px; }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
 
         .faq-answer-inner {
             padding: 0 24px 22px;
@@ -1050,8 +1242,8 @@
             gap: 8px;
             margin-bottom: 32px;
             padding: 12px 24px;
-            background: rgba(239,68,68,0.07);
-            border: 1px solid rgba(239,68,68,0.2);
+            background: rgba(239, 68, 68, 0.07);
+            border: 1px solid rgba(239, 68, 68, 0.2);
             border-radius: var(--radius-full);
             font-size: 13px;
             font-weight: 600;
@@ -1068,8 +1260,8 @@
             flex-direction: column;
             align-items: center;
             gap: 2px;
-            background: rgba(239,68,68,0.1);
-            border: 1px solid rgba(239,68,68,0.2);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
             border-radius: 6px;
             padding: 4px 10px;
             min-width: 44px;
@@ -1085,7 +1277,7 @@
         .cd-label {
             font-size: 9px;
             font-weight: 600;
-            color: rgba(185,28,28,0.6);
+            color: rgba(185, 28, 28, 0.6);
             text-transform: uppercase;
         }
 
@@ -1098,19 +1290,20 @@
             padding: 56px 48px;
             text-align: center;
             position: relative;
-            box-shadow: 0 8px 40px rgba(5,150,82,0.15), 0 2px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 40px rgba(5, 150, 82, 0.15), 0 2px 10px rgba(0, 0, 0, 0.06);
             transform: scale(1.02);
             transition: all 0.4s;
         }
 
         .pricing-card-main:hover {
-            box-shadow: 0 12px 60px rgba(5,150,82,0.2), 0 2px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 12px 60px rgba(5, 150, 82, 0.2), 0 2px 10px rgba(0, 0, 0, 0.06);
             transform: scale(1.04);
         }
 
         .pricing-ribbon {
             position: absolute;
-            top: 0; right: 0;
+            top: 0;
+            right: 0;
             background: var(--accent);
             color: #fff;
             padding: 8px 16px;
@@ -1151,7 +1344,7 @@
 
         .price-strike {
             font-size: 1.1rem;
-            color: rgba(0,0,0,0.3);
+            color: rgba(0, 0, 0, 0.3);
             text-decoration: line-through;
             font-weight: 600;
         }
@@ -1215,7 +1408,8 @@
         }
 
         .pf-icon {
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             background: var(--accent-dim);
             border-radius: 50%;
             display: flex;
@@ -1237,7 +1431,7 @@
             font-size: 17px;
             font-weight: 800;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(5,150,82,0.35);
+            box-shadow: 0 8px 24px rgba(5, 150, 82, 0.35);
             animation: pulse-ring 2s infinite;
             transition: all 0.3s;
             margin-bottom: 16px;
@@ -1245,7 +1439,7 @@
 
         .cta-btn-main:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(5,150,82,0.4);
+            box-shadow: 0 12px 40px rgba(5, 150, 82, 0.4);
         }
 
         .cta-note {
@@ -1262,8 +1456,8 @@
         }
 
         .cross-promo-card {
-            background: linear-gradient(135deg, rgba(230,0,0,0.05), #fff);
-            border: 1px solid rgba(230,0,0,0.15);
+            background: linear-gradient(135deg, rgba(230, 0, 0, 0.05), #fff);
+            border: 1px solid rgba(230, 0, 0, 0.15);
             border-radius: var(--radius-lg);
             padding: 48px;
             display: flex;
@@ -1294,14 +1488,15 @@
             font-weight: 700;
             font-size: 15px;
             border-radius: var(--radius-full);
-            box-shadow: 0 0 30px rgba(230,0,0,0.25);
+            box-shadow: 0 0 30px rgba(230, 0, 0, 0.25);
             white-space: nowrap;
             transition: all 0.3s;
             flex-shrink: 0;
         }
+
         .cross-promo-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(230,0,0,0.4);
+            box-shadow: 0 0 50px rgba(230, 0, 0, 0.4);
         }
 
         /* =======================================
@@ -1319,17 +1514,37 @@
             color: var(--text-muted);
             transition: color 0.2s;
         }
-        .footer a:hover { color: var(--text-primary); }
+
+        .footer a:hover {
+            color: var(--text-primary);
+        }
 
         /* =======================================
            RESPONSIVE
            ======================================= */
         @media (max-width: 900px) {
-            .demo-grid, .compare-cards, .bento-grid { grid-template-columns: 1fr; }
-            .bento-wide { grid-column: span 1; }
-            .testimonial-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.6rem; }
-            .pricing-card-main { padding: 40px 24px; }
+
+            .demo-grid,
+            .compare-cards,
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-wide {
+                grid-column: span 1;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .pricing-card-main {
+                padding: 40px 24px;
+            }
         }
     </style>
 </head>
@@ -1342,17 +1557,21 @@
     <nav class="navbar">
         <div class="navbar-inner">
             <div class="nav-logo">
-                Optima <span class="text-accent">SEO</span> <span style="color: var(--text-muted); font-weight: 500; font-size: 13px;">by Cardi</span>
+                Optima <span class="text-accent">SEO</span> <span
+                    style="color: var(--text-muted); font-weight: 500; font-size: 13px;">by Cardi</span>
             </div>
             <div class="nav-links">
                 <a href="#fitur" class="nav-link">Fitur</a>
                 <a href="#testimonial" class="nav-link">Testimoni</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="main.html" class="nav-back">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
                     Beranda
                 </a>
-                <a href="#harga" class="nav-cta">Beli Sekarang — Rp 99K</a>
+                <a href="https://lynk.id/cardinusantara/y6ojjl35l0nr" class="nav-cta" target="_blank"
+                    rel="noopener">Miliki Sekarang — Rp 99K</a>
             </div>
         </div>
     </nav>
@@ -1363,27 +1582,34 @@
         <div class="particle-field" id="particleField"></div>
 
         <div class="hero-badge">
-            <span class="dot" style="width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow: 0 0 8px var(--accent);"></span>
-            Plugin WordPress SEO Otomatis #1
+            <span class="dot"
+                style="width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow: 0 0 8px var(--accent);"></span>
+            Dipercaya 1.800+ Pemilik Website di Indonesia
         </div>
 
         <h1>
-            Dominasi Google<br>
-            <span class="accent-line">100% Autopilot.</span>
+            SEO WordPress Anda,<br>
+            <span class="accent-line">Diurus Sambil Anda Tidur.</span>
         </h1>
 
         <p class="hero-desc">
-            Hentikan SEO manual yang menguras waktu. Optima SEO mengoptimalkan meta tag, internal link, schema markup, dan skor konten Anda secara otomatis — dalam hitungan detik, bukan jam.
+            Tidak perlu lagi begadang atur meta tag satu-satu atau pusing mikirin schema markup. Optima SEO membaca
+            setiap artikel yang Anda tulis, lalu merapikannya jadi siap bersaing di halaman satu Google — otomatis,
+            dalam hitungan detik.
         </p>
 
         <div class="hero-actions">
-            <a href="#harga" class="btn-primary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
-                Dapatkan Plugin — Rp 99K
+            <a href="https://lynk.id/cardinusantara/y6ojjl35l0nr" class="btn-primary" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
+                </svg>
+                Aktifkan Plugin — Rp 99K
             </a>
             <a href="#demo" class="btn-ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Lihat Demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Lihat Cara Kerjanya
             </a>
         </div>
 
@@ -1445,8 +1671,10 @@
             <div class="demo-grid reveal">
                 <div class="demo-text">
                     <div class="section-label"><span class="dot"></span> Live Demo</div>
-                    <h2>Lihat Cara Kerjanya Secara Nyata</h2>
-                    <p>Plugin Optima SEO terintegrasi langsung ke dalam editor WordPress Anda. Dengan satu klik, AI kami menganalisis dan mengoptimalkan seluruh elemen SEO secara otomatis — dari meta tag sampai schema markup.</p>
+                    <h2>Bukan Janji Kosong. Ini Cara Kerjanya.</h2>
+                    <p>Begitu Optima SEO aktif, dia langsung menyatu dengan editor WordPress Anda. Tulis artikel seperti
+                        biasa, lalu satu klik saja — meta tag, internal link, alt text, sampai schema markup langsung
+                        tertata rapi tanpa Anda sentuh sedikit pun.</p>
                     <div class="feature-chips">
                         <span class="chip">Meta AI</span>
                         <span class="chip">Auto Internal Link</span>
@@ -1464,8 +1692,12 @@
                             <div class="wp-dot" style="background:#f59e0b;"></div>
                             <div class="wp-dot" style="background:#10b981;"></div>
                         </div>
-                        <span style="font-size:11px; color:var(--text-muted); font-family:monospace;">WordPress Admin — Optima SEO</span>
-                        <span style="font-size:11px; color:var(--accent); font-weight:700; display:flex; align-items:center; gap:5px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent);"></span>Plugin Active</span>
+                        <span style="font-size:11px; color:var(--text-muted); font-family:monospace;">WordPress Admin —
+                            Optima SEO</span>
+                        <span
+                            style="font-size:11px; color:var(--accent); font-weight:700; display:flex; align-items:center; gap:5px;"><span
+                                style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent);"></span>Plugin
+                            Active</span>
                     </div>
 
                     <div class="wp-body">
@@ -1479,16 +1711,21 @@
 
                         <div class="wp-content">
                             <div class="wp-post-editor">
-                                <div class="wp-post-title" id="wp-post-title">10 Cara Meningkatkan Omzet Toko Online</div>
+                                <div class="wp-post-title" id="wp-post-title">10 Cara Meningkatkan Omzet Toko Online
+                                </div>
                                 <div class="wp-post-body" id="wp-post-body">
-                                    Meningkatkan omzet toko online memerlukan strategi yang tepat. Mulai dari optimasi toko, pengelolaan media sosial, hingga penggunaan kecerdasan buatan untuk layanan pelanggan...
+                                    Meningkatkan omzet toko online memerlukan strategi yang tepat. Mulai dari optimasi
+                                    toko, pengelolaan media sosial, hingga penggunaan kecerdasan buatan untuk layanan
+                                    pelanggan...
                                 </div>
                             </div>
 
                             <div class="wp-seo-panel">
                                 <div class="seo-panel-header">
                                     <span>Optima SEO Analyzer</span>
-                                    <button class="wp-optimize-btn" id="wp-opt-btn" style="width:auto; padding: 6px 14px; font-size:11px;" onclick="runWpOptimize()">
+                                    <button class="wp-optimize-btn" id="wp-opt-btn"
+                                        style="width:auto; padding: 6px 14px; font-size:11px;"
+                                        onclick="runWpOptimize()">
                                         ⚡ Optimize
                                     </button>
                                 </div>
@@ -1497,7 +1734,8 @@
                                     <div class="score-ring">
                                         <svg viewBox="0 0 48 48">
                                             <circle class="score-ring-bg" cx="24" cy="24" r="20"></circle>
-                                            <circle class="score-ring-val" id="wp-score-ring" cx="24" cy="24" r="20"></circle>
+                                            <circle class="score-ring-val" id="wp-score-ring" cx="24" cy="24" r="20">
+                                            </circle>
                                         </svg>
                                         <div class="score-ring-num">
                                             <span id="wp-score-num">42</span>
@@ -1532,21 +1770,31 @@
     <section class="features-section" id="fitur">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label" style="justify-content:center;"><span class="dot"></span> Fitur Unggulan</div>
-                <h2>Dirancang untuk Pertumbuhan Trafik Ekstrem</h2>
-                <p>Arahkan kursor ke kartu untuk melihat sorotan. Fitur kelas enterprise yang hadir dalam plugin sederhana.</p>
+                <div class="section-label" style="justify-content:center;"><span class="dot"></span> Fitur Unggulan
+                </div>
+                <h2>Semua yang Dulu Anda Kerjakan Manual, Kini Otomatis</h2>
+                <p>Ini bukan sekadar plugin checklist SEO. Setiap fitur di bawah dirancang untuk menggantikan pekerjaan
+                    teknis yang selama ini menyita waktu tim Anda.</p>
             </div>
 
             <div class="bento-grid reveal" id="bentoGrid">
                 <!-- Card 1: Wide -->
                 <div class="bento-card bento-wide">
                     <div class="bento-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
                     </div>
                     <h3>AI Meta Tag & Judul Generator Otomatis</h3>
-                    <p>Plugin kami membaca seluruh konten artikel Anda dan secara otomatis membuat meta title yang menarik dan meta description yang kaya kata kunci — dioptimalkan untuk klik tinggi di SERP Google.</p>
+                    <p>Plugin kami membaca seluruh konten artikel Anda dan secara otomatis membuat meta title yang
+                        menarik dan meta description yang kaya kata kunci — dioptimalkan untuk klik tinggi di SERP
+                        Google.</p>
                     <div class="mini-score-demo">
-                        <span style="font-size:11px; color:var(--text-muted); white-space:nowrap; font-weight:600;">SEO Score</span>
+                        <span style="font-size:11px; color:var(--text-muted); white-space:nowrap; font-weight:600;">SEO
+                            Score</span>
                         <div class="mini-score-bar">
                             <div class="mini-score-fill" id="mini-bar-1" style="width: 0%;"></div>
                         </div>
@@ -1557,10 +1805,15 @@
                 <!-- Card 2 -->
                 <div class="bento-card">
                     <div class="bento-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
                     </div>
                     <h3>Internal Linking Cerdas</h3>
-                    <p>Deteksi otomatis peluang internal link di seluruh artikel dan hubungkan halaman-halaman relevan untuk memperkuat arsitektur situs.</p>
+                    <p>Deteksi otomatis peluang internal link di seluruh artikel dan hubungkan halaman-halaman relevan
+                        untuk memperkuat arsitektur situs.</p>
                     <div class="keyword-cloud">
                         <span class="kw-tag">SEO Tips</span>
                         <span class="kw-tag">Meta Tag</span>
@@ -1571,28 +1824,48 @@
                 <!-- Card 3 -->
                 <div class="bento-card">
                     <div class="bento-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"></path></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M3 9h18M9 21V9"></path>
+                        </svg>
                     </div>
                     <h3>Schema Markup JSON-LD</h3>
-                    <p>Injeksi otomatis schema Article, Product, FAQ, dan BreadcrumbList agar mesin pencari memahami konten Anda lebih dalam dan menampilkan rich snippets.</p>
+                    <p>Injeksi otomatis schema Article, Product, FAQ, dan BreadcrumbList agar mesin pencari memahami
+                        konten Anda lebih dalam dan menampilkan rich snippets.</p>
                 </div>
 
                 <!-- Card 4 -->
                 <div class="bento-card">
                     <div class="bento-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <line x1="9" y1="3" x2="9" y2="21" />
+                            <line x1="15" y1="3" x2="15" y2="21" />
+                            <line x1="3" y1="9" x2="21" y2="9" />
+                            <line x1="3" y1="15" x2="21" y2="15" />
+                        </svg>
                     </div>
                     <h3>Alt Text Gambar AI</h3>
-                    <p>Setiap gambar yang Anda upload akan otomatis mendapat alt text yang kaya kata kunci dari AI — tanpa harus menulis manual satu per satu.</p>
+                    <p>Setiap gambar yang Anda upload akan otomatis mendapat alt text yang kaya kata kunci dari AI —
+                        tanpa harus menulis manual satu per satu.</p>
                 </div>
 
                 <!-- Card 5: Wide -->
                 <div class="bento-card bento-wide">
                     <div class="bento-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
                     </div>
                     <h3>Laporan & Audit SEO Mingguan</h3>
-                    <p>Dapatkan laporan audit SEO otomatis setiap minggu langsung di dashboard WordPress Anda. Lihat halaman mana yang perlu perbaikan, keyword yang bisa dioptimalkan, dan progres peningkatan skor dari waktu ke waktu.</p>
+                    <p>Dapatkan laporan audit SEO otomatis setiap minggu langsung di dashboard WordPress Anda. Lihat
+                        halaman mana yang perlu perbaikan, keyword yang bisa dioptimalkan, dan progres peningkatan skor
+                        dari waktu ke waktu.</p>
                 </div>
             </div>
         </div>
@@ -1603,36 +1876,78 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-label" style="justify-content:center;"><span class="dot"></span> Perbandingan</div>
-                <h2>Sebelum vs Sesudah Optima SEO</h2>
-                <p>Lihat perbedaan nyata yang dirasakan ratusan klien kami setelah menggunakan plugin ini.</p>
+                <h2>Rasakan Bedanya, Bukan Sekadar Baca Fiturnya</h2>
+                <p>Ini gambaran paling jujur tentang apa yang berubah setelah ratusan klien kami berhenti mengurus SEO
+                    secara manual.</p>
             </div>
 
             <div class="compare-cards">
                 <div class="compare-card before">
                     <div class="compare-head" style="color: #ef4444;">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
                         Tanpa Optima SEO
                     </div>
                     <ul class="compare-list">
-                        <li><div class="cmp-icon cmp-x">✕</div> Menulis meta tag & description manual satu per satu untuk setiap artikel — memakan waktu berjam-jam.</li>
-                        <li><div class="cmp-icon cmp-x">✕</div> Sering lupa atau melewatkan optimasi gambar & alt text — kehilangan trafik pencarian gambar.</li>
-                        <li><div class="cmp-icon cmp-x">✕</div> Tidak ada internal linking — otoritas halaman tidak menyebar, skor domain mandek.</li>
-                        <li><div class="cmp-icon cmp-x">✕</div> Tidak ada schema markup — Google tidak menampilkan rich snippet untuk konten Anda.</li>
-                        <li><div class="cmp-icon cmp-x">✕</div> Tidak ada laporan audit — tidak tahu halaman mana yang butuh perbaikan.</li>
+                        <li>
+                            <div class="cmp-icon cmp-x">✕</div> Menulis meta tag & description manual satu per satu
+                            untuk setiap artikel — memakan waktu berjam-jam.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-x">✕</div> Sering lupa atau melewatkan optimasi gambar & alt text —
+                            kehilangan trafik pencarian gambar.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-x">✕</div> Tidak ada internal linking — otoritas halaman tidak
+                            menyebar, skor domain mandek.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-x">✕</div> Tidak ada schema markup — Google tidak menampilkan rich
+                            snippet untuk konten Anda.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-x">✕</div> Tidak ada laporan audit — tidak tahu halaman mana yang
+                            butuh perbaikan.
+                        </li>
                     </ul>
                 </div>
 
                 <div class="compare-card after">
                     <div class="compare-head" style="color: var(--accent);">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                            <polyline points="16 7 22 7 22 13"></polyline>
+                        </svg>
                         Dengan Optima SEO
                     </div>
                     <ul class="compare-list">
-                        <li><div class="cmp-icon cmp-v">✓</div> Meta title & description dibuat otomatis oleh AI dalam hitungan detik saat artikel disimpan.</li>
-                        <li><div class="cmp-icon cmp-v">✓</div> Alt text gambar terisi otomatis tanpa perlu input manual — trafik Google Images naik.</li>
-                        <li><div class="cmp-icon cmp-v">✓</div> Internal linking dipasang secara cerdas ke artikel terkait — otoritas halaman terdistribusi optimal.</li>
-                        <li><div class="cmp-icon cmp-v">✓</div> Schema markup JSON-LD terinjeksi otomatis — artikel muncul dengan rich snippet di Google.</li>
-                        <li><div class="cmp-icon cmp-v">✓</div> Laporan audit mingguan otomatis — tahu persis apa yang harus diperbaiki setiap saat.</li>
+                        <li>
+                            <div class="cmp-icon cmp-v">✓</div> Meta title & description dibuat otomatis oleh AI dalam
+                            hitungan detik saat artikel disimpan.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-v">✓</div> Alt text gambar terisi otomatis tanpa perlu input manual
+                            — trafik Google Images naik.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-v">✓</div> Internal linking dipasang secara cerdas ke artikel
+                            terkait — otoritas halaman terdistribusi optimal.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-v">✓</div> Schema markup JSON-LD terinjeksi otomatis — artikel
+                            muncul dengan rich snippet di Google.
+                        </li>
+                        <li>
+                            <div class="cmp-icon cmp-v">✓</div> Laporan audit mingguan otomatis — tahu persis apa yang
+                            harus diperbaiki setiap saat.
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1643,16 +1958,19 @@
     <section class="testimonial-section" id="testimonial">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label" style="justify-content:center;"><span class="dot"></span> Testimoni Nyata</div>
-                <h2>Hasil Nyata dari Pengguna Optima SEO</h2>
-                <p>Lebih dari 1.800 bisnis di Indonesia sudah merasakan perbedaannya.</p>
+                <div class="section-label" style="justify-content:center;"><span class="dot"></span> Testimoni Nyata
+                </div>
+                <h2>Kata Mereka yang Sudah Lebih Dulu Mencoba</h2>
+                <p>Lebih dari 1.800 pemilik bisnis dan blogger di Indonesia sudah membuktikannya sendiri.</p>
             </div>
 
             <div class="testimonial-grid reveal">
                 <div class="testi-card">
                     <div class="testi-stars">★★★★★</div>
                     <div class="testi-result">📈 Trafik Organik +420% dalam 3 Bulan</div>
-                    <p class="testi-quote">"Saya dulu habiskan 4-5 jam per hari cuma untuk SEO on-page. Sekarang plugin ini mengerjakannya sendiri saat saya tidur. Skor domain saya naik dari 18 ke 54 dalam sebulan!"</p>
+                    <p class="testi-quote">"Saya dulu habiskan 4-5 jam per hari cuma untuk SEO on-page. Sekarang plugin
+                        ini mengerjakannya sendiri saat saya tidur. Skor domain saya naik dari 18 ke 54 dalam sebulan!"
+                    </p>
                     <div class="testi-author">
                         <div class="testi-avatar">RP</div>
                         <div>
@@ -1665,7 +1983,9 @@
                 <div class="testi-card">
                     <div class="testi-stars">★★★★★</div>
                     <div class="testi-result">🥇 Halaman 1 Google untuk 47 Keyword</div>
-                    <p class="testi-quote">"Plugin ini benar-benar game changer. Artikel yang dulu stuck di halaman 3-5 Google, sekarang sebagian besar sudah di halaman 1. Schema markup-nya sangat membantu rich snippet!"</p>
+                    <p class="testi-quote">"Plugin ini benar-benar game changer. Artikel yang dulu stuck di halaman 3-5
+                        Google, sekarang sebagian besar sudah di halaman 1. Schema markup-nya sangat membantu rich
+                        snippet!"</p>
                     <div class="testi-author">
                         <div class="testi-avatar">NK</div>
                         <div>
@@ -1678,7 +1998,9 @@
                 <div class="testi-card">
                     <div class="testi-stars">★★★★★</div>
                     <div class="testi-result">⚡ Hemat 30 Jam/Bulan dari SEO Manual</div>
-                    <p class="testi-quote">"Harga Rp 99.000 sangat worth it. Bayar sekali, plugin jalan selamanya. Tim content writer kami sekarang bisa fokus bikin konten berkualitas, bukan ngurusin technical SEO."</p>
+                    <p class="testi-quote">"Harga Rp 99.000 sangat worth it. Bayar sekali, plugin jalan selamanya. Tim
+                        content writer kami sekarang bisa fokus bikin konten berkualitas, bukan ngurusin technical SEO."
+                    </p>
                     <div class="testi-author">
                         <div class="testi-avatar">DS</div>
                         <div>
@@ -1691,12 +2013,56 @@
         </div>
     </section>
 
+    <!-- GUARANTEE & BONUS -->
+    <section class="guarantee-section reveal">
+        <div class="container">
+            <div class="guarantee-grid">
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 12 11 14 15 10"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Garansi Uang Kembali 7 Hari</h3>
+                    <p>Coba dulu di website Anda. Kalau dalam 7 hari Optima SEO tidak sesuai ekspektasi, cukup kirim
+                        pesan ke kami dan uang Anda kembali 100% — tanpa drama, tanpa syarat rumit.</p>
+                </div>
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                            <line x1="16" y1="8" x2="2" y2="22"></line>
+                            <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h3>Bonus: E-book Strategi Konten SEO 2026</h3>
+                    <p>Panduan singkat riset keyword dan struktur artikel yang paling disukai Google, kami kirimkan
+                        gratis ke email Anda begitu pembelian selesai.</p>
+                </div>
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3>Akses Grup Support Prioritas</h3>
+                    <p>Punya kendala instalasi atau pertanyaan seputar konfigurasi? Tim kami siap membantu lewat grup
+                        khusus pembeli, bukan sekadar tiket email yang lama dibalas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ SECTION -->
     <section class="faq-section" id="faq">
         <div class="container">
             <div class="section-header reveal">
                 <div class="section-label" style="justify-content:center;"><span class="dot"></span> FAQ</div>
-                <h2>Pertanyaan yang Sering Diajukan</h2>
+                <h2>Masih Ragu? Ini Jawabannya</h2>
             </div>
 
             <div class="faq-list reveal">
@@ -1706,7 +2072,9 @@
                         <div class="faq-chevron">▼</div>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Plugin Optima SEO kompatibel dengan WordPress versi 5.5 ke atas dan PHP 7.4+. Plugin juga berjalan lancar bersama tema apapun, termasuk Elementor, Divi, GeneratePress, dan semua theme populer lainnya.</div>
+                        <div class="faq-answer-inner">Plugin Optima SEO kompatibel dengan WordPress versi 5.5 ke atas
+                            dan PHP 7.4+. Plugin juga berjalan lancar bersama tema apapun, termasuk Elementor, Divi,
+                            GeneratePress, dan semua theme populer lainnya.</div>
                     </div>
                 </div>
 
@@ -1716,7 +2084,9 @@
                         <div class="faq-chevron">▼</div>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Sama sekali tidak! Optima SEO dirancang untuk semua orang. Cukup install plugin dari file ZIP yang kami kirimkan, aktivasi, dan semuanya berjalan otomatis. Tidak perlu coding atau konfigurasi rumit.</div>
+                        <div class="faq-answer-inner">Sama sekali tidak! Optima SEO dirancang untuk semua orang. Cukup
+                            install plugin dari file ZIP yang kami kirimkan, aktivasi, dan semuanya berjalan otomatis.
+                            Tidak perlu coding atau konfigurasi rumit.</div>
                     </div>
                 </div>
 
@@ -1726,7 +2096,9 @@
                         <div class="faq-chevron">▼</div>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Optima SEO dirancang untuk berjalan mandiri tanpa konflik. Namun kami merekomendasikan menggunakannya secara terpisah (non-aktifkan Yoast/RankMath) untuk hasil optimal agar tidak ada duplikasi output meta tag.</div>
+                        <div class="faq-answer-inner">Optima SEO dirancang untuk berjalan mandiri tanpa konflik. Namun
+                            kami merekomendasikan menggunakannya secara terpisah (non-aktifkan Yoast/RankMath) untuk
+                            hasil optimal agar tidak ada duplikasi output meta tag.</div>
                     </div>
                 </div>
 
@@ -1736,7 +2108,9 @@
                         <div class="faq-chevron">▼</div>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Ya! Dengan harga Rp 99.000 Anda mendapatkan lisensi seumur hidup beserta semua update dan fitur baru yang kami rilis di masa depan. Tidak ada biaya berulang atau langganan tambahan.</div>
+                        <div class="faq-answer-inner">Ya! Dengan harga Rp 99.000 Anda mendapatkan lisensi seumur hidup
+                            beserta semua update dan fitur baru yang kami rilis di masa depan. Tidak ada biaya berulang
+                            atau langganan tambahan.</div>
                     </div>
                 </div>
 
@@ -1746,7 +2120,8 @@
                         <div class="faq-chevron">▼</div>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">Satu lisensi dapat digunakan di unlimited website yang Anda kelola sendiri. Tidak ada batasan jumlah domain selama masih untuk keperluan bisnis sendiri.</div>
+                        <div class="faq-answer-inner">Satu lisensi dapat digunakan di unlimited website yang Anda kelola
+                            sendiri. Tidak ada batasan jumlah domain selama masih untuk keperluan bisnis sendiri.</div>
                     </div>
                 </div>
             </div>
@@ -1757,8 +2132,9 @@
     <section class="pricing-section" id="harga">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label" style="justify-content:center;"><span class="dot"></span> Penawaran Spesial</div>
-                <h2>Satu Harga Terbaik.<br>Akses Selamanya.</h2>
+                <div class="section-label" style="justify-content:center;"><span class="dot"></span> Penawaran Spesial
+                </div>
+                <h2>Investasi Sekali, Hasil Terus Berjalan</h2>
             </div>
 
             <!-- COUNTDOWN BAR -->
@@ -1799,25 +2175,56 @@
                     </div>
 
                     <div class="promo-note" style="margin-top: 12px; margin-bottom: 24px;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
                         Stok tersisa untuk <strong id="stock-count">67</strong> lisensi
                     </div>
 
                     <div class="pricing-features-list">
-                        <div class="pf-item"><div class="pf-icon">✓</div> Lisensi Aktif untuk Unlimited Website</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> AI Meta Title & Description Generator</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> Internal Linking Otomatis Cerdas</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> Schema Markup & JSON-LD Injeksi</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> Alt Text Gambar AI Otomatis</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> Laporan Audit SEO Mingguan</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> Sitemap XML Dinamis</div>
-                        <div class="pf-item"><div class="pf-icon">✓</div> Free Update & Fitur Baru Selamanya</div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Lisensi Aktif untuk Unlimited Website
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> AI Meta Title & Description Generator
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Internal Linking Otomatis Cerdas
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Schema Markup & JSON-LD Injeksi
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Alt Text Gambar AI Otomatis
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Laporan Audit SEO Mingguan
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Sitemap XML Dinamis
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Free Update & Fitur Baru Selamanya
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Bonus E-book Strategi Konten SEO 2026
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Akses Grup Support Prioritas
+                        </div>
+                        <div class="pf-item">
+                            <div class="pf-icon">✓</div> Garansi Uang Kembali 7 Hari
+                        </div>
                     </div>
 
-                    <a href="https://lynk.id/cardinusantara/y6ojjl35l0nr" class="cta-btn-main" target="_blank" rel="noopener">
-                        ⚡ Ambil Promo Rp 99K Sekarang
+                    <a href="https://lynk.id/cardinusantara/y6ojjl35l0nr" class="cta-btn-main" target="_blank"
+                        rel="noopener">
+                        ⚡ Ya, Saya Mau Aktifkan Sekarang
                     </a>
-                    <div class="cta-note">🔒 Pembayaran aman via Mayar.ID · Transfer Bank, QRIS, & e-wallet tersedia</div>
+                    <div class="cta-note">🔒 Pembayaran aman via Mayar.ID · Transfer Bank, QRIS, & e-wallet tersedia ·
+                        Garansi 7 hari uang kembali</div>
                 </div>
             </div>
         </div>
@@ -1828,8 +2235,10 @@
         <div class="container reveal">
             <div class="cross-promo-card">
                 <div class="cross-promo-text">
-                    <h3>Trafik Tinggi tapi Chat Pelanggan Kewalahan?</h3>
-                    <p>Tingkatkan trafik dengan Optima SEO, lalu tangani semua chat pelanggan secara otomatis 24/7 menggunakan <strong>Cardiagent.ai</strong> — asisten penjualan WhatsApp bertenaga AI dari Cardi.</p>
+                    <h3>Trafiknya Sudah Naik, Chat Pelanggan Siapa yang Balas?</h3>
+                    <p>Begitu trafik dari Optima SEO mulai mengalir, jangan sampai calon pembeli kabur karena chat lama
+                        dibalas. <strong>Cardiagent.ai</strong> menjawab WhatsApp pelanggan Anda 24/7, secara otomatis
+                        dan terasa manusiawi.</p>
                 </div>
                 <a href="agent.html" class="cross-promo-btn">Lihat Cardiagent.ai →</a>
             </div>
@@ -1844,7 +2253,8 @@
                 <span style="color:var(--text-muted);"> by </span>
                 <a href="main.html" style="color:var(--accent); font-weight:700;">Cardi</a>
             </p>
-            <p>© 2026 Cardi. Hak Cipta Dilindungi. · <a href="main.html">Beranda</a> · <a href="agent.html">Cardiagent.ai</a></p>
+            <p>© 2026 Cardi. Hak Cipta Dilindungi. · <a href="main.html">Beranda</a> · <a
+                    href="agent.html">Cardiagent.ai</a></p>
         </div>
     </footer>
 
