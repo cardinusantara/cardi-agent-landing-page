@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cardi — Ekosistem AI untuk Bisnis Modern</title>
+  <title>Cardi - Partner your IPO - Scale the Business - Cardi Business Power Ecosystem™</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
@@ -595,6 +595,285 @@
       color: #fff
     }
 
+    /* ---------- SCROLL FLOW LAYOUT ---------- */
+    .flow-section {
+      position: relative;
+      background: var(--paper);
+      padding: 76px 0;
+    }
+
+    .flow-wrap {
+      display: flex;
+      position: relative;
+      gap: 60px;
+    }
+
+    @media (max-width: 900px) {
+      .flow-wrap {
+        flex-direction: column;
+        gap: 40px;
+      }
+    }
+
+    .flow-sticky-side {
+      flex: 1;
+      position: sticky;
+      top: 100px;
+      height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+      .flow-sticky-side {
+        position: relative;
+        top: 0;
+        height: auto;
+        padding-top: 20px;
+      }
+    }
+
+    .flow-sticky-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .stage-tracker {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .stage-num {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--ink);
+      font-family: monospace;
+    }
+
+    .circle-canvas {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .circle-canvas svg {
+      overflow: visible;
+    }
+
+    .morphing-leaf {
+      transform-origin: 60px 60px;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), fill 0.6s ease;
+    }
+
+    .morphing-dot {
+      transform-origin: 60px 60px;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, fill 0.6s ease;
+    }
+
+    .stage-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stage-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stage-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .flow-scroll-side {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      gap: 15vh;
+      padding-bottom: 25vh;
+    }
+
+    @media (max-width: 900px) {
+      .flow-scroll-side {
+        gap: 40px;
+        padding-bottom: 40px;
+      }
+    }
+
+    .flow-card {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 0.15;
+      transform: scale(0.96);
+    }
+
+    @media (max-width: 900px) {
+      .flow-card {
+        min-height: auto;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    .flow-card.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .flow-card-inner {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      box-shadow: 0 4px 20px -10px rgba(10,22,51,0.05);
+      transition: all 0.5s ease;
+    }
+
+    .flow-card.active .flow-card-inner {
+      box-shadow: 0 24px 60px -20px rgba(10,22,51,0.12);
+      border-color: #D3DEF5;
+    }
+
+    .flow-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+
+    .flow-card-header h3 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .flow-card-header small {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+
+    .flow-card p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--body);
+      margin-bottom: 24px;
+    }
+
+    .flow-pillars {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-left: 0;
+    }
+
+    .flow-pillars li {
+      font-size: 14.5px;
+      color: var(--body);
+      padding-left: 20px;
+      position: relative;
+      text-align: left;
+    }
+
+    .flow-pillars li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    .flow-card-footer {
+      margin-top: auto;
+      text-align: left;
+    }
+
+    /* CSS Morphing states based on stage attribute */
+    .flow-sticky-side[data-stage="0"] .morphing-leaf {
+      transform: rotate(0deg) scale(1.3);
+      fill: #FF3B30;
+    }
+    .flow-sticky-side[data-stage="0"] .morphing-dot {
+      opacity: 0;
+      transform: scale(0);
+    }
+    .flow-sticky-side[data-stage="0"] .circle-canvas {
+      background: #FFF0EE;
+      border-color: #FCD6D3;
+    }
+
+    .flow-sticky-side[data-stage="1"] .morphing-leaf {
+      transform: rotate(45deg) scale(1.3);
+      fill: #0A1633;
+    }
+    .flow-sticky-side[data-stage="1"] .morphing-dot {
+      opacity: 0;
+      transform: scale(0);
+    }
+    .flow-sticky-side[data-stage="1"] .circle-canvas {
+      background: #F0F2F6;
+      border-color: #D0D4DC;
+    }
+
+    .flow-sticky-side[data-stage="2"] .morphing-leaf {
+      transform: translateY(-6px) scale(1.2);
+      fill: #C61A09;
+    }
+    .flow-sticky-side[data-stage="2"] .morphing-dot {
+      transform: translateY(28px) scale(1.2);
+      opacity: 1;
+      fill: #C61A09;
+    }
+    .flow-sticky-side[data-stage="2"] .circle-canvas {
+      background: #FCEAEA;
+      border-color: #F8D3D0;
+    }
+
+    .flow-sticky-side[data-stage="3"] .morphing-leaf {
+      transform: translateX(4px) rotate(90deg) scale(1.2);
+      fill: #1E4FFF;
+    }
+    .flow-sticky-side[data-stage="3"] .morphing-dot {
+      transform: translateX(-28px) scale(1.2);
+      opacity: 1;
+      fill: #1E4FFF;
+    }
+    .flow-sticky-side[data-stage="3"] .circle-canvas {
+      background: #EEF3FF;
+      border-color: #D3DEF5;
+    }
+
     /* ---------- SOLUSI ---------- */
     .solusi {
       background: var(--soft)
@@ -1008,62 +1287,40 @@
                     transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
                   <circle cx="26" cy="60" r="8" fill="#1E4FFF" />
                 </svg>
-                <span class="dTx"><small>cardi</small><b>agent</b></span>
+                <span class="dTx"><small>cardi</small><b>ai agent</b></span>
               </span>
-              <span class="dDesc">AI WhatsApp Chatbot &amp; CRM penjualan 24/7</span>
+              <span class="dDesc">AI Agents for Business Growth &amp; IPO Readiness</span>
             </a>
-            <a href="/plugin">
+            <a href="https://cardinusantara.com/" target="_blank">
               <span class="dLock">
                 <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#00A87E"
-                    transform="translate(60 60) rotate(45) scale(1.35) translate(-60 -38)" />
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633"
+                    transform="translate(60 60) rotate(45) scale(1.3) translate(-60 -38)" />
                 </svg>
-                <span class="dTx"><small>cardi</small><b>optima</b></span>
+                <span class="dTx"><small>cardi</small><b>nusantara</b></span>
               </span>
-              <span class="dDesc">Plugin SEO WordPress otomatis &amp; internal linking</span>
+              <span class="dDesc">Go-To-Market Company &amp; peluncuran brand retail</span>
             </a>
-            <a href="#produk">
+            <a href="https://digital.cardinusantara.com/" target="_blank">
               <span class="dLock">
                 <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#FF7A00"
-                    transform="translate(60 60) rotate(180) scale(1.35) translate(-60 -38)" />
-                </svg>
-                <span class="dTx"><small>cardi</small><b>leads</b></span>
-              </span>
-              <span class="dDesc">Mesin penghasil leads dari Google &amp; iklan digital</span>
-            </a>
-            <a href="#produk">
-              <span class="dLock">
-                <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#00B8CE"
-                    transform="translate(60 66) rotate(0) scale(1.3) translate(-60 -38)" />
-                  <circle cx="60" cy="18" r="7" fill="#00B8CE" />
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#C61A09"
+                    transform="translate(60 52) rotate(0) scale(1.3) translate(-60 -38)" />
+                  <circle cx="60" cy="102" r="8" fill="#C61A09" />
                 </svg>
                 <span class="dTx"><small>cardi</small><b>digital</b></span>
               </span>
-              <span class="dDesc">Transformasi &amp; digitalisasi sistem siap IPO</span>
+              <span class="dDesc">Digital Growth Company &amp; sistem pertumbuhan skala besar</span>
             </a>
-            <a href="#produk">
+            <a href="https://branding.cardinusantara.com/" target="_blank">
               <span class="dLock">
                 <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#8B3DFF"
-                    transform="translate(56 56) rotate(-45) scale(1.3) translate(-60 -38)" />
-                  <circle cx="88" cy="88" r="9" fill="#8B3DFF" />
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#FF3B30"
+                    transform="translate(60 60) rotate(0) scale(1.35) translate(-60 -38)" />
                 </svg>
                 <span class="dTx"><small>cardi</small><b>branding</b></span>
               </span>
-              <span class="dDesc">Positioning, visual, &amp; manajemen sosial media</span>
-            </a>
-            <a href="#produk">
-              <span class="dLock">
-                <svg width="22" height="22" viewBox="0 0 120 120" fill="none">
-                  <path d="M28 62 L60 32 L92 62" stroke="#E63E8B" stroke-width="16" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                  <path d="M34 92 H86" stroke="#E63E8B" stroke-width="12" stroke-linecap="round" />
-                </svg>
-                <span class="dTx"><small>cardi</small><b>land</b></span>
-              </span>
-              <span class="dDesc">Analisis data &amp; investasi properti produktif</span>
+              <span class="dDesc">Brand Development Company &amp; perancang positioning premium</span>
             </a>
           </div>
         </div>
@@ -1104,8 +1361,7 @@
         <a href="#harga" style="padding: 22px 0;">Harga</a>
       </div>
       <div class="navR">
-        <a class="signin" href="#">Sign in</a>
-        <a class="btn wa" href="#consult">
+        <a class="btn wa" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.1 1.4Z" />
@@ -1132,23 +1388,23 @@
       <p>Semua produk Cardi dirancang khusus untuk membantu bisnis Indonesia — dari membalas chat pelanggan, menaikkan
         peringkat Google, sampai menemukan prospek baru. Otomatis, terukur, dan bekerja 24/7.</p>
       <div class="heroCta">
-        <a class="btn" href="#consult">Jadwalkan konsultasi</a>
+        <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">Jadwalkan konsultasi</a>
         <a class="btn ghost" href="#produk">Lihat semua produk</a>
       </div>
 
       <!-- collage -->
       <div class="collage">
-        <!-- Cardi Optima card -->
+        <!-- Cardi Branding card -->
         <div class="shot" style="transform:rotate(-1.5deg)">
-          <div class="bar"><span class="dot" style="background:#00A87E"></span> cardi optima · SEO Monitor</div>
+          <div class="bar"><span class="dot" style="background:#FF3B30"></span> cardi branding · Brand Identity</div>
           <div class="pad">
-            <span class="tag" style="background:#E3F6EF;color:#00A87E">SKOR SEO</span>
-            <div class="statBig">92<span style="font-size:14px;color:var(--muted)">/100</span> <span class="up">▲ +18
-                bulan ini</span></div>
-            <div class="meter"><i style="width:92%;background:#00A87E"></i></div>
-            <div class="krow"><span>Kata kunci peringkat #1</span><b>14</b></div>
-            <div class="krow"><span>Artikel dioptimasi AI</span><b>36</b></div>
-            <div class="krow" style="border:none"><span>Trafik organik</span><b>+127%</b></div>
+            <span class="tag" style="background:#FFEBEA;color:#FF3B30">BRAND POSITIONING</span>
+            <div class="statBig">98<span style="font-size:14px;color:var(--muted)">/100</span> <span class="up">▲ +12%
+                recall</span></div>
+            <div class="meter"><i style="width:98%;background:#FF3B30"></i></div>
+            <div class="krow"><span>Aset Visual Premium</span><b>18</b></div>
+            <div class="krow"><span>Postingan Sosial Media</span><b>124</b></div>
+            <div class="krow" style="border:none"><span>Engagement Rate</span><b>+6.8%</b></div>
           </div>
         </div>
         <!-- Cardi Agent chat -->
@@ -1173,15 +1429,15 @@
               DIBALAS OTOMATIS OLEH AI · 3 DETIK</div>
           </div>
         </div>
-        <!-- Cardi Leads card -->
+        <!-- Cardi Digital card -->
         <div class="shot" style="transform:rotate(1.5deg)">
-          <div class="bar"><span class="dot" style="background:#FF7A00"></span> cardi leads · Leads Masuk</div>
+          <div class="bar"><span class="dot" style="background:#C61A09"></span> cardi digital · Growth Metrics</div>
           <div class="pad">
-            <span class="tag" style="background:#FFF0E1;color:#FF7A00">MINGGU INI</span>
-            <div class="statBig">248 <span class="up">▲ leads</span></div>
-            <div class="krow"><span>Google Ads</span><b>97</b></div>
-            <div class="krow"><span>Landing Page</span><b>62</b></div>
-            <div class="krow" style="border:none"><span>Google Business Profile</span><b>89</b></div>
+            <span class="tag" style="background:#FDEAEA;color:#C61A09">BULAN INI</span>
+            <div class="statBig">1.2M <span style="font-size:14px;color:var(--muted)">views</span> <span class="up">▲ +48%</span></div>
+            <div class="krow"><span>Traffic Organik (SEO)</span><b>+214%</b></div>
+            <div class="krow"><span>Pilar Leads Masuk</span><b>8,429</b></div>
+            <div class="krow" style="border:none"><span>Revenue dari Digital</span><b>+186%</b></div>
           </div>
         </div>
       </div>
@@ -1199,106 +1455,106 @@
     </div>
   </div>
 
-  <!-- ================= PRODUK ================= -->
-  <section id="produk">
+  <!-- ================= PRODUK (SCROLL FLOW) ================= -->
+  <section id="produk" class="flow-section">
     <div class="wrap">
-      <div class="center">
+      <div class="center" style="margin-bottom: 56px;">
         <div class="eyebrow">Produk &amp; Layanan</div>
         <h2 class="h2">Satu ekosistem, banyak solusi</h2>
         <p class="sub">Setiap produk Cardi lahir dari satu simbol yang sama — dan bisa dipakai sendiri-sendiri atau
           digabungkan menjadi mesin pertumbuhan yang utuh.</p>
       </div>
-
-      <div class="prodGrid">
-        <!-- AGENT -->
-        <div class="pcard">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1E4FFF"
-                transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
-              <circle cx="26" cy="60" r="8" fill="#1E4FFF" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>agent</b></div>
+    </div>
+    
+    <div class="wrap flow-wrap">
+      <!-- Left Sticky Side -->
+      <div class="flow-sticky-side" data-stage="0">
+        <div class="flow-sticky-content">
+          <div class="stage-tracker">
+            <span class="stage-num" id="stage-number">01</span>
+            <span class="stage-total">/ 04</span>
           </div>
-          <h3>Cardi Agent</h3>
-          <p>Solusi AI menyeluruh untuk bisnis: AI customer service &amp; CRM WhatsApp, pembuatan konten, iklan, hingga
-            automation lintas aplikasi. Semua bisa di-custom mengikuti proses bisnis setiap klien — AI yang bekerja
-            sesuai cara Anda bekerja.</p>
-          <a class="more" href="/agent">+</a>
+          
+          <div class="circle-canvas">
+            <svg width="150" height="150" viewBox="0 0 120 120" fill="none">
+              <path id="morphing-leaf" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" class="morphing-leaf" />
+              <circle id="morphing-dot" cx="60" cy="60" r="8" class="morphing-dot" />
+            </svg>
+          </div>
+          
+          <div class="stage-caption">
+            <span class="stage-eyebrow" id="stage-eyebrow">STAGE 01 · BUILD</span>
+            <h4 class="stage-title" id="stage-title">Build the Brand</h4>
+          </div>
         </div>
-        <!-- OPTIMA -->
-        <div class="pcard">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#00A87E"
-                transform="translate(60 60) rotate(45) scale(1.35) translate(-60 -38)" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>optima</b></div>
+      </div>
+      
+      <!-- Right Scrolling Content -->
+      <div class="flow-scroll-side">
+        <!-- Step 1: Build the Brand (Branding) -->
+        <div class="flow-card" data-stage-index="0">
+          <div class="flow-card-inner">
+            <div class="flow-card-header">
+              <span class="flow-tag" style="background:#FFEBEA;color:#FF3B30">STEP 01 · BRAND DEVELOPMENT</span>
+              <h3>Build the Brand</h3>
+              <small>Branding Cardi Nusantara</small>
+            </div>
+            <p>Membangun landasan bisnis yang kuat melalui perancangan positioning unik, arsitektur brand, identitas visual premium, dan manajemen media sosial taktis. Karena produk Anda bisa ditiru, namun positioning yang menentukan siapa yang dipercaya.</p>
+            <div class="flow-card-footer">
+              <a href="https://branding.cardinusantara.com/" target="_blank" class="btn wa" style="background:#FF3B30">Kunjungi website</a>
+            </div>
           </div>
-          <h3>Cardi Optima</h3>
-          <p>Plugin SEO otomatis untuk WordPress. Riset kata kunci, optimasi artikel, internal linking, dan monitoring
-            peringkat Google — dikerjakan AI, dilaporkan setiap bulan.</p>
-          <a class="more" href="/plugin">+</a>
         </div>
-        <!-- LEADS -->
-        <div class="pcard">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#FF7A00"
-                transform="translate(60 60) rotate(180) scale(1.35) translate(-60 -38)" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>leads</b></div>
+        
+        <!-- Step 2: Launch the Brand (Nusantara) -->
+        <div class="flow-card" data-stage-index="1">
+          <div class="flow-card-inner">
+            <div class="flow-card-header">
+              <span class="flow-tag" style="background:#F0F2F6;color:#0A1633">STEP 02 · GO-TO-MARKET</span>
+              <h3>Launch the Brand</h3>
+              <small>Cardi Nusantara</small>
+            </div>
+            <p>Mengeksekusi peluncuran produk secara masif di pasar retail Indonesia. Kami membantu Anda merancang penetrasi pasar terarah, perluasan saluran distribusi offline &amp; online, serta mengoptimalkan strategi penjualan secara taktis.</p>
+            <div class="flow-card-footer">
+              <a href="https://cardinusantara.com/" target="_blank" class="btn wa" style="background:#0A1633">Kunjungi website</a>
+            </div>
           </div>
-          <h3>Cardi Leads</h3>
-          <p>Mesin penghasil leads dari semua platform digital: website &amp; landing page konversi tinggi, Google
-            Business Profile, Google Ads, Meta Ads, dan konten iklan — semuanya diarahkan ke satu tujuan: leads masuk
-            setiap hari.</p>
-          <a class="more" href="#consult">+</a>
         </div>
-        <!-- DIGITAL -->
-        <div class="pcard">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#00B8CE"
-                transform="translate(60 66) rotate(0) scale(1.3) translate(-60 -38)" />
-              <circle cx="60" cy="18" r="7" fill="#00B8CE" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>digital</b></div>
+        
+        <!-- Step 3: Grow the Brand (Digital) -->
+        <div class="flow-card" data-stage-index="2">
+          <div class="flow-card-inner">
+            <div class="flow-card-header">
+              <span class="flow-tag" style="background:#FCEAEA;color:#C61A09">STEP 03 · DIGITAL GROWTH</span>
+              <h3>Grow the Brand</h3>
+              <small>Digital Cardi Nusantara</small>
+            </div>
+            <p>Mengakselerasi skala bisnis Anda menggunakan infrastruktur digital dengan 4 pilar pertumbuhan:</p>
+            <ul class="flow-pillars">
+              <li><b>Traffic Generation:</b> SEO kelas dunia &amp; dominasi AI Search Visibility (Gemini, ChatGPT).</li>
+              <li><b>Lead Generation:</b> Funnel, landing page konversi tinggi, &amp; iklan performa.</li>
+              <li><b>Revenue Generation:</b> Performance marketing &amp; CRM penjualan.</li>
+              <li><b>Brand Aggregation:</b> Mengakuisisi &amp; meningkatkan skala brand Anda.</li>
+            </ul>
+            <div class="flow-card-footer">
+              <a href="https://digital.cardinusantara.com/" target="_blank" class="btn wa" style="background:#C61A09">Kunjungi website</a>
+            </div>
           </div>
-          <h3>Cardi Digital</h3>
-          <p>Transformasi digital untuk perusahaan yang naik kelas: digitalisasi proses, sistem, dan data secara
-            end-to-end — mendampingi company yang sedang scale-up hingga siap menuju IPO.</p>
-          <a class="more" href="#consult">+</a>
         </div>
-        <!-- BRANDING -->
-        <div class="pcard">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#8B3DFF"
-                transform="translate(56 56) rotate(-45) scale(1.3) translate(-60 -38)" />
-              <circle cx="88" cy="88" r="9" fill="#8B3DFF" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>branding</b></div>
+        
+        <!-- Step 4: Scale to IPO (Cardi AI Agent) -->
+        <div class="flow-card" data-stage-index="3">
+          <div class="flow-card-inner">
+            <div class="flow-card-header">
+              <span class="flow-tag" style="background:#EEF3FF;color:#1E4FFF">STEP 04 · OPERATIONAL SCALE &amp; IPO READINESS</span>
+              <h3>Scale to IPO</h3>
+              <small>Cardi AI Agent</small>
+            </div>
+            <p>AI Agents for Business Growth &amp; IPO Readiness. Mengotomatisasi konversi penjualan 24/7 autopilot, menstandarisasi pelaporan data operasional secara transparan, serta merapikan pembukuan transaksi digital agar siap memenuhi standar audit IPO.</p>
+            <div class="flow-card-footer">
+              <a href="/agent" class="btn wa" style="background:#1E4FFF">Pelajari Cardi AI Agent</a>
+            </div>
           </div>
-          <h3>Cardi Branding</h3>
-          <p>Layanan brand development end-to-end: positioning, identitas visual, konten, hingga manajemen sosial media.
-            Produk bisa mirip — positioning yang menentukan siapa yang dipercaya.</p>
-          <a class="more" href="#consult">+</a>
-        </div>
-        <!-- LAND -->
-        <div class="pcard">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M28 62 L60 32 L92 62" stroke="#E63E8B" stroke-width="16" stroke-linecap="round"
-                stroke-linejoin="round" />
-              <path d="M34 92 H86" stroke="#E63E8B" stroke-width="12" stroke-linecap="round" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>land</b></div>
-          </div>
-          <h3>Cardi Land</h3>
-          <p>Investasi dan pengembangan properti dengan pendekatan data: analisis lokasi, potensi kenaikan nilai,
-            pemasaran digital — termasuk mengubah lahan kosong menjadi aset aktif yang menghasilkan.</p>
-          <a class="more" href="#consult">+</a>
         </div>
       </div>
     </div>
@@ -1323,7 +1579,7 @@
           <p>Otomatiskan hal yang paling menyita waktu: membalas chat dan mencari pembeli baru.</p>
           <ul>
             <li>Cardi Agent membalas &amp; mencatat order 24/7</li>
-            <li>Cardi Optima menaikkan toko di Google</li>
+            <li>Cardi Nusantara meluncurkan &amp; memasarkan produk Anda</li>
             <li>Mulai dari ratusan ribu per bulan</li>
           </ul>
         </div>
@@ -1335,8 +1591,8 @@
           <h3>Brand &amp; Agency</h3>
           <p>Perkuat layanan ke klien dengan data dan eksekusi yang terukur.</p>
           <ul>
-            <li>Cardi Leads: landing page, GBP &amp; ads yang menghasilkan</li>
-            <li>Cardi Branding untuk positioning yang dipercaya</li>
+            <li>Cardi Digital mengelola traffic &amp; lead conversion secara otomatis</li>
+            <li>Cardi Branding untuk positioning yang dipercaya &amp; identitas premium</li>
             <li>Laporan performa siap presentasi</li>
           </ul>
         </div>
@@ -1353,8 +1609,8 @@
             Nusantara Group.</p>
           <ul>
             <li>Implementasi multi-brand &amp; multi-tim</li>
-            <li>Cardi Digital: digitalisasi hingga siap IPO</li>
-            <li>Fractional Chief Brand Officer (FCBO)</li>
+            <li>Cardi Digital: digitalisasi proses bisnis menuju IPO</li>
+            <li>Cardi Nusantara: go-to-market partner skala nasional</li>
           </ul>
         </div>
       </div>
@@ -1390,10 +1646,10 @@
                 transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
               <circle cx="26" cy="60" r="8" fill="#1E4FFF" />
             </svg>
-            <div class="tx"><small>cardi</small><b>agent</b></div>
+            <div class="tx"><small>cardi</small><b>ai agent</b></div>
           </div>
-          <h3 style="margin-top: 10px;">Cardi Agent (AI Chatbot)</h3>
-          <p>Mulai membalas chat WhatsApp pelanggan secara otomatis, natural, dan closing 24/7 tanpa henti.</p>
+          <h3 style="margin-top: 10px;">Cardi AI Agent</h3>
+          <p>AI Agents for Business Growth &amp; IPO Readiness. Otomatisasi konversi penjualan dan standarisasi pelaporan data operasional 24/7 autopilot.</p>
           <div style="margin: 18px 0 8px;">
             <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">MULAI DARI</small>
             <span style="font-size:32px; font-weight:800; color:var(--ink)">Rp 299.000</span>
@@ -1402,43 +1658,62 @@
           <a class="btn" href="/agent" style="justify-content:center;">Lihat Detail &amp; Paket</a>
         </div>
 
-        <!-- Optima Card (Promo) -->
-        <div class="pcard" style="border-color: #C3EBE0; box-shadow: 0 12px 30px -10px rgba(0,168,126,.08);">
+        <!-- Nusantara Card -->
+        <div class="pcard" style="border-color: #D0D4DC; box-shadow: 0 12px 30px -10px rgba(10,22,51,.08);">
           <div class="lock">
             <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#00A87E"
-                transform="translate(60 60) rotate(45) scale(1.35) translate(-60 -38)" />
+              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633"
+                transform="translate(60 60) rotate(45) scale(1.3) translate(-60 -38)" />
             </svg>
-            <div class="tx"><small>cardi</small><b>optima</b></div>
+            <div class="tx"><small>cardi</small><b>nusantara</b></div>
           </div>
-          <h3 style="margin-top: 10px;">Cardi Optima (WordPress SEO)</h3>
-          <p>Otomatisasi meta tags, internal linking cerdas, dan JSON-LD schema WordPress sekali bayar.</p>
-          <div style="margin: 18px 0 8px;">
-            <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">PROMO SEKALI
-              BAYAR</small>
-            <span style="font-size:32px; font-weight:800; color:var(--ink)">Rp 99.000</span>
-            <span style="font-size:14px; color:var(--muted); font-weight:600">/ seumur hidup</span>
-          </div>
-          <a class="btn" href="/plugin" style="justify-content:center; background:var(--green)">Dapatkan Lisensi</a>
-        </div>
-
-        <!-- Leads / Custom Card -->
-        <div class="pcard" style="border-color: #FFE6CC; box-shadow: 0 12px 30px -10px rgba(255,122,0,.08);">
-          <div class="lock">
-            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
-              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#FF7A00"
-                transform="translate(60 60) rotate(180) scale(1.35) translate(-60 -38)" />
-            </svg>
-            <div class="tx"><small>cardi</small><b>leads</b></div>
-          </div>
-          <h3 style="margin-top: 10px;">Cardi Leads &amp; Custom</h3>
-          <p>Solusi custom leads generation, Google Ads, landing page konversi tinggi, and scale-up system.</p>
+          <h3 style="margin-top: 10px;">Cardi Nusantara</h3>
+          <p>Kemitraan peluncuran produk ritel, distribusi nasional, dan program akselerasi pasar.</p>
           <div style="margin: 18px 0 8px;">
             <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">SKEMA KERJASAMA</small>
-            <span style="font-size:32px; font-weight:800; color:var(--ink)">Custom / Rekanan</span>
+            <span style="font-size:32px; font-weight:800; color:var(--ink)">Revenue Share</span>
             <span style="font-size:14px; color:var(--muted); font-weight:600">/ performa</span>
           </div>
-          <a class="btn" href="#consult" style="justify-content:center; background:var(--orange)">Konsultasi Leads</a>
+          <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Nusantara!!%20I%20would%20like%20to%20consult%20about%20launching%20my%20brand.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="justify-content:center; background:#0A1633">Hubungi Tim GTM</a>
+        </div>
+
+        <!-- Digital Card -->
+        <div class="pcard" style="border-color: #F8D3D0; box-shadow: 0 12px 30px -10px rgba(198,26,9,.08);">
+          <div class="lock">
+            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#C61A09"
+                transform="translate(60 52) rotate(0) scale(1.3) translate(-60 -38)" />
+              <circle cx="60" cy="102" r="8" fill="#C61A09" />
+            </svg>
+            <div class="tx"><small>cardi</small><b>digital</b></div>
+          </div>
+          <h3 style="margin-top: 10px;">Cardi Digital</h3>
+          <p>Layanan growth marketing retainer bulanan terintegrasi (Traffic, Leads, Revenue, Aggregation).</p>
+          <div style="margin: 18px 0 8px;">
+            <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">SISTEM RETAINER</small>
+            <span style="font-size:32px; font-weight:800; color:var(--ink)">Custom Growth</span>
+            <span style="font-size:14px; color:var(--muted); font-weight:600">/ bulanan</span>
+          </div>
+          <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Digital!!%20I%20would%20like%20to%20consult%20about%20growing%20my%20brand.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="justify-content:center; background:#C61A09">Diskusi Digital Growth</a>
+        </div>
+
+        <!-- Branding Card -->
+        <div class="pcard" style="border-color: #FCD6D3; box-shadow: 0 12px 30px -10px rgba(255,59,48,.08);">
+          <div class="lock">
+            <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+              <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#FF3B30"
+                transform="translate(60 60) rotate(0) scale(1.35) translate(-60 -38)" />
+            </svg>
+            <div class="tx"><small>cardi</small><b>branding</b></div>
+          </div>
+          <h3 style="margin-top: 10px;">Cardi Branding</h3>
+          <p>Investasi brand development modul lengkap (positioning, visual identity system, dan social media).</p>
+          <div style="margin: 18px 0 8px;">
+            <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">MULAI DARI</small>
+            <span style="font-size:32px; font-weight:800; color:var(--ink)">Rp 15.000.000</span>
+            <span style="font-size:14px; color:var(--muted); font-weight:600">/ modul</span>
+          </div>
+          <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Branding!!%20I%20would%20like%20to%20consult%20about%20my%20brand.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="justify-content:center; background:#FF3B30">Konsultasi Branding</a>
         </div>
       </div>
     </div>
@@ -1462,8 +1737,8 @@
         <p>Konsultasikan kebutuhan bisnis Anda — tim kami akan merekomendasikan kombinasi produk Cardi yang paling
           tepat, tanpa biaya.</p>
         <div class="heroCta">
-          <a class="btn white" href="#consult">Jadwalkan konsultasi gratis</a>
-          <a class="btn line" href="https://wa.me/62817449760" target="_blank">
+          <a class="btn white" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">Jadwalkan konsultasi gratis</a>
+          <a class="btn line" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" />
             </svg>
@@ -1492,18 +1767,18 @@
             </svg>
             cardi
           </a>
-          <p>PT Digital Cardi Nusantara. Ekosistem AI &amp; branding untuk membantu bisnis Indonesia dilihat, diingat,
-            dan dipercaya.</p>
+          <p>Cardi Business Power Ecosystem™. Ekosistem bisnis terintegrasi untuk membantu brand Indonesia tumbuh, berskala, dan siap IPO.</p>
         </div>
         <div class="fCol">
-          <h4>Produk</h4>
-          <a href="/agent">Cardi Agent</a><a href="/plugin">Cardi Optima</a><a href="/#produk">Cardi
-            Leads</a><a href="/#produk">Cardi Digital</a><a href="/#produk">Cardi Branding</a><a href="/#produk">Cardi
-            Land</a>
+          <h4>Brand &amp; Ekosistem</h4>
+          <a href="/agent">Cardi Agent</a>
+          <a href="https://cardinusantara.com/" target="_blank">Cardi Nusantara</a>
+          <a href="https://digital.cardinusantara.com/" target="_blank">Cardi Digital</a>
+          <a href="https://branding.cardinusantara.com/" target="_blank">Cardi Branding</a>
         </div>
         <div class="fCol">
           <h4>Perusahaan</h4>
-          <a href="#">Tentang Cardi Nusantara</a><a href="#">Portofolio</a><a href="#">Karier</a><a href="#">Kontak</a>
+          <a href="#">Tentang Cardi Nusantara</a><a href="#">Portofolio</a><a href="#">Karier</a><a href="mailto:deo@cardinusantara.com">Kontak</a>
         </div>
         <div class="fCol">
           <h4>Resources</h4>
@@ -1512,7 +1787,7 @@
       </div>
       <div class="fBottom">
         <span>© 2026 PT Digital Cardi Nusantara. Seluruh hak cipta dilindungi.</span>
-        <span>Jakarta, Indonesia · @cardi_ai · cardi.co.id</span>
+        <span>Jakarta, Indonesia · @cardi_ai · deo@cardinusantara.com · cardi.co.id</span>
       </div>
     </div>
   </footer>
@@ -1563,9 +1838,22 @@
     function openModal() { document.getElementById('consultModal').classList.add('active'); }
     function closeModal() { document.getElementById('consultModal').classList.remove('active'); }
 
+    let activeService = "Ecosystem";
+
     document.querySelectorAll('a[href="#consult"]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
+        // Determine service based on button text or parent card
+        const btnText = btn.innerText.toLowerCase();
+        if (btnText.includes('branding')) {
+          activeService = "Branding";
+        } else if (btnText.includes('gtm') || btnText.includes('nusantara')) {
+          activeService = "Nusantara";
+        } else if (btnText.includes('digital') || btnText.includes('growth')) {
+          activeService = "Digital";
+        } else {
+          activeService = "Ecosystem";
+        }
         openModal();
       });
     });
@@ -1583,15 +1871,92 @@
       let noWa = document.getElementById('inpWa').value.trim();
       if (noWa.startsWith('0')) noWa = noWa.substring(1);
 
-      const nomorTujuan = "62817449760";
-      const pesan = `Halo Tim Ahli Cardi, saya ingin mengevaluasi penerapan ekosistem otomatisasi untuk operasional kami.\n\n*Nama:* ${nama}\n*Email:* ${email}\n*No. WA:* +62${noWa}\n*Perusahaan:* ${perusahaan}\n*Estimasi Chat:* ${chatVol}\n\nMohon konfirmasi ketersediaan agenda untuk demonstrasi teknisnya. Terima kasih.`;
+      const nomorTujuan = "6281289895646";
+      let serviceText = "";
+      let clientGreeting = "Hello Cardi!!";
+      if (activeService === "Branding") {
+        serviceText = "perancangan positioning & identitas visual brand kami (Cardi Branding)";
+        clientGreeting = "Hello Cardi Branding!! I would like to consult about my brand. 😁😁";
+      } else if (activeService === "Nusantara") {
+        serviceText = "peluncuran & perluasan distribusi brand kami (Cardi Nusantara)";
+        clientGreeting = "Hello Cardi Nusantara!! I would like to consult about launching my brand. 😁😁";
+      } else if (activeService === "Digital") {
+        serviceText = "akselerasi growth marketing & trafik brand kami (Cardi Digital)";
+        clientGreeting = "Hello Cardi Digital!! I would like to consult about growing my brand. 😁😁";
+      } else {
+        serviceText = "penerapan ekosistem otomatisasi untuk operasional kami";
+        clientGreeting = "Hello Cardi Ecosystem!! I would like to consult about the business ecosystem. 😁😁";
+      }
+
+      const pesan = `${clientGreeting}\n\n*Form Data:*\n*Nama:* ${nama}\n*Email:* ${email}\n*No. WA:* +62${noWa}\n*Perusahaan:* ${perusahaan}\n*Estimasi Chat:* ${chatVol}\n\nSaya ingin mengevaluasi ${serviceText}. Mohon konfirmasi ketersediaan agenda untuk demonstrasi teknisnya. Terima kasih.`;
 
       const pesanEncoded = encodeURIComponent(pesan);
-      window.open(`https://wa.me/${nomorTujuan}?text=${pesanEncoded}`, '_blank');
+      window.open(`https://api.whatsapp.com/send?phone=${nomorTujuan}&text=${pesanEncoded}`, '_blank');
 
       closeModal();
       document.getElementById('consultForm').reset();
     }
+
+    // =============================================
+    // SCROLL FLOW PARALLAX ANIMATION
+    // =============================================
+    const flowSection = document.querySelector('.flow-section');
+    const flowStickyContainer = document.querySelector('.flow-sticky-side');
+    const flowCards = document.querySelectorAll('.flow-card');
+    const stageNumEl = document.getElementById('stage-number');
+    const stageEyebrowEl = document.getElementById('stage-eyebrow');
+    const stageTitleEl = document.getElementById('stage-title');
+
+    const stageMetadata = [
+      { num: "01", eyebrow: "STAGE 01 · BUILD", title: "Build the Brand" },
+      { num: "02", eyebrow: "STAGE 02 · LAUNCH", title: "Launch the Brand" },
+      { num: "03", eyebrow: "STAGE 03 · GROW", title: "Grow the Brand" },
+      { num: "04", eyebrow: "STAGE 04 · IPO READINESS", title: "Scale to IPO" }
+    ];
+
+    function updateActiveStage() {
+      if (!flowCards.length) return;
+      
+      let activeIndex = 0;
+      let minDistance = Infinity;
+      const viewportCenter = window.innerHeight / 2;
+
+      flowCards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeIndex = idx;
+        }
+      });
+
+      // Update classes on cards
+      flowCards.forEach((card, idx) => {
+        if (idx === activeIndex) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+
+      // Update stage attributes for SVG morphing
+      if (flowStickyContainer) {
+        flowStickyContainer.setAttribute('data-stage', activeIndex.toString());
+      }
+
+      // Update text details
+      if (stageNumEl) stageNumEl.innerText = stageMetadata[activeIndex].num;
+      if (stageEyebrowEl) stageEyebrowEl.innerText = stageMetadata[activeIndex].eyebrow;
+      if (stageTitleEl) stageTitleEl.innerText = stageMetadata[activeIndex].title;
+    }
+
+    // Bind scroll listener
+    window.addEventListener('scroll', updateActiveStage);
+    window.addEventListener('resize', updateActiveStage);
+    // Trigger initial calculation
+    updateActiveStage();
   </script>
   <script type="module" src="purchase-notif.js"></script>
 
