@@ -5,8 +5,8 @@
   --paper: #FFFFFF;
   --soft: #F5F8FE;
   --line: #E6ECF7;
-  --blue: #1E4FFF;
-  --blue-d: #1636B8;
+  --blue: #0258a4;
+  --blue-d: #01417a;
   --cyan: #00C2D1;
   --green: #00A87E;
   --orange: #FF7A00;
@@ -82,6 +82,14 @@ nav {
   font-weight: 800;
   font-size: 23px;
   letter-spacing: -.03em;
+}
+
+.brand img {
+  width: 110px;
+  height: auto;
+  max-height: 38px;
+  object-fit: contain;
+  display: block;
 }
 
 .menu {
@@ -688,7 +696,7 @@ section {
   color: var(--ink);
 }
 
-/* Mobile Overrides for Flow Sticky Section */
+/* Mobile Overrides for Flow Sticky Section — Elegant Floating Pill Header */
 @media (max-width: 900px) {
   .flow-wrap {
     flex-direction: column;
@@ -697,21 +705,24 @@ section {
 
   .flow-sticky-side {
     position: sticky;
-    top: 68px;
-    left: 0;
-    width: 100%;
-    height: 64px;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    top: 78px;
+    left: 12px;
+    right: 12px;
+    width: calc(100% - 24px);
+    margin: 8px auto 0;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(220, 228, 242, 0.9);
+    border-radius: 999px;
     z-index: 40;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    box-shadow: 0 4px 16px rgba(10,22,51,0.04);
-    transition: background 0.3s ease;
+    padding: 0 16px;
+    box-shadow: 0 10px 30px -8px rgba(10, 22, 51, 0.12);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .flow-sticky-content {
@@ -722,7 +733,7 @@ section {
     align-items: center;
     gap: 10px;
     text-align: left;
-    padding: 0 16px;
+    padding: 0 4px;
   }
 
   .stage-tracker {
@@ -733,25 +744,27 @@ section {
   }
 
   .stage-num {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 800;
   }
 
   .stage-total {
     font-size: 11px;
+    opacity: 0.7;
   }
 
   .flow-sticky-side .circle-canvas {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    min-height: 42px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
     border-radius: 50%;
     flex-shrink: 0;
   }
 
   .flow-sticky-side .circle-canvas svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   .stage-caption {
@@ -763,16 +776,17 @@ section {
   }
 
   .stage-eyebrow {
-    font-size: 8.5px;
+    font-size: 8px;
     letter-spacing: 0.08em;
-    line-height: 1.2;
+    line-height: 1.1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .stage-title {
-    font-size: 14px;
+    font-size: 13.5px;
+    font-weight: 800;
     line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;
@@ -932,7 +946,7 @@ section {
 /* CSS Morphing states based on stage attribute */
 .flow-sticky-side[data-stage="0"] .morphing-leaf {
   transform: rotate(0deg) scale(1.3);
-  fill: #FF3B30;
+  fill: #fb3202;
 }
 .flow-sticky-side[data-stage="0"] .morphing-dot {
   opacity: 0;
@@ -958,12 +972,12 @@ section {
 
 .flow-sticky-side[data-stage="2"] .morphing-leaf {
   transform: translateY(-6px) scale(1.2);
-  fill: #C61A09;
+  fill: #c42025;
 }
 .flow-sticky-side[data-stage="2"] .morphing-dot {
   transform: translateY(28px) scale(1.2);
   opacity: 1;
-  fill: #C61A09;
+  fill: #c42025;
 }
 .flow-sticky-side[data-stage="2"] .circle-canvas {
   background: #FCEAEA;
@@ -972,12 +986,12 @@ section {
 
 .flow-sticky-side[data-stage="3"] .morphing-leaf {
   transform: translateX(4px) rotate(90deg) scale(1.2);
-  fill: #1E4FFF;
+  fill: #1e4fff;
 }
 .flow-sticky-side[data-stage="3"] .morphing-dot {
   transform: translateX(-28px) scale(1.2);
   opacity: 1;
-  fill: #1E4FFF;
+  fill: #1e4fff;
 }
 .flow-sticky-side[data-stage="3"] .circle-canvas {
   background: #EEF3FF;
