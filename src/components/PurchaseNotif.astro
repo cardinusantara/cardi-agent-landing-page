@@ -1,7 +1,15 @@
 ---
-// PurchaseNotif.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
 ---
-<div id="purchase-notification" class="purchase-notif-box">
+<div id="purchase-notification" class="purchase-notif-box" data-lang={lang}>
   <button class="purchase-notif-close" id="purchaseNotifCloseBtn">&times;</button>
   <div class="purchase-notif-left-stripe"></div>
   <div class="purchase-notif-icon-container">
@@ -14,13 +22,13 @@
     <div class="purchase-notif-buyer">
       <span class="buyer-name" id="notifBuyerName">Mua***</span>
       <span class="buyer-email" id="notifBuyerEmail">(mua***@gmail.com)</span>
-      <span class="time-ago" id="notifTimeAgo">baru saja</span>
+      <span class="time-ago" id="notifTimeAgo">{t('notif.justNow')}</span>
     </div>
     <div class="purchase-notif-product">
-      membeli <span class="product-name" id="notifProductName">Paket Starter Cardi AI Agent</span>,
+      <span id="notifBoughtLabel">{t('notif.bought')}</span> <span class="product-name" id="notifProductName">Paket Starter Cardi AI Agent</span>,
     </div>
     <div class="purchase-notif-price">
-      senilai <span class="price-val" id="notifPriceVal">Rp 999.000</span>
+      <span id="notifValuedLabel">{t('notif.valued')}</span> <span class="price-val" id="notifPriceVal">Rp 299.000</span>
     </div>
     <div class="purchase-notif-verified">
       <svg class="verified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -165,6 +173,8 @@
 
 <script>
   const notifContainer = document.getElementById('purchase-notification');
+  const currentLang = notifContainer ? notifContainer.getAttribute('data-lang') || 'id' : 'id';
+
   const buyers = [
     { name: "Mua***", email: "mua***@gmail.com" },
     { name: "And***", email: "and***@gmail.com" },
@@ -185,7 +195,11 @@
     { name: "GTM Retail Pack by Cardi Nusantara", price: "Rp 4.900.000" }
   ];
 
-  const timeAgos = ["baru saja", "1 menit yang lalu", "2 menit yang lalu", "3 menit yang lalu"];
+  const timeAgos: Record<string, string[]> = {
+    id: ["baru saja", "1 menit yang lalu", "2 menit yang lalu", "3 menit yang lalu"],
+    en: ["just now", "1 minute ago", "2 minutes ago", "3 minutes ago"],
+    zh: ["刚刚", "1分钟前", "2分钟前", "3分钟前"]
+  };
 
   const buyerNameEl = document.getElementById('notifBuyerName');
   const buyerEmailEl = document.getElementById('notifBuyerEmail');
@@ -205,7 +219,8 @@
     if (!notifContainer) return;
     const buyer = buyers[Math.floor(Math.random() * buyers.length)];
     const product = products[Math.floor(Math.random() * products.length)];
-    const timeAgo = timeAgos[Math.floor(Math.random() * timeAgos.length)];
+    const list = timeAgos[currentLang] || timeAgos['id'];
+    const timeAgo = list[Math.floor(Math.random() * list.length)];
 
     if (buyerNameEl) buyerNameEl.textContent = buyer.name;
     if (buyerEmailEl) buyerEmailEl.textContent = `(${buyer.email})`;

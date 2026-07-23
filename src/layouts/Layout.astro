@@ -1,57 +1,77 @@
 ---
 import '../styles/global.css';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   canonicalURL?: string;
+  lang?: LangKey;
 }
 
 const {
   title,
-  description = "Cardi Business Power Ecosystem™. Ekosistem bisnis terintegrasi untuk membantu brand Indonesia tumbuh, berskala, dan siap IPO.",
+  description,
   image = "/og-banner.png",
   canonicalURL = Astro.url.href,
+  lang = getLangFromUrl(Astro.url)
 } = Astro.props;
+
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const metaDescription = description || t('hero.sub');
+const htmlLang = lang === 'zh' ? 'zh-CN' : lang;
 
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Cardi",
   "url": "https://cardi.co.id",
-  "logo": "https://cardi.co.id/public/cardiagent.png",
-  "description": description,
+  "logo": "https://cardi.co.id/logocardi.png",
+  "description": metaDescription,
   "sameAs": [
     "https://cardinusantara.com/",
     "https://digital.cardinusantara.com/",
     "https://branding.cardinusantara.com/"
   ]
 };
+
+const idUrl = new URL(translatePath(Astro.url.pathname, 'id'), 'https://cardi.co.id').href;
+const enUrl = new URL(translatePath(Astro.url.pathname, 'en'), 'https://cardi.co.id').href;
+const zhUrl = new URL(translatePath(Astro.url.pathname, 'zh'), 'https://cardi.co.id').href;
 ---
 
 <!DOCTYPE html>
-<html lang="id">
+<html lang={htmlLang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
-  <meta name="description" content={description} />
+  <meta name="description" content={metaDescription} />
   <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/png" href="/cardi-logo-no-text.png" />
+
+  <!-- Alternate Language SEO Tags -->
+  <link rel="alternate" hreflang="id" href={idUrl} />
+  <link rel="alternate" hreflang="en" href={enUrl} />
+  <link rel="alternate" hreflang="zh" href={zhUrl} />
+  <link rel="alternate" hreflang="x-default" href={idUrl} />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
+  <meta property="og:description" content={metaDescription} />
   <meta property="og:image" content={new URL(image, Astro.url)} />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content={canonicalURL} />
   <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content={description} />
+  <meta property="twitter:description" content={metaDescription} />
   <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
   <!-- Fonts -->

@@ -1,28 +1,36 @@
 ---
-// ConsultModal.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
 ---
 <div class="modal-overlay" id="consultModal">
   <div class="modal-content">
     <button class="modal-close" id="closeModal">&times;</button>
     <div style="text-align: left; margin-bottom: 24px;">
-      <h3 style="font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Jadwalkan Konsultasi</h3>
-      <p style="font-size: 13.5px; color: var(--muted); line-height: 1.5;">Isi formulir singkat di bawah ini. Tim pakar kami akan menghubungi Anda via WhatsApp dalam waktu kurang dari 15 menit.</p>
+      <h3 style="font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">{t('modal.title')}</h3>
+      <p style="font-size: 13.5px; color: var(--muted); line-height: 1.5;">{t('modal.sub')}</p>
     </div>
     <form id="consultForm">
       <div class="form-group">
-        <label for="nama">Nama Lengkap</label>
-        <input type="text" id="nama" class="form-control" placeholder="Contoh: Budi Santoso" required />
+        <label for="nama">{t('modal.lblNama')}</label>
+        <input type="text" id="nama" class="form-control" placeholder={t('modal.phNama')} required />
       </div>
       <div class="form-group">
-        <label for="perusahaan">Nama Bisnis / Brand</label>
-        <input type="text" id="perusahaan" class="form-control" placeholder="Contoh: Kopi Nusantara" required />
+        <label for="perusahaan">{t('modal.lblCompany')}</label>
+        <input type="text" id="perusahaan" class="form-control" placeholder={t('modal.phCompany')} required />
       </div>
       <div class="form-group">
-        <label for="whatsapp">Nomor WhatsApp</label>
+        <label for="whatsapp">{t('modal.lblWa')}</label>
         <input type="tel" id="whatsapp" class="form-control" placeholder="081234567890" required />
       </div>
       <div class="form-group">
-        <label for="kebutuhan">Kebutuhan Utama</label>
+        <label for="kebutuhan">{t('modal.lblNeed')}</label>
         <select id="kebutuhan" class="form-control" style="cursor: pointer;">
           <option value="Cardi Agent (AI Chatbot &amp; CRM)">Cardi Agent (AI Chatbot &amp; CRM WhatsApp)</option>
           <option value="Cardi Nusantara (Distribusi Retail)">Cardi Nusantara (Distribusi Retail Nasional)</option>
@@ -31,7 +39,7 @@
           <option value="Ekosistem Lengkap (All-in-One)">Ekosistem Lengkap (All-in-One Growth)</option>
         </select>
       </div>
-      <button type="submit" class="form-submit">Kirim via WhatsApp &rarr;</button>
+      <button type="submit" class="form-submit">{t('modal.btnSubmit')}</button>
     </form>
   </div>
 </div>
@@ -40,10 +48,6 @@
   const consultModal = document.getElementById('consultModal');
   const closeModal = document.getElementById('closeModal');
   const consultForm = document.getElementById('consultForm');
-
-  function openModal() {
-    if (consultModal) consultModal.classList.add('active');
-  }
 
   function hideModal() {
     if (consultModal) consultModal.classList.remove('active');

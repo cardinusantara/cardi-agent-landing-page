@@ -1,0 +1,314 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../Navbar.astro';
+import Footer from '../Footer.astro';
+import ScrollFlowSection from '../ScrollFlowSection.astro';
+import ConsultModal from '../ConsultModal.astro';
+import PurchaseNotif from '../PurchaseNotif.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
+import type { LangKey } from '../../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<Layout title="Cardi - Partner your IPO - Scale the Business - Cardi Business Power Ecosystem™" lang={lang}>
+  <!-- NAV -->
+  <Navbar lang={lang} />
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <h1>{t('hero.titleLine1')}
+        <span class="pill">
+          <svg width="26" height="26" viewBox="0 0 120 120" fill="none">
+            <path
+              d="M60 30 C63.5 48 71 55.5 89 59 C71 62.5 63.5 70 60 88 C56.5 70 49 62.5 31 59 C49 55.5 56.5 48 60 30 Z"
+              fill="#0258a4" />
+          </svg>
+          {t('hero.tumbuh')}
+        </span>
+      </h1>
+      <p>{t('hero.sub')}</p>
+      <div class="heroCta">
+        <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('hero.ctaConsult')}</a>
+        <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
+      </div>
+
+      <!-- collage -->
+      <div class="collage">
+        <!-- Cardi Branding card -->
+        <div class="shot" style="transform:rotate(-1.5deg)">
+          <div class="bar"><span class="dot" style="background:#fb3202"></span> cardi branding · Brand Identity</div>
+          <div class="pad">
+            <span class="tag" style="background:#FFEBEA;color:#fb3202">BRAND POSITIONING</span>
+            <div class="statBig">98<span style="font-size:14px;color:var(--muted)">/100</span> <span class="up">▲ +12%
+                recall</span></div>
+            <div class="meter"><i style="width:98%;background:#fb3202"></i></div>
+            <div class="krow"><span>Aset Visual Premium</span><b>18</b></div>
+            <div class="krow"><span>Postingan Sosial Media</span><b>124</b></div>
+            <div class="krow" style="border:none"><span>Engagement Rate</span><b>+6.8%</b></div>
+          </div>
+        </div>
+        <!-- Cardi Agent chat -->
+        <div class="shot" style="z-index:2">
+          <div class="bar"><span class="dot" style="background:#0258a4"></span> cardi agent · AI Assistant</div>
+          <div class="pad">
+            <div class="chatRow">
+              <div class="bub in">Halo kak, ini masih ready? Bisa kirim hari ini?</div>
+            </div>
+            <div class="chatRow out">
+              <div class="bub out">Halo kak! Masih ready ya 😊 Order sebelum jam 3 sore dikirim hari ini juga. Mau saya
+                buatkan pesanannya?</div>
+            </div>
+            <div class="chatRow">
+              <div class="bub in">Boleh, 2 pcs ya</div>
+            </div>
+            <div class="chatRow out">
+              <div class="bub out">Siap! 2 pcs sudah masuk keranjang 🛒 Total Rp 178.000. Link pembayaran:
+                pay.cardi.co.id/8h2k</div>
+            </div>
+            <div style="text-align:center;font-size:10.5px;color:var(--muted);font-weight:700;letter-spacing:.08em">
+              DIBALAS OTOMATIS OLEH AI · 3 DETIK</div>
+          </div>
+        </div>
+        <!-- Cardi Digital card -->
+        <div class="shot" style="transform:rotate(1.5deg)">
+          <div class="bar"><span class="dot" style="background:#c42025"></span> cardi digital · Growth Metrics</div>
+          <div class="pad">
+            <span class="tag" style="background:#FDEAEA;color:#c42025">BULAN INI</span>
+            <div class="statBig">1.2M <span style="font-size:14px;color:var(--muted)">views</span> <span class="up">▲ +48%</span></div>
+            <div class="krow"><span>Traffic Organik (SEO)</span><b>+214%</b></div>
+            <div class="krow"><span>Pilar Leads Masuk</span><b>8,429</b></div>
+            <div class="krow" style="border:none"><span>Revenue dari Digital</span><b>+186%</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="t">Dipercaya 19+ brand &amp; bisnis di Indonesia</div>
+      <div class="logos">
+        <span>MAMAKOKO</span><span>URBAN MILLS</span><span>LATEZZA</span><span>REPUBLIC PADEL</span><span>SURYA
+          PAINTING</span><span>ANW KLINIK</span><span>NIHON MART</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUK (SCROLL FLOW) -->
+  <ScrollFlowSection lang={lang} />
+
+  <!-- SOLUSI -->
+  <section class="solusi" id="solusi">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow">{t('nav.solutions')}</div>
+        <h2 class="h2">{t('sol.title')}</h2>
+        <p class="sub">{t('sol.sub')}</p>
+      </div>
+      <div class="solGrid">
+        <div class="scard">
+          <div class="ic" style="background:#E7EDFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#0258a4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
+            </svg></div>
+          <h3>{t('sol.c1Title')}</h3>
+          <p>{t('sol.c1Desc')}</p>
+        </div>
+        <div class="scard">
+          <div class="ic" style="background:#E3F6EF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#00A87E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8M21 7v6h-6" />
+            </svg></div>
+          <h3>{t('sol.c2Title')}</h3>
+          <p>{t('sol.c2Desc')}</p>
+        </div>
+        <div class="scard">
+          <div class="ic" style="background:#F1E7FF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="#8B3DFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+            </svg></div>
+          <h3>{t('sol.c3Title')}</h3>
+          <p>{t('sol.c3Desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap statGrid">
+      <div class="stat"><b>10<em>+</em></b><span>tahun pengalaman branding &amp; digital</span></div>
+      <div class="stat"><b>19<em>+</em></b><span>klien aktif lintas industri</span></div>
+      <div class="stat"><b>37</b><span>talenta dalam satu tim eksekusi</span></div>
+      <div class="stat"><b>24<em>/7</em></b><span>AI bekerja tanpa henti</span></div>
+    </div>
+  </section>
+
+  <!-- HARGA -->
+  <section id="harga" style="background: var(--soft);">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow">{t('pri.tag')}</div>
+        <h2 class="h2">{t('pri.title')}</h2>
+        <p class="sub">{t('pri.sub')}</p>
+      </div>
+
+      <div class="marquee-wrapper" style="margin-top: 40px;">
+        <div class="marquee-track">
+          <!-- CARD 1: Cardi AI Agent -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #D3DEF5; box-shadow: 0 12px 30px -10px rgba(30,79,255,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1e4fff"
+                    transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
+                  <circle cx="26" cy="60" r="8" fill="#1e4fff" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>ai agent</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi AI Agent</h3>
+              <p>{t('eco.s4Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">{t('pri.startFrom')}</small>
+                <span style="font-size:32px; font-weight:800; color:var(--ink)">Rp 299.000</span>
+                <span style="font-size:14px; color:var(--muted); font-weight:600">{t('pri.perMonth')}</span>
+              </div>
+              <a class="btn" href={translatePath('/agent')} style="justify-content:center;">{t('pri.viewDetail')}</a>
+            </div>
+          </div>
+
+          <!-- CARD 2: Cardi Nusantara -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #D0D4DC; box-shadow: 0 12px 30px -10px rgba(10,22,51,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#0A1633"
+                    transform="translate(60 60) rotate(45) scale(1.3) translate(-60 -38)" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>nusantara</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Nusantara</h3>
+              <p>{t('eco.s2Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">{t('pri.collabSchema')}</small>
+                <span style="font-size:32px; font-weight:800; color:var(--ink)">{t('pri.revShare')}</span>
+                <span style="font-size:14px; color:var(--muted); font-weight:600">{t('pri.perPerf')}</span>
+              </div>
+              <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Nusantara!!%20I%20would%20like%20to%20consult%20about%20launching%20my%20brand.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="justify-content:center; background:#0A1633">{t('pri.gtmBtn')}</a>
+            </div>
+          </div>
+
+          <!-- CARD 3: Cardi Digital -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #F8D3D0; box-shadow: 0 12px 30px -10px rgba(198,26,9,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#c42025"
+                    transform="translate(60 52) rotate(0) scale(1.3) translate(-60 -38)" />
+                  <circle cx="60" cy="102" r="8" fill="#c42025" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>digital</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Digital</h3>
+              <p>{t('eco.s3Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">{t('pri.retainerSys')}</small>
+                <span style="font-size:32px; font-weight:800; color:var(--ink)">{t('pri.customGrowth')}</span>
+                <span style="font-size:14px; color:var(--muted); font-weight:600">{t('pri.perMonth')}</span>
+              </div>
+              <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Digital!!%20I%20would%20like%20to%20consult%20about%20growing%20my%20brand.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="justify-content:center; background:#c42025">{t('pri.digitalBtn')}</a>
+            </div>
+          </div>
+
+          <!-- CARD 4: Cardi Branding -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #FCD6D3; box-shadow: 0 12px 30px -10px rgba(255,59,48,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#fb3202"
+                    transform="translate(60 60) rotate(0) scale(1.35) translate(-60 -38)" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>branding</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi Branding</h3>
+              <p>{t('eco.s1Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">{t('pri.projectBased')}</small>
+                <span style="font-size:32px; font-weight:800; color:var(--ink)">{t('pri.bespokePkg')}</span>
+                <span style="font-size:14px; color:var(--muted); font-weight:600">{t('pri.perProject')}</span>
+              </div>
+              <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Branding!!%20I%20would%20like%20to%20consult%20about%20my%20brand.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" style="justify-content:center; background:#fb3202">{t('pri.brandingBtn')}</a>
+            </div>
+          </div>
+
+          <!-- DUPLICATED SET FOR INFINITE LOOP -->
+          <div class="marquee-card">
+            <div class="pcard" style="border-color: #D3DEF5; box-shadow: 0 12px 30px -10px rgba(30,79,255,.08);">
+              <div class="lock">
+                <svg width="42" height="42" viewBox="0 0 120 120" fill="none">
+                  <path d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#1e4fff"
+                    transform="translate(66 60) rotate(90) scale(1.3) translate(-60 -38)" />
+                  <circle cx="26" cy="60" r="8" fill="#1e4fff" />
+                </svg>
+                <div class="tx"><small>cardi</small><b>ai agent</b></div>
+              </div>
+              <h3 style="margin-top: 10px;">Cardi AI Agent</h3>
+              <p>{t('eco.s4Desc')}</p>
+              <div style="margin: 18px 0 8px;">
+                <small style="display:block; font-size:11.5px; font-weight:700; color:var(--muted)">{t('pri.startFrom')}</small>
+                <span style="font-size:32px; font-weight:800; color:var(--ink)">Rp 299.000</span>
+                <span style="font-size:14px; color:var(--muted); font-weight:600">{t('pri.perMonth')}</span>
+              </div>
+              <a class="btn" href={translatePath('/agent')} style="justify-content:center;">{t('pri.viewDetail')}</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="trust" style="background:#fff; padding: 76px 0;">
+    <div class="wrap">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <blockquote>{t('test.quote')}</blockquote>
+        <div class="who">{t('test.who')}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BOTTOM -->
+  <section class="cta">
+    <div class="wrap">
+      <div class="ctaBox">
+        <h2>{t('cta.title')}</h2>
+        <p>{t('cta.desc')}</p>
+        <div class="heroCta">
+          <a class="btn white" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('cta.b1')}</a>
+          <a class="btn line" href="mailto:deo@cardinusantara.com">{t('cta.b2')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <Footer lang={lang} />
+
+  <!-- CONSULT MODAL & NOTIFICATION TOAST -->
+  <ConsultModal lang={lang} />
+  <PurchaseNotif lang={lang} />
+</Layout>

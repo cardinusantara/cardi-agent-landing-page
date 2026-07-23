@@ -5,8 +5,12 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://cardi.co.id',
   integrations: [sitemap()],
-  compressHTML: true,
-  build: {
-    inlineStylesheets: 'always',
-  },
+  i18n: {
+    defaultLocale: 'id',
+    locales: ['id', 'en', 'zh'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: true
+    }
+  }
 });

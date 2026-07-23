@@ -1,0 +1,139 @@
+---
+import { languages, type LangKey } from '../i18n/ui';
+import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
+
+interface Props {
+  currentLang?: LangKey;
+}
+
+const { currentLang = getLangFromUrl(Astro.url) } = Astro.props;
+const translatePath = useTranslatedPath(currentLang);
+const currentInfo = languages[currentLang];
+---
+
+<div class="lang-selector">
+  <button class="lang-btn" type="button" aria-label="Select language">
+    <span class="lang-flag">{currentInfo.flag}</span>
+    <span class="lang-code">{currentInfo.code}</span>
+    <svg class="lang-car" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+
+  <div class="lang-dropdown">
+    {Object.entries(languages).map(([langKey, langInfo]) => {
+      const isSelected = langKey === currentLang;
+      const targetPath = translatePath(Astro.url.pathname, langKey as LangKey);
+      return (
+        <a 
+          href={targetPath} 
+          class={`lang-opt ${isSelected ? 'active' : ''}`}
+        >
+          <span class="lang-flag">{langInfo.flag}</span>
+          <span class="lang-name">{langInfo.name}</span>
+          {isSelected && <span class="lang-check">✓</span>}
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .lang-selector {
+    position: relative;
+    display: inline-block;
+  }
+
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    font-family: inherit;
+  }
+
+  .lang-btn:hover {
+    background: #EAF0FA;
+    border-color: #D3DEF5;
+  }
+
+  .lang-flag {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .lang-code {
+    letter-spacing: 0.05em;
+  }
+
+  .lang-car {
+    transition: transform 0.2s ease;
+    color: var(--muted);
+  }
+
+  .lang-selector:hover .lang-car {
+    transform: rotate(180deg);
+  }
+
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 150px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px -8px rgba(10, 22, 51, 0.15);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 120;
+  }
+
+  .lang-selector:hover .lang-dropdown,
+  .lang-selector:focus-within .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .lang-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .lang-opt:hover {
+    background: var(--soft);
+    color: var(--blue);
+  }
+
+  .lang-opt.active {
+    background: #EEF3FF;
+    color: var(--blue);
+    font-weight: 800;
+  }
+
+  .lang-check {
+    margin-left: auto;
+    font-size: 12px;
+  }
+</style>

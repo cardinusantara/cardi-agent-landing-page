@@ -1,129 +1,142 @@
 ---
-// ScrollFlowSection.astro
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
-<section class="flow-section" id="ekosistem">
-  <div class="wrap center" style="margin-bottom: 50px;">
-    <div class="eyebrow">EKOSISTEM BISNIS TERPADU</div>
-    <h2 class="h2">Satu ekosistem, banyak solusi.</h2>
-    <p class="sub">Metodologi pertumbuhan 4 tahap terintegrasi yang dirancang untuk membawa bisnis Anda dari fondasi terawal hingga siap melantai di bursa saham (IPO).</p>
+<section class="flow-section" id="solusi">
+  <div class="wrap flow-header">
+    <span class="flow-badge">{t('eco.tag')}</span>
+    <h2>{t('eco.title')}</h2>
+    <p>{t('eco.sub')}</p>
   </div>
 
   <div class="wrap flow-wrap">
-    <!-- Left Sticky Side -->
-    <div class="flow-sticky-side" id="flow-sticky-container" data-stage="0">
+    <!-- STICKY SIDE (Visual morphing canvas + indicators) -->
+    <div class="flow-sticky-side" id="flowStickyContainer" data-stage="0">
       <div class="flow-sticky-content">
         <div class="stage-tracker">
-          <span class="stage-num" id="stage-number">01</span>
+          <span class="stage-num" id="stageCurrent">01</span>
           <span class="stage-total">/ 04</span>
         </div>
 
-        <div class="circle-canvas">
-          <svg width="150" height="150" viewBox="0 0 120 120" fill="none">
-            <path id="morphing-leaf" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" class="morphing-leaf" />
-            <circle id="morphing-dot" cx="60" cy="60" r="8" class="morphing-dot" />
+        <div class="circle-canvas" id="circleCanvas">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <path class="morphing-leaf" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" fill="#fb3202" />
+            <circle class="morphing-dot" cx="60" cy="60" r="8" fill="#fb3202" opacity="0" />
           </svg>
         </div>
 
         <div class="stage-caption">
-          <span class="stage-eyebrow" id="stage-eyebrow">STAGE 01 · BUILD</span>
-          <h4 class="stage-title" id="stage-title">Build the Brand</h4>
+          <span class="stage-eyebrow" id="stageEyebrow">{t('eco.s1Tag')}</span>
+          <span class="stage-title" id="stageTitle">{t('eco.s1Title')}</span>
         </div>
       </div>
     </div>
 
-    <!-- Right Scroll Side -->
+    <!-- SCROLL SIDE (Cards for each stage) -->
     <div class="flow-scroll-side">
-      <!-- Step 1: Build the Brand (Branding) -->
+      
+      <!-- STAGE 0: BUILD -->
       <div class="flow-card active" data-stage-index="0">
         <div class="flow-card-inner">
           <div class="flow-card-header">
-            <span class="flow-tag" style="background:#FFF0EE;color:#fb3202">STEP 01 · BRAND DEVELOPMENT</span>
-            <h3>Build the Brand</h3>
-            <small>Cardi Branding</small>
+            <span class="flow-tag" style="background:#FFF0EE;color:#fb3202">{t('eco.s1Tag')}</span>
+            <h3>{t('eco.s1Title')}</h3>
+            <small>{t('eco.s1Sub')}</small>
           </div>
-          <p>Membangun identitas brand yang kuat, relevan, dan berdaya saing tinggi. Kami merancang desain visual, strategi positioning, dan narasi brand yang memikat calon pelanggan sejak impresi pertama.</p>
+          <p>{t('eco.s1Desc')}</p>
           <ul class="flow-pillars">
             <li>Brand Strategy &amp; Positioning</li>
             <li>Visual Identity System &amp; Logo Design</li>
             <li>Packaging &amp; Marketing Collaterals</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://branding.cardinusantara.com/" target="_blank" class="btn wa" style="background:#fb3202">Konsultasi Cardi Branding</a>
+            <a href="https://branding.cardinusantara.com/" target="_blank" class="btn wa" style="background:#fb3202">{t('eco.s1Btn')}</a>
           </div>
         </div>
       </div>
 
-      <!-- Step 2: Launch the Brand (Nusantara) -->
+      <!-- STAGE 1: LAUNCH -->
       <div class="flow-card" data-stage-index="1">
         <div class="flow-card-inner">
           <div class="flow-card-header">
             <span class="flow-tag" style="background:#F0F2F6;color:#0A1633">STEP 02 · GTM &amp; DISTRIBUTION</span>
-            <h3>Launch the Brand</h3>
-            <small>Cardi Nusantara</small>
+            <h3>{t('eco.s2Title')}</h3>
+            <small>{t('eco.s2Sub')}</small>
           </div>
-          <p>Membawa brand Anda masuk ke pasar nasional dengan jalur distribusi yang terstruktur. Kami membantu eksekusi Go-To-Market (GTM) dan penetrasi jaringan retail secara efektif.</p>
+          <p>{t('eco.s2Desc')}</p>
           <ul class="flow-pillars">
-            <li>Go-To-Market (GTM) Strategy</li>
-            <li>National Retail Distribution Network</li>
-            <li>Trade Marketing &amp; Field Execution</li>
+            <li>Jaringan Distribusi Toko Ritel National</li>
+            <li>Program Kemitraan Distributor</li>
+            <li>Omnichannel Sales Strategy</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://cardinusantara.com/" target="_blank" class="btn wa" style="background:#0A1633">Kunjungi website</a>
+            <a href="https://cardinusantara.com/" target="_blank" class="btn wa" style="background:#0A1633">{t('eco.s2Btn')}</a>
           </div>
         </div>
       </div>
 
-      <!-- Step 3: Grow the Brand (Digital) -->
+      <!-- STAGE 2: GROW -->
       <div class="flow-card" data-stage-index="2">
         <div class="flow-card-inner">
           <div class="flow-card-header">
-            <span class="flow-tag" style="background:#FCEAEA;color:#c42025">STEP 03 · INTEGRATED GROWTH MARKETING</span>
-            <h3>Grow the Brand</h3>
-            <small>Cardi Digital</small>
+            <span class="flow-tag" style="background:#FCEAEA;color:#c42025">{t('eco.s3Tag')}</span>
+            <h3>{t('eco.s3Title')}</h3>
+            <small>{t('eco.s3Sub')}</small>
           </div>
-          <p>Akselerasi skala pertumbuhan bisnis melalui strategi digital terukur. Kami mengelola performa marketing, optimasi konversi, dan kampanye media sosial untuk melipatgandakan omzet.</p>
+          <p>{t('eco.s3Desc')}</p>
           <ul class="flow-pillars">
-            <li>Performance Marketing &amp; Paid Ads</li>
-            <li>Social Media &amp; Content Ecosystem</li>
+            <li>Performance Marketing &amp; Ads Scale</li>
+            <li>Search Engine Optimization (SEO)</li>
             <li>Conversion Rate Optimization (CRO)</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://digital.cardinusantara.com/" target="_blank" class="btn wa" style="background:#c42025">Diskusi Cardi Digital</a>
+            <a href="https://digital.cardinusantara.com/" target="_blank" class="btn wa" style="background:#c42025">{t('eco.s3Btn')}</a>
           </div>
         </div>
       </div>
 
-      <!-- Step 4: Scale to IPO (Cardi AI Agent) -->
+      <!-- STAGE 3: SCALE TO IPO -->
       <div class="flow-card" data-stage-index="3">
         <div class="flow-card-inner">
           <div class="flow-card-header">
-            <span class="flow-tag" style="background:#EEF3FF;color:#1e4fff">STEP 04 · OPERATIONAL SCALE &amp; IPO READINESS</span>
-            <h3>Scale to IPO</h3>
-            <small>Cardi AI Agent</small>
+            <span class="flow-tag" style="background:#EEF3FF;color:#1e4fff">{t('eco.s4Tag')}</span>
+            <h3>{t('eco.s4Title')}</h3>
+            <small>{t('eco.s4Sub')}</small>
           </div>
-          <p>AI Agents for Business Growth &amp; IPO Readiness. Mengotomatisasi konversi penjualan 24/7 autopilot, menstandarisasi pelaporan data operasional secara transparan, serta merapikan pembukuan transaksi digital agar siap memenuhi standar audit IPO.</p>
+          <p>{t('eco.s4Desc')}</p>
           <div class="flow-card-footer">
-            <a href="/agent" class="btn wa" style="background:#1e4fff">Pelajari Cardi AI Agent</a>
+            <a href={translatePath('/agent')} class="btn wa" style="background:#1e4fff">{t('eco.s4Btn')}</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const stickyContainer = document.getElementById('flowStickyContainer');
+    const stageCurrent = document.getElementById('stageCurrent');
+    const stageEyebrow = document.getElementById('stageEyebrow');
+    const stageTitle = document.getElementById('stageTitle');
     const flowCards = document.querySelectorAll('.flow-card');
-    const stickyContainer = document.getElementById('flow-sticky-container');
-    const stageNumEl = document.getElementById('stage-number');
-    const stageEyebrowEl = document.getElementById('stage-eyebrow');
-    const stageTitleEl = document.getElementById('stage-title');
 
-    const stageMetadata = [
-      { num: "01", eyebrow: "STAGE 01 · BUILD", title: "Build the Brand" },
-      { num: "02", eyebrow: "STAGE 02 · LAUNCH", title: "Launch the Brand" },
-      { num: "03", eyebrow: "STAGE 03 · GROW", title: "Grow the Brand" },
-      { num: "04", eyebrow: "STAGE 04 · IPO READINESS", title: "Scale to IPO" }
+    if (!stickyContainer || flowCards.length === 0) return;
+
+    const stagesData = [
+      { num: '01', eyebrow: 'STEP 01 · BRAND DEVELOPMENT', title: 'Build the Brand' },
+      { num: '02', eyebrow: 'STEP 02 · GTM & DISTRIBUTION', title: 'Launch the Brand' },
+      { num: '03', eyebrow: 'STEP 03 · INTEGRATED GROWTH MARKETING', title: 'Grow the Brand' },
+      { num: '04', eyebrow: 'STEP 04 · OPERATIONAL SCALE & IPO READINESS', title: 'Scale to IPO' }
     ];
 
     function updateActiveStage() {
@@ -150,20 +163,13 @@
         }
       });
 
-      if (stickyContainer) {
-        stickyContainer.setAttribute('data-stage', activeIndex.toString());
-      }
-
-      const meta = stageMetadata[activeIndex];
-      if (stageNumEl && stageEyebrowEl && stageTitleEl && meta) {
-        stageNumEl.textContent = meta.num;
-        stageEyebrowEl.textContent = meta.eyebrow;
-        stageTitleEl.textContent = meta.title;
-      }
+      stickyContainer.setAttribute('data-stage', activeIndex.toString());
+      if (stageCurrent) stageCurrent.textContent = stagesData[activeIndex].num;
+      if (stageEyebrow) stageEyebrow.textContent = stagesData[activeIndex].eyebrow;
+      if (stageTitle) stageTitle.textContent = stagesData[activeIndex].title;
     }
 
     window.addEventListener('scroll', updateActiveStage, { passive: true });
-    window.addEventListener('resize', updateActiveStage, { passive: true });
     updateActiveStage();
   });
 </script>
