@@ -16,7 +16,7 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout title="Cardi AI Agent - Scale to IPO - AI Agents for Business Growth & IPO Readiness" lang={lang}>
+<Layout title={t('seo.agentTitle')} description={t('seo.agentDesc')} lang={lang}>
   <Navbar lang={lang} />
 
   <!-- AGENT STYLES (is:global required for dynamically created chat bubbles & buttons) -->
@@ -641,7 +641,7 @@ const translatePath = useTranslatedPath(lang);
         <div class="pricing-card">
           <div class="pricing-tier">{t('agent.pStarterTitle')}</div>
           <div class="pricing-price">
-            <span style="font-size:20px;">Rp</span>299.000<span style="font-size:14px; font-weight:500; color:var(--text-gray);">/bln</span>
+            <span style="font-size:20px;">Rp</span>299.000<span style="font-size:14px; font-weight:500; color:var(--text-gray);">{t('agent.perMonth')}</span>
           </div>
           <p class="pricing-desc">{t('agent.pStarterDesc')}</p>
           <ul class="pricing-features-list">
@@ -656,7 +656,7 @@ const translatePath = useTranslatedPath(lang);
         <div class="pricing-card premium">
           <div class="pricing-tier">{t('agent.pProTitle')}</div>
           <div class="pricing-price">
-            <span style="font-size:20px;">Rp</span>799.000<span style="font-size:14px; font-weight:500; color:var(--text-gray);">/bln</span>
+            <span style="font-size:20px;">Rp</span>799.000<span style="font-size:14px; font-weight:500; color:var(--text-gray);">{t('agent.perMonth')}</span>
           </div>
           <p class="pricing-desc">{t('agent.pProDesc')}</p>
           <ul class="pricing-features-list">
@@ -685,8 +685,8 @@ const translatePath = useTranslatedPath(lang);
   </section>
 
   <Footer lang={lang} />
-  <ConsultModal />
-  <PurchaseNotif />
+  <ConsultModal lang={lang} />
+  <PurchaseNotif lang={lang} />
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {

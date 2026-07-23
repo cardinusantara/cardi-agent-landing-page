@@ -15,7 +15,7 @@ const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<Layout title="Optima SEO by Cardi — Plugin SEO WordPress Otomatis" description={t('plugin.sub')} lang={lang}>
+<Layout title={t('seo.pluginTitle')} description={t('seo.pluginDesc')} lang={lang}>
   <Navbar lang={lang} />
 
   <!-- PLUGIN HERO -->
@@ -69,6 +69,6 @@ const t = useTranslations(lang);
   </section>
 
   <Footer lang={lang} />
-  <ConsultModal />
-  <PurchaseNotif />
+  <ConsultModal lang={lang} />
+  <PurchaseNotif lang={lang} />
 </Layout>

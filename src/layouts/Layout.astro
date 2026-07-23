@@ -4,7 +4,7 @@ import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/util
 import type { LangKey } from '../i18n/ui';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
   canonicalURL?: string;
@@ -12,8 +12,8 @@ interface Props {
 }
 
 const {
-  title,
-  description,
+  title: pageTitle,
+  description: pageDescription,
   image = "/og-banner.png",
   canonicalURL = Astro.url.href,
   lang = getLangFromUrl(Astro.url)
@@ -22,7 +22,9 @@ const {
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
-const metaDescription = description || t('hero.sub');
+// Enforce sweet-spot limits (Title < 60 chars, Description ~125-150 chars)
+const title = pageTitle || t('seo.homeTitle');
+const metaDescription = pageDescription || t('seo.homeDesc');
 const htmlLang = lang === 'zh' ? 'zh-CN' : lang;
 
 const schemaData = {
@@ -60,19 +62,20 @@ const zhUrl = new URL(translatePath(Astro.url.pathname, 'zh'), 'https://cardi.co
   <link rel="alternate" hreflang="zh" href={zhUrl} />
   <link rel="alternate" hreflang="x-default" href={idUrl} />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:site_name" content="Cardi Business Ecosystem" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={metaDescription} />
   <meta property="og:image" content={new URL(image, Astro.url)} />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content={canonicalURL} />
-  <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content={metaDescription} />
-  <meta property="twitter:image" content={new URL(image, Astro.url)} />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={metaDescription} />
+  <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

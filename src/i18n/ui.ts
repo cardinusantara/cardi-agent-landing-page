@@ -8,6 +8,14 @@ export const defaultLang = 'id';
 
 export const ui = {
   id: {
+    // SEO Meta
+    'seo.homeTitle': 'Cardi — Business Power Ecosystem & AI Agents',
+    'seo.homeDesc': 'Ekosistem AI untuk bisnis Indonesia. Otomatiskan chat pelanggan, tingkatkan peringkat Google & temukan prospek 24/7.',
+    'seo.agentTitle': 'Cardi AI Agent — Scale to IPO & Otomasi AI',
+    'seo.agentDesc': 'Otomatiskan penjualan & chat pelanggan 24/7. Standarisasi pelaporan data operasional real-time menuju audit IPO.',
+    'seo.pluginTitle': 'Optima SEO Plugin — Automasi SEO WordPress',
+    'seo.pluginDesc': 'Plugin SEO WordPress autopilot: meta generator, internal linking, schema markup, & pemantauan peringkat real-time.',
+
     // Navigation
     'nav.products': 'Produk & Layanan',
     'nav.solutions': 'Solusi',
@@ -170,7 +178,7 @@ export const ui = {
     'agent.pStarterF3': '✓ Pemahaman Konteks NLP Dasar',
     'agent.pStarterBtn': 'Pilih Paket Starter',
     'agent.pProTitle': 'Pro Ekosistem',
-    'agent.pProDesc': 'Senjata mutlak bagi pebisnis serius untuk menguasai dominasi pasar tanpa kompromi 24/7.',
+    'agent.pProDesc': 'Senjata mutlak bagi pebisnis serious untuk menguasai dominasi pasar tanpa kompromi 24/7.',
     'agent.pProF1': '✓ Unlimited Pemrosesan Chat AI',
     'agent.pProF2': '✓ Hingga 3 Ekstensi WhatsApp Multi-Admin',
     'agent.pProF3': '✓ AI NLP Lanjut (Slang & Negosiasi)',
@@ -218,6 +226,14 @@ export const ui = {
     'notif.valued': 'senilai'
   },
   en: {
+    // SEO Meta
+    'seo.homeTitle': 'Cardi — Business Power Ecosystem & AI Agents',
+    'seo.homeDesc': 'AI ecosystem for high-growth businesses. Automate 24/7 customer chat, boost Google rankings & acquire leads.',
+    'seo.agentTitle': 'Cardi AI Agent — Scale to IPO & AI Automation',
+    'seo.agentDesc': 'Automate 24/7 customer sales. Standardize accounting and operational data to get audit-ready for IPO.',
+    'seo.pluginTitle': 'Optima SEO Plugin — Automated WordPress SEO',
+    'seo.pluginDesc': 'Autonomous WordPress SEO plugin: meta title generator, internal linking, schema markup, and rank tracking.',
+
     // Navigation
     'nav.products': 'Products & Services',
     'nav.solutions': 'Solutions',
@@ -428,6 +444,14 @@ export const ui = {
     'notif.valued': 'valued at'
   },
   zh: {
+    // SEO Meta
+    'seo.homeTitle': 'Cardi — 企业增长与 AI 智能体生态',
+    'seo.homeDesc': '专为企业增长打造的 AI 生态系统。24/7 全自动客服转化、Google SEO 排名优化与精准客源获取。',
+    'seo.agentTitle': 'Cardi AI Agent — 助力企业增长与上市筹备',
+    'seo.agentDesc': '24/7 全自动客服与销售转化，标准化运营与财务数据，助力企业顺畅筹备上市 (IPO)。',
+    'seo.pluginTitle': 'Optima SEO Plugin — 全自动 WordPress SEO',
+    'seo.pluginDesc': '全自动 WordPress SEO 插件：自动元标签生成、智能内部链接、Schema 结构化数据与实时排名监控。',
+
     // Navigation
     'nav.products': '产品与服务',
     'nav.solutions': '解决方案',
