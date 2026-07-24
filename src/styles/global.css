@@ -466,11 +466,12 @@ nav {
 
 /* ---------- HERO ---------- */
 .hero {
-  padding: 72px 0 24px;
+  padding: 72px 0 40px;
   text-align: center;
   background:
-    radial-gradient(700px 340px at 15% 0%, rgba(30, 79, 255, .07), transparent 70%),
-    radial-gradient(700px 340px at 85% 10%, rgba(0, 194, 209, .08), transparent 70%);
+    radial-gradient(700px 340px at 15% 0%, rgba(2, 88, 164, .08), transparent 70%),
+    radial-gradient(700px 340px at 85% 10%, rgba(0, 194, 209, .07), transparent 70%),
+    radial-gradient(900px 420px at 50% 100%, rgba(2, 88, 164, .05), transparent 72%);
 }
 
 .hero h1 {
@@ -513,133 +514,72 @@ nav {
   flex-wrap: wrap;
 }
 
-/* hero collage */
-.collage {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: 1fr 1.15fr 1fr;
-  gap: 20px;
-  align-items: end;
+/* hero visual — brand banner */
+.hero-visual {
+  position: relative;
+  margin: 56px auto 0;
+  max-width: 1080px;
 }
 
-@media(max-width:900px) {
-  .collage {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .shot {
-    transform: none !important;
-  }
+.hero-visual-glow {
+  position: absolute;
+  inset: 12% 6% -8%;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 55%, rgba(2, 88, 164, .28), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 30% 40%, rgba(0, 194, 209, .12), transparent 65%);
+  filter: blur(36px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.shot {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: 0 24px 60px -28px rgba(10, 22, 51, .25);
+.hero-visual-frame {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  border-radius: 22px;
   overflow: hidden;
-  text-align: left;
+  isolation: isolate;
+  background: #04153a;
+  border: 1px solid rgba(230, 236, 247, .65);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .35) inset,
+    0 28px 64px -28px rgba(2, 88, 164, .45),
+    0 48px 100px -48px rgba(10, 22, 51, .35);
+  transform: translateZ(0);
 }
 
-.shot .bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--line);
-  font-size: 12px;
-  font-weight: 700;
+.hero-visual-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, .06) 0%,
+    transparent 28%,
+    transparent 72%,
+    rgba(4, 21, 58, .12) 100%
+  );
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.shot .pad {
-  padding: 14px;
-}
-
-.chatRow {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.bub {
-  max-width: 78%;
-  font-size: 12px;
-  line-height: 1.5;
-  padding: 9px 12px;
-  border-radius: 12px;
-}
-
-.bub.in {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-bottom-left-radius: 4px;
-}
-
-.chatRow.out {
-  justify-content: flex-end;
-}
-
-.bub.out {
-  background: var(--blue);
-  color: #fff;
-  border-bottom-right-radius: 4px;
-}
-
-.tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  padding: 3px 8px;
-  border-radius: 99px;
-  margin-bottom: 8px;
-}
-
-.meter {
-  height: 8px;
-  border-radius: 99px;
-  background: var(--soft);
-  overflow: hidden;
-  margin: 6px 0 12px;
-}
-
-.meter i {
+.hero-visual-frame img {
   display: block;
-  height: 100%;
-  border-radius: 99px;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  object-fit: cover;
 }
 
-.krow {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--body);
-  padding: 8px 0;
-  border-bottom: 1px dashed var(--line);
-}
+@media (max-width: 640px) {
+  .hero-visual {
+    margin-top: 40px;
+  }
 
-.krow b {
-  color: var(--ink);
-}
-
-.statBig {
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: -.02em;
-}
-
-.up {
-  color: var(--green);
-  font-size: 11.5px;
-  font-weight: 700;
+  .hero-visual-frame {
+    border-radius: 16px;
+  }
 }
 
 /* ---------- TRUST ---------- */
