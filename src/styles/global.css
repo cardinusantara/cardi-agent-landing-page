@@ -466,50 +466,63 @@ nav {
 
 /* ---------- HERO ---------- */
 .hero {
-  padding: 72px 0 40px;
+  padding: 88px 0 48px;
   text-align: center;
   background:
-    radial-gradient(700px 340px at 15% 0%, rgba(2, 88, 164, .08), transparent 70%),
-    radial-gradient(700px 340px at 85% 10%, rgba(0, 194, 209, .07), transparent 70%),
-    radial-gradient(900px 420px at 50% 100%, rgba(2, 88, 164, .05), transparent 72%);
+    radial-gradient(720px 360px at 18% 0%, rgba(2, 88, 164, .07), transparent 72%),
+    radial-gradient(680px 320px at 82% 8%, rgba(0, 194, 209, .06), transparent 70%),
+    radial-gradient(980px 440px at 50% 100%, rgba(2, 88, 164, .045), transparent 74%);
 }
 
-.hero h1 {
-  font-size: clamp(32px, 5.6vw, 58px);
-  font-weight: 800;
-  letter-spacing: -.03em;
-  line-height: 1.12;
-  max-width: 840px;
+.hero-copy {
+  max-width: 760px;
   margin: 0 auto;
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #E7EDFF;
-  color: var(--blue);
-  border-radius: 18px;
-  padding: 2px 20px 6px;
-  vertical-align: baseline;
-}
-
-.pill svg {
-  transform: translateY(4px);
-}
-
-.hero p {
-  margin: 22px auto 0;
-  max-width: 620px;
-  color: var(--body);
-  font-size: 17px;
+.hero-eyebrow {
+  margin: 0 auto;
+  max-width: 380px;
+  white-space: pre-line;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
   line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-rule {
+  width: 36px;
+  height: 2px;
+  margin: 22px auto 28px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  opacity: .55;
+}
+
+.hero-lead {
+  margin: 0 auto;
+  max-width: 720px;
+  color: var(--ink);
+  font-size: clamp(28px, 4.4vw, 44px);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -.03em;
+}
+
+.hero-body {
+  margin: 20px auto 0;
+  max-width: 640px;
+  color: var(--body);
+  font-size: 16.5px;
+  font-weight: 500;
+  line-height: 1.8;
 }
 
 .heroCta {
-  margin-top: 32px;
+  margin-top: 36px;
   display: flex;
-  gap: 14px;
+  gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -517,17 +530,17 @@ nav {
 /* hero visual — brand banner */
 .hero-visual {
   position: relative;
-  margin: 56px auto 0;
+  margin: 64px auto 0;
   max-width: 1080px;
 }
 
 .hero-visual-glow {
   position: absolute;
-  inset: 12% 6% -8%;
+  inset: 14% 8% -6%;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 55%, rgba(2, 88, 164, .28), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 30% 40%, rgba(0, 194, 209, .12), transparent 65%);
-  filter: blur(36px);
+    radial-gradient(ellipse 68% 52% at 50% 55%, rgba(2, 88, 164, .22), transparent 72%),
+    radial-gradient(ellipse 48% 38% at 28% 42%, rgba(0, 194, 209, .1), transparent 68%);
+  filter: blur(42px);
   pointer-events: none;
   z-index: 0;
 }
@@ -536,15 +549,15 @@ nav {
   position: relative;
   z-index: 1;
   margin: 0;
-  border-radius: 22px;
+  border-radius: 24px;
   overflow: hidden;
   isolation: isolate;
   background: #04153a;
-  border: 1px solid rgba(230, 236, 247, .65);
+  border: 1px solid rgba(214, 224, 240, .7);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, .35) inset,
-    0 28px 64px -28px rgba(2, 88, 164, .45),
-    0 48px 100px -48px rgba(10, 22, 51, .35);
+    0 1px 0 rgba(255, 255, 255, .4) inset,
+    0 24px 56px -24px rgba(2, 88, 164, .38),
+    0 40px 88px -40px rgba(10, 22, 51, .28);
   transform: translateZ(0);
 }
 
@@ -554,13 +567,13 @@ nav {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, .06) 0%,
-    transparent 28%,
-    transparent 72%,
-    rgba(4, 21, 58, .12) 100%
+    rgba(255, 255, 255, .05) 0%,
+    transparent 24%,
+    transparent 78%,
+    rgba(4, 21, 58, .1) 100%
   );
 }
 
@@ -568,17 +581,24 @@ nav {
   display: block;
   width: 100%;
   height: auto;
-  vertical-align: middle;
   object-fit: cover;
 }
 
 @media (max-width: 640px) {
+  .hero {
+    padding: 72px 0 36px;
+  }
+
+  .hero-rule {
+    margin: 18px auto 22px;
+  }
+
   .hero-visual {
-    margin-top: 40px;
+    margin-top: 44px;
   }
 
   .hero-visual-frame {
-    border-radius: 16px;
+    border-radius: 18px;
   }
 }
 

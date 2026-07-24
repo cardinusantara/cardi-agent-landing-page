@@ -24,20 +24,15 @@ const translatePath = useTranslatedPath(lang);
   <!-- HERO -->
   <div class="hero">
     <div class="wrap">
-      <h1>{t('hero.titleLine1')}
-        <span class="pill">
-          <svg width="26" height="26" viewBox="0 0 120 120" fill="none">
-            <path
-              d="M60 30 C63.5 48 71 55.5 89 59 C71 62.5 63.5 70 60 88 C56.5 70 49 62.5 31 59 C49 55.5 56.5 48 60 30 Z"
-              fill="#0258a4" />
-          </svg>
-          {t('hero.tumbuh')}
-        </span>
-      </h1>
-      <p>{t('hero.sub')}</p>
-      <div class="heroCta">
-        <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('hero.ctaConsult')}</a>
-        <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
+      <div class="hero-copy">
+        <p class="hero-eyebrow">{t('hero.eyebrow')}</p>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <h1 class="hero-lead">{t('hero.lead')}</h1>
+        <p class="hero-body">{t('hero.body')}</p>
+        <div class="heroCta">
+          <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('hero.ctaConsult')}</a>
+          <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
+        </div>
       </div>
 
       <!-- Hero visual -->
@@ -46,7 +41,7 @@ const translatePath = useTranslatedPath(lang);
         <figure class="hero-visual-frame">
           <img
             src="/hero_ipo.png"
-            alt="Cardi — Partner for IPO. Strategic. Trusted. Together to IPO."
+            alt="Cardi — Business Growth Ecosystem. Strategic. Trusted. Together to IPO."
             width="1600"
             height="800"
             loading="eager"

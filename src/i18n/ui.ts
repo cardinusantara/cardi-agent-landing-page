@@ -9,7 +9,7 @@ export const defaultLang = 'id';
 export const ui = {
   id: {
     // SEO Meta
-    'seo.homeTitle': 'Cardi — Business Power Ecosystem & AI Agents',
+    'seo.homeTitle': 'Cardi — Business Growth Ecosystem & AI Agents',
     'seo.homeDesc': 'Ekosistem AI untuk bisnis Indonesia. Otomatiskan chat pelanggan, tingkatkan peringkat Google & temukan prospek 24/7.',
     'seo.agentTitle': 'Cardi AI Agent — Scale to IPO & Otomasi AI',
     'seo.agentDesc': 'Otomatiskan penjualan & chat pelanggan 24/7. Standarisasi pelaporan data operasional real-time menuju audit IPO.',
@@ -34,10 +34,9 @@ export const ui = {
     'nav.helpDesc': 'Dokumentasi dan support pelanggan',
 
     // Hero Section
-    'hero.badge': 'Cardi Business Power Ecosystem™',
-    'hero.titleLine1': 'Ekosistem AI untuk bisnis yang mau',
-    'hero.tumbuh': 'tumbuh',
-    'hero.sub': 'Semua produk Cardi dirancang khusus untuk membantu bisnis Indonesia — dari membalas chat pelanggan, menaikkan peringkat Google, sampai menemukan prospek baru. Otomatis, terukur, dan bekerja 24/7.',
+    'hero.eyebrow': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
+    'hero.lead': 'Bangun bisnis yang siap investasi dan IPO melalui ekosistem terintegrasi.',
+    'hero.body': 'Kami membantu perusahaan membangun fondasi bisnis yang kuat melalui Business Strategy, AI-Powered Operations, dan Technology, sehingga perusahaan dapat bertumbuh lebih cepat, lebih efisien, dan siap memasuki tahap Investment hingga IPO.',
     'hero.ctaConsult': 'Jadwalkan konsultasi',
     'hero.ctaExplore': 'Lihat semua produk',
 
@@ -227,7 +226,7 @@ export const ui = {
   },
   en: {
     // SEO Meta
-    'seo.homeTitle': 'Cardi — Business Power Ecosystem & AI Agents',
+    'seo.homeTitle': 'Cardi — Business Growth Ecosystem & AI Agents',
     'seo.homeDesc': 'AI ecosystem for high-growth businesses. Automate 24/7 customer chat, boost Google rankings & acquire leads.',
     'seo.agentTitle': 'Cardi AI Agent — Scale to IPO & AI Automation',
     'seo.agentDesc': 'Automate 24/7 customer sales. Standardize accounting and operational data to get audit-ready for IPO.',
@@ -252,10 +251,9 @@ export const ui = {
     'nav.helpDesc': 'Documentation & customer support',
 
     // Hero Section
-    'hero.badge': 'Cardi Business Power Ecosystem™',
-    'hero.titleLine1': 'The AI Ecosystem for businesses ready to',
-    'hero.tumbuh': 'grow',
-    'hero.sub': 'All Cardi products are engineered to help businesses scale — from automated 24/7 customer chat conversion and Google ranking optimization to new lead acquisition. Automated, measurable, 24/7.',
+    'hero.eyebrow': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
+    'hero.lead': 'Build a business ready for investment and IPO through an integrated ecosystem.',
+    'hero.body': 'We help companies build a strong business foundation through Business Strategy, AI-Powered Operations, and Technology—so they can grow faster, operate more efficiently, and be ready for the Investment stage through IPO.',
     'hero.ctaConsult': 'Schedule a Consultation',
     'hero.ctaExplore': 'Explore All Products',
 
@@ -470,10 +468,9 @@ export const ui = {
     'nav.helpDesc': '使用文档与客户技术支持',
 
     // Hero Section
-    'hero.badge': 'Cardi 商业赋能生态系统™',
-    'hero.titleLine1': '专为寻求突破的企业打造的 AI',
-    'hero.tumbuh': '增长生态',
-    'hero.sub': 'Cardi 旗下所有产品均专为企业增长打造 — 从 24/7 自动客服转化、Google 搜索引擎优化到新客户获取，实现全自动与可量化增长。',
+    'hero.eyebrow': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
+    'hero.lead': '通过一体化生态系统，打造具备投资与 IPO 准备度的企业。',
+    'hero.body': '我们通过 Business Strategy、AI-Powered Operations 与 Technology，帮助企业夯实业务基础，实现更快增长、更高效率，并做好从 Investment 到 IPO 阶段的准备。',
     'hero.ctaConsult': '预约免费咨询',
     'hero.ctaExplore': '浏览所有产品',
 
