@@ -479,40 +479,21 @@ nav {
   margin: 0 auto;
 }
 
-.hero-eyebrow {
-  margin: 0 auto;
-  max-width: 380px;
-  white-space: pre-line;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .18em;
-  line-height: 1.7;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.hero-rule {
-  width: 36px;
-  height: 2px;
-  margin: 22px auto 28px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, transparent, var(--blue), transparent);
-  opacity: .55;
-}
-
-.hero-lead {
+.hero-title {
   margin: 0 auto;
   max-width: 720px;
+  white-space: pre-line;
   color: var(--ink);
-  font-size: clamp(28px, 4.4vw, 44px);
+  font-size: clamp(30px, 4.8vw, 48px);
   font-weight: 800;
-  line-height: 1.18;
+  line-height: 1.16;
   letter-spacing: -.03em;
 }
 
 .hero-body {
-  margin: 20px auto 0;
-  max-width: 640px;
+  margin: 22px auto 0;
+  max-width: 660px;
+  white-space: pre-line;
   color: var(--body);
   font-size: 16.5px;
   font-weight: 500;
@@ -587,10 +568,6 @@ nav {
 @media (max-width: 640px) {
   .hero {
     padding: 72px 0 36px;
-  }
-
-  .hero-rule {
-    margin: 18px auto 22px;
   }
 
   .hero-visual {

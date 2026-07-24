@@ -34,9 +34,8 @@ export const ui = {
     'nav.helpDesc': 'Dokumentasi dan support pelanggan',
 
     // Hero Section
-    'hero.eyebrow': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
-    'hero.lead': 'Bangun bisnis yang siap investasi dan IPO melalui ekosistem terintegrasi.',
-    'hero.body': 'Kami membantu perusahaan membangun fondasi bisnis yang kuat melalui Business Strategy, AI-Powered Operations, dan Technology, sehingga perusahaan dapat bertumbuh lebih cepat, lebih efisien, dan siap memasuki tahap Investment hingga IPO.',
+    'hero.title': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
+    'hero.body': 'Bangun bisnis yang siap investasi dan IPO melalui ekosistem terintegrasi.\n\nKami membantu perusahaan membangun fondasi bisnis yang kuat melalui Business Strategy, AI-Powered Operations, dan Technology, sehingga perusahaan dapat bertumbuh lebih cepat, lebih efisien, dan siap memasuki tahap Investment hingga IPO.',
     'hero.ctaConsult': 'Jadwalkan konsultasi',
     'hero.ctaExplore': 'Lihat semua produk',
 
@@ -252,9 +251,8 @@ export const ui = {
     'nav.helpDesc': 'Documentation & customer support',
 
     // Hero Section
-    'hero.eyebrow': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
-    'hero.lead': 'Build a business ready for investment and IPO through an integrated ecosystem.',
-    'hero.body': 'We help companies build a strong business foundation through Business Strategy, AI-Powered Operations, and Technology—so they can grow faster, operate more efficiently, and be ready for the Investment stage through IPO.',
+    'hero.title': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
+    'hero.body': 'Build a business ready for investment and IPO through an integrated ecosystem.\n\nWe help companies build a strong business foundation through Business Strategy, AI-Powered Operations, and Technology—so they can grow faster, operate more efficiently, and be ready for the Investment stage through IPO.',
     'hero.ctaConsult': 'Schedule a Consultation',
     'hero.ctaExplore': 'Explore All Products',
 
@@ -470,9 +468,8 @@ export const ui = {
     'nav.helpDesc': '使用文档与客户技术支持',
 
     // Hero Section
-    'hero.eyebrow': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
-    'hero.lead': '通过一体化生态系统，打造具备投资与 IPO 准备度的企业。',
-    'hero.body': '我们通过 Business Strategy、AI-Powered Operations 与 Technology，帮助企业夯实业务基础，实现更快增长、更高效率，并做好从 Investment 到 IPO 阶段的准备。',
+    'hero.title': "The holding company\nbehind Indonesia's\nBusiness Growth Ecosystem.",
+    'hero.body': '通过一体化生态系统，打造具备投资与 IPO 准备度的企业。\n\n我们通过 Business Strategy、AI-Powered Operations 与 Technology，帮助企业夯实业务基础，实现更快增长、更高效率，并做好从 Investment 到 IPO 阶段的准备。',
     'hero.ctaConsult': '预约免费咨询',
     'hero.ctaExplore': '浏览所有产品',
 
