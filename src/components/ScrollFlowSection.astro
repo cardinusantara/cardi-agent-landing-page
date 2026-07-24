@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 
 interface Props {
@@ -8,9 +8,8 @@ interface Props {
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
-<section class="flow-section" id="solusi">
+<section class="flow-section" id="produk">
   <div class="wrap flow-header">
     <span class="flow-badge">{t('eco.tag')}</span>
     <h2>{t('eco.title')}</h2>
@@ -54,11 +53,11 @@ const translatePath = useTranslatedPath(lang);
           <p>{t('eco.s1Desc')}</p>
           <ul class="flow-pillars">
             <li>Brand Strategy &amp; Positioning</li>
-            <li>Visual Identity System &amp; Logo Design</li>
-            <li>Packaging &amp; Marketing Collaterals</li>
+            <li>Visual Identity &amp; Go-To-Market</li>
+            <li>{t('eco.s1Model')} · {t('eco.s1Hook')}</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://branding.cardinusantara.com/" target="_blank" class="btn wa" style="background:#fb3202">{t('eco.s1Btn')}</a>
+            <a href="https://branding.cardinusantara.com/" target="_blank" rel="noopener noreferrer" class="btn wa" style="background:#fb3202">{t('eco.s1Btn')}</a>
           </div>
         </div>
       </div>
@@ -67,18 +66,18 @@ const translatePath = useTranslatedPath(lang);
       <div class="flow-card" data-stage-index="1">
         <div class="flow-card-inner">
           <div class="flow-card-header">
-            <span class="flow-tag" style="background:#F0F2F6;color:#0A1633">STEP 02 · GTM &amp; DISTRIBUTION</span>
+            <span class="flow-tag" style="background:#F0F2F6;color:#0A1633">{t('eco.s2Tag')}</span>
             <h3>{t('eco.s2Title')}</h3>
             <small>{t('eco.s2Sub')}</small>
           </div>
           <p>{t('eco.s2Desc')}</p>
           <ul class="flow-pillars">
-            <li>Jaringan Distribusi Toko Ritel National</li>
-            <li>Program Kemitraan Distributor</li>
-            <li>Omnichannel Sales Strategy</li>
+            <li>Distribution Strategy &amp; Market Penetration</li>
+            <li>Partnership &amp; Franchise</li>
+            <li>{t('eco.s2Model')} · {t('eco.s2Hook')}</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://cardinusantara.com/" target="_blank" class="btn wa" style="background:#0A1633">{t('eco.s2Btn')}</a>
+            <a href="https://cardinusantara.com/" target="_blank" rel="noopener noreferrer" class="btn wa" style="background:#0A1633">{t('eco.s2Btn')}</a>
           </div>
         </div>
       </div>
@@ -93,27 +92,32 @@ const translatePath = useTranslatedPath(lang);
           </div>
           <p>{t('eco.s3Desc')}</p>
           <ul class="flow-pillars">
-            <li>Performance Marketing &amp; Ads Scale</li>
-            <li>Search Engine Optimization (SEO)</li>
-            <li>Conversion Rate Optimization (CRO)</li>
+            <li>AI-Powered Marketing &amp; Automation</li>
+            <li>Performance Growth, SEO &amp; Revenue Optimization</li>
+            <li>{t('eco.s3Model')} · {t('eco.s3Hook')}</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://digital.cardinusantara.com/" target="_blank" class="btn wa" style="background:#c42025">{t('eco.s3Btn')}</a>
+            <a href="https://digital.cardinusantara.com/" target="_blank" rel="noopener noreferrer" class="btn wa" style="background:#c42025">{t('eco.s3Btn')}</a>
           </div>
         </div>
       </div>
 
-      <!-- STAGE 3: SCALE TO IPO -->
+      <!-- STAGE 3: PARTNER FOR IPO -->
       <div class="flow-card" data-stage-index="3">
         <div class="flow-card-inner">
           <div class="flow-card-header">
-            <span class="flow-tag" style="background:#EEF3FF;color:#1e4fff">{t('eco.s4Tag')}</span>
+            <span class="flow-tag" style="background:#EEF3FF;color:#0258a4">{t('eco.s4Tag')}</span>
             <h3>{t('eco.s4Title')}</h3>
             <small>{t('eco.s4Sub')}</small>
           </div>
           <p>{t('eco.s4Desc')}</p>
+          <ul class="flow-pillars">
+            <li>Business Strategy &amp; Corporate Governance</li>
+            <li>Investor Communication &amp; Transformation</li>
+            <li>{t('eco.s4Model')} · {t('eco.s4Hook')}</li>
+          </ul>
           <div class="flow-card-footer">
-            <a href={translatePath('/agent')} class="btn wa" style="background:#1e4fff">{t('eco.s4Btn')}</a>
+            <a href="https://cardi.co.id/" target="_blank" rel="noopener noreferrer" class="btn wa" style="background:#0258a4">{t('eco.s4Btn')}</a>
           </div>
         </div>
       </div>
@@ -122,7 +126,7 @@ const translatePath = useTranslatedPath(lang);
   </div>
 </section>
 
-<script>
+<script define:vars={{ s1Tag: t('eco.s1Tag'), s1Title: t('eco.s1Title'), s2Tag: t('eco.s2Tag'), s2Title: t('eco.s2Title'), s3Tag: t('eco.s3Tag'), s3Title: t('eco.s3Title'), s4Tag: t('eco.s4Tag'), s4Title: t('eco.s4Title') }}>
   document.addEventListener('DOMContentLoaded', () => {
     const stickyContainer = document.getElementById('flowStickyContainer');
     const stageCurrent = document.getElementById('stageCurrent');
@@ -133,10 +137,10 @@ const translatePath = useTranslatedPath(lang);
     if (!stickyContainer || flowCards.length === 0) return;
 
     const stagesData = [
-      { num: '01', eyebrow: 'STEP 01 · BRAND DEVELOPMENT', title: 'Build the Brand' },
-      { num: '02', eyebrow: 'STEP 02 · GTM & DISTRIBUTION', title: 'Launch the Brand' },
-      { num: '03', eyebrow: 'STEP 03 · INTEGRATED GROWTH MARKETING', title: 'Grow the Brand' },
-      { num: '04', eyebrow: 'STEP 04 · OPERATIONAL SCALE & IPO READINESS', title: 'Scale to IPO' }
+      { num: '01', eyebrow: s1Tag, title: s1Title },
+      { num: '02', eyebrow: s2Tag, title: s2Title },
+      { num: '03', eyebrow: s3Tag, title: s3Title },
+      { num: '04', eyebrow: s4Tag, title: s4Title }
     ];
 
     function updateActiveStage() {
