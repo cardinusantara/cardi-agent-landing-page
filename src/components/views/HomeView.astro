@@ -293,13 +293,69 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </section>
 
-  <!-- TESTIMONIAL -->
-  <section class="trust" style="background:#fff; padding: 76px 0;">
+  <!-- TESTIMONIAL MARQUEE -->
+  <section class="testi" id="testimoni">
     <div class="wrap">
-      <div class="quote">
-        <div class="stars">★★★★★</div>
-        <blockquote>{t('test.quote')}</blockquote>
-        <div class="who">{t('test.who')}</div>
+      <div class="center">
+        <div class="eyebrow">{t('test.tag')}</div>
+        <h2 class="h2">{t('test.title')}</h2>
+        <p class="sub">{t('test.sub')}</p>
+      </div>
+    </div>
+
+    <div class="testi-marquee" aria-label="Testimonials">
+      <div class="testi-track">
+        <!-- SET 1 -->
+        <article class="testi-card">
+          <div class="testi-product" style="color:#fb3202">{t('test.t1Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t1Quote')}</blockquote>
+          <div class="testi-who">{t('test.t1Who')}</div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-product" style="color:#0A1633">{t('test.t2Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t2Quote')}</blockquote>
+          <div class="testi-who">{t('test.t2Who')}</div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-product" style="color:#c42025">{t('test.t3Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t3Quote')}</blockquote>
+          <div class="testi-who">{t('test.t3Who')}</div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-product" style="color:#0258a4">{t('test.t4Product')}</div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <blockquote>{t('test.t4Quote')}</blockquote>
+          <div class="testi-who">{t('test.t4Who')}</div>
+        </article>
+
+        <!-- SET 2 (duplicate for seamless loop) -->
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#fb3202">{t('test.t1Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t1Quote')}</blockquote>
+          <div class="testi-who">{t('test.t1Who')}</div>
+        </article>
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#0A1633">{t('test.t2Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t2Quote')}</blockquote>
+          <div class="testi-who">{t('test.t2Who')}</div>
+        </article>
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#c42025">{t('test.t3Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t3Quote')}</blockquote>
+          <div class="testi-who">{t('test.t3Who')}</div>
+        </article>
+        <article class="testi-card" aria-hidden="true">
+          <div class="testi-product" style="color:#0258a4">{t('test.t4Product')}</div>
+          <div class="stars">★★★★★</div>
+          <blockquote>{t('test.t4Quote')}</blockquote>
+          <div class="testi-who">{t('test.t4Who')}</div>
+        </article>
       </div>
     </div>
   </section>

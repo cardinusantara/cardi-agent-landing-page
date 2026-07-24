@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 
@@ -95,5 +96,6 @@ const zhUrl = new URL(translatePath(Astro.url.pathname, 'zh'), 'https://cardi.co
 </head>
 <body>
   <slot />
+  <WhatsAppFloat lang={lang} />
 </body>
 </html>
