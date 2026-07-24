@@ -122,7 +122,6 @@ export const ui = {
     'cta.title': 'Siap bawa bisnis Anda tumbuh lebih cepat?',
     'cta.desc': 'Jadwalkan sesi konsultasi gratis 30 menit dengan tim pakar kami. Kami bantu petakan produk Cardi mana yang paling cocok untuk bisnis Anda.',
     'cta.b1': 'Jadwalkan konsultasi gratis',
-    'cta.b2': 'Email kami →',
 
     // Footer
     'foot.desc': 'Ekosistem pertumbuhan bisnis terpadu: Scale the Business & Scale to IPO. Didukung oleh kecerdasan buatan, jaringan distribusi nasional, dan strategi branding kelas atas.',
@@ -355,7 +354,6 @@ export const ui = {
     'cta.title': 'Ready to scale your business faster?',
     'cta.desc': 'Book a free 30-minute consultation with our growth specialists. We will map out which Cardi ecosystem solution best fits your business goals.',
     'cta.b1': 'Schedule Free Consultation',
-    'cta.b2': 'Email Us →',
 
     // Footer
     'foot.desc': 'Integrated business growth ecosystem: Scale the Business & Scale to IPO. Powered by artificial intelligence, national distribution, and world-class branding.',
@@ -588,7 +586,6 @@ export const ui = {
     'cta.title': '准备好让您的业务加速增长了吗？',
     'cta.desc': '预约 30 分钟免费资深顾问咨询，我们将为您梳理最契合您业务目标的 Cardi 产品方案。',
     'cta.b1': '预约免费咨询',
-    'cta.b2': '发送邮件咨询 →',
 
     // Footer
     'foot.desc': '一体化企业增长生态： Scale the Business & Scale to IPO。 由人工智能、全国分销网络及高端品牌策略深度驱动。',
