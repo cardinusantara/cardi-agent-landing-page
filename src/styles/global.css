@@ -5,8 +5,8 @@
   --paper: #FFFFFF;
   --soft: #F5F8FE;
   --line: #E6ECF7;
-  --blue: #0258a4;
-  --blue-d: #01417a;
+  --blue: #1e4fff;
+  --blue-d: #153dcc;
   --cyan: #00C2D1;
   --green: #00A87E;
   --orange: #FF7A00;
@@ -469,9 +469,9 @@ nav {
   padding: 88px 0 48px;
   text-align: center;
   background:
-    radial-gradient(720px 360px at 18% 0%, rgba(2, 88, 164, .07), transparent 72%),
+    radial-gradient(720px 360px at 18% 0%, rgba(30, 79, 255, .07), transparent 72%),
     radial-gradient(680px 320px at 82% 8%, rgba(0, 194, 209, .06), transparent 70%),
-    radial-gradient(980px 440px at 50% 100%, rgba(2, 88, 164, .045), transparent 74%);
+    radial-gradient(980px 440px at 50% 100%, rgba(30, 79, 255, .045), transparent 74%);
 }
 
 .hero-copy {
@@ -519,7 +519,7 @@ nav {
   position: absolute;
   inset: 14% 8% -6%;
   background:
-    radial-gradient(ellipse 68% 52% at 50% 55%, rgba(2, 88, 164, .22), transparent 72%),
+    radial-gradient(ellipse 68% 52% at 50% 55%, rgba(30, 79, 255, .22), transparent 72%),
     radial-gradient(ellipse 48% 38% at 28% 42%, rgba(0, 194, 209, .1), transparent 68%);
   filter: blur(42px);
   pointer-events: none;
@@ -537,7 +537,7 @@ nav {
   border: 1px solid rgba(214, 224, 240, .7);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, .4) inset,
-    0 24px 56px -24px rgba(2, 88, 164, .38),
+    0 24px 56px -24px rgba(30, 79, 255, .38),
     0 40px 88px -40px rgba(10, 22, 51, .28);
   transform: translateZ(0);
 }
@@ -1221,7 +1221,7 @@ section {
 .testi {
   padding: 88px 0 72px;
   background:
-    radial-gradient(700px 280px at 50% 0%, rgba(2, 88, 164, .04), transparent 70%),
+    radial-gradient(700px 280px at 50% 0%, rgba(30, 79, 255, .04), transparent 70%),
     #fff;
   overflow: hidden;
 }
@@ -1277,7 +1277,7 @@ section {
   border-color: #D5E0F4;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, .9) inset,
-    0 24px 56px -24px rgba(2, 88, 164, .16);
+    0 24px 56px -24px rgba(30, 79, 255, .16);
   transform: translateY(-2px);
 }
 

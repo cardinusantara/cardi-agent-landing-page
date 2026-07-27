@@ -27,7 +27,9 @@ const translatePath = useTranslatedPath(lang);
       --text-dark: #0F172A;
       --text-gray: #475569;
       --border: #E2E8F0;
-      --primary: #0258a4;
+      --primary: #1e4fff;
+      --blue: #1e4fff;
+      --blue-d: #153dcc;
       --accent: #F43F5E;
     }
     .hero {
@@ -429,6 +431,130 @@ const translatePath = useTranslatedPath(lang);
     .pricing-features-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; flex: 1; }
     .pricing-features-list li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-dark); }
     .pricing-btn { width: 100%; justify-content: center; text-align: center; }
+
+    /* Roadmap Section (Phase 04-06) */
+    .roadmap-section {
+      background: var(--bg-gray);
+    }
+    .roadmap-list {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .roadmap-phase {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      overflow: hidden;
+    }
+    @media(max-width: 860px) {
+      .roadmap-phase {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 28px;
+      }
+    }
+    .roadmap-ghost-num {
+      position: absolute;
+      top: -14px;
+      right: 8px;
+      font-size: clamp(70px, 10vw, 140px);
+      font-weight: 800;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+    .roadmap-phase-copy {
+      position: relative;
+      z-index: 1;
+    }
+    .roadmap-phase-tag {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .roadmap-phase-copy h3 {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .roadmap-phase-badge {
+      display: inline-block;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 26px;
+    }
+    .roadmap-what-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-gray);
+      margin-bottom: 16px;
+    }
+    .roadmap-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .roadmap-items li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .roadmap-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .roadmap-lead-card {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-gray);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .roadmap-lead-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-gray);
+      margin-bottom: 14px;
+    }
+    .roadmap-lead-card p {
+      font-size: 14.5px;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+    .roadmap-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
   </style>
 
   <!-- HERO SECTION -->
@@ -680,6 +806,81 @@ const translatePath = useTranslatedPath(lang);
           </ul>
           <a href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi%20Agent!!%20I%20would%20like%20to%20consult%20about%20the%20Enterprise%20Package.%20%F0%9F%98%81%F0%9F%98%81" target="_blank" class="btn ghost pricing-btn">{t('agent.pEntBtn')}</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP: BEYOND THE AGENT (PHASE 04-06) -->
+  <section class="roadmap-section">
+    <div class="wrap center">
+      <div class="eyebrow">{t('roadmap.tag')}</div>
+      <h2 class="h2">{t('roadmap.title')}</h2>
+      <p class="sub">{t('roadmap.sub')}</p>
+    </div>
+
+    <div class="wrap roadmap-list">
+      <!-- PHASE 04: BUSINESS GROWTH -->
+      <div class="roadmap-phase">
+        <span class="roadmap-ghost-num" style="color:#E3F6EF">04</span>
+        <div class="roadmap-phase-copy">
+          <span class="roadmap-phase-tag" style="color:#00A87E">{t('roadmap.p1Tag')}</span>
+          <h3>{t('roadmap.p1Title')}</h3>
+          <span class="roadmap-phase-badge" style="background:#E3F6EF;color:#00A87E">Cardi.co.id</span>
+          <div class="roadmap-what-label">{t('roadmap.whatHappens')}</div>
+          <ul class="roadmap-items">
+            <li><span class="roadmap-dot" style="background:#00A87E"></span>{t('roadmap.p1Item1')}</li>
+            <li><span class="roadmap-dot" style="background:#00A87E"></span>{t('roadmap.p1Item2')}</li>
+            <li><span class="roadmap-dot" style="background:#00A87E"></span>{t('roadmap.p1Item3')}</li>
+          </ul>
+        </div>
+        <div class="roadmap-lead-card">
+          <div class="roadmap-lead-label">{t('roadmap.whoLeads')}</div>
+          <p>{t('roadmap.p1Desc')}</p>
+        </div>
+      </div>
+
+      <!-- PHASE 05: INVESTMENT READINESS -->
+      <div class="roadmap-phase">
+        <span class="roadmap-ghost-num" style="color:#EEF3FF">05</span>
+        <div class="roadmap-phase-copy">
+          <span class="roadmap-phase-tag" style="color:var(--primary)">{t('roadmap.p2Tag')}</span>
+          <h3>{t('roadmap.p2Title')}</h3>
+          <span class="roadmap-phase-badge" style="background:#EEF3FF;color:var(--primary)">Cardi.co.id</span>
+          <div class="roadmap-what-label">{t('roadmap.whatHappens')}</div>
+          <ul class="roadmap-items">
+            <li><span class="roadmap-dot" style="background:var(--primary)"></span>{t('roadmap.p2Item1')}</li>
+            <li><span class="roadmap-dot" style="background:var(--primary)"></span>{t('roadmap.p2Item2')}</li>
+            <li><span class="roadmap-dot" style="background:var(--primary)"></span>{t('roadmap.p2Item3')}</li>
+          </ul>
+        </div>
+        <div class="roadmap-lead-card">
+          <div class="roadmap-lead-label">{t('roadmap.whoLeads')}</div>
+          <p>{t('roadmap.p2Desc')}</p>
+        </div>
+      </div>
+
+      <!-- PHASE 06: IPO READINESS -->
+      <div class="roadmap-phase">
+        <span class="roadmap-ghost-num" style="color:#FBF1DC">06</span>
+        <div class="roadmap-phase-copy">
+          <span class="roadmap-phase-tag" style="color:#B8860B">{t('roadmap.p3Tag')}</span>
+          <h3>{t('roadmap.p3Title')}</h3>
+          <span class="roadmap-phase-badge" style="background:#FBF1DC;color:#B8860B">Cardi.co.id</span>
+          <div class="roadmap-what-label">{t('roadmap.whatHappens')}</div>
+          <ul class="roadmap-items">
+            <li><span class="roadmap-dot" style="background:#B8860B"></span>{t('roadmap.p3Item1')}</li>
+            <li><span class="roadmap-dot" style="background:#B8860B"></span>{t('roadmap.p3Item2')}</li>
+            <li><span class="roadmap-dot" style="background:#B8860B"></span>{t('roadmap.p3Item3')}</li>
+          </ul>
+        </div>
+        <div class="roadmap-lead-card">
+          <div class="roadmap-lead-label">{t('roadmap.whoLeads')}</div>
+          <p>{t('roadmap.p3Desc')}</p>
+        </div>
+      </div>
+
+      <div class="roadmap-cta">
+        <a href="https://cardi.co.id/" target="_blank" rel="noopener noreferrer" class="btn" style="background:var(--primary)">{t('eco.s4Btn')}</a>
       </div>
     </div>
   </section>

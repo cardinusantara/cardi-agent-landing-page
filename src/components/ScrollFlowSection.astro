@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 <section class="flow-section" id="produk">
   <div class="wrap flow-header">
@@ -106,7 +107,7 @@ const t = useTranslations(lang);
       <div class="flow-card" data-stage-index="3">
         <div class="flow-card-inner">
           <div class="flow-card-header">
-            <span class="flow-tag" style="background:#EEF3FF;color:#0258a4">{t('eco.s4Tag')}</span>
+            <span class="flow-tag" style="background:#EEF3FF;color:#1e4fff">{t('eco.s4Tag')}</span>
             <h3>{t('eco.s4Title')}</h3>
             <small>{t('eco.s4Sub')}</small>
           </div>
@@ -117,7 +118,7 @@ const t = useTranslations(lang);
             <li>{t('eco.s4Model')} · {t('eco.s4Hook')}</li>
           </ul>
           <div class="flow-card-footer">
-            <a href="https://cardi.co.id/" target="_blank" rel="noopener noreferrer" class="btn wa" style="background:#0258a4">{t('eco.s4Btn')}</a>
+            <a href={translatePath('/agent')} class="btn wa" style="background:#1e4fff">{t('eco.s4Btn')}</a>
           </div>
         </div>
       </div>
