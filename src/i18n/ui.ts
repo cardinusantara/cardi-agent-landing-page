@@ -11,7 +11,7 @@ export const ui = {
     // SEO Meta
     'seo.homeTitle': 'Cardi — Business Growth Ecosystem & AI Agents',
     'seo.homeDesc': 'Ekosistem AI untuk bisnis Indonesia. Otomatiskan chat pelanggan, tingkatkan peringkat Google & temukan prospek 24/7.',
-    'seo.agentTitle': 'Cardi AI Agent — Scale to IPO & Otomasi AI',
+    'seo.agentTitle': 'Cardi Agent > Partner for IPO - Scale the Business - Cardi Business Power Ecosystem™️',
     'seo.agentDesc': 'Otomatiskan penjualan & chat pelanggan 24/7. Standarisasi pelaporan data operasional real-time menuju audit IPO.',
     'seo.pluginTitle': 'Optima SEO Plugin — Automasi SEO WordPress',
     'seo.pluginDesc': 'Plugin SEO WordPress autopilot: meta generator, internal linking, schema markup, & pemantauan peringkat real-time.',
@@ -287,7 +287,7 @@ export const ui = {
     // SEO Meta
     'seo.homeTitle': 'Cardi — Business Growth Ecosystem & AI Agents',
     'seo.homeDesc': 'AI ecosystem for high-growth businesses. Automate 24/7 customer chat, boost Google rankings & acquire leads.',
-    'seo.agentTitle': 'Cardi AI Agent — Scale to IPO & AI Automation',
+    'seo.agentTitle': 'Cardi Agent > Partner for IPO - Scale the Business - Cardi Business Power Ecosystem™️',
     'seo.agentDesc': 'Automate 24/7 customer sales. Standardize accounting and operational data to get audit-ready for IPO.',
     'seo.pluginTitle': 'Optima SEO Plugin — Automated WordPress SEO',
     'seo.pluginDesc': 'Autonomous WordPress SEO plugin: meta title generator, internal linking, schema markup, and rank tracking.',
@@ -563,7 +563,7 @@ export const ui = {
     // SEO Meta
     'seo.homeTitle': 'Cardi — 企业增长与 AI 智能体生态',
     'seo.homeDesc': '专为企业增长打造的 AI 生态系统。24/7 全自动客服转化、Google SEO 排名优化与精准客源获取。',
-    'seo.agentTitle': 'Cardi AI Agent — 助力企业增长与上市筹备',
+    'seo.agentTitle': 'Cardi Agent > Partner for IPO - Scale the Business - Cardi Business Power Ecosystem™️',
     'seo.agentDesc': '24/7 全自动客服与销售转化，标准化运营与财务数据，助力企业顺畅筹备上市 (IPO)。',
     'seo.pluginTitle': 'Optima SEO Plugin — 全自动 WordPress SEO',
     'seo.pluginDesc': '全自动 WordPress SEO 插件：自动元标签生成、智能内部链接、Schema 结构化数据与实时排名监控。',
