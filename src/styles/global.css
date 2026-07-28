@@ -5,8 +5,9 @@
   --paper: #FFFFFF;
   --soft: #F5F8FE;
   --line: #E6ECF7;
-  --blue: #1e4fff;
-  --blue-d: #153dcc;
+  --blue: #0258a4;
+  --blue-d: #01417a;
+  --agent-blue: #1e4fff;
   --cyan: #00C2D1;
   --green: #00A87E;
   --orange: #FF7A00;
@@ -1112,16 +1113,16 @@ section {
 
 .flow-sticky-side[data-stage="3"] .morphing-leaf {
   transform: translateX(4px) rotate(90deg) scale(1.2);
-  fill: #1e4fff;
+  fill: #0258a4;
 }
 .flow-sticky-side[data-stage="3"] .morphing-dot {
   transform: translateX(-28px) scale(1.2);
   opacity: 1;
-  fill: #1e4fff;
+  fill: #0258a4;
 }
 .flow-sticky-side[data-stage="3"] .circle-canvas {
   background: #EEF3FF;
-  border-color: #D3DEF5;
+  border-color: #C7D9FE;
 }
 
 /* ---------- SOLUSI ---------- */
