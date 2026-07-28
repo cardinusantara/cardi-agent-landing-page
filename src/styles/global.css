@@ -386,9 +386,11 @@ nav {
   z-index: 100;
 }
 
-.menu-item:hover .dropdown {
+.menu-item:hover .dropdown,
+.menu-item:hover .mega-solutions-dropdown {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
 

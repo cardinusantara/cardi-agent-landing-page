@@ -1,0 +1,507 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { LangKey } from '../i18n/ui';
+import { solutionsData } from '../data/solutions';
+
+interface Props {
+  lang?: LangKey;
+}
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<div class="mega-solutions-dropdown" id="solutionsMegaMenu">
+  <div class="mega-container">
+    
+    <!-- LEFT SIDEBAR: CATEGORY TABS & CONSULTATION CTA -->
+    <div class="mega-sidebar">
+      <div class="mega-sidebar-title">{t('solMenu.tag')}</div>
+      
+      <div class="mega-tabs">
+        <button class="mega-tab-btn active" data-category="industri" type="button">
+          <span class="tab-icon">🏢</span>
+          <span>{t('solMenu.tabIndustri')}</span>
+          <span class="tab-arrow">&rsaquo;</span>
+        </button>
+        <button class="mega-tab-btn" data-category="role" type="button">
+          <span class="tab-icon">👤</span>
+          <span>{t('solMenu.tabRole')}</span>
+          <span class="tab-arrow">&rsaquo;</span>
+        </button>
+        <button class="mega-tab-btn" data-category="fitur" type="button">
+          <span class="tab-icon">⚡</span>
+          <span>{t('solMenu.tabFitur')}</span>
+          <span class="tab-arrow">&rsaquo;</span>
+        </button>
+        <button class="mega-tab-btn" data-category="integrasi" type="button">
+          <span class="tab-icon">🔗</span>
+          <span>{t('solMenu.tabIntegrasi')}</span>
+          <span class="tab-arrow">&rsaquo;</span>
+        </button>
+      </div>
+
+      <div class="mega-consult-card">
+        <div class="consult-text">{t('solMenu.consultHeading')}</div>
+        <button class="consult-btn open-consult-trigger" type="button">
+          {t('solMenu.consultBtn')}
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT MAIN PANEL: LIVE SEARCH & SOLUTION CARDS GRID -->
+    <div class="mega-main">
+      <!-- Search Input -->
+      <div class="mega-search-box">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="megaSearchInput" 
+          placeholder={t('solMenu.searchPlaceholder')}
+          autocomplete="off"
+        />
+        <button type="button" id="megaSearchClear" class="search-clear" style="display:none;">&times;</button>
+      </div>
+
+      <!-- Solutions Grid -->
+      <div class="mega-grid" id="megaGrid">
+        {solutionsData.map(sol => (
+          <a 
+            href={translatePath(`/solusi/${sol.slug}`)} 
+            class="mega-sol-card" 
+            data-category={sol.category}
+            data-keywords={`${sol.title[lang] || sol.title.id} ${sol.desc[lang] || sol.desc.id} ${sol.slug}`}
+          >
+            <div class="sol-icon-box">{sol.icon}</div>
+            <div class="sol-info">
+              <h4>{sol.title[lang] || sol.title.id}</h4>
+              <p>{sol.desc[lang] || sol.desc.id}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Empty State when search returns no match -->
+      <div class="mega-empty-state" id="megaEmptyState" style="display:none;">
+        <p>Tidak ada solusi yang cocok dengan pencarian Anda.</p>
+        <button class="btn ghost open-consult-trigger" type="button" style="margin-top:10px;">
+          Tanyakan ke Tim Specialist &rarr;
+        </button>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="mega-footer-bar">
+        <a href={translatePath('/solusi')} class="see-all-link">
+          {t('solMenu.viewAll')}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style is:global>
+  .mega-solutions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 940px;
+    max-width: calc(100vw - 32px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(230, 236, 247, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px -15px rgba(10, 22, 51, 0.18), 0 4px 16px rgba(0, 0, 0, 0.04);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  /* Invisible hover bridge between navbar link and dropdown */
+  .mega-solutions-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: transparent;
+  }
+
+  .menu-item:hover .mega-solutions-dropdown,
+  .mega-solutions-dropdown:hover,
+  .mega-solutions-dropdown.force-show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mega-container {
+    display: flex;
+    min-height: 460px;
+  }
+
+  /* SIDEBAR */
+  .mega-sidebar {
+    width: 250px;
+    background: #F8FAFC;
+    border-right: 1px solid #E2E8F0;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .mega-sidebar-title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--muted, #6B7A9C);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+
+  .mega-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .mega-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink, #0A1633);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+
+  .mega-tab-btn:hover {
+    background: #EDF2F7;
+    color: var(--blue, #0258a4);
+  }
+
+  .mega-tab-btn.active {
+    background: #ffffff;
+    border-color: #CBD5E1;
+    color: var(--blue, #0258a4);
+    box-shadow: 0 4px 12px -2px rgba(10, 22, 51, 0.06);
+  }
+
+  .tab-icon {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mega-tab-btn span:nth-child(2) {
+    flex: 1;
+  }
+
+  .tab-arrow {
+    font-size: 16px;
+    color: #94A3B8;
+    transition: transform 0.2s ease;
+  }
+
+  .mega-tab-btn.active .tab-arrow {
+    transform: translateX(3px);
+    color: var(--blue, #0258a4);
+  }
+
+  .mega-consult-card {
+    margin-top: auto;
+    background: linear-gradient(135deg, #EEF3FF 0%, #E0EAFF 100%);
+    border: 1px solid #C7D9FE;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: left;
+  }
+
+  .consult-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink, #0A1633);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .consult-btn {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--blue, #0258a4);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .consult-btn:hover {
+    background: var(--blue-d, #01417a);
+  }
+
+  /* MAIN PANEL */
+  .mega-main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+  }
+
+  .mega-search-box {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94A3B8;
+  }
+
+  .mega-search-box input {
+    width: 100%;
+    padding: 10px 36px 10px 40px;
+    border-radius: 10px;
+    border: 1.5px solid #E2E8F0;
+    background: #F8FAFC;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink, #0A1633);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .mega-search-box input:focus {
+    border-color: var(--blue, #0258a4);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 88, 164, 0.1);
+  }
+
+  .search-clear {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #94A3B8;
+    cursor: pointer;
+  }
+
+  .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-height: 330px;
+    overflow-y: auto;
+    padding-right: 4px;
+    scroll-behavior: smooth;
+  }
+
+  .mega-grid::-webkit-scrollbar {
+    width: 5px;
+  }
+  .mega-grid::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 99px;
+  }
+
+  .mega-sol-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .mega-sol-card:hover {
+    border-color: #93C5FD;
+    background: #F0F7FF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -6px rgba(2, 88, 164, 0.12);
+  }
+
+  .sol-icon-box {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 8px;
+    background: #EEF3FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .sol-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sol-info h4 {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--ink, #0A1633);
+    line-height: 1.25;
+  }
+
+  .mega-sol-card:hover .sol-info h4 {
+    color: var(--blue, #0258a4);
+  }
+
+  .sol-info p {
+    font-size: 11.5px;
+    color: var(--body, #3D4B6B);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mega-empty-state {
+    text-align: center;
+    padding: 30px 16px;
+    font-size: 13.5px;
+    color: #64748B;
+  }
+
+  .mega-footer-bar {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #E2E8F0;
+    text-align: right;
+  }
+
+  .see-all-link {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--blue, #0258a4);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .see-all-link:hover {
+    color: var(--blue-d, #01417a);
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabBtns = document.querySelectorAll('.mega-tab-btn');
+    const solCards = document.querySelectorAll('.mega-sol-card');
+    const searchInput = document.getElementById('megaSearchInput') as HTMLInputElement;
+    const searchClear = document.getElementById('megaSearchClear');
+    const emptyState = document.getElementById('megaEmptyState');
+    const consultTriggers = document.querySelectorAll('.open-consult-trigger');
+
+    let activeCategory = 'industri';
+
+    function filterCards() {
+      const query = (searchInput?.value || '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      if (searchClear) {
+        searchClear.style.display = query ? 'block' : 'none';
+      }
+
+      solCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+
+        const matchesCategory = query ? true : (cat === activeCategory);
+        const matchesQuery = query ? keywords.includes(query) : true;
+
+        if (matchesCategory && matchesQuery) {
+          (card as HTMLElement).style.display = 'flex';
+          visibleCount++;
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        emptyState.style.display = (visibleCount === 0) ? 'block' : 'none';
+      }
+    }
+
+    // Category Tabs click
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.getAttribute('data-category') || 'industri';
+        if (searchInput) searchInput.value = '';
+        filterCards();
+      });
+    });
+
+    // Search Input event
+    if (searchInput) {
+      searchInput.addEventListener('input', filterCards);
+    }
+
+    // Clear Search
+    if (searchClear && searchInput) {
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        filterCards();
+        searchInput.focus();
+      });
+    }
+
+    // Open Consultation Modal from Mega Menu trigger
+    consultTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const modal = document.getElementById('consultModal');
+        if (modal) modal.classList.add('active');
+      });
+    });
+
+    // Initial filter
+    filterCards();
+  });
+</script>

@@ -97,7 +97,7 @@ export const ui = {
     'roadmap.p3Item3': 'Positioning di pasar modal',
     'roadmap.p3Desc': 'Cardi Agent AI memposisikan bisnis untuk pasar modal — tata kelola perusahaan, penyusunan prospektus, dan kepatuhan menuju penawaran umum.',
 
-    // Solutions Section
+    // Solutions Section & Mega Menu
     'sol.tag': 'UNTUK SIAPA',
     'sol.title': 'Untuk Siapa Cardi.co.id?',
     'sol.sub': 'Dari bisnis yang baru mau scale sampai perusahaan yang siap masuk pasar modal.',
@@ -109,6 +109,22 @@ export const ui = {
     'sol.c3Desc': 'Persiapan Investment Readiness sampai IPO Readiness — dokumentasi, valuasi, governance, dan scorecard Cardi IPO Partner.',
     'sol.c4Title': 'Enterprise & Pre-IPO',
     'sol.c4Desc': 'Standarisasi pelaporan data, integrasi sistem multi-channel, dan persiapkan tata kelola perusahaan menuju audit IPO.',
+
+    'solMenu.tag': 'EKOSISTEM SOLUSI',
+    'solMenu.title': 'Solusi Berdasarkan Kebutuhan Bisnis Anda',
+    'solMenu.tabIndustri': 'Industri',
+    'solMenu.tabRole': 'Role / Peran',
+    'solMenu.tabFitur': 'Fitur AI & Otomasi',
+    'solMenu.tabIntegrasi': 'Integrasi',
+    'solMenu.searchPlaceholder': 'Cari industri, fitur, atau integrasi...',
+    'solMenu.viewAll': 'Lihat Semua Solusi →',
+    'solMenu.consultHeading': 'Belum menemukan yang dicari?',
+    'solMenu.consultBtn': 'Jadwalkan Konsultasi →',
+    'solPage.back': '← Kembali ke Direktori Solusi',
+    'solPage.ctaHeading': 'Siap Mengimplementasikan Solusi Ini untuk Bisnis Anda?',
+    'solPage.ctaDesc': 'Jadwalkan konsultasi 1-on-1 dengan tim spesialis Cardi. Kami bantu petakan workflow dan integrasikan sistem dalam 24 jam.',
+    'solPage.benefitsTitle': 'Keunggulan & Manfaat Utama',
+    'solPage.metricsTitle': 'Hasil & Estimasi ROI Terukur',
 
     // Marquee & Pricing Section
     'pri.tag': 'Ekosistem Cardi',
@@ -357,18 +373,34 @@ export const ui = {
     'roadmap.p3Item3': 'Capital market positioning',
     'roadmap.p3Desc': 'Cardi Agent AI positions the business for the capital market — corporate governance, prospectus preparation and compliance for a public listing.',
 
-    // Solutions Section
+    // Solutions Section & Mega Menu
     'sol.tag': 'WHO IT\'S FOR',
     'sol.title': 'Who Is Cardi.co.id For?',
-    'sol.sub': 'From businesses ready to scale to companies preparing to enter the capital markets.',
-    'sol.c1Title': 'SMEs & Local Brands',
-    'sol.c1Desc': 'Business fundamental audits, operational system fixes, and a strong foundation before scale — powered by Cardi Agent AI.',
-    'sol.c2Title': 'Scale-Ready Businesses',
-    'sol.c2Desc': 'Revenue optimization, financial hygiene, and growth systems for businesses that are already running but lack investor-ready structure.',
+    'sol.sub': 'From businesses getting ready to scale to companies preparing for public markets.',
+    'sol.c1Title': 'MSMEs & Local Brands',
+    'sol.c1Desc': 'Audit business fundamentals, fix operational systems and build a solid foundation before scaling — with Cardi Agent AI.',
+    'sol.c2Title': 'Businesses Ready to Scale',
+    'sol.c2Desc': 'Revenue optimisation, financial hygiene and growth systems for active businesses building investor readiness.',
     'sol.c3Title': 'Companies Heading to IPO',
     'sol.c3Desc': 'From Investment Readiness to IPO Readiness — documentation, valuation, governance, and the Cardi IPO Partner scorecard.',
     'sol.c4Title': 'Enterprise & Pre-IPO',
     'sol.c4Desc': 'Standardize operational reporting, integrate multi-channel workflows, and strengthen corporate governance for IPO audits.',
+
+    'solMenu.tag': 'SOLUTION ECOSYSTEM',
+    'solMenu.title': 'Solutions Aligned to Your Business Needs',
+    'solMenu.tabIndustri': 'Industries',
+    'solMenu.tabRole': 'Roles & Teams',
+    'solMenu.tabFitur': 'AI & Automation Features',
+    'solMenu.tabIntegrasi': 'Integrations',
+    'solMenu.searchPlaceholder': 'Search industries, features, or integrations...',
+    'solMenu.viewAll': 'View All Solutions →',
+    'solMenu.consultHeading': 'Can\'t find what you\'re looking for?',
+    'solMenu.consultBtn': 'Schedule Consultation →',
+    'solPage.back': '← Back to Solutions Directory',
+    'solPage.ctaHeading': 'Ready to Implement This Solution for Your Business?',
+    'solPage.ctaDesc': 'Book a 1-on-1 session with Cardi growth specialists. We will map your workflow and deploy in under 24 hours.',
+    'solPage.benefitsTitle': 'Key Advantages & Capabilities',
+    'solPage.metricsTitle': 'Measurable Impact & ROI',
 
     // Marquee & Pricing Section
     'pri.tag': 'Cardi Ecosystem',

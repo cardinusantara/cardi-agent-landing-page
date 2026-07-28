@@ -1,7 +1,9 @@
 ---
 import LanguageSelector from './LanguageSelector.astro';
+import SolutionsMegaMenu from './SolutionsMegaMenu.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import type { LangKey } from '../i18n/ui';
+import { solutionsData } from '../data/solutions';
 
 interface Props {
   lang?: LangKey;
@@ -66,7 +68,13 @@ const translatePath = useTranslatedPath(lang);
           </a>
         </div>
       </div>
-      <a href="#solusi">{t('nav.solutions')}</a>
+
+      <!-- Solusi Mega Dropdown -->
+      <div class="menu-item">
+        <a href={translatePath('/solusi')}>{t('nav.solutions')} <span class="car">▼</span></a>
+        <SolutionsMegaMenu lang={lang} />
+      </div>
+
       <a href="#harga">{t('nav.pricing')}</a>
     </div>
 
@@ -147,7 +155,29 @@ const translatePath = useTranslatedPath(lang);
         </div>
       </div>
 
-      <a href="#solusi" class="mobile-nav-link">{t('nav.solutions')}</a>
+      <!-- Collapsible Accordion: Solusi -->
+      <div class="mobile-menu-group">
+        <button class="mobile-menu-trigger" type="button">
+          <span>{t('nav.solutions')}</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mobile-accordion-body">
+          <a href={translatePath('/solusi')} class="mobile-sub-link" style="background:#EEF3FF; border-color:#C7D9FE;">
+            <b>{t('solMenu.viewAll')}</b>
+            <small>{t('solMenu.title')}</small>
+          </a>
+          {solutionsData.slice(0, 6).map(sol => (
+            <a href={translatePath(`/solusi/${sol.slug}`)} class="mobile-sub-link">
+              <span class="dLock">
+                <span style="font-size:16px; margin-right:4px;">{sol.icon}</span>
+                <b>{sol.title[lang] || sol.title.id}</b>
+              </span>
+              <small>{sol.desc[lang] || sol.desc.id}</small>
+            </a>
+          ))}
+        </div>
+      </div>
+
       <a href="#harga" class="mobile-nav-link">{t('nav.pricing')}</a>
 
       <!-- Mobile CTA Button -->
