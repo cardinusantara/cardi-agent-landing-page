@@ -33,9 +33,9 @@ export const ui = {
     'hero.ctaExplore': 'Lihat semua produk',
 
     // Ecosystem Section (Parallax 4 Stages)
-    'eco.tag': 'ARSITEKTUR PERTUMBUHAN STRATEGIS',
-    'eco.title': 'Satu Ekosistem. Akselerasi Tanpa Batas.',
-    'eco.sub': 'Metodologi 4 tahap terstruktur yang mendampingi transformasi bisnis Anda — dari penguatan fondasi brand, akselerasi pasar, hingga kesiapan melantai di bursa saham (IPO).',
+    'eco.tag': 'EKOSISTEM BISNIS TERPADU',
+    'eco.title': 'Satu ekosistem, banyak solusi.',
+    'eco.sub': 'Metodologi pertumbuhan 4 tahap terintegrasi yang dirancang untuk membawa bisnis Anda dari fondasi terawal hingga siap melantai di bursa saham (IPO).',
     
     'eco.s1Tag': 'STEP 01 · BRAND DEVELOPMENT',
     'eco.s1Title': 'Build the Brand',
@@ -309,9 +309,9 @@ export const ui = {
     'hero.ctaExplore': 'Explore All Products',
 
     // Ecosystem Section (Parallax 4 Stages)
-    'eco.tag': 'STRATEGIC GROWTH ARCHITECTURE',
-    'eco.title': 'One Unified Ecosystem. Infinite Scalability.',
-    'eco.sub': 'A structured 4-stage methodology guiding your business transformation — from foundational brand equity and market expansion to institutional IPO readiness.',
+    'eco.tag': 'INTEGRATED BUSINESS ECOSYSTEM',
+    'eco.title': 'One ecosystem, multiple growth solutions.',
+    'eco.sub': 'An integrated 4-stage growth methodology designed to take your business from founding brand setup to IPO stock exchange readiness.',
 
     'eco.s1Tag': 'STEP 01 · BRAND DEVELOPMENT',
     'eco.s1Title': 'Build the Brand',
@@ -585,9 +585,9 @@ export const ui = {
     'hero.ctaExplore': '浏览所有产品',
 
     // Ecosystem Section (Parallax 4 Stages)
-    'eco.tag': '战略增长架构',
-    'eco.title': '单一生态系统。无限扩张赋能。',
-    'eco.sub': '结构化四阶段增长方法论，全方位助力企业转型 —— 从品牌根基筑牢、市场深度拓展，直到全盘具备公开上市 (IPO) 资格。',
+    'eco.tag': '一体化商业生态系统',
+    'eco.title': '一个生态，全方位赋能企业。',
+    'eco.sub': '四阶段一体化增长方法论，旨在帮助您的企业从初始品牌搭建一直跨越至上市 (IPO) 筹备阶段。',
 
     'eco.s1Tag': '阶段 01 · 品牌塑造',
     'eco.s1Title': 'Build the Brand',
