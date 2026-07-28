@@ -72,7 +72,7 @@ export const ui = {
     // Roadmap Section (Agent Page — Phase 04-06)
     'roadmap.tag': 'PERJALANAN SELANJUTNYA',
     'roadmap.title': 'Dari Otomasi Menuju IPO',
-    'roadmap.sub': 'Cardi Agent menangani otomasi AI harian bisnis Anda. Saat siap naik kelas, Cardi.co.id memandu tiga fase berikutnya — dari pertumbuhan bisnis hingga melantai di bursa.',
+    'roadmap.sub': 'Cardi Agent menangani otomasi AI harian bisnis Anda. Saat siap naik kelas, Cardi Agent AI memandu tiga fase berikutnya — dari pertumbuhan bisnis hingga melantai di bursa.',
     'roadmap.whatHappens': 'Yang terjadi',
     'roadmap.whoLeads': 'Siapa yang memimpin',
 
@@ -81,21 +81,21 @@ export const ui = {
     'roadmap.p1Item1': 'Audit sistem & operasional',
     'roadmap.p1Item2': 'Kerapihan finansial & pelaporan',
     'roadmap.p1Item3': 'Optimasi ROAS di seluruh channel',
-    'roadmap.p1Desc': 'Cardi.co.id mengaudit fondasi bisnis, membangun sistem finansial dan lapisan pelaporan, serta mengoptimalkan tuas pertumbuhan untuk scale yang berkelanjutan.',
+    'roadmap.p1Desc': 'Cardi Agent AI mengaudit fondasi bisnis, membangun sistem finansial dan lapisan pelaporan, serta mengoptimalkan tuas pertumbuhan untuk scale yang berkelanjutan.',
 
     'roadmap.p2Tag': 'FASE 05',
     'roadmap.p2Title': 'Investment Readiness',
     'roadmap.p2Item1': 'Dokumentasi kelas investor',
     'roadmap.p2Item2': 'Benchmarking valuasi',
     'roadmap.p2Item3': 'Scorecard Cardi IPO Partner',
-    'roadmap.p2Desc': 'Cardi.co.id mempersiapkan bisnis untuk investasi institusional — dokumentasi investor, benchmarking valuasi, dan scorecard Cardi IPO Partner.',
+    'roadmap.p2Desc': 'Cardi Agent AI mempersiapkan bisnis untuk investasi institusional — dokumentasi investor, benchmarking valuasi, dan scorecard Cardi IPO Partner.',
 
     'roadmap.p3Tag': 'FASE 06',
     'roadmap.p3Title': 'IPO Readiness',
     'roadmap.p3Item1': 'Struktur tata kelola perusahaan',
     'roadmap.p3Item2': 'Persiapan prospektus & kepatuhan',
     'roadmap.p3Item3': 'Positioning di pasar modal',
-    'roadmap.p3Desc': 'Cardi.co.id memposisikan bisnis untuk pasar modal — tata kelola perusahaan, penyusunan prospektus, dan kepatuhan menuju penawaran umum.',
+    'roadmap.p3Desc': 'Cardi Agent AI memposisikan bisnis untuk pasar modal — tata kelola perusahaan, penyusunan prospektus, dan kepatuhan menuju penawaran umum.',
 
     // Solutions Section
     'sol.tag': 'UNTUK SIAPA',
@@ -332,7 +332,7 @@ export const ui = {
     // Roadmap Section (Agent Page — Phase 04-06)
     'roadmap.tag': 'THE JOURNEY CONTINUES',
     'roadmap.title': 'From Automation to IPO',
-    'roadmap.sub': "Cardi Agent handles your day-to-day AI automation. When you're ready to scale, Cardi.co.id leads the next three phases — from business growth to a public listing.",
+    'roadmap.sub': "Cardi Agent handles your day-to-day AI automation. When you're ready to scale, Cardi Agent AI leads the next three phases — from business growth to a public listing.",
     'roadmap.whatHappens': 'What happens',
     'roadmap.whoLeads': 'Who leads it',
 
@@ -341,21 +341,21 @@ export const ui = {
     'roadmap.p1Item1': 'Systems & operations audit',
     'roadmap.p1Item2': 'Financial hygiene & reporting',
     'roadmap.p1Item3': 'ROAS optimisation across channels',
-    'roadmap.p1Desc': 'Cardi.co.id audits the business fundamentals, builds the financial systems and reporting layer, and optimises growth levers for sustainable scale.',
+    'roadmap.p1Desc': 'Cardi Agent AI audits the business fundamentals, builds the financial systems and reporting layer, and optimises growth levers for sustainable scale.',
 
     'roadmap.p2Tag': 'PHASE 05',
     'roadmap.p2Title': 'Investment Readiness',
     'roadmap.p2Item1': 'Investor-grade documentation',
     'roadmap.p2Item2': 'Valuation benchmarking',
     'roadmap.p2Item3': 'Cardi IPO Partner scorecard',
-    'roadmap.p2Desc': 'Cardi.co.id prepares the business for institutional investment — investor documentation, valuation benchmarking and the Cardi IPO Partner scorecard.',
+    'roadmap.p2Desc': 'Cardi Agent AI prepares the business for institutional investment — investor documentation, valuation benchmarking and the Cardi IPO Partner scorecard.',
 
     'roadmap.p3Tag': 'PHASE 06',
     'roadmap.p3Title': 'IPO Readiness',
     'roadmap.p3Item1': 'Corporate governance structure',
     'roadmap.p3Item2': 'Prospectus & compliance prep',
     'roadmap.p3Item3': 'Capital market positioning',
-    'roadmap.p3Desc': 'Cardi.co.id positions the business for the capital market — corporate governance, prospectus preparation and compliance for a public listing.',
+    'roadmap.p3Desc': 'Cardi Agent AI positions the business for the capital market — corporate governance, prospectus preparation and compliance for a public listing.',
 
     // Solutions Section
     'sol.tag': 'WHO IT\'S FOR',
@@ -592,7 +592,7 @@ export const ui = {
     // Roadmap Section (Agent Page — Phase 04-06)
     'roadmap.tag': '后续旅程',
     'roadmap.title': '从自动化迈向 IPO',
-    'roadmap.sub': 'Cardi Agent 负责您企业的日常 AI 自动化。当您准备好更进一步时，Cardi.co.id 将带领您完成接下来的三个阶段 —— 从业务增长到成功上市。',
+    'roadmap.sub': 'Cardi Agent 负责您企业的日常 AI 自动化。当您准备好更进一步时，Cardi Agent AI 将带领您完成接下来的三个阶段 —— 从业务增长到成功上市。',
     'roadmap.whatHappens': '具体内容',
     'roadmap.whoLeads': '由谁主导',
 
@@ -601,21 +601,21 @@ export const ui = {
     'roadmap.p1Item1': '系统与运营审计',
     'roadmap.p1Item2': '财务健康与报告体系',
     'roadmap.p1Item3': '各渠道 ROAS 优化',
-    'roadmap.p1Desc': 'Cardi.co.id 审计业务基础，搭建财务系统与报告体系，并优化增长杠杆，助力企业实现可持续扩张。',
+    'roadmap.p1Desc': 'Cardi Agent AI 审计业务基础，搭建财务系统与报告体系，并优化增长杠杆，助力企业实现可持续扩张。',
 
     'roadmap.p2Tag': '阶段 05',
     'roadmap.p2Title': 'Investment Readiness',
     'roadmap.p2Item1': '投资人级别文档',
     'roadmap.p2Item2': '估值基准分析',
     'roadmap.p2Item3': 'Cardi IPO Partner 评分卡',
-    'roadmap.p2Desc': 'Cardi.co.id 帮助企业为机构投资做好准备 —— 包括投资人文档、估值基准分析与 Cardi IPO Partner 评分卡。',
+    'roadmap.p2Desc': 'Cardi Agent AI 帮助企业为机构投资做好准备 —— 包括投资人文档、估值基准分析与 Cardi IPO Partner 评分卡。',
 
     'roadmap.p3Tag': '阶段 06',
     'roadmap.p3Title': 'IPO Readiness',
     'roadmap.p3Item1': '公司治理结构',
     'roadmap.p3Item2': '招股说明书与合规准备',
     'roadmap.p3Item3': '资本市场定位',
-    'roadmap.p3Desc': 'Cardi.co.id 帮助企业为资本市场做好定位 —— 包括公司治理、招股说明书准备与上市合规工作。',
+    'roadmap.p3Desc': 'Cardi Agent AI 帮助企业为资本市场做好定位 —— 包括公司治理、招股说明书准备与上市合规工作。',
 
     // Solutions Section
     'sol.tag': '适用对象',
