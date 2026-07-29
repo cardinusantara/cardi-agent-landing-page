@@ -96,9 +96,11 @@ const translatePath = useTranslatedPath(lang);
       <span class="bar bar-3"></span>
     </button>
   </div>
+</nav>
 
-  <!-- Mobile Nav Drawer Overlay -->
-  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+<!-- Mobile Nav Drawer Overlay (kept outside <nav> — a fixed element nested inside a
+     position:sticky ancestor gets mispositioned on mobile Safari once scrolled) -->
+<div class="mobile-nav-drawer" id="mobileNavDrawer">
     <div class="mobile-nav-content">
       
       <!-- Mobile Language Switcher Row -->
@@ -192,7 +194,6 @@ const translatePath = useTranslatedPath(lang);
 
     </div>
   </div>
-</nav>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
