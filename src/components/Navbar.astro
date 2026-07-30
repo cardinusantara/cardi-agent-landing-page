@@ -76,6 +76,7 @@ const translatePath = useTranslatedPath(lang);
       </div>
 
       <a href="#harga">{t('nav.pricing')}</a>
+      <a href={translatePath('/tentang-kami')}>{t('foot.about')}</a>
     </div>
 
     <!-- Desktop CTA & Language Switcher -->
@@ -181,6 +182,7 @@ const translatePath = useTranslatedPath(lang);
       </div>
 
       <a href="#harga" class="mobile-nav-link">{t('nav.pricing')}</a>
+      <a href={translatePath('/tentang-kami')} class="mobile-nav-link">{t('foot.about')}</a>
 
       <!-- Mobile CTA Button -->
       <div class="mobile-nav-cta">
