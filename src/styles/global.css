@@ -854,10 +854,6 @@ html.intro-pending #mainNav {
 }
 
 @media (max-width: 640px) {
-  .hero {
-    padding: 72px 0 36px;
-  }
-
   .hero-visual {
     margin-top: 44px;
   }
