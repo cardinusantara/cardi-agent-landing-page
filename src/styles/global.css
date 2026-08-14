@@ -562,6 +562,7 @@ html.intro-pending #mainNav {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   min-height: 560px;
   max-height: 980px;
   display: flex;
@@ -764,6 +765,7 @@ html.intro-pending #mainNav {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   min-height: 540px;
   max-height: 900px;
   display: flex;
@@ -932,6 +934,7 @@ html.intro-pending #mainNav {
   .hero-story-stage {
     top: 0;
     height: 100vh;
+    height: 100dvh;
     min-height: 480px;
     padding: 20px;
     gap: 20px;
