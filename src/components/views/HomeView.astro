@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../Navbar.astro';
 import Footer from '../Footer.astro';
+import HeroStory from '../HeroStory.astro';
 import ScrollFlowSection from '../ScrollFlowSection.astro';
 import ConsultModal from '../ConsultModal.astro';
 import PurchaseNotif from '../PurchaseNotif.astro';
@@ -17,22 +18,15 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout title={t('seo.homeTitle')} description={t('seo.homeDesc')} lang={lang}>
+<Layout title={t('seo.homeTitle')} description={t('seo.homeDesc')} lang={lang} hasIntro={true}>
   <!-- NAV -->
   <Navbar lang={lang} />
 
   <!-- HERO -->
   <div class="hero">
-    <div class="wrap">
-      <div class="hero-copy">
-        <h1 class="hero-title">{t('hero.title')}</h1>
-        <p class="hero-body">{t('hero.body')}</p>
-        <div class="heroCta">
-          <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('hero.ctaConsult')}</a>
-          <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
-        </div>
-      </div>
+    <HeroStory lang={lang} />
 
+    <div class="wrap">
       <!-- Hero visual -->
       <div class="hero-visual">
         <div class="hero-visual-glow" aria-hidden="true"></div>

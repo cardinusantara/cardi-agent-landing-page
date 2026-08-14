@@ -50,7 +50,15 @@ const waHref =
     box-shadow:
       0 10px 28px -8px rgba(37, 211, 102, .55),
       0 4px 12px -4px rgba(10, 22, 51, .2);
-    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease,
+      opacity .4s ease;
+  }
+
+  /* Held out of sight during the desktop hero intro (see Layout.astro's head
+     script + HeroStory.astro) so it doesn't clutter the "just the logo" moment. */
+  :global(html.intro-pending) .wa-float {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .wa-float:hover {

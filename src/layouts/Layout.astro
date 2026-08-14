@@ -10,6 +10,7 @@ interface Props {
   image?: string;
   canonicalURL?: string;
   lang?: LangKey;
+  hasIntro?: boolean;
 }
 
 const {
@@ -17,7 +18,8 @@ const {
   description: pageDescription,
   image = "/og-banner.png",
   canonicalURL = Astro.url.href,
-  lang = getLangFromUrl(Astro.url)
+  lang = getLangFromUrl(Astro.url),
+  hasIntro = false
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -93,6 +95,26 @@ const zhUrl = new URL(translatePath(Astro.url.pathname, 'zh'), 'https://cardi.co
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+  {hasIntro && (
+    <script is:inline>
+      // Runs synchronously before <body> paints, so the navbar/WhatsApp float
+      // never flash visible-then-hidden. Decides once, up front, whether the
+      // cinematic hero intro should run this load: desktop viewport and
+      // motion allowed (it replays on every visit — no session persistence).
+      // HeroStory.astro's own script reads this same "intro-pending" class
+      // as its source of truth.
+      (function () {
+        try {
+          var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var isDesktop = window.matchMedia && window.matchMedia('(min-width: 901px)').matches;
+          if (!reduce && isDesktop) {
+            document.documentElement.classList.add('intro-pending');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  )}
 </head>
 <body>
   <slot />

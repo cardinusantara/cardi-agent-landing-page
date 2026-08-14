@@ -31,7 +31,7 @@ html, body {
 }
 
 section[id] {
-  scroll-margin-top: 84px;
+  scroll-margin-top: 96px;
 }
 
 body {
@@ -60,21 +60,43 @@ img {
 
 /* ---------- NAV ---------- */
 nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(230, 236, 247, 0.6);
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  max-width: 1160px;
+  margin: 0 auto;
+  z-index: 200;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(230, 236, 247, 0.7);
+  box-shadow:
+    0 16px 40px -16px rgba(10, 22, 51, 0.22),
+    0 2px 10px -4px rgba(10, 22, 51, 0.08);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease,
+    opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Held fully out of the way on first-visit desktop homepage loads until the
+   hero intro's reveal beat fires (class removed by HeroStory.astro's script).
+   Since nav floats (position:fixed) it reserves no layout space either way —
+   this makes it genuinely absent, not just dimmed. Added by an inline head
+   script in Layout.astro so it's present before first paint — never added at
+   all without JS or on mobile. */
+html.intro-pending #mainNav {
+  opacity: 0;
+  transform: translateY(-14px) scale(.98);
+  pointer-events: none;
 }
 
 .navIn {
   display: flex;
   align-items: center;
   gap: 28px;
-  height: 68px;
+  height: 60px;
+  padding: 0 18px;
 }
 
 .brand {
@@ -203,6 +225,16 @@ nav {
 }
 
 @media(max-width:900px) {
+  nav {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    border-radius: 18px;
+  }
+  .navIn {
+    height: 56px;
+    padding: 0 14px;
+  }
   .menu {
     display: none;
   }
@@ -218,10 +250,10 @@ nav {
 .mobile-nav-drawer {
   display: none;
   position: fixed;
-  top: 68px;
+  top: 80px;
   left: 0;
   width: 100vw;
-  height: calc(100dvh - 68px);
+  height: calc(100dvh - 80px);
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -469,12 +501,8 @@ nav {
 
 /* ---------- HERO ---------- */
 .hero {
-  padding: 88px 0 48px;
+  padding: 0 0 48px;
   text-align: center;
-  background:
-    radial-gradient(720px 360px at 18% 0%, rgba(30, 79, 255, .07), transparent 72%),
-    radial-gradient(680px 320px at 82% 8%, rgba(0, 194, 209, .06), transparent 70%),
-    radial-gradient(980px 440px at 50% 100%, rgba(30, 79, 255, .045), transparent 74%);
 }
 
 .hero-copy {
@@ -509,6 +537,433 @@ nav {
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* ---------- HERO STORY: responsive split ----------
+   Desktop (>900px) gets the cinematic .hero-intro sequence below.
+   Mobile (<=900px) keeps the original, already-shipped .hero-story-mobile
+   sequence untouched — pure CSS display toggle, no JS branching needed for
+   the width split itself (each script also self-guards via matchMedia). */
+.hero-intro { display: block; }
+.hero-story-mobile { display: none; }
+
+@media (max-width: 900px) {
+  .hero-intro { display: none; }
+  .hero-story-mobile { display: block; }
+}
+
+/* ---------- HERO INTRO (desktop cinematic: form -> focus -> wordmark -> exit + nav reveal -> title) ---------- */
+.hero-intro-track {
+  position: relative;
+  height: 320vh;
+}
+
+.hero-intro-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 560px;
+  max-height: 980px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(720px 360px at 18% 0%, rgba(30, 79, 255, .07), transparent 72%),
+    radial-gradient(680px 320px at 82% 8%, rgba(0, 194, 209, .06), transparent 70%),
+    radial-gradient(980px 440px at 50% 100%, rgba(30, 79, 255, .045), transparent 74%);
+}
+
+.hero-intro-frame {
+  display: grid;
+  width: 100%;
+  padding: 24px;
+}
+
+.hero-intro-logo-group,
+.hero-intro-copy {
+  grid-area: 1 / 1;
+  place-self: center;
+  width: 100%;
+}
+
+.hero-intro-logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  pointer-events: none;
+  will-change: opacity, transform, filter;
+  /* Matches the JS render()'s p=0 state exactly, so JS taking over on
+     DOMContentLoaded causes no flash/jump. Petals themselves start invisible
+     and scattered (set inline by JS) — this group-level state is just a
+     touch of haze/scale on top of that. */
+  opacity: 1;
+  filter: blur(4px) saturate(80%);
+  transform: scale(1.05);
+}
+
+.hero-intro-logo {
+  position: relative;
+  width: clamp(200px, 20vw, 300px);
+  height: clamp(200px, 20vw, 300px);
+  flex-shrink: 0;
+  /* Spins the whole mark shut as its scattered petals fly together — JS
+     drives this down to rotate(0). */
+  transform: rotate(-540deg);
+  will-change: transform;
+}
+
+.hero-intro-glow {
+  position: absolute;
+  inset: -70px;
+  background: radial-gradient(circle, rgba(2, 88, 164, .24), transparent 70%);
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+.hero-intro-svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero-intro-petal {
+  fill: var(--blue);
+  transform-origin: 60px 61px;
+  will-change: transform, opacity;
+}
+
+.hero-intro-wordmark {
+  font-size: clamp(52px, 7.4vw, 104px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ink);
+  text-transform: lowercase;
+  will-change: opacity, transform, letter-spacing;
+  /* Matches JS render()'s wmP=0 state. */
+  opacity: 0;
+  transform: translateY(20px);
+  letter-spacing: .5em;
+}
+
+.hero-intro-copy {
+  max-width: 760px;
+  text-align: center;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.hero-intro-copy .hero-story-title,
+.hero-intro-copy .hero-story-body,
+.hero-intro-copy .hero-story-cta {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-intro-scrollcue {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: opacity .2s linear;
+  pointer-events: none;
+}
+
+.hero-intro-scrollcue span {
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(180deg, var(--muted), transparent);
+  animation: heroCueMove 1.6s ease-in-out infinite;
+}
+
+/* Fallback for reduced-motion / already-seen-this-session (JS adds .is-settled
+   instead of running the scroll-driven sequence): jump straight to the end
+   state — navbar already visible (intro-pending was never added), title/body
+   /CTA visible, no giant logo moment. */
+.hero-intro.is-settled .hero-intro-track {
+  height: auto;
+}
+
+.hero-intro.is-settled .hero-intro-stage {
+  position: relative;
+  top: 0;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  padding: 48px 24px;
+}
+
+.hero-intro.is-settled .hero-intro-logo-group {
+  display: none;
+}
+
+.hero-intro.is-settled .hero-intro-copy {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+
+.hero-intro.is-settled .hero-intro-copy .line-mask {
+  opacity: 1 !important;
+}
+
+.hero-intro.is-settled .hero-intro-copy .line-inner {
+  transform: none !important;
+}
+
+.hero-intro.is-settled .hero-intro-copy .hero-story-body,
+.hero-intro.is-settled .hero-intro-copy .hero-story-cta {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.hero-intro.is-settled .hero-intro-scrollcue {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-intro-track { height: auto !important; }
+  .hero-intro-stage {
+    position: relative !important;
+    top: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 48px 24px !important;
+  }
+  .hero-intro-logo-group { display: none !important; }
+  .hero-intro-copy {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+  .hero-intro-copy .line-mask { opacity: 1 !important; }
+  .hero-intro-copy .line-inner { transform: none !important; }
+  .hero-intro-copy .hero-story-body,
+  .hero-intro-copy .hero-story-cta { opacity: 1 !important; transform: none !important; }
+  .hero-intro-scrollcue { display: none !important; }
+}
+
+/* ---------- HERO STORY MOBILE (unchanged: small logo assembles, nav always visible) ---------- */
+.hero-story-track {
+  position: relative;
+  height: 210vh;
+}
+
+.hero-story-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 540px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  padding: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(720px 360px at 18% 0%, rgba(30, 79, 255, .07), transparent 72%),
+    radial-gradient(680px 320px at 82% 8%, rgba(0, 194, 209, .06), transparent 70%),
+    radial-gradient(980px 440px at 50% 100%, rgba(30, 79, 255, .045), transparent 74%);
+}
+
+.hero-story-logo {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+
+.hero-story-glow {
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(circle, rgba(2, 88, 164, .22), transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.hero-logo-svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero-logo-svg .petal {
+  fill: var(--blue);
+  transform-origin: 60px 61px;
+  will-change: transform, opacity;
+}
+
+.hero-story-copy {
+  max-width: 760px;
+}
+
+.hero-story-title {
+  margin: 0 auto;
+  max-width: 720px;
+  color: var(--ink);
+  font-size: clamp(30px, 4.8vw, 48px);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -.03em;
+  white-space: pre-line;
+}
+
+.hero-story-title .line-mask {
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .2s linear;
+}
+
+.hero-story-title .line-inner {
+  display: block;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.hero-story-body {
+  margin: 22px auto 0;
+  max-width: 660px;
+  white-space: pre-line;
+  color: var(--body);
+  font-size: 16.5px;
+  font-weight: 500;
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: transform, opacity;
+}
+
+.hero-story-cta {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: transform, opacity;
+}
+
+.hero-story-scrollcue {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: opacity .2s linear;
+  pointer-events: none;
+}
+
+.hero-story-scrollcue span {
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(180deg, var(--muted), transparent);
+  animation: heroCueMove 1.6s ease-in-out infinite;
+}
+
+@keyframes heroCueMove {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* Reduced-motion fallback (JS adds .no-motion): show everything statically, already assembled */
+.hero-story.no-motion .hero-story-track {
+  height: auto;
+}
+
+.hero-story.no-motion .hero-story-stage {
+  position: relative;
+  top: 0;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  padding: 48px 24px;
+}
+
+.hero-story.no-motion .petal {
+  opacity: 1 !important;
+}
+
+.hero-story.no-motion .hero-logo-svg .petal:nth-child(1) { transform: rotate(0deg); }
+.hero-story.no-motion .hero-logo-svg .petal:nth-child(2) { transform: rotate(60deg); }
+.hero-story.no-motion .hero-logo-svg .petal:nth-child(3) { transform: rotate(120deg); }
+.hero-story.no-motion .hero-logo-svg .petal:nth-child(4) { transform: rotate(180deg); }
+.hero-story.no-motion .hero-logo-svg .petal:nth-child(5) { transform: rotate(240deg); }
+.hero-story.no-motion .hero-logo-svg .petal:nth-child(6) { transform: rotate(300deg); }
+
+.hero-story.no-motion .line-mask {
+  opacity: 1 !important;
+}
+
+.hero-story.no-motion .line-inner {
+  transform: none !important;
+}
+
+.hero-story.no-motion .hero-story-body,
+.hero-story.no-motion .hero-story-cta {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.hero-story.no-motion .hero-story-scrollcue {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hero-story-track { height: 170vh; }
+  .hero-story-stage {
+    top: 0;
+    height: 100vh;
+    min-height: 480px;
+    padding: 20px;
+    gap: 20px;
+  }
+  .hero-story-logo { width: 92px; height: 92px; }
+}
+
+@media (max-width: 640px) {
+  .hero-story-track { height: 155vh; }
+  .hero-story-scrollcue { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-story-track { height: auto !important; }
+  .hero-story-stage {
+    position: relative !important;
+    top: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 48px 24px !important;
+  }
+  .hero-logo-svg .petal { opacity: 1 !important; }
+  .hero-logo-svg .petal:nth-child(1) { transform: rotate(0deg) !important; }
+  .hero-logo-svg .petal:nth-child(2) { transform: rotate(60deg) !important; }
+  .hero-logo-svg .petal:nth-child(3) { transform: rotate(120deg) !important; }
+  .hero-logo-svg .petal:nth-child(4) { transform: rotate(180deg) !important; }
+  .hero-logo-svg .petal:nth-child(5) { transform: rotate(240deg) !important; }
+  .hero-logo-svg .petal:nth-child(6) { transform: rotate(300deg) !important; }
+  .line-mask { opacity: 1 !important; }
+  .line-inner { transform: none !important; }
+  .hero-story-body, .hero-story-cta { opacity: 1 !important; transform: none !important; }
+  .hero-story-scrollcue { display: none !important; }
 }
 
 /* hero visual — brand banner */
