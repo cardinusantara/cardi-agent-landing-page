@@ -555,27 +555,24 @@ html.intro-pending #mainNav {
   height: 100dvh;
   min-height: 480px;
   max-height: 980px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  padding: 24px;
   background:
     radial-gradient(720px 360px at 18% 0%, rgba(30, 79, 255, .07), transparent 72%),
     radial-gradient(680px 320px at 82% 8%, rgba(0, 194, 209, .06), transparent 70%),
     radial-gradient(980px 440px at 50% 100%, rgba(30, 79, 255, .045), transparent 74%);
 }
 
-.hero-intro-frame {
-  display: grid;
-  width: 100%;
-}
-
-.hero-intro-logo-group,
-.hero-intro-copy {
-  grid-area: 1 / 1;
-  place-self: center;
-  width: 100%;
+/* Each anchor independently centers its own content within the full stage —
+   so the logo centers on its own height and the (much taller) headline
+   block centers on its own height, instead of both sharing one box sized to
+   the taller of the two. */
+.hero-intro-anchor {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
 
 .hero-intro-logo-group {
@@ -583,6 +580,7 @@ html.intro-pending #mainNav {
   flex-direction: column;
   align-items: center;
   gap: clamp(14px, 3vw, 22px);
+  width: 100%;
   pointer-events: none;
   will-change: opacity, transform;
 }
@@ -593,6 +591,9 @@ html.intro-pending #mainNav {
   height: clamp(120px, 26vw, 280px);
   flex-shrink: 0;
   will-change: transform;
+  /* Matches the entrance animation's t=0 state, so JS taking over on
+     DOMContentLoaded causes no flash/jump. */
+  transform: rotate(-380deg);
 }
 
 .hero-intro-glow {
@@ -614,14 +615,19 @@ html.intro-pending #mainNav {
   fill: var(--blue);
   transform-origin: 60px 61px;
   will-change: transform, opacity;
+  opacity: 0;
 }
 
-.hero-intro-petal:nth-child(1) { transform: rotate(0deg); }
-.hero-intro-petal:nth-child(2) { transform: rotate(60deg); }
-.hero-intro-petal:nth-child(3) { transform: rotate(120deg); }
-.hero-intro-petal:nth-child(4) { transform: rotate(180deg); }
-.hero-intro-petal:nth-child(5) { transform: rotate(240deg); }
-.hero-intro-petal:nth-child(6) { transform: rotate(300deg); }
+/* Scattered starting position for each petal — matches the entrance
+   animation's t=0 state exactly (rotate(angle) translate(dx,dy) rotate(rot)
+   scale(scale), same values as the JS petalConfig array), so there's no
+   flash of an already-assembled mark before the entrance takes over. */
+.hero-intro-petal:nth-child(1) { transform: rotate(0deg) translate(-200px, -55px) rotate(-100deg) scale(.25); }
+.hero-intro-petal:nth-child(2) { transform: rotate(60deg) translate(175px, -150px) rotate(95deg) scale(.25); }
+.hero-intro-petal:nth-child(3) { transform: rotate(120deg) translate(220px, 85px) rotate(-90deg) scale(.25); }
+.hero-intro-petal:nth-child(4) { transform: rotate(180deg) translate(-65px, 210px) rotate(100deg) scale(.25); }
+.hero-intro-petal:nth-child(5) { transform: rotate(240deg) translate(-220px, 50px) rotate(-95deg) scale(.25); }
+.hero-intro-petal:nth-child(6) { transform: rotate(300deg) translate(85px, -210px) rotate(90deg) scale(.25); }
 
 .hero-intro-wordmark {
   font-size: clamp(34px, 9vw, 100px);
@@ -629,11 +635,15 @@ html.intro-pending #mainNav {
   line-height: 1;
   color: var(--ink);
   text-transform: lowercase;
-  letter-spacing: -.02em;
   will-change: opacity, transform, letter-spacing;
+  /* Matches the entrance animation's t=0 state. */
+  opacity: 0;
+  transform: translateY(20px);
+  letter-spacing: .5em;
 }
 
 .hero-intro-copy {
+  width: 100%;
   max-width: 760px;
   text-align: center;
   margin: 0 auto;
@@ -695,29 +705,35 @@ html.intro-pending #mainNav {
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  transition: opacity .2s linear;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease;
 }
 
-.hero-intro-scrollcue span {
-  width: 1px;
-  height: 26px;
-  background: linear-gradient(180deg, var(--muted), transparent);
-  animation: heroCueMove 1.6s ease-in-out infinite;
+.hero-intro-scrollcue-mouse {
+  display: block;
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  position: relative;
 }
 
-@keyframes heroCueMove {
-  0%, 100% { transform: translateY(0); opacity: .5; }
-  50% { transform: translateY(6px); opacity: 1; }
+.hero-intro-scrollcue-dot {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--blue);
+  transform: translate(-50%, 0);
+  animation: heroCueDot 1.7s ease-in-out infinite;
+}
+
+@keyframes heroCueDot {
+  0% { transform: translate(-50%, 0); opacity: 1; }
+  65%, 100% { transform: translate(-50%, 14px); opacity: 0; }
 }
 
 /* Fallback for reduced-motion (JS adds .is-settled instead of running the
@@ -734,6 +750,11 @@ html.intro-pending #mainNav {
   min-height: 0;
   max-height: none;
   padding: 48px 24px;
+}
+
+.hero-intro.is-settled .hero-intro-anchor {
+  position: static;
+  padding: 0;
 }
 
 .hero-intro.is-settled .hero-intro-logo-group {
@@ -766,12 +787,11 @@ html.intro-pending #mainNav {
 
 @media (max-width: 900px) {
   .hero-intro-track { height: 190vh; }
-  .hero-intro-stage { padding: 20px; }
+  .hero-intro-anchor { padding: 20px; }
 }
 
 @media (max-width: 640px) {
   .hero-intro-track { height: 175vh; }
-  .hero-intro-scrollcue { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -783,6 +803,7 @@ html.intro-pending #mainNav {
     min-height: 0 !important;
     padding: 48px 24px !important;
   }
+  .hero-intro-anchor { position: static !important; padding: 0 !important; }
   .hero-intro-logo-group { display: none !important; }
   .hero-intro-copy {
     opacity: 1 !important;

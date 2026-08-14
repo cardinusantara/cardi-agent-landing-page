@@ -11,14 +11,16 @@ const t = useTranslations(lang);
 ---
 
 <div class="hero-story" id="heroStory">
-  <!-- Logo + "cardi" wordmark are already fully formed at rest — no
-       assembly-from-nothing on load. Scrolling collapses them apart (petals
-       fly outward, spinning) and reveals the navbar, then the headline. -->
+  <!-- Logo + "cardi" wordmark auto-play an assembly animation on load
+       (petals fly together, spinning). Scrolling then collapses them apart
+       again and reveals the navbar, then the headline. The logo and the
+       headline are each centered independently, so a tall headline doesn't
+       throw off the logo's centering or vice versa. -->
   <div class="hero-intro" id="heroIntro">
     <div class="hero-intro-track" id="heroIntroTrack">
       <div class="hero-intro-stage">
-        <div class="hero-intro-frame">
 
+        <div class="hero-intro-anchor">
           <div class="hero-intro-logo-group" id="heroIntroLogoGroup" aria-hidden="true">
             <div class="hero-intro-logo" id="heroIntroLogo">
               <div class="hero-intro-glow"></div>
@@ -33,7 +35,9 @@ const t = useTranslations(lang);
             </div>
             <div class="hero-intro-wordmark" id="heroIntroWordmark">cardi</div>
           </div>
+        </div>
 
+        <div class="hero-intro-anchor">
           <div class="hero-intro-copy" id="heroIntroCopy">
             <h1 class="hero-story-title" id="heroIntroTitle">{t('hero.title')}</h1>
             <p class="hero-story-body" id="heroIntroBody">{t('hero.body')}</p>
@@ -42,11 +46,10 @@ const t = useTranslations(lang);
               <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
             </div>
           </div>
-
         </div>
 
         <div class="hero-intro-scrollcue" id="heroIntroCue" aria-hidden="true">
-          <span></span>
+          <span class="hero-intro-scrollcue-mouse"><span class="hero-intro-scrollcue-dot"></span></span>
         </div>
       </div>
     </div>
@@ -55,8 +58,9 @@ const t = useTranslations(lang);
 
 <noscript>
   <style>
-    /* Without JS the scroll-progress animation never runs — force the
-       settled end state instead of leaving text/CTA permanently hidden. */
+    /* Without JS neither the entrance nor the scroll-driven animation ever
+       runs — force the settled end state instead of leaving text/CTA
+       permanently hidden. */
     .hero-intro-track { height: auto !important; }
     .hero-intro-stage {
       position: relative !important;
@@ -65,6 +69,7 @@ const t = useTranslations(lang);
       min-height: 0 !important;
       padding: 48px 24px !important;
     }
+    .hero-intro-anchor { position: static !important; padding: 0 !important; }
     .hero-intro-logo-group { display: none !important; }
     .hero-intro-copy { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
     .hero-intro-scrollcue { display: none !important; }
@@ -87,6 +92,17 @@ const t = useTranslations(lang);
 
   document.addEventListener('DOMContentLoaded', initHeroIntro);
 
+  // Each petal's resting throw distance/rotation/scale — used both as the
+  // entrance's scattered starting point and the collapse's scattered target.
+  const petalConfig = [
+    { angle: 0, dx: -200, dy: -55, rot: -100, scale: 0.25 },
+    { angle: 60, dx: 175, dy: -150, rot: 95, scale: 0.25 },
+    { angle: 120, dx: 220, dy: 85, rot: -90, scale: 0.25 },
+    { angle: 180, dx: -65, dy: 210, rot: 100, scale: 0.25 },
+    { angle: 240, dx: -220, dy: 50, rot: -95, scale: 0.25 },
+    { angle: 300, dx: 85, dy: -210, rot: 90, scale: 0.25 },
+  ];
+
   function initHeroIntro() {
     const track = document.getElementById('heroIntroTrack');
     const logoGroup = document.getElementById('heroIntroLogoGroup');
@@ -102,7 +118,7 @@ const t = useTranslations(lang);
       ? (Array.from(introRoot.querySelectorAll('.hero-intro-petal')) as HTMLElement[])
       : [];
 
-    if (!track || !logoGroup || !logoEl || !wordmarkEl || !titleEl || !bodyEl || !ctaEl || !copyEl || !introRoot || petals.length === 0) return;
+    if (!track || !logoGroup || !logoEl || !wordmarkEl || !titleEl || !bodyEl || !ctaEl || !copyEl || !cueEl || !introRoot || petals.length === 0) return;
 
     // The head script in Layout.astro already decided (reduced-motion) whether
     // the intro should run at all — its decision is the single source of
@@ -112,17 +128,6 @@ const t = useTranslations(lang);
       introRoot.classList.add('is-settled');
       return;
     }
-
-    // Each petal flies outward and over-rotates as the mark collapses —
-    // reverse of an assembly, same throw distances either way.
-    const petalConfig = [
-      { angle: 0, dx: -200, dy: -55, rot: -100, scale: 0.25 },
-      { angle: 60, dx: 175, dy: -150, rot: 95, scale: 0.25 },
-      { angle: 120, dx: 220, dy: 85, rot: -90, scale: 0.25 },
-      { angle: 180, dx: -65, dy: 210, rot: 100, scale: 0.25 },
-      { angle: 240, dx: -220, dy: 50, rot: -95, scale: 0.25 },
-      { angle: 300, dx: 85, dy: -210, rot: 90, scale: 0.25 },
-    ];
 
     const rawLines = (titleEl.textContent || '')
       .split('\n')
@@ -142,30 +147,77 @@ const t = useTranslations(lang);
       document.dispatchEvent(new CustomEvent('cardi:introDone'));
     }
 
+    function setPetal(el: HTMLElement, cfg: (typeof petalConfig)[number], lp: number) {
+      const dx = lerp(0, cfg.dx, lp);
+      const dy = lerp(0, cfg.dy, lp);
+      const rot = lerp(0, cfg.rot, lp);
+      const scale = lerp(1, cfg.scale, lp);
+      el.style.opacity = String(1 - lp);
+      el.style.transform = `rotate(${cfg.angle}deg) translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(${scale})`;
+    }
+
+    // =====================================================================
+    // ENTRANCE — auto-plays once on load, independent of scroll: the mark
+    // assembles itself from scattered pieces (lp: 1 -> 0) while spinning in.
+    // =====================================================================
+    let entranceDone = false;
+
+    function runEntrance() {
+      const duration = 1500;
+      const start = performance.now();
+
+      function tick(now: number) {
+        const t = clamp01((now - start) / duration);
+        const ep = easeOutCubic(t);
+
+        petals.forEach((el, i) => {
+          const stagger = i * 0.09;
+          const dur = 0.65;
+          const lp = 1 - easeOutCubic(clamp01((ep - stagger) / dur));
+          setPetal(el, petalConfig[i], lp);
+        });
+        logoEl!.style.transform = `rotate(${lerp(-380, 0, ep)}deg)`;
+
+        const wmP = easeOutCubic(clamp01((ep - 0.35) / 0.55));
+        wordmarkEl!.style.opacity = String(wmP);
+        wordmarkEl!.style.transform = `translateY(${lerp(20, 0, wmP)}px)`;
+        wordmarkEl!.style.letterSpacing = `${lerp(0.5, -0.02, wmP)}em`;
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          entranceDone = true;
+          cueEl!.style.opacity = '1';
+          render();
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    // =====================================================================
+    // SCROLL-DRIVEN — only takes over once the entrance has finished: the
+    // assembled mark breaks apart again (lp: 0 -> 1) and the headline reveals.
+    // =====================================================================
     let ticking = false;
 
     function render() {
       ticking = false;
+      if (!entranceDone) return;
+
       const rect = track!.getBoundingClientRect();
       const total = track!.offsetHeight - window.innerHeight;
       const p = total > 0 ? clamp01(-rect.top / total) : rect.top < 0 ? 1 : 0;
 
-      // COLLAPSE [0, .32]: the fully-formed mark breaks apart and spins away.
       const collapseP = clamp01(p / 0.32);
       petals.forEach((el, i) => {
         const cfg = petalConfig[i];
         const start = i * 0.05;
         const dur = 0.6;
         const lp = easeInCubic(clamp01((collapseP - start) / dur));
-        const dx = lerp(0, cfg.dx, lp);
-        const dy = lerp(0, cfg.dy, lp);
-        const rot = lerp(0, cfg.rot, lp);
-        const scale = lerp(1, cfg.scale, lp);
-        el.style.opacity = String(1 - lp);
-        el.style.transform = `rotate(${cfg.angle}deg) translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(${scale})`;
+        setPetal(el, cfg, lp);
       });
-      const spinDeg = lerp(0, 380, easeInCubic(collapseP));
-      logoEl!.style.transform = `rotate(${spinDeg}deg)`;
+      logoEl!.style.transform = `rotate(${lerp(0, 380, easeInCubic(collapseP))}deg)`;
 
       const wmP = easeInCubic(collapseP);
       wordmarkEl!.style.opacity = String(1 - wmP);
@@ -195,7 +247,7 @@ const t = useTranslations(lang);
 
       copyEl!.style.pointerEvents = p > 0.26 ? 'auto' : 'none';
 
-      if (cueEl) cueEl.style.opacity = String(1 - clamp01(p / 0.06));
+      cueEl!.style.opacity = String(1 - clamp01(p / 0.06));
     }
 
     function onScrollOrResize() {
@@ -207,6 +259,6 @@ const t = useTranslations(lang);
 
     window.addEventListener('scroll', onScrollOrResize, { passive: true });
     window.addEventListener('resize', onScrollOrResize);
-    render();
+    runEntrance();
   }
 </script>
