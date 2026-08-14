@@ -11,10 +11,9 @@ const t = useTranslations(lang);
 ---
 
 <div class="hero-story" id="heroStory">
-
-  <!-- ============ DESKTOP: cinematic logo-forming intro ============
-       Big logo forms -> comes into focus -> "cardi" wordmark appears ->
-       shrinks out while the navbar fades in -> headline reveals. -->
+  <!-- Logo + "cardi" wordmark are already fully formed at rest — no
+       assembly-from-nothing on load. Scrolling collapses them apart (petals
+       fly outward, spinning) and reveals the navbar, then the headline. -->
   <div class="hero-intro" id="heroIntro">
     <div class="hero-intro-track" id="heroIntroTrack">
       <div class="hero-intro-stage">
@@ -52,45 +51,12 @@ const t = useTranslations(lang);
       </div>
     </div>
   </div>
-
-  <!-- ============ MOBILE: unchanged (small logo assembles, nav always visible) ============ -->
-  <div class="hero-story-mobile" id="heroStoryMobile">
-    <div class="hero-story-track" id="heroStoryTrack">
-      <div class="hero-story-stage">
-        <div class="hero-story-logo">
-          <div class="hero-story-glow"></div>
-          <svg class="hero-logo-svg" width="220" height="220" viewBox="0 0 120 120" fill="none">
-            <path class="petal" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" />
-            <path class="petal" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" />
-            <path class="petal" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" />
-            <path class="petal" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" />
-            <path class="petal" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" />
-            <path class="petal" d="M60 62 C46 46 47 22 60 14 C73 22 74 46 60 62 Z" />
-          </svg>
-        </div>
-
-        <div class="hero-story-copy">
-          <h1 class="hero-story-title" id="heroStoryTitle">{t('hero.title')}</h1>
-          <p class="hero-story-body" id="heroStoryBody">{t('hero.body')}</p>
-          <div class="heroCta hero-story-cta" id="heroStoryCta">
-            <a class="btn" href="https://api.whatsapp.com/send?phone=6281289895646&text=Hello%20Cardi!!%20I%20would%20like%20to%20consult%20about%20the%20business%20ecosystem.%20%F0%9F%98%81%F0%9F%98%81" target="_blank">{t('hero.ctaConsult')}</a>
-            <a class="btn ghost" href="#produk">{t('hero.ctaExplore')}</a>
-          </div>
-        </div>
-
-        <div class="hero-story-scrollcue" id="heroStoryCue" aria-hidden="true">
-          <span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <noscript>
   <style>
-    /* Without JS neither sequence can run — force both to their settled end
-       states; the CSS media queries above still pick the right one per viewport. */
+    /* Without JS the scroll-progress animation never runs — force the
+       settled end state instead of leaving text/CTA permanently hidden. */
     .hero-intro-track { height: auto !important; }
     .hero-intro-stage {
       position: relative !important;
@@ -102,30 +68,15 @@ const t = useTranslations(lang);
     .hero-intro-logo-group { display: none !important; }
     .hero-intro-copy { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
     .hero-intro-scrollcue { display: none !important; }
-
-    .hero-story-track { height: auto !important; }
-    .hero-story-stage {
-      position: relative !important;
-      top: 0 !important;
-      height: auto !important;
-      min-height: 0 !important;
-      padding: 48px 24px !important;
-    }
-    .hero-logo-svg .petal { opacity: 1 !important; }
-    .hero-logo-svg .petal:nth-child(1) { transform: rotate(0deg) !important; }
-    .hero-logo-svg .petal:nth-child(2) { transform: rotate(60deg) !important; }
-    .hero-logo-svg .petal:nth-child(3) { transform: rotate(120deg) !important; }
-    .hero-logo-svg .petal:nth-child(4) { transform: rotate(180deg) !important; }
-    .hero-logo-svg .petal:nth-child(5) { transform: rotate(240deg) !important; }
-    .hero-logo-svg .petal:nth-child(6) { transform: rotate(300deg) !important; }
-    .hero-story-body, .hero-story-cta { opacity: 1 !important; transform: none !important; }
-    .hero-story-scrollcue { display: none !important; }
   </style>
 </noscript>
 
 <script>
   function easeOutCubic(x: number) {
     return 1 - Math.pow(1 - x, 3);
+  }
+  function easeInCubic(x: number) {
+    return x * x * x;
   }
   function clamp01(x: number) {
     return Math.min(1, Math.max(0, x));
@@ -134,112 +85,9 @@ const t = useTranslations(lang);
     return a + (b - a) * t;
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initMobileHero();
-    initDesktopIntro();
-  });
+  document.addEventListener('DOMContentLoaded', initHeroIntro);
 
-  // =========================================================
-  // MOBILE — unchanged: small logo assembles, nav always visible
-  // =========================================================
-  function initMobileHero() {
-    if (!window.matchMedia('(max-width: 900px)').matches) return; // desktop: this block is display:none, skip
-
-    const root = document.getElementById('heroStoryMobile');
-    const track = document.getElementById('heroStoryTrack');
-    const titleEl = document.getElementById('heroStoryTitle');
-    const bodyEl = document.getElementById('heroStoryBody');
-    const ctaEl = document.getElementById('heroStoryCta');
-    const cueEl = document.getElementById('heroStoryCue');
-    const petals = root ? (Array.from(root.querySelectorAll('.petal')) as HTMLElement[]) : [];
-
-    if (!root || !track || !titleEl || !bodyEl || !ctaEl || petals.length === 0) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      root.classList.add('no-motion');
-      return;
-    }
-
-    const rawLines = (titleEl.textContent || '')
-      .split('\n')
-      .map((s) => s.trim())
-      .filter(Boolean);
-    titleEl.innerHTML = rawLines
-      .map((line) => `<span class="line-mask"><span class="line-inner">${line}</span></span>`)
-      .join('');
-    const lineEls = Array.from(titleEl.querySelectorAll<HTMLElement>('.line-inner'));
-    const lineMaskEls = Array.from(titleEl.querySelectorAll<HTMLElement>('.line-mask'));
-
-    const petalConfig = [
-      { angle: 0, dx: -170, dy: -50, rot: -60, scale: 0.35 },
-      { angle: 60, dx: 150, dy: -120, rot: 55, scale: 0.35 },
-      { angle: 120, dx: 190, dy: 70, rot: -50, scale: 0.35 },
-      { angle: 180, dx: -50, dy: 180, rot: 55, scale: 0.35 },
-      { angle: 240, dx: -190, dy: 40, rot: -55, scale: 0.35 },
-      { angle: 300, dx: 70, dy: -180, rot: 50, scale: 0.35 },
-    ];
-
-    let ticking = false;
-
-    function render() {
-      ticking = false;
-      const rect = track!.getBoundingClientRect();
-      const total = track!.offsetHeight - window.innerHeight;
-      const p = total > 0 ? clamp01(-rect.top / total) : rect.top < 0 ? 1 : 0;
-
-      petals.forEach((el, i) => {
-        const cfg = petalConfig[i];
-        const start = i * 0.07;
-        const dur = 0.42;
-        const lp = easeOutCubic(clamp01((p - start) / dur));
-        const dx = lerp(cfg.dx, 0, lp);
-        const dy = lerp(cfg.dy, 0, lp);
-        const rot = lerp(cfg.rot, 0, lp);
-        const scale = lerp(cfg.scale, 1, lp);
-        el.style.opacity = String(lp);
-        el.style.transform = `rotate(${cfg.angle}deg) translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(${scale})`;
-      });
-
-      const lineStart = 0.08;
-      const lineStagger = 0.12;
-      const lineDur = 0.3;
-      lineEls.forEach((el, i) => {
-        const s = lineStart + i * lineStagger;
-        const lp = easeOutCubic(clamp01((p - s) / lineDur));
-        el.style.transform = `translateY(${lerp(100, 0, lp)}%)`;
-        lineMaskEls[i].style.opacity = lp > 0 ? '1' : '0';
-      });
-
-      const bodyLp = easeOutCubic(clamp01((p - 0.6) / 0.28));
-      bodyEl!.style.opacity = String(bodyLp);
-      bodyEl!.style.transform = `translateY(${lerp(16, 0, bodyLp)}px)`;
-
-      const ctaLp = easeOutCubic(clamp01((p - 0.74) / 0.22));
-      ctaEl!.style.opacity = String(ctaLp);
-      ctaEl!.style.transform = `translateY(${lerp(16, 0, ctaLp)}px)`;
-
-      if (cueEl) cueEl.style.opacity = String(1 - clamp01(p / 0.18));
-    }
-
-    function onScrollOrResize() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(render);
-      }
-    }
-
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onScrollOrResize);
-    render();
-  }
-
-  // =========================================================
-  // DESKTOP — cinematic intro: form -> focus -> wordmark ->
-  // exit + reveal navbar -> title -> body -> cta
-  // =========================================================
-  function initDesktopIntro() {
-    if (!window.matchMedia('(min-width: 901px)').matches) return; // mobile: this block is display:none, skip
-
+  function initHeroIntro() {
     const track = document.getElementById('heroIntroTrack');
     const logoGroup = document.getElementById('heroIntroLogoGroup');
     const logoEl = document.getElementById('heroIntroLogo');
@@ -256,25 +104,24 @@ const t = useTranslations(lang);
 
     if (!track || !logoGroup || !logoEl || !wordmarkEl || !titleEl || !bodyEl || !ctaEl || !copyEl || !introRoot || petals.length === 0) return;
 
-    // The head script in Layout.astro already decided (reduced-motion or
-    // mobile) whether the intro should run at all — its decision is the
-    // single source of truth via the intro-pending class.
+    // The head script in Layout.astro already decided (reduced-motion) whether
+    // the intro should run at all — its decision is the single source of
+    // truth via the intro-pending class.
     const introPending = document.documentElement.classList.contains('intro-pending');
     if (!introPending) {
       introRoot.classList.add('is-settled');
       return;
     }
 
-    // Each petal starts flung outward and over-rotated, then flies together
-    // into its home angle — bigger throw than the mobile version since this
-    // stage is much larger.
+    // Each petal flies outward and over-rotates as the mark collapses —
+    // reverse of an assembly, same throw distances either way.
     const petalConfig = [
-      { angle: 0, dx: -230, dy: -60, rot: -110, scale: 0.22 },
-      { angle: 60, dx: 200, dy: -170, rot: 100, scale: 0.22 },
-      { angle: 120, dx: 250, dy: 95, rot: -95, scale: 0.22 },
-      { angle: 180, dx: -75, dy: 240, rot: 105, scale: 0.22 },
-      { angle: 240, dx: -250, dy: 55, rot: -100, scale: 0.22 },
-      { angle: 300, dx: 95, dy: -240, rot: 95, scale: 0.22 },
+      { angle: 0, dx: -200, dy: -55, rot: -100, scale: 0.25 },
+      { angle: 60, dx: 175, dy: -150, rot: 95, scale: 0.25 },
+      { angle: 120, dx: 220, dy: 85, rot: -90, scale: 0.25 },
+      { angle: 180, dx: -65, dy: 210, rot: 100, scale: 0.25 },
+      { angle: 240, dx: -220, dy: 50, rot: -95, scale: 0.25 },
+      { angle: 300, dx: 85, dy: -210, rot: 90, scale: 0.25 },
     ];
 
     const rawLines = (titleEl.textContent || '')
@@ -303,49 +150,34 @@ const t = useTranslations(lang);
       const total = track!.offsetHeight - window.innerHeight;
       const p = total > 0 ? clamp01(-rect.top / total) : rect.top < 0 ? 1 : 0;
 
-      // FORM [0, .26]: petals fly in from scattered, over-rotated positions
-      // while the whole mark spins itself shut ("kepingannya terpecah lalu
-      // bersatu, dan muter").
-      const formP = clamp01(p / 0.26);
+      // COLLAPSE [0, .32]: the fully-formed mark breaks apart and spins away.
+      const collapseP = clamp01(p / 0.32);
       petals.forEach((el, i) => {
         const cfg = petalConfig[i];
         const start = i * 0.05;
         const dur = 0.6;
-        const lp = easeOutCubic(clamp01((formP - start) / dur));
-        const dx = lerp(cfg.dx, 0, lp);
-        const dy = lerp(cfg.dy, 0, lp);
-        const rot = lerp(cfg.rot, 0, lp);
-        const scaleP = lerp(cfg.scale, 1, lp);
-        el.style.opacity = String(lp);
-        el.style.transform = `rotate(${cfg.angle}deg) translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(${scaleP})`;
+        const lp = easeInCubic(clamp01((collapseP - start) / dur));
+        const dx = lerp(0, cfg.dx, lp);
+        const dy = lerp(0, cfg.dy, lp);
+        const rot = lerp(0, cfg.rot, lp);
+        const scale = lerp(1, cfg.scale, lp);
+        el.style.opacity = String(1 - lp);
+        el.style.transform = `rotate(${cfg.angle}deg) translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(${scale})`;
       });
-      const spinDeg = lerp(-540, 0, easeOutCubic(formP));
+      const spinDeg = lerp(0, 380, easeInCubic(collapseP));
       logoEl!.style.transform = `rotate(${spinDeg}deg)`;
 
-      // FOCUS [.26, .40]: last touch of haze clears into focus ("jelas").
-      const focusP = easeOutCubic(clamp01((p - 0.26) / 0.14));
-      const blur = lerp(4, 0, focusP);
-      const groupScale = lerp(1.05, 1, focusP);
-      const saturate = lerp(80, 100, focusP);
-      logoGroup!.style.filter = `blur(${blur}px) saturate(${saturate}%)`;
-      logoGroup!.style.transform = `scale(${groupScale})`;
+      const wmP = easeInCubic(collapseP);
+      wordmarkEl!.style.opacity = String(1 - wmP);
+      wordmarkEl!.style.transform = `translateY(${lerp(0, -20, wmP)}px)`;
+      wordmarkEl!.style.letterSpacing = `${lerp(-0.02, 0.5, wmP)}em`;
 
-      // WORDMARK [.40, .56]: "cardi" settles in with tightening letter-spacing.
-      const wmP = easeOutCubic(clamp01((p - 0.4) / 0.16));
-      wordmarkEl!.style.opacity = String(wmP);
-      wordmarkEl!.style.transform = `translateY(${lerp(20, 0, wmP)}px)`;
-      wordmarkEl!.style.letterSpacing = `${lerp(0.5, -0.02, wmP)}em`;
+      if (collapseP >= 1 && !navRevealed) revealNav();
 
-      // EXIT [.58, .74]: logo+wordmark scale down & fade out; navbar reveal latches at the end.
-      const exitP = easeOutCubic(clamp01((p - 0.58) / 0.16));
-      logoGroup!.style.opacity = String(1 - exitP);
-      logoGroup!.style.transform = `scale(${lerp(groupScale, 0.62, exitP)}) translateY(${lerp(0, -26, exitP)}px)`;
-      if (exitP >= 1 && !navRevealed) revealNav();
-
-      // TITLE lines, staggered, starting once the exit is well underway.
-      const lineStart = 0.7;
-      const lineStagger = 0.07;
-      const lineDur = 0.2;
+      // TITLE lines, staggered, overlapping the tail of the collapse.
+      const lineStart = 0.28;
+      const lineStagger = 0.08;
+      const lineDur = 0.22;
       lineEls.forEach((el, i) => {
         const s = lineStart + i * lineStagger;
         const lp = easeOutCubic(clamp01((p - s) / lineDur));
@@ -353,15 +185,15 @@ const t = useTranslations(lang);
         lineMaskEls[i].style.opacity = lp > 0 ? '1' : '0';
       });
 
-      const bodyLp = easeOutCubic(clamp01((p - 0.87) / 0.11));
+      const bodyLp = easeOutCubic(clamp01((p - 0.62) / 0.16));
       bodyEl!.style.opacity = String(bodyLp);
       bodyEl!.style.transform = `translateY(${lerp(16, 0, bodyLp)}px)`;
 
-      const ctaLp = easeOutCubic(clamp01((p - 0.92) / 0.1));
+      const ctaLp = easeOutCubic(clamp01((p - 0.72) / 0.18));
       ctaEl!.style.opacity = String(ctaLp);
       ctaEl!.style.transform = `translateY(${lerp(16, 0, ctaLp)}px)`;
 
-      copyEl!.style.pointerEvents = p > 0.64 ? 'auto' : 'none';
+      copyEl!.style.pointerEvents = p > 0.26 ? 'auto' : 'none';
 
       if (cueEl) cueEl.style.opacity = String(1 - clamp01(p / 0.06));
     }
