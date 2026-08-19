@@ -63,13 +63,13 @@ export const ui = {
     'eco.s3Model': 'Growth Retainer',
     'eco.s3Hook': 'Scale Your Growth',
 
-    'eco.s4Tag': 'STEP 04 · PARTNER FOR IPO',
-    'eco.s4Title': 'Partner for IPO',
+    'eco.s4Tag': 'STEP 04 · FORWARD DEPLOYED AI ENGINEER',
+    'eco.s4Title': 'Forward Deployed AI Engineer',
     'eco.s4Sub': 'Cardi Agent',
-    'eco.s4Desc': 'Mempersiapkan perusahaan menjadi investment-ready dan IPO-ready melalui strategi bisnis, corporate governance, investor communication, dan transformasi perusahaan.',
-    'eco.s4Btn': 'Talk to IPO Advisor',
-    'eco.s4Model': 'Strategic Partnership',
-    'eco.s4Hook': 'Partner for IPO',
+    'eco.s4Desc': 'We build AI systems and business operating systems for companies scaling up.',
+    'eco.s4Btn': 'Talk to AI Engineer',
+    'eco.s4Model': 'Forward Deployed',
+    'eco.s4Hook': 'AI Operating Systems',
 
     // Roadmap Section (Agent Page — Phase 04-06)
     'roadmap.tag': 'PERJALANAN SELANJUTNYA',
@@ -131,7 +131,7 @@ export const ui = {
     // Marquee & Pricing Section
     'pri.tag': 'Ekosistem Cardi',
     'pri.title': 'Pilih mitra pertumbuhan sesuai fase bisnis Anda',
-    'pri.sub': 'Dari membangun brand hingga Partner for IPO — satu ekosistem, empat jalur pertumbuhan.',
+    'pri.sub': 'Dari membangun brand hingga Forward Deployed AI Engineer — satu ekosistem, empat jalur pertumbuhan.',
     'pri.modelLabel': 'MODEL KERJA',
     'pri.startFrom': 'MULAI DARI',
     'pri.perMonth': '/ bulan',
@@ -147,7 +147,7 @@ export const ui = {
     'pri.bespokePkg': 'Bespoke Package',
     'pri.perProject': '/ proyek',
     'pri.brandingBtn': 'Start Brand Development',
-    'pri.ipoBtn': 'Talk to IPO Advisor',
+    'pri.ipoBtn': 'Talk to AI Engineer',
 
     // Testimonial & Bottom CTA
     'test.tag': 'TESTIMONI',
@@ -384,13 +384,13 @@ export const ui = {
     'eco.s3Model': 'Growth Retainer',
     'eco.s3Hook': 'Scale Your Growth',
 
-    'eco.s4Tag': 'STEP 04 · PARTNER FOR IPO',
-    'eco.s4Title': 'Partner for IPO',
+    'eco.s4Tag': 'STEP 04 · FORWARD DEPLOYED AI ENGINEER',
+    'eco.s4Title': 'Forward Deployed AI Engineer',
     'eco.s4Sub': 'Cardi Agent',
-    'eco.s4Desc': 'Prepare companies to become investment-ready and IPO-ready through business strategy, corporate governance, investor communication, and enterprise transformation.',
-    'eco.s4Btn': 'Talk to IPO Advisor',
-    'eco.s4Model': 'Strategic Partnership',
-    'eco.s4Hook': 'Partner for IPO',
+    'eco.s4Desc': 'We build AI systems and business operating systems for companies scaling up.',
+    'eco.s4Btn': 'Talk to AI Engineer',
+    'eco.s4Model': 'Forward Deployed',
+    'eco.s4Hook': 'AI Operating Systems',
 
     // Roadmap Section (Agent Page — Phase 04-06)
     'roadmap.tag': 'THE JOURNEY CONTINUES',
@@ -452,7 +452,7 @@ export const ui = {
     // Marquee & Pricing Section
     'pri.tag': 'Cardi Ecosystem',
     'pri.title': 'Choose the growth partner for your business stage',
-    'pri.sub': 'From building the brand to Partner for IPO — one ecosystem, four growth paths.',
+    'pri.sub': 'From building the brand to Forward Deployed AI Engineer — one ecosystem, four growth paths.',
     'pri.modelLabel': 'ENGAGEMENT MODEL',
     'pri.startFrom': 'STARTING FROM',
     'pri.perMonth': '/ month',
@@ -468,7 +468,7 @@ export const ui = {
     'pri.bespokePkg': 'Bespoke Package',
     'pri.perProject': '/ project',
     'pri.brandingBtn': 'Start Brand Development',
-    'pri.ipoBtn': 'Talk to IPO Advisor',
+    'pri.ipoBtn': 'Talk to AI Engineer',
 
     // Testimonial & Bottom CTA
     'test.tag': 'TESTIMONIALS',
@@ -705,13 +705,13 @@ export const ui = {
     'eco.s3Model': 'Growth Retainer',
     'eco.s3Hook': 'Scale Your Growth',
 
-    'eco.s4Tag': '阶段 04 · PARTNER FOR IPO',
-    'eco.s4Title': 'Partner for IPO',
+    'eco.s4Tag': '阶段 04 · FORWARD DEPLOYED AI ENGINEER',
+    'eco.s4Title': 'Forward Deployed AI Engineer',
     'eco.s4Sub': 'Cardi Agent',
-    'eco.s4Desc': '通过商业战略、公司治理、投资者沟通与企业转型，帮助公司达到 investment-ready 与 IPO-ready。',
-    'eco.s4Btn': 'Talk to IPO Advisor',
-    'eco.s4Model': 'Strategic Partnership',
-    'eco.s4Hook': 'Partner for IPO',
+    'eco.s4Desc': 'We build AI systems and business operating systems for companies scaling up.',
+    'eco.s4Btn': 'Talk to AI Engineer',
+    'eco.s4Model': 'Forward Deployed',
+    'eco.s4Hook': 'AI Operating Systems',
 
     // Roadmap Section (Agent Page — Phase 04-06)
     'roadmap.tag': '后续旅程',
@@ -757,7 +757,7 @@ export const ui = {
     // Marquee & Pricing Section
     'pri.tag': 'Cardi 生态系统',
     'pri.title': '按业务阶段选择增长伙伴',
-    'pri.sub': '从品牌建设到 Partner for IPO — 一个生态，四条增长路径。',
+    'pri.sub': '从品牌建设到 Forward Deployed AI Engineer — 一个生态，四条增长路径。',
     'pri.modelLabel': '合作模式',
     'pri.startFrom': '起价',
     'pri.perMonth': '/ 月',
@@ -773,7 +773,7 @@ export const ui = {
     'pri.bespokePkg': 'Bespoke Package',
     'pri.perProject': '/ 项目',
     'pri.brandingBtn': 'Start Brand Development',
-    'pri.ipoBtn': 'Talk to IPO Advisor',
+    'pri.ipoBtn': 'Talk to AI Engineer',
 
     // Testimonial & Bottom CTA
     'test.tag': '客户评价',
