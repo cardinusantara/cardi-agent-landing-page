@@ -5,5 +5,21 @@
     { "source": "/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true },
     { "source": "/en/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true },
     { "source": "/zh/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/company-profile",
+      "headers": [
+        { "key": "Content-Type", "value": "application/pdf" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Company-Profile.pdf\"" }
+      ]
+    },
+    {
+      "source": "/company-profile.pdf",
+      "headers": [
+        { "key": "Content-Type", "value": "application/pdf" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Company-Profile.pdf\"" }
+      ]
+    }
   ]
 }
