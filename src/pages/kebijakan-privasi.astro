@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = '22 Agustus 2026';
+---
+
+<Layout
+  title="Kebijakan Privasi — Cardi Agent AI MoM"
+  description="Kebijakan privasi aplikasi Cardi Agent AI MoM: data apa yang dikumpulkan, bagaimana digunakan, dan bagaimana cara menghapusnya."
+  lang="id"
+>
+  <Navbar lang="id" />
+
+  <div class="policy-page">
+    <section class="policy-hero">
+      <div class="wrap">
+        <div class="eyebrow">Legal</div>
+        <h1>Kebijakan Privasi</h1>
+        <p class="updated">Berlaku untuk aplikasi <strong>Cardi Agent AI MoM</strong> (Android). Terakhir diperbarui {lastUpdated}.</p>
+      </div>
+    </section>
+
+    <section class="policy-body">
+      <div class="wrap prose">
+        <p>
+          Cardi Agent AI MoM ("Aplikasi") adalah aplikasi rapat yang merekam,
+          mentranskripsi, dan menyusun notula rapat (Minutes of Meeting)
+          secara otomatis menggunakan AI. Aplikasi dikembangkan dan
+          dioperasikan oleh Cardi Nusantara ("kami"). Halaman ini menjelaskan
+          data apa yang kami kumpulkan lewat Aplikasi, untuk apa, dan
+          bagaimana Anda bisa mengontrolnya.
+        </p>
+
+        <h2>Data yang kami kumpulkan</h2>
+        <ul>
+          <li>
+            <strong>Data akun Google.</strong> Aplikasi hanya bisa diakses
+            lewat "Sign in with Google". Kami menerima alamat email dan ID
+            akun Google Anda dari Google untuk membuat dan mengenali akun
+            Anda di Aplikasi. Kami tidak pernah menerima atau menyimpan
+            password akun Google Anda.
+          </li>
+          <li>
+            <strong>Rekaman audio rapat.</strong> Saat Anda merekam rapat,
+            audio dikirim ke server kami untuk ditranskripsi dan disusun
+            menjadi notula. Rekaman audio dan transkripnya tersimpan di akun
+            Anda sampai Anda menghapusnya sendiri dari Aplikasi.
+          </li>
+          <li>
+            <strong>Data pemakaian &amp; langganan.</strong> Kami mencatat
+            durasi rekaman (dalam bentuk saldo coin yang terpakai) dan status
+            langganan Anda (aktif/tidak) lewat Google Play Billing, untuk
+            keperluan penagihan dan pembatasan pemakaian sesuai paket Anda.
+          </li>
+          <li>
+            <strong>Identitas perangkat.</strong> Kami menyimpan ID perangkat
+            Android (bukan identitas pribadi) untuk mencegah penyalahgunaan
+            jatah coin gratis di akun baru.
+          </li>
+        </ul>
+
+        <h2>Bagaimana data digunakan</h2>
+        <p>
+          Data di atas dipakai semata untuk menjalankan fitur Aplikasi:
+          autentikasi, transkripsi audio menjadi teks, penyusunan notula
+          rapat oleh AI, penghitungan kuota/saldo coin, dan verifikasi status
+          langganan. Kami tidak menjual data Anda ke pihak ketiga, dan tidak
+          menggunakan isi rekaman rapat Anda untuk melatih model AI pihak
+          ketiga di luar keperluan memproses rekaman itu sendiri.
+        </p>
+
+        <h2>Pihak ketiga yang memproses data</h2>
+        <p>
+          Untuk menjalankan Aplikasi, sebagian data diproses lewat layanan
+          infrastruktur berikut, sebagai pemroses data atas nama kami:
+        </p>
+        <ul>
+          <li>Amazon Web Services (AWS) — penyimpanan audio, transkrip, dan data akun.</li>
+          <li>Google Cloud / Vertex AI — transkripsi suara-ke-teks dan penyusunan notula oleh AI.</li>
+          <li>Google Sign-In &amp; Google Play Billing — autentikasi akun dan pemrosesan pembayaran langganan.</li>
+        </ul>
+
+        <h2>Penyimpanan &amp; keamanan</h2>
+        <p>
+          Data dikirim terenkripsi (HTTPS/TLS) dan disimpan di infrastruktur
+          cloud dengan akses terbatas. Data disimpan selama akun Anda aktif,
+          atau sampai Anda menghapusnya.
+        </p>
+
+        <h2>Hak Anda</h2>
+        <p>
+          Anda bisa menghapus rekaman/notula kapan saja langsung dari
+          Aplikasi. Untuk menghapus seluruh akun beserta datanya, atau
+          pertanyaan lain seputar data Anda, hubungi kami lewat kontak di
+          bawah — kami proses permintaan hapus akun paling lambat 30 hari
+          kerja.
+        </p>
+
+        <h2>Anak-anak</h2>
+        <p>
+          Aplikasi ini ditujukan untuk keperluan kerja/profesional dan tidak
+          ditujukan untuk anak-anak di bawah 13 tahun. Kami tidak dengan
+          sengaja mengumpulkan data dari anak-anak.
+        </p>
+
+        <h2>Perubahan kebijakan</h2>
+        <p>
+          Kami bisa memperbarui halaman ini sewaktu-waktu. Perubahan berlaku
+          sejak tanggal "terakhir diperbarui" di atas direvisi.
+        </p>
+
+        <h2>Kontak</h2>
+        <p>
+          Pertanyaan seputar privasi atau permintaan hapus data:{' '}
+          <a href="mailto:cardinusantara@gmail.com">cardinusantara@gmail.com</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <Footer lang="id" />
+</Layout>
+
+<style>
+  .policy-hero {
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .policy-hero h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 10px 0 12px;
+  }
+
+  .policy-hero .updated {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .policy-body {
+    padding: 48px 0 80px;
+  }
+
+  .prose {
+    max-width: 760px;
+  }
+
+  .prose h2 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 36px 0 12px;
+  }
+
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+
+  .prose p {
+    color: var(--body);
+    font-size: 15.5px;
+    line-height: 1.75;
+  }
+
+  .prose ul {
+    margin: 4px 0 0;
+    padding-left: 20px;
+  }
+
+  .prose li {
+    color: var(--body);
+    font-size: 15.5px;
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  .prose a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+</style>
