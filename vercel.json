@@ -4,7 +4,10 @@
   "redirects": [
     { "source": "/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true },
     { "source": "/en/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true },
-    { "source": "/zh/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true }
+    { "source": "/zh/agent", "destination": "https://aiagent.cardi.co.id", "permanent": true },
+    { "source": "/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true },
+    { "source": "/en/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true },
+    { "source": "/zh/mom", "destination": "https://aiagent.cardi.co.id/mom", "permanent": true }
   ],
   "headers": [
     {
