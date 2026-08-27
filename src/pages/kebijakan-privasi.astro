@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const lastUpdated = '22 Agustus 2026';
+const lastUpdated = '27 Agustus 2026';
 ---
 
 <Layout
@@ -18,19 +18,20 @@ const lastUpdated = '22 Agustus 2026';
       <div class="wrap">
         <div class="eyebrow">Legal</div>
         <h1>Kebijakan Privasi</h1>
-        <p class="updated">Berlaku untuk aplikasi <strong>Cardi Agent AI MoM</strong> (Android). Terakhir diperbarui {lastUpdated}.</p>
+        <p class="updated">Berlaku untuk aplikasi <strong>Cardi Agent AI MoM</strong> (Android) dan <strong>ekstensi Chrome Cardi</strong>. Terakhir diperbarui {lastUpdated}.</p>
       </div>
     </section>
 
     <section class="policy-body">
       <div class="wrap prose">
         <p>
-          Cardi Agent AI MoM ("Aplikasi") adalah aplikasi rapat yang merekam,
-          mentranskripsi, dan menyusun notula rapat (Minutes of Meeting)
-          secara otomatis menggunakan AI. Aplikasi dikembangkan dan
-          dioperasikan oleh Cardi Nusantara ("kami"). Halaman ini menjelaskan
-          data apa yang kami kumpulkan lewat Aplikasi, untuk apa, dan
-          bagaimana Anda bisa mengontrolnya.
+          Cardi Agent AI MoM ("Aplikasi") dan ekstensi Chrome-nya
+          ("Ekstensi") adalah layanan rapat yang merekam, mentranskripsi, dan
+          menyusun notula rapat (Minutes of Meeting) secara otomatis
+          menggunakan AI. Keduanya dikembangkan dan dioperasikan oleh Cardi
+          Nusantara ("kami"), dan memakai akun serta data yang sama. Halaman
+          ini menjelaskan data apa yang kami kumpulkan lewat Aplikasi maupun
+          Ekstensi, untuk apa, dan bagaimana Anda bisa mengontrolnya.
         </p>
 
         <h2>Data yang kami kumpulkan</h2>
@@ -58,6 +59,23 @@ const lastUpdated = '22 Agustus 2026';
             <strong>Identitas perangkat.</strong> Kami menyimpan ID perangkat
             Android (bukan identitas pribadi) untuk mencegah penyalahgunaan
             jatah coin gratis di akun baru.
+          </li>
+          <li>
+            <strong>Audio dari Ekstensi Chrome.</strong> Saat Anda merekam
+            lewat Ekstensi, audio dari tab browser yang sedang aktif (mis.
+            Zoom, Google Meet, atau YouTube) dan mikrofon Anda dikirim ke
+            server kami untuk ditranskripsi, dengan cara yang sama seperti
+            rekaman dari Aplikasi. Akses mikrofon bersifat opsional — kalau
+            ditolak, rekaman tetap berjalan tanpa suara Anda sendiri.
+            Ekstensi hanya mengakses tab yang sedang Anda rekam, tidak
+            membaca atau menyimpan konten halaman lain.
+          </li>
+          <li>
+            <strong>Penghubungan (pairing) Ekstensi.</strong> Ekstensi tidak
+            meminta login Google-nya sendiri. Anda menghubungkannya dengan
+            memindai kode QR dari Aplikasi yang sudah masuk ke akun Anda;
+            Ekstensi lalu menyimpan sesi login itu secara lokal di browser
+            Anda untuk mengakses akun yang sama.
           </li>
         </ul>
 
