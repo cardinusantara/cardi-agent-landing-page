@@ -23,6 +23,13 @@
         { "key": "Content-Type", "value": "application/pdf" },
         { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Company-Profile.pdf\"" }
       ]
+    },
+    {
+      "source": "/ecommerce-management-indonesia-jasa-kelola-marketplace",
+      "headers": [
+        { "key": "Content-Type", "value": "application/pdf" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"Cardi-Pricing.pdf\"" }
+      ]
     }
   ]
 }
