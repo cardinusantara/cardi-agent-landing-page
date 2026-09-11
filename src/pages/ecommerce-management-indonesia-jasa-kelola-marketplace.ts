@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 // Serves the Pricing PDF directly at the clean URL so the browser's native
 // PDF viewer opens it in place — same pattern as /company-profile.
-const pdfPath = fileURLToPath(new URL('../../public/Cardi.co.id - Pricing_compressed.pdf', import.meta.url));
+const pdfPath = fileURLToPath(new URL('../../public/Cardi.co.id - Pricing.pdf', import.meta.url));
 
 export const GET: APIRoute = () => {
   const file = readFileSync(pdfPath);
