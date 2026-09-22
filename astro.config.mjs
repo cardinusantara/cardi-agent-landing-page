@@ -3,7 +3,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  srcDir: './src-astro',
   site: 'https://cardi.co.id',
   integrations: [sitemap()],
   i18n: {
