@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root{
   --bg:#0E1A33; --panel:#152346; --panel2:#1B2C57; --line:#27396B; --text:#F2F4FA; --mute:#A5B1D0;
@@ -145,6 +147,54 @@ header{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
 .btn.wab{border-color:#25D366;color:inherit;text-decoration:none;display:inline-flex;align-items:center}
 footer{margin-top:40px;color:var(--mute);font-size:14px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* export actions */
+.export-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.btn-export{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;font-size:14px;font-weight:600;color:var(--text);display:inline-flex;align-items:center;gap:6px;transition:border-color .15s,background .15s}
+.btn-export:hover{border-color:var(--acc);background:var(--acc-soft);color:var(--text)}
+.btn-export:disabled{opacity:.55;cursor:wait}
+.sol-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.sol-top .export-actions{margin-top:0;padding-top:0;border-top:0}
+@media (max-width:640px){
+  .export-actions{width:100%}
+  .btn-export{flex:1 1 calc(50% - 10px);justify-content:center}
+}
+
+/* export container sheet */
+.export-sheet-wrapper{position:fixed;top:0;left:-99999px;width:960px;z-index:-9999;pointer-events:none;opacity:0}
+.export-sheet-wrapper.is-rendering{left:0;top:0;opacity:1}
+.export-sheet{width:960px;background:var(--bg);color:var(--text);font-family:var(--sans);padding:36px;box-sizing:border-box}
+.esh-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.esh-brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:18px}
+.esh-title{font-size:17px;color:var(--text)}
+.esh-meta{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--mute)}
+.esh-tag{background:var(--acc-soft);color:var(--acc);border:1px solid var(--acc);padding:3px 10px;border-radius:999px;font-weight:600;font-size:12px}
+.esh-brand-row{display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--panel);border-radius:14px;padding:20px 24px;margin-bottom:20px;border:1px solid var(--line)}
+.esh-brand-info{flex:1}
+.esh-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:4px;font-weight:600}
+.esh-brand-name{font-family:var(--serif);font-size:36px;margin:0;line-height:1.15;color:var(--text)}
+.esh-lvbadge{margin-bottom:0;flex-shrink:0;min-width:240px}
+.esh-score-grid{display:grid;grid-template-columns:360px 1fr;gap:20px;margin-bottom:20px}
+.esh-dial-col{background:var(--panel);border-radius:14px;padding:22px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.esh-dial-wrap{width:100%;max-width:320px;text-align:center}
+.esh-dial{max-width:260px;margin:0 auto;display:block}
+.esh-keys{margin:12px 0 0;font-size:14px}
+.esh-verdict-col{background:var(--panel);border-radius:14px;padding:24px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+.esh-verdict{border-top:0;padding-top:0}
+.esh-verdict h3{font-family:var(--serif);font-size:28px;margin:0 0 10px;line-height:1.2;color:var(--text)}
+.esh-verdict p{font-size:16px;color:var(--mute);line-height:1.55}
+.esh-matrix-status{margin-top:16px;padding:12px 14px;background:var(--panel2);border-radius:10px;font-size:14px;color:var(--mute)}
+.esh-matrix-status b{color:var(--text)}
+.esh-sol-section{margin-bottom:20px}
+.esh-sol-title{font-family:var(--serif);font-size:24px;margin-bottom:14px;color:var(--text)}
+.esh-solgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.esh-card{background:var(--panel);border-radius:14px;padding:20px;border:1px solid var(--line);font-size:14px}
+.esh-card h3{font-size:20px;margin-bottom:8px}
+.esh-card p{font-size:13px;margin-bottom:8px}
+.esh-card .big{font-size:26px}
+.esh-card .req{font-size:13px;padding:10px 12px}
+.esh-card .wa{display:none}
+.esh-footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
 </style>
 </head>
 <body>
@@ -210,12 +260,26 @@ footer{margin-top:40px;color:var(--mute);font-size:14px}
         <h3 id="vt">Beri skor untuk memulai</h3>
         <p id="vd">Pilih level bisnis, lalu nilai tiap pilar dari 1 sampai 10.</p>
       </div>
+      <div class="export-actions" id="result-export-actions" hidden>
+        <button type="button" class="btn btn-export btn-export-jpg">📸 Simpan JPEG</button>
+        <button type="button" class="btn btn-export btn-export-pdf">📄 Download PDF</button>
+        <button type="button" class="btn btn-export btn-share" hidden>📲 Bagikan Hasil</button>
+      </div>
     </aside>
   </div>
 
   <section class="sol" id="sol">
-    <h2 id="solh">Opsi solusi</h2>
-    <p id="solp">Rekomendasi muncul setelah level bisnis dipilih dan ketiga pilar dinilai.</p>
+    <div class="sol-top">
+      <div>
+        <h2 id="solh">Opsi solusi</h2>
+        <p id="solp">Rekomendasi muncul setelah level bisnis dipilih dan ketiga pilar dinilai.</p>
+      </div>
+      <div class="export-actions" id="sol-export-actions" hidden>
+        <button type="button" class="btn btn-export btn-export-jpg">📸 Simpan JPEG</button>
+        <button type="button" class="btn btn-export btn-export-pdf">📄 Download PDF</button>
+        <button type="button" class="btn btn-export btn-share" hidden>📲 Bagikan Hasil</button>
+      </div>
+    </div>
     <div class="solgrid">
       <div class="card" id="c1"></div>
       <div class="card" id="c2"></div>
@@ -223,6 +287,81 @@ footer{margin-top:40px;color:var(--mute);font-size:14px}
     </div>
   </section>
   <footer id="footer-text">Dilihat, diingat, dipercaya. Cardi Nusantara.</footer>
+</div>
+
+<div id="export-sheet-wrapper" class="export-sheet-wrapper" aria-hidden="true">
+  <div id="export-sheet" class="export-sheet">
+    <div class="esh-header">
+      <div class="esh-brand">
+        <span class="logo"><img alt="cardi" src="data:image/png;base64,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"></span>
+        <span class="esh-title">Live Brand Check · Cardi Nusantara</span>
+      </div>
+      <div class="esh-meta">
+        <span id="esh-date" class="esh-date"></span>
+        <span class="esh-tag" id="esh-tag">Ringkasan Hasil</span>
+      </div>
+    </div>
+
+    <div class="esh-brand-row">
+      <div class="esh-brand-info">
+        <span class="esh-label">Nama Brand</span>
+        <h1 id="esh-brand-name" class="esh-brand-name">Brand</h1>
+      </div>
+      <div class="lvbadge esh-lvbadge" id="esh-lvbadge">
+        <b id="esh-lvn">–</b>
+        <div>
+          <strong id="esh-lvt">Level belum dipilih</strong>
+          <span id="esh-lvo">Pilih omzet per tahun</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="esh-score-grid">
+      <div class="esh-dial-col">
+        <div class="esh-dial-wrap">
+          <svg class="dial esh-dial" id="esh-dial-svg" viewBox="0 0 400 400" role="img" aria-label="Skor tiga pilar">
+            <g transform="rotate(-90 200 200)">
+              <circle class="track" cx="200" cy="200" r="170" stroke-width="22"/>
+              <circle class="track" cx="200" cy="200" r="136" stroke-width="22"/>
+              <circle class="track" cx="200" cy="200" r="102" stroke-width="22"/>
+              <circle class="arc" id="esh-a0" cx="200" cy="200" r="170" stroke-width="22" stroke="var(--r1)" stroke-linecap="round"/>
+              <circle class="arc" id="esh-a1" cx="200" cy="200" r="136" stroke-width="22" stroke="var(--r2)" stroke-linecap="round"/>
+              <circle class="arc" id="esh-a2" cx="200" cy="200" r="102" stroke-width="22" stroke="var(--r3)" stroke-linecap="round"/>
+            </g>
+            <text x="200" y="198" text-anchor="middle" font-family="Gloock, Georgia, serif" font-size="64" fill="currentColor" id="esh-pct">0%</text>
+            <text x="200" y="232" text-anchor="middle" font-family="Instrument Sans, system-ui, sans-serif" font-size="16" fill="var(--mute)" id="esh-totl">0 dari 30</text>
+          </svg>
+          <div class="keys esh-keys">
+            <span><i class="swatch s1"></i><span id="esh-k0-name">Dilihat</span> <b id="esh-k0">–</b></span>
+            <span><i class="swatch s2"></i><span id="esh-k1-name">Diingat</span> <b id="esh-k1">–</b></span>
+            <span><i class="swatch s3"></i><span id="esh-k2-name">Dipercaya</span> <b id="esh-k2">–</b></span>
+          </div>
+        </div>
+      </div>
+      <div class="esh-verdict-col">
+        <div class="verdict esh-verdict">
+          <span class="esh-label">Diagnosa &amp; Rekomendasi</span>
+          <h3 id="esh-vt">Beri skor untuk memulai</h3>
+          <p id="esh-vd">Pilih level bisnis, lalu nilai tiap pilar dari 1 sampai 10.</p>
+        </div>
+        <div class="esh-matrix-status" id="esh-matrix-status"></div>
+      </div>
+    </div>
+
+    <div class="esh-sol-section">
+      <div class="esh-sol-title" id="esh-sol-title">Rekomendasi Channel, Budget &amp; Eksekusi</div>
+      <div class="solgrid esh-solgrid">
+        <div class="card esh-card" id="esh-c1"></div>
+        <div class="card esh-card" id="esh-c2"></div>
+        <div class="card esh-card" id="esh-c3"></div>
+      </div>
+    </div>
+
+    <div class="esh-footer">
+      <span>Dilihat, diingat, dipercaya. <strong>Cardi Nusantara</strong></span>
+      <span>cardinusantara.com · Konsultasi: wa.me/6281289895646</span>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -508,7 +647,13 @@ const I18N = {
     waBrand: (b) => `Brand: ${b}`,
     waLevel: (n, t, o) => `Level bisnis: ${n} (${t}, ${o})`,
     waScores: (s0, s1, s2) => `Skor: Dilihat ${s0}, Diingat ${s1}, Dipercaya ${s2}`,
-    waClosing: 'Saya tertarik dengan Brand Check Up gratis.'
+    waClosing: 'Saya tertarik dengan Brand Check Up gratis.',
+    btnJpg: '📸 Simpan JPEG',
+    btnPdf: '📄 Download PDF',
+    btnShare: '📲 Bagikan Hasil',
+    exporting: 'Memproses...',
+    exportSummaryHeading: 'Ringkasan Hasil Brand Check',
+    exportSolHeading: 'Rekomendasi Channel, Budget & Eksekusi'
   },
   en: {
     title: 'Live Brand Check · Cardi Nusantara',
@@ -582,7 +727,13 @@ const I18N = {
     waBrand: (b) => `Brand: ${b}`,
     waLevel: (n, t, o) => `Business Level: ${n} (${t}, ${o})`,
     waScores: (s0, s1, s2) => `Score: Seen ${s0}, Remembered ${s1}, Trusted ${s2}`,
-    waClosing: 'I am interested in the free Brand Check Up.'
+    waClosing: 'I am interested in the free Brand Check Up.',
+    btnJpg: '📸 Save JPEG',
+    btnPdf: '📄 Download PDF',
+    btnShare: '📲 Share Results',
+    exporting: 'Processing...',
+    exportSummaryHeading: 'Live Brand Check Summary',
+    exportSolHeading: 'Recommended Channels, Budget & Execution'
   },
   zh: {
     title: '实时品牌诊断 · Cardi Nusantara',
@@ -656,7 +807,13 @@ const I18N = {
     waBrand: (b) => `品牌：${b}`,
     waLevel: (n, t, o) => `业务阶段：第 ${n} 级（${t}，${o}）`,
     waScores: (s0, s1, s2) => `得分：被看见 ${s0}、被记住 ${s1}、被信任 ${s2}`,
-    waClosing: '我对免费的品牌深度诊断（Brand Check Up）很感兴趣。'
+    waClosing: '我对免费的品牌深度诊断（Brand Check Up）很感兴趣。',
+    btnJpg: '📸 保存 JPEG',
+    btnPdf: '📄 下载 PDF',
+    btnShare: '📲 分享结果',
+    exporting: '处理中...',
+    exportSummaryHeading: '品牌诊断报告摘要',
+    exportSolHeading: '渠道矩阵、预算与落地建议'
   }
 };
 
@@ -891,6 +1048,15 @@ function render() {
     vd.textContent = item.desc;
   }
 
+  const isComplete = done === 3;
+  document.querySelectorAll('.export-actions').forEach(el => {
+    el.hidden = !isComplete;
+  });
+  const canWebShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
+  document.querySelectorAll('.btn-share').forEach(el => {
+    el.hidden = !canWebShare || !isComplete;
+  });
+
   renderSol(L, done, t_score);
 }
 
@@ -957,6 +1123,289 @@ function renderSol(L, done, t_score) {
       <a class="wa" href="${waLink()}" target="_blank" rel="noopener">${WAICON}${t.memberBoxWa}</a></div>`;
     document.getElementById('solp').textContent = L ? t.solDescWithLevel(L.n, S.brand.trim() || t.defaultBrandName) : t.solDescNoLevel;
   }
+  updateExportSummary();
+}
+
+function updateExportSummary() {
+  const t = I18N[currentLang];
+  const L = S.level ? getLevel(S.level, currentLang) : null;
+  const t_score = S.scores.reduce((a, b) => a + b, 0);
+  const nm = S.brand.trim() || t.defaultBrandName;
+
+  // Date
+  const localeMap = { id: 'id-ID', en: 'en-US', zh: 'zh-CN' };
+  const dateStr = new Date().toLocaleDateString(localeMap[currentLang] || 'id-ID', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  const dateEl = document.getElementById('esh-date');
+  if (dateEl) dateEl.textContent = dateStr;
+  const brandEl = document.getElementById('esh-brand-name');
+  if (brandEl) brandEl.textContent = nm;
+  const tagEl = document.getElementById('esh-tag');
+  if (tagEl) tagEl.textContent = t.exportSummaryHeading;
+
+  // Level Badge
+  const lvnEl = document.getElementById('esh-lvn');
+  const lvtEl = document.getElementById('esh-lvt');
+  const lvoEl = document.getElementById('esh-lvo');
+  if (lvnEl) lvnEl.textContent = L ? L.n : '–';
+  if (lvtEl) lvtEl.textContent = L ? t.levelLabel(L.n, L.t) : t.unselectedLevel;
+  if (lvoEl) lvoEl.textContent = L ? L.o : t.selectRevenue;
+
+  // Dial & Scores
+  const pctEl = document.getElementById('esh-pct');
+  const totlEl = document.getElementById('esh-totl');
+  if (pctEl) pctEl.textContent = Math.round(t_score / 30 * 100) + '%';
+  if (totlEl) totlEl.textContent = t.scoreTotal(t_score);
+
+  S.scores.forEach((v, i) => {
+    const a = document.getElementById('esh-a' + i);
+    if (a) {
+      a.style.strokeDasharray = circ[i];
+      a.style.strokeDashoffset = circ[i] * (1 - v / 10);
+    }
+    const k = document.getElementById('esh-k' + i);
+    if (k) k.textContent = v || '–';
+  });
+
+  const P = getPillars(currentLang);
+  const k0 = document.getElementById('esh-k0-name');
+  const k1 = document.getElementById('esh-k1-name');
+  const k2 = document.getElementById('esh-k2-name');
+  if (k0) k0.textContent = P[0].name;
+  if (k1) k1.textContent = P[1].name;
+  if (k2) k2.textContent = P[2].name;
+
+  // Verdict
+  const done = S.scores.filter(Boolean).length;
+  const eshVt = document.getElementById('esh-vt');
+  const eshVd = document.getElementById('esh-vd');
+  if (eshVt && eshVd) {
+    if (done < 3) {
+      eshVt.textContent = t.verdictNotDoneTitle(3 - done);
+      eshVd.textContent = t.verdictNotDoneDesc;
+    } else {
+      const item = t.verdictDone.find(v => t_score <= v.max) || t.verdictDone[t.verdictDone.length - 1];
+      eshVt.textContent = item.title(nm);
+      eshVd.textContent = item.desc;
+    }
+  }
+
+  // Matrix status
+  const eshStatus = document.getElementById('esh-matrix-status');
+  if (eshStatus) {
+    if (L) {
+      eshStatus.innerHTML = `<b>${L.focus}</b><br>${t.roas}: <b>${S.roas ? '✓' : '—'}</b> · ${t.grow}: <b>${S.grow ? '✓' : '—'}</b>`;
+    } else {
+      eshStatus.innerHTML = `<em>${t.selectRevenue}</em>`;
+    }
+  }
+
+  // Sol cards
+  const solTitleEl = document.getElementById('esh-sol-title');
+  if (solTitleEl) solTitleEl.textContent = t.exportSolHeading;
+  const c1 = document.getElementById('c1');
+  const c2 = document.getElementById('c2');
+  const c3 = document.getElementById('c3');
+  const eshC1 = document.getElementById('esh-c1');
+  const eshC2 = document.getElementById('esh-c2');
+  const eshC3 = document.getElementById('esh-c3');
+  if (c1 && eshC1) eshC1.innerHTML = c1.innerHTML;
+  if (c2 && eshC2) eshC2.innerHTML = c2.innerHTML;
+  if (c3 && eshC3) eshC3.innerHTML = c3.innerHTML;
+}
+
+function setExportingState(isExporting) {
+  const t = I18N[currentLang];
+  document.querySelectorAll('.btn-export').forEach(b => {
+    b.disabled = isExporting;
+  });
+  if (isExporting) {
+    document.querySelectorAll('.btn-export-jpg').forEach(b => b.textContent = t.exporting);
+    document.querySelectorAll('.btn-export-pdf').forEach(b => b.textContent = t.exporting);
+    document.querySelectorAll('.btn-share').forEach(b => b.textContent = t.exporting);
+  } else {
+    document.querySelectorAll('.btn-export-jpg').forEach(b => b.textContent = t.btnJpg);
+    document.querySelectorAll('.btn-export-pdf').forEach(b => b.textContent = t.btnPdf);
+    document.querySelectorAll('.btn-share').forEach(b => b.textContent = t.btnShare);
+  }
+}
+
+async function prepareExportCanvas() {
+  updateExportSummary();
+  const wrapper = document.getElementById('export-sheet-wrapper');
+  const sheet = document.getElementById('export-sheet');
+
+  if (document.fonts && document.fonts.ready) {
+    try { await document.fonts.ready; } catch (e) {}
+  }
+
+  const compStyle = getComputedStyle(document.documentElement);
+  const lineCol = compStyle.getPropertyValue('--line').trim() || '#27396B';
+  const r1Col = compStyle.getPropertyValue('--r1').trim() || '#D6DFF6';
+  const r2Col = compStyle.getPropertyValue('--r2').trim() || '#8FA6F2';
+  const r3Col = compStyle.getPropertyValue('--r3').trim() || '#4A6CF0';
+  const textCol = compStyle.getPropertyValue('--text').trim() || '#F2F4FA';
+  const muteCol = compStyle.getPropertyValue('--mute').trim() || '#A5B1D0';
+
+  document.querySelectorAll('#esh-dial-svg .track').forEach(c => c.setAttribute('stroke', lineCol));
+  const a0 = document.getElementById('esh-a0');
+  const a1 = document.getElementById('esh-a1');
+  const a2 = document.getElementById('esh-a2');
+  if (a0) a0.setAttribute('stroke', r1Col);
+  if (a1) a1.setAttribute('stroke', r2Col);
+  if (a2) a2.setAttribute('stroke', r3Col);
+  const pct = document.getElementById('esh-pct');
+  const totl = document.getElementById('esh-totl');
+  if (pct) pct.setAttribute('fill', textCol);
+  if (totl) totl.setAttribute('fill', muteCol);
+
+  wrapper.classList.add('is-rendering');
+  await new Promise(r => requestAnimationFrame(r));
+  await new Promise(r => setTimeout(r, 60));
+
+  try {
+    const canvas = await html2canvas(sheet, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: compStyle.getPropertyValue('--bg').trim() || '#0E1A33',
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      x: 0,
+      y: 0,
+      width: 960,
+      windowWidth: 1024
+    });
+    return canvas;
+  } finally {
+    wrapper.classList.remove('is-rendering');
+  }
+}
+
+function getExportFileName() {
+  const rawBrand = S.brand.trim() || 'Brand';
+  const cleanBrand = rawBrand.replace(/[^a-zA-Z0-9_\u4e00-\u9fa5-]+/g, '-').replace(/^-+|-+$/g, '') || 'Brand';
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  return `Brand-Check-${cleanBrand}-${yyyy}-${mm}-${dd}`;
+}
+
+async function exportJPEG() {
+  setExportingState(true);
+  try {
+    const canvas = await prepareExportCanvas();
+    const fileName = getExportFileName() + '.jpg';
+    canvas.toBlob(blob => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 3000);
+    }, 'image/jpeg', 0.95);
+  } catch (err) {
+    console.error('Export JPEG error:', err);
+    alert('Gagal mengekspor JPEG. Silakan coba lagi.');
+  } finally {
+    setExportingState(false);
+  }
+}
+
+async function exportPDF() {
+  setExportingState(true);
+  try {
+    const canvas = await prepareExportCanvas();
+    const fileName = getExportFileName() + '.pdf';
+    const jsPDFClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+    if (!jsPDFClass) {
+      throw new Error('jsPDF library not loaded');
+    }
+    const doc = new jsPDFClass({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10;
+    const maxW = pageWidth - margin * 2;
+    const maxH = pageHeight - margin * 2;
+
+    const ratio = canvas.width / canvas.height;
+    let renderW = maxW;
+    let renderH = maxW / ratio;
+
+    if (renderH > maxH) {
+      renderH = maxH;
+      renderW = maxH * ratio;
+    }
+
+    const x = (pageWidth - renderW) / 2;
+    const y = (pageHeight - renderH) / 2;
+
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    doc.addImage(imgData, 'JPEG', x, y, renderW, renderH, undefined, 'FAST');
+    doc.save(fileName);
+  } catch (err) {
+    console.error('Export PDF error:', err);
+    alert('Gagal mengekspor PDF. Silakan coba lagi.');
+  } finally {
+    setExportingState(false);
+  }
+}
+
+async function shareResult() {
+  setExportingState(true);
+  try {
+    const canvas = await prepareExportCanvas();
+    const fileName = getExportFileName() + '.jpg';
+    const brandName = S.brand.trim() || I18N[currentLang].defaultBrandName;
+
+    canvas.toBlob(async blob => {
+      if (!blob) return;
+      const file = new File([blob], fileName, { type: 'image/jpeg' });
+      const shareData = {
+        title: `Brand Check · ${brandName}`,
+        text: `Hasil Brand Check untuk ${brandName} oleh Cardi Nusantara.`
+      };
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ ...shareData, files: [file] });
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.warn('Share file error, falling back:', err);
+          }
+        }
+      } else if (navigator.share) {
+        try {
+          await navigator.share({
+            ...shareData,
+            url: window.location.href
+          });
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.warn('Share link error:', err);
+          }
+        }
+      }
+    }, 'image/jpeg', 0.95);
+  } catch (err) {
+    console.error('Share error:', err);
+    alert('Gagal membagikan hasil. Silakan coba lagi.');
+  } finally {
+    setExportingState(false);
+  }
 }
 
 function applyStaticTranslations() {
@@ -982,6 +1431,9 @@ function applyStaticTranslations() {
   document.getElementById('k0-name').textContent = P[0].name;
   document.getElementById('k1-name').textContent = P[1].name;
   document.getElementById('k2-name').textContent = P[2].name;
+  document.querySelectorAll('.btn-export-jpg').forEach(b => b.textContent = t.btnJpg);
+  document.querySelectorAll('.btn-export-pdf').forEach(b => b.textContent = t.btnPdf);
+  document.querySelectorAll('.btn-share').forEach(b => b.textContent = t.btnShare);
 }
 
 function setLang(lang) {
@@ -1029,6 +1481,16 @@ document.getElementById('theme').addEventListener('click', () => {
   const r = document.documentElement;
   const cur = r.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   r.dataset.theme = cur === 'light' ? 'dark' : 'light';
+});
+
+document.querySelectorAll('.btn-export-jpg').forEach(btn => {
+  btn.addEventListener('click', exportJPEG);
+});
+document.querySelectorAll('.btn-export-pdf').forEach(btn => {
+  btn.addEventListener('click', exportPDF);
+});
+document.querySelectorAll('.btn-share').forEach(btn => {
+  btn.addEventListener('click', shareResult);
 });
 
 applyStaticTranslations();
